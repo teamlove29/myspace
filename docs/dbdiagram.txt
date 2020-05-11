@@ -5,12 +5,8 @@ Table member {
   email varchar
   password varchar
   facebook varchar
-  premium_id int [ref: > premium.premium_id]
+  premium_id int
   type varchar
-}
-Table premium {
-  premium_id int [pk, increment] // auto-increment
-  mounth int
 }
 Table address {
   add_id int [pk, increment] // auto-increment
@@ -28,7 +24,7 @@ Table artists {
   facebook varchar
   detail text
   image image
-  mem_id int [ref: > member.mem_id]
+  mem_id int [ref: - member.mem_id]
   total int 
 }
 Table genre {
@@ -39,7 +35,7 @@ Table song {
   song_id int [pk, increment] // auto-increment
   album_id int [ref: > album.album_id]
   name varchar
-  gaenre_id int [ref: > genre.gen_id]
+  genre_id int [ref: > genre.gen_id]
   detail text
 }
 Table album {
@@ -111,22 +107,28 @@ Table concert_detail{
 }
 Table zone {
   zone_id int [pk, increment] // auto-increment
-  concert_id int [ref: > concert.concert_id]
-  total_seats int
+  concert_id int [ref: - concert.concert_id]
+}
+Table zone_detail {
+  zone_d_id int [pk, increment] // auto-increment
+  zone_id int [ref: > zone.zone_id]
+  zone_d_name varchar
   price int
+  total_seats int
 }
 Table ticket_concert {
-  id int [pk, increment] // auto-increment
-  zone_id int [ref: > zone.zone_id]
+  ticket_con_id int [pk, increment] // auto-increment
+  mem_id int [ref: > member.mem_id]
+  concert_id int [ref: > concert.concert_id]
   date date_time
   total int
 }
 Table ticket_concert_detail{
   id int [pk, increment] // auto-increment
-  ticket_concert_id int [ref: > ticket_concert.id]
-  concert_price_id int [ref: > zone.zone_id]
+  ticket_con_id int [ref: > ticket_concert.ticket_con_id]
+  zone_id int [ref: > zone.zone_id]
   amount int
-  zone_num int
+  price int
 }
 Table invoice_premium {
   invoice_pre_id int [pk, increment] // auto-increment
