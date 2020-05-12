@@ -37,13 +37,22 @@ Table song {
   name varchar
   genre_id int [ref: > genre.gen_id]
   detail text
+  song_img image
+  millisecond float
+  byte int
+  product_id int [ref: > product.product_id]
+  media_type_id int [ref: > media_type.media_type_id]
+}
+Table media_type {
+  media_type_id int [pk, increment] // auto-increment
+  name varchar
 }
 Table album {
   album_id int [pk, increment] // auto-increment
   artists_id int [ref: > artists.artists_id]
   name varchar
   year int
-  image image
+  album_img image
 }
 Table playlist {
   list_id int [pk, increment] // auto-increment
@@ -66,7 +75,8 @@ Table product {
 }
 Table invoice {
   invoice_id int [pk, increment] // auto-increment
-  address_id int [ref: > address.add_id]
+  add_id int [ref: > address.add_id]
+  mem_id int [ref: > member.mem_id]
   date date
   total int
 }
@@ -80,6 +90,7 @@ Table favorite_song {
   favorite_song_id int [pk, increment] // auto-increment
   mem_id int [ref: > member.mem_id]
   song_id int [ref: > song.song_id]
+  
 }
 Table favorite_album {
   favorite_al_id int [pk, increment] // auto-increment
