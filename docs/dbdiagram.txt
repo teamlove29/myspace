@@ -1,0 +1,152 @@
+Table member {
+  mem_id int [pk, increment] // auto-increment
+  first_name varchar
+  last_name varchar
+  email varchar
+  password varchar
+  facebook varchar
+  premium_id int
+  type varchar
+}
+Table address {
+  add_id int [pk, increment] // auto-increment
+  address text
+  sub_district  varchar
+  district varchar
+  provide varchar
+  zip_code  int
+  phone int
+  mem_id int [ref: > member.mem_id]
+}
+Table artists {
+  artists_id int [pk, increment] // auto-increment
+  instagram varchar
+  facebook varchar
+  detail text
+  image image
+  mem_id int [ref: - member.mem_id]
+  total int 
+}
+Table genre {
+  gen_id int [pk, increment] // auto-increment
+  genre varchar
+}
+Table song {
+  song_id int [pk, increment] // auto-increment
+  album_id int [ref: > album.album_id]
+  name varchar
+  genre_id int [ref: > genre.gen_id]
+  detail text
+  song_img image
+  millisecond float
+  byte int
+  product_id int [ref: > product.product_id]
+  media_type_id int [ref: > media_type.media_type_id]
+}
+Table media_type {
+  media_type_id int [pk, increment] // auto-increment
+  name varchar
+}
+Table album {
+  album_id int [pk, increment] // auto-increment
+  artists_id int [ref: > artists.artists_id]
+  name varchar
+  year int
+  album_img image
+}
+Table playlist {
+  list_id int [pk, increment] // auto-increment
+  name varchar(10)
+  mem_id int [ref: > member.mem_id]
+  detail text 
+}
+Table playlist_detail {
+  list_d_id int [pk, increment] // auto-increment
+  playlist_id int [ref: > playlist.list_id]
+  song_id int [ref: > song.song_id]
+  date_create date
+}
+Table product {
+  product_id int [pk, increment] // auto-increment
+  name varchar
+  artists_id int [ref: > artists.artists_id]
+  amount int
+  price int
+}
+Table invoice {
+  invoice_id int [pk, increment] // auto-increment
+  add_id int [ref: > address.add_id]
+  mem_id int [ref: > member.mem_id]
+  date date
+  total int
+}
+Table invoice_detail {
+  invoice_d_id int [pk, increment] // auto-increment
+  invoice_id int [ref: > invoice.invoice_id]
+  product_id int [ref: > product.product_id]
+  amount int
+}
+Table favorite_song {
+  favorite_song_id int [pk, increment] // auto-increment
+  mem_id int [ref: > member.mem_id]
+  song_id int [ref: > song.song_id]
+  
+}
+Table favorite_album {
+  favorite_al_id int [pk, increment] // auto-increment
+  mem_id int [ref: > member.mem_id]
+  album_id int [ref: > album.album_id]
+}
+Table favorite_artists {
+  favorite_art_id int [pk, increment] // auto-increment
+  mem_id int [ref: > member.mem_id]
+  artists_id int [ref: > artists.artists_id]
+}
+Table concert {
+  concert_id int [pk, increment] // auto-increment
+  name varchar
+  date date
+  time_start time
+  time_end time
+  location text
+}
+Table concert_detail{
+  concert_d_id int [pk, increment] // auto-increment
+  concert_id int [ref: > concert.concert_id]
+  artists_id int [ref: > artists.artists_id]
+  time_start time
+}
+Table zone {
+  zone_id int [pk, increment] // auto-increment
+  concert_id int [ref: - concert.concert_id]
+}
+Table zone_detail {
+  zone_d_id int [pk, increment] // auto-increment
+  zone_id int [ref: > zone.zone_id]
+  zone_d_name varchar
+  price int
+  total_seats int
+}
+Table ticket_concert {
+  ticket_con_id int [pk, increment] // auto-increment
+  mem_id int [ref: > member.mem_id]
+  concert_id int [ref: > concert.concert_id]
+  date date_time
+  total int
+}
+Table ticket_concert_detail{
+  id int [pk, increment] // auto-increment
+  ticket_con_id int [ref: > ticket_concert.ticket_con_id]
+  zone_id int [ref: > zone.zone_id]
+  amount int
+  price int
+}
+Table invoice_premium {
+  invoice_pre_id int [pk, increment] // auto-increment
+  mem_id int [ref: > member.mem_id]
+  invoice_pre_date date
+  playment_number varchar
+  playmet_m varchar
+  packet int
+  total_premium int
+}
