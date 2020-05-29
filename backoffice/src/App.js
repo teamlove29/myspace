@@ -1,23 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { Route, Redirect ,Switch} from 'react-router-dom'
 import Dashboard from './components/pages/dashboard'
 import Login from './components/pages/auth/login'
-import Louout from './components/pages/auth/logout'
+import Logout from './components/pages/auth/logout'
+import Test from './components/pages/test'
 import NotFound from './components/pages/notFound'
 
-// redirectToNotFound = () => {
-//   return <Redirect to="/NotFound" />
-// }
 
-function App() {
+const redirectToNotFound = () => {
+  return <Redirect to="/NotFound" />
+}
 
-  return (
-    
-    <Switch>
+const isLoggedIn = () => {
 
-    <Route exact path="/Dashboard" component={Dashboard} />
+  const test = localStorage.getItem('access-token-test')
+  console.log(test == 'true')
+
+ return localStorage.getItem('access-token-test')
+  // return localStorage.getItem(server.LOGIN_PASSED) == YES;
+};
+
+// Protected Route
+// component = Component + paramAll
+const SecuredRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isLoggedIn() === 'true' ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
+  />
+);
+
+const redirectToLogin = () => {
+  return <Redirect to="/Login" />;
+};
+
+class App extends Component {
+  render() {
+    return (
+      <Switch>
+        {/* <SecuredRoute exact path="/" component={Dashboard} /> */}
+    <SecuredRoute exact path="/Dashboard" component={Dashboard} />
     <Route exact path="/Login" component={Login} />
-    <Route exact path="/Louout" component={Louout} />
+    <Route exact path="/Louout" component={Logout} />
+    <Route exact path="/Test" component={Test} />
     <Route component={NotFound} />
     
     {/* <Route path="*"  component={this.redirectToNotFound} /> */}
@@ -27,10 +57,12 @@ function App() {
     <Route path="/projects" component={Project} /> */}
 
   </Switch>
-  )
+    );
+  }
 }
 
-export default App
+export default App;
+
 
 
 

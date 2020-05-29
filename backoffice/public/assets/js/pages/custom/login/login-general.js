@@ -65,8 +65,8 @@ var KTLogin = function() {
 		            }).then(function() {
 						KTUtil.scrollTop();
 							console.log('dasdsad');
-							localStorage.setItem('access-token', true)
-    						this.props.history.push('/Dashboard')
+							localStorage.setItem('access-token-test', true)
+    						this.props.history.push("/Dashboard")
 						
 					});
 				} else {

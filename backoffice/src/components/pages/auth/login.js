@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { withRouter } from "react-router";
 
 
 // const initialValues = {
@@ -10,22 +10,19 @@ import React, { useState } from "react";
 
 
 export default function Login(props) {
-
   const [name, setName] = useState("");
-
   function hendleonChange(e) {
     setName(e.target.value);
   }
-
   function hendleonSubmit(e) {
     e.preventDefault();
       console.log('test');
+      this.props.history.push("/Dashboard")
     //   this.props.history.push('/login');
     //   this.props.history.push('/Dashboard')
     // e.reventDefault()
     // console.log('test');
-    
-    // localStorage.setItem('access-token', true)
+    localStorage.setItem('access-token', true)
     // this.props.history.push('/Dashboard')
   }
 
@@ -56,10 +53,7 @@ export default function Login(props) {
         onChange={hendleonChange}
         className="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 mb-5" type="text" placeholder="Email or Username" name="" autoComplete="off" />
       </div>
-      {/* ทดสอบ  */}
-  <h1>{JSON.stringify({name})}</h1>
-  <br/>
-   {/* ทดสอบ  */}
+
       <div className="form-group">
         <input className="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-pill border-0 py-4 px-8 mb-5" type="password" placeholder="Password" name="password" />
       </div>
@@ -70,7 +64,8 @@ export default function Login(props) {
         <a href="javascript:;" id="kt_login_forgot" className="text-white font-weight-bold">Forget Password ?</a>
       </div>
       <div className="form-group text-center mt-10">
-        <button id="kt_login_signin_submit" className="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3">Sign In</button>
+      {/* kt_login_signin_submit */}
+        <button disabled={false} id="kt_login_signin_submit" className="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3">Sign In</button>
       </div>
     </form>
     <div className="mt-10">
