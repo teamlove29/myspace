@@ -50,15 +50,29 @@ const Routes = () => {
 
 
       {isLoggedIn() ?(
-        <BasePage/>
-
+        <Route>
+          <BasePage/>
+        </Route>
+        
       ) : (
-          <Redirect to="/auth/login"/>
+        <Route>
+            <AuthPage />
+        </Route>
+          
       )}
 
-        {/* <Route path="/dashboard" component={Main} />
         <Route path="/NotFound" component={NotFound} />
-        <Route path="/logout" component={Logout} /> */}
+        <Route path="/logout" component={Logout} />
+      
+{/* {!isLoggedIn() ?(
+       <Redirect to="/auth/login"/>
+      ) : (
+        <Route>
+            <BasePage/>
+        </Route>
+          
+      )} */}
+
       </Switch>
 
 

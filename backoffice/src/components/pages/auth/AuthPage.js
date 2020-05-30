@@ -33,7 +33,7 @@ export default function AuthPage() {
                             <Redirect to="/auth/login"/>
                         </Switch>
                     </div>
-                    {/*end::Content body*/}
+                    {/*end::Content body*/} 
 
 
                     <Footer />
