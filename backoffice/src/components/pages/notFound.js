@@ -1,5 +1,5 @@
 import React from 'react'
-import {toAbsoluteUrl} from "../_helpers";
+import {toAbsoluteUrl} from "../../_helpers";
 
 
 function pageNotFound() {

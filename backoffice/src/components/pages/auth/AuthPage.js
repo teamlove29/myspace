@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link, Switch, Redirect, Route } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
 import Aside from './layout/Aside'
 import Footer from './layout/Footer'
 import Login from "./Login";
-import Test from "../TestPage";
+
 import "../../../_metronic/_assets/sass/pages/login/login-3.scss";
 
 

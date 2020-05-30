@@ -1,19 +1,43 @@
-import React, { Component } from 'react';
-import {Redirect} from "react-router-dom";
+// import React, { Component } from 'react';
+// import {Redirect,useHistory} from "react-router-dom";
+// class Logout extends Component {
 
-class Logout extends Component {
+//     SingOut = () => {
+//         const ok = 'OK'
+//         localStorage.removeItem('access-token-test');
+//         return ok
+//     }
 
-    SingOut = () => {
-            console.log('dasdads')
+//     render() {
+//         const history = useHistory();
+//         return (
+//             <div>
+//                 {/* {this.SingOut() == 'OK' ? <Redirect to="/" /> : <h1> NoSuscess </h1>} */}
+//                 {this.SingOut() == 'OK' ? history.push("/") : <h1> NoSuscess </h1>}
+//             </div>
+//         );
+//     }
+// }
+
+// export default Logout;
+
+
+import React from 'react';
+import { Redirect, useHistory } from "react-router-dom";
+
+const Logout = () => {
+    const history = useHistory();
+    const SingOut = () => {
+        const ok = 'OK'
+        localStorage.removeItem('access-token-test');
+        return ok
     }
 
-    render() {
-        return (
-            <div>
-                {this.SingOut == 'ok' ? <Redirect to="/auth/login" /> : <h1> NoSuscess </h1>}
-            </div>
-        );
-    }
+    return (
+        <div>
+            {SingOut() == 'OK' ? history.push("/") : <h1> NoSuscess </h1>}
+        </div>
+    );
 }
 
 export default Logout;

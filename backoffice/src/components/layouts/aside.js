@@ -1,16 +1,16 @@
 import React from 'react'
-
+import { Link } from "react-router-dom";
 function Aside() {
   return (
     <div>
 
-      <div>
+
         {/*begin::Aside*/}
         <div className="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
           {/*begin::Brand*/}
           <div className="brand flex-column-auto" id="kt_brand">
             {/*begin::Logo*/}
-            <a href="index.html" className="brand-logo">
+            <a href="/" className="brand-logo">
               <img alt="Logo" src="assets/media/logos/logo-light.png" />
             </a>
             {/*end::Logo*/}
@@ -54,25 +54,9 @@ function Aside() {
                   </a>
                 </li>
 
-                <li className="menu-item " aria-haspopup="true">
-                  <a href="/test" className="menu-link">
-                    <span className="svg-icon menu-icon">
-                      {/*begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Code.svg*/}<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                          <rect x={0} y={0} width={24} height={24} />
-                          <path d="M17.2718029,8.68536757 C16.8932864,8.28319382 16.9124644,7.65031935 17.3146382,7.27180288 C17.7168119,6.89328641 18.3496864,6.91246442 18.7282029,7.31463817 L22.7282029,11.5646382 C23.0906029,11.9496882 23.0906029,12.5503176 22.7282029,12.9353676 L18.7282029,17.1853676 C18.3496864,17.5875413 17.7168119,17.6067193 17.3146382,17.2282029 C16.9124644,16.8496864 16.8932864,16.2168119 17.2718029,15.8146382 L20.6267538,12.2500029 L17.2718029,8.68536757 Z M6.72819712,8.6853647 L3.37324625,12.25 L6.72819712,15.8146353 C7.10671359,16.2168091 7.08753558,16.8496835 6.68536183,17.2282 C6.28318808,17.6067165 5.65031361,17.5875384 5.27179713,17.1853647 L1.27179713,12.9353647 C0.909397125,12.5503147 0.909397125,11.9496853 1.27179713,11.5646353 L5.27179713,7.3146353 C5.65031361,6.91246155 6.28318808,6.89328354 6.68536183,7.27180001 C7.08753558,7.65031648 7.10671359,8.28319095 6.72819712,8.6853647 Z" fill="#000000" fillRule="nonzero" />
-                          <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-345.000000) translate(-12.000000, -12.000000) " x={11} y={4} width={2} height={16} rx={1} />
-                        </g>
-                      </svg>
-                      {/*end::Svg Icon*/}
-                    </span>
-
-                    <span className="menu-text">Test Page</span>
-                  </a>
-                </li>
 
                 <li className="menu-item " aria-haspopup="true">
-                  <a href="/test" className="menu-link">
+                  <Link to="/member" className="menu-link">
                     <span className="svg-icon menu-icon">
                       {/*begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg*/}
                       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -86,7 +70,7 @@ function Aside() {
                     </span>
 
                     <span className="menu-text">User</span>
-                  </a>
+                  </Link>
                 </li>
 
 
@@ -567,354 +551,30 @@ function Aside() {
                     </ul>
                   </div>
                 </li>
-                <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                  <a href="javascript:;" className="menu-link menu-toggle">
-                    <span className="svg-icon menu-icon">
-                      {/*begin::Svg Icon | path:assets/media/svg/icons/Shopping/Barcode-read.svg*/}
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                          <rect x={0} y={0} width={24} height={24} />
-                          <rect fill="#000000" opacity="0.3" x={4} y={4} width={8} height={16} />
-                          <path d="M6,18 L9,18 C9.66666667,18.1143819 10,18.4477153 10,19 C10,19.5522847 9.66666667,19.8856181 9,20 L4,20 L4,15 C4,14.3333333 4.33333333,14 5,14 C5.66666667,14 6,14.3333333 6,15 L6,18 Z M18,18 L18,15 C18.1143819,14.3333333 18.4477153,14 19,14 C19.5522847,14 19.8856181,14.3333333 20,15 L20,20 L15,20 C14.3333333,20 14,19.6666667 14,19 C14,18.3333333 14.3333333,18 15,18 L18,18 Z M18,6 L15,6 C14.3333333,5.88561808 14,5.55228475 14,5 C14,4.44771525 14.3333333,4.11438192 15,4 L20,4 L20,9 C20,9.66666667 19.6666667,10 19,10 C18.3333333,10 18,9.66666667 18,9 L18,6 Z M6,6 L6,9 C5.88561808,9.66666667 5.55228475,10 5,10 C4.44771525,10 4.11438192,9.66666667 4,9 L4,4 L9,4 C9.66666667,4 10,4.33333333 10,5 C10,5.66666667 9.66666667,6 9,6 L6,6 Z" fill="#000000" fillRule="nonzero" />
-                        </g>
-                      </svg>
-                      {/*end::Svg Icon*/}
-                    </span>
-                    <span className="menu-text">Pages</span>
-                    <i className="menu-arrow" />
-                  </a>
-                  <div className="menu-submenu">
-                    <i className="menu-arrow" />
-                    <ul className="menu-subnav">
-                      <li className="menu-item menu-item-parent" aria-haspopup="true">
-                        <span className="menu-link">
-                          <span className="menu-text">Pages</span>
-                        </span>
-                      </li>
-                      <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" className="menu-link menu-toggle">
-                          <i className="menu-bullet menu-bullet-dot">
-                            <span />
-                          </i>
-                          <span className="menu-text">Login</span>
-                          <i className="menu-arrow" />
-                        </a>
-                        <div className="menu-submenu">
-                          <i className="menu-arrow" />
-                          <ul className="menu-subnav">
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/login/login-1.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Login 1</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/login/login-2.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Login 2</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/login/login-3.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Login 3</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/login/login-4.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Login 4</span>
-                              </a>
-                            </li>
-                            <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                              <a href="javascript:;" className="menu-link menu-toggle">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Login 5</span>
-                                <span className="menu-label">
-                                  <span className="label label-inline label-info">Wizard</span>
-                                </span>
-                                <i className="menu-arrow" />
-                              </a>
-                              <div className="menu-submenu">
-                                <i className="menu-arrow" />
-                                <ul className="menu-subnav">
-                                  <li className="menu-item" aria-haspopup="true">
-                                    <a href="custom/pages/login/login-5/signup.html" className="menu-link">
-                                      <i className="menu-bullet menu-bullet-dot">
-                                        <span />
-                                      </i>
-                                      <span className="menu-text">Sign Up</span>
-                                    </a>
-                                  </li>
-                                  <li className="menu-item" aria-haspopup="true">
-                                    <a href="custom/pages/login/login-5/signin.html" className="menu-link">
-                                      <i className="menu-bullet menu-bullet-dot">
-                                        <span />
-                                      </i>
-                                      <span className="menu-text">Sign In</span>
-                                    </a>
-                                  </li>
-                                  <li className="menu-item" aria-haspopup="true">
-                                    <a href="custom/pages/login/login-5/forgot.html" className="menu-link">
-                                      <i className="menu-bullet menu-bullet-dot">
-                                        <span />
-                                      </i>
-                                      <span className="menu-text">Forgot Password</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </li>
-                            <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                              <a href="javascript:;" className="menu-link menu-toggle">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Classic</span>
-                                <i className="menu-arrow" />
-                              </a>
-                              <div className="menu-submenu">
-                                <i className="menu-arrow" />
-                                <ul className="menu-subnav">
-                                  <li className="menu-item" aria-haspopup="true">
-                                    <a href="custom/pages/login/classic/login-1.html" className="menu-link">
-                                      <i className="menu-bullet menu-bullet-dot">
-                                        <span />
-                                      </i>
-                                      <span className="menu-text">Login 1</span>
-                                    </a>
-                                  </li>
-                                  <li className="menu-item" aria-haspopup="true">
-                                    <a href="custom/pages/login/classic/login-2.html" className="menu-link">
-                                      <i className="menu-bullet menu-bullet-dot">
-                                        <span />
-                                      </i>
-                                      <span className="menu-text">Login 3</span>
-                                    </a>
-                                  </li>
-                                  <li className="menu-item" aria-haspopup="true">
-                                    <a href="custom/pages/login/classic/login-3.html" className="menu-link">
-                                      <i className="menu-bullet menu-bullet-dot">
-                                        <span />
-                                      </i>
-                                      <span className="menu-text">Login 4</span>
-                                    </a>
-                                  </li>
-                                  <li className="menu-item" aria-haspopup="true">
-                                    <a href="custom/pages/login/classic/login-4.html" className="menu-link">
-                                      <i className="menu-bullet menu-bullet-dot">
-                                        <span />
-                                      </i>
-                                      <span className="menu-text">Login 5</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" className="menu-link menu-toggle">
-                          <i className="menu-bullet menu-bullet-dot">
-                            <span />
-                          </i>
-                          <span className="menu-text">Wizard</span>
-                          <i className="menu-arrow" />
-                        </a>
-                        <div className="menu-submenu">
-                          <i className="menu-arrow" />
-                          <ul className="menu-subnav">
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/wizard/wizard-1.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Wizard 1</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/wizard/wizard-2.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Wizard 2</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/wizard/wizard-3.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Wizard 3</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/wizard/wizard-4.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Wizard 4</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" className="menu-link menu-toggle">
-                          <i className="menu-bullet menu-bullet-dot">
-                            <span />
-                          </i>
-                          <span className="menu-text">Pricing Tables</span>
-                          <i className="menu-arrow" />
-                        </a>
-                        <div className="menu-submenu">
-                          <i className="menu-arrow" />
-                          <ul className="menu-subnav">
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/pricing/pricing-1.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Pricing Tables 1</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/pricing/pricing-2.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Pricing Tables 2</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/pricing/pricing-3.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Pricing Tables 3</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/pricing/pricing-4.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Pricing Tables 4</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" className="menu-link menu-toggle">
-                          <i className="menu-bullet menu-bullet-dot">
-                            <span />
-                          </i>
-                          <span className="menu-text">Invoices</span>
-                          <i className="menu-arrow" />
-                        </a>
-                        <div className="menu-submenu">
-                          <i className="menu-arrow" />
-                          <ul className="menu-subnav">
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/invoices/invoice-1.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Invoice 1</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/invoices/invoice-2.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Invoice 2</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                        <a href="javascript:;" className="menu-link menu-toggle">
-                          <i className="menu-bullet menu-bullet-dot">
-                            <span />
-                          </i>
-                          <span className="menu-text">Error</span>
-                          <i className="menu-arrow" />
-                        </a>
-                        <div className="menu-submenu">
-                          <i className="menu-arrow" />
-                          <ul className="menu-subnav">
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/error/error-1.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Error 1</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/error/error-2.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Error 2</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/error/error-3.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Error 3</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/error/error-4.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Error 4</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/error/error-5.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Error 5</span>
-                              </a>
-                            </li>
-                            <li className="menu-item" aria-haspopup="true">
-                              <a href="custom/pages/error/error-6.html" className="menu-link">
-                                <i className="menu-bullet menu-bullet-dot">
-                                  <span />
-                                </i>
-                                <span className="menu-text">Error 6</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
+                
                 <li className="menu-section">
                   <h4 className="menu-text">Layout</h4>
                   <i className="menu-icon ki ki-bold-more-hor icon-md" />
                 </li>
+
+                <li className="menu-item " aria-haspopup="true">
+                  <a target="_blank" href="/test" className="menu-link">
+                    <span className="svg-icon menu-icon">
+                      {/*begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Code.svg*/}<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                          <rect x={0} y={0} width={24} height={24} />
+                          <path d="M17.2718029,8.68536757 C16.8932864,8.28319382 16.9124644,7.65031935 17.3146382,7.27180288 C17.7168119,6.89328641 18.3496864,6.91246442 18.7282029,7.31463817 L22.7282029,11.5646382 C23.0906029,11.9496882 23.0906029,12.5503176 22.7282029,12.9353676 L18.7282029,17.1853676 C18.3496864,17.5875413 17.7168119,17.6067193 17.3146382,17.2282029 C16.9124644,16.8496864 16.8932864,16.2168119 17.2718029,15.8146382 L20.6267538,12.2500029 L17.2718029,8.68536757 Z M6.72819712,8.6853647 L3.37324625,12.25 L6.72819712,15.8146353 C7.10671359,16.2168091 7.08753558,16.8496835 6.68536183,17.2282 C6.28318808,17.6067165 5.65031361,17.5875384 5.27179713,17.1853647 L1.27179713,12.9353647 C0.909397125,12.5503147 0.909397125,11.9496853 1.27179713,11.5646353 L5.27179713,7.3146353 C5.65031361,6.91246155 6.28318808,6.89328354 6.68536183,7.27180001 C7.08753558,7.65031648 7.10671359,8.28319095 6.72819712,8.6853647 Z" fill="#000000" fillRule="nonzero" />
+                          <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-345.000000) translate(-12.000000, -12.000000) " x={11} y={4} width={2} height={16} rx={1} />
+                        </g>
+                      </svg>
+                      {/*end::Svg Icon*/}
+                    </span>
+
+                    <span className="menu-text">Test Page</span>
+                  </a>
+                </li>
+
+
 
                 <li className="menu-item" aria-haspopup="true">
                   <a target="_blank" href="https://keenthemes.com/metronic/preview/demo1/builder.html" className="menu-link">
@@ -940,9 +600,11 @@ function Aside() {
           </div>
           {/*end::Aside Menu*/}
         </div>
+
+
         {/*end::Aside*/}
         {/*begin::Wrapper*/}
-        <div >
+      
           {/*begin::Header*/}
           <div id="kt_header" className="header header-fixed">
             {/*begin::Container*/}
@@ -2351,7 +2013,7 @@ function Aside() {
           {/*end::Header*/}
 
 
-        </div>
+    
         {/*end::Wrapper*/}
         {/*end::Page*/}
         {/*end::Main*/}
@@ -2396,7 +2058,7 @@ function Aside() {
                       <span className="navi-text text-muted text-hover-primary">jm@softplus.com</span>
                     </span>
                   </a>
-                  <a href="#" className="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
+                  <a href="/Logout" className="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
                 </div>
               </div>
             </div>
@@ -3303,7 +2965,6 @@ function Aside() {
           {/*end::Content*/}
         </div>
         {/*end::Quick Panel*/}
-      </div>
 
 
 

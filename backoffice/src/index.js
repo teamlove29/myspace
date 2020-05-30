@@ -27,7 +27,7 @@ ReactDOM.render(
       <MetronicSubheaderProvider>
         <MetronicSplashScreenProvider>
           <React.StrictMode>
-            <BrowserRouter>
+            <BrowserRouter >
               <App />
             </BrowserRouter>
           </React.StrictMode>

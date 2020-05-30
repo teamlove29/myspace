@@ -3,10 +3,7 @@ import React from 'react'
 function Content() {
   return (
     <div>
-
       {/*begin::Content*/}
-
-      <div className="content d-flex flex-column flex-column-fluid" id="kt_content">
         {/*begin::Subheader*/}
         <div className="subheader py-2 py-lg-4 subheader-transparent" id="kt_subheader">
           <div className="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -2508,7 +2505,7 @@ function Content() {
           {/*end::Container*/}
         </div>
         {/*end::Entry*/}
-      </div>
+
       {/*end::Content*/}
 
     </div>

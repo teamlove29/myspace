@@ -1,24 +1,31 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Aside from '../layouts/Aside'
 import Header from '../layouts/Header'
 import Footer from '../layouts/Footer'
 import Content from '../layouts/Content'
-import {
-    BrowserRouter as Router,
-    Switch,
-    useLocation
-  } from "react-router-dom";
+import Member from './members/Member'
+import { useLocation } from "react-router-dom";
+import {  Switch, Redirect, Route } from "react-router-dom";
 
 function Dashboard() {
-    const [Email, setEmail] = useState(0);
-    let location = useLocation();
-    console.log(location.pathname);
-    
+
+    // let location = useLocation();
+    // console.log(location.pathname);
+
     return (
+
         <div className="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
             <Header />
             <Aside />
-            <Content />
+            {/*begin::Content*/}
+            <div className="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <Switch> 
+                <Route path="/dashboard" component={Content}/>
+                <Route path="/member" component={Member}/>
+                </Switch>
+            </div>
+            {/*end::Content*/}
+
             <Footer />
         </div>
     )
