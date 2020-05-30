@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom'
-import Dashboard from './components/pages/Dashboard'
+import Dashboard from './components/pages/dashboard'
 import AuthPage from './components/pages/auth/AuthPage'
 import Logout from './components/pages/auth/Logout'
 import TestPage from './components/pages/TestPage'
