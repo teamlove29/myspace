@@ -1,6 +1,15 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import {useLocation} from "react-router";
+import {toAbsoluteUrl, checkIsActive} from "../../_helpers";
+
 function Aside() {
+  const location = useLocation();
+  const getMenuItemActive = (url) => {
+    return checkIsActive(location, url)
+        ? " menu-item-active menu-item-open "
+        : "";
+  };
   return (
     <div>
               {/*begin::Subheader*/}
@@ -106,7 +115,7 @@ function Aside() {
         </div>
         {/*end::Subheader*/}
 
-        
+
         {/*begin::Aside*/}
         <div className="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
           {/*begin::Brand*/}
@@ -139,8 +148,9 @@ function Aside() {
             <div id="kt_aside_menu" className="aside-menu my-4" data-menu-vertical={1} data-menu-scroll={1} data-menu-dropdown-timeout={500}>
               {/*begin::Menu Nav*/}
               <ul className="menu-nav">
-                <li className="menu-item menu-item-active" aria-haspopup="true">
-                  <a href="/" className="menu-link">
+                <li 
+                className={`menu-item ${getMenuItemActive("/dashboard")}`} aria-haspopup="true">
+                  <NavLink to="/dashboard" className="menu-link">
                     <span className="svg-icon menu-icon">
                       {/*begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg*/}
                       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -153,12 +163,12 @@ function Aside() {
                       {/*end::Svg Icon*/}
                     </span>
                     <span className="menu-text">Dashboard</span>
-                  </a>
+                  </NavLink>
                 </li>
 
 
-                <li className="menu-item " aria-haspopup="true">
-                  <Link to="/member" className="menu-link">
+                <li className={`menu-item ${getMenuItemActive("/member")}`} aria-haspopup="true">
+                  <NavLink to="/member" className="menu-link">
                     <span className="svg-icon menu-icon">
                       {/*begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg*/}
                       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -172,7 +182,7 @@ function Aside() {
                     </span>
 
                     <span className="menu-text">User</span>
-                  </Link>
+                  </NavLink>
                 </li>
 
 

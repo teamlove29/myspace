@@ -3,6 +3,7 @@ import Aside from '../layouts/Aside'
 import Header from '../layouts/Header'
 import Footer from '../layouts/Footer'
 import Content from '../layouts/Content'
+import Demo1Dashboard from '../../_metronic/_partials/dashboards/Dashboard'
 import Member from './members/Member'
 import { useLocation } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Redirect, Route } from "react-router-dom";
