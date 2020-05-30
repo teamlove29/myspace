@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
 import {useLocation} from "react-router";
-import {toAbsoluteUrl, checkIsActive} from "../../_helpers";
+import {toAbsoluteUrl, checkIsActive} from "../../../_helpers";
 
 function Aside() {
   const location = useLocation();
@@ -181,7 +181,7 @@ function Aside() {
                       {/*end::Svg Icon*/}
                     </span>
 
-                    <span className="menu-text">User</span>
+                    <span className="menu-text">Members</span>
                   </NavLink>
                 </li>
 
