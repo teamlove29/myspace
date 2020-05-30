@@ -1,6 +1,6 @@
 import React from 'react'
 
-function content() {
+function Content() {
   return (
     <div>
 
@@ -2515,4 +2515,4 @@ function content() {
   )
 }
 
-export default content
+export default Content

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function header() {
+function Header() {
     return (
         <div>
      {/*begin::Header Mobile*/}
@@ -47,4 +47,4 @@ function header() {
     )
 }
 
-export default header
+export default Header

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Redirect ,Switch} from 'react-router-dom'
-import Dashboard from './components/pages/dashboard'
-import Login from './components/pages/auth/login'
-import Logout from './components/pages/auth/logout'
-import Test from './components/pages/test'
-import NotFound from './components/pages/notFound'
+import Dashboard from './components/pages/Dashboard'
+import AuthPage from './components/pages/auth/AuthPage'
+import Logout from './components/pages/auth/Logout'
+import TestPage from './components/pages/TestPage'
+import NotFound from './components/pages/NotFound'
 
 
 const redirectToNotFound = () => {
@@ -43,19 +43,13 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        {/* <SecuredRoute exact path="/" component={Dashboard} /> */}
-    <SecuredRoute exact path="/Dashboard" component={Dashboard} />
-    <Route exact path="/Login" component={Login} />
-    <Route exact path="/Louout" component={Logout} />
-    <Route exact path="/Test" component={Test} />
+      <SecuredRoute exact path="/" component={Dashboard} />
+    <SecuredRoute exact path="/dashboard" component={Dashboard} />
+    <Route exact path="/test" component={TestPage} />
+    <Route exact path="/auth" component={AuthPage} />
+    <Route path="/logout" component={Logout}/>
     <Route component={NotFound} />
     
-    {/* <Route path="*"  component={this.redirectToNotFound} /> */}
-    
-    {/* <Route path="/about" component={About} />
-    <Route path="/posts" component={Post} />
-    <Route path="/projects" component={Project} /> */}
-
   </Switch>
     );
   }
