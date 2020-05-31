@@ -11,7 +11,7 @@ import {
   ListsWidget3,
   ListsWidget4,
   ListsWidget8
-} from "../../../_metronic/_partials/widgets";
+} from "../../_metronic/_partials/widgets";
 function Content() {
   return (<div className="container">
     <div className="row">

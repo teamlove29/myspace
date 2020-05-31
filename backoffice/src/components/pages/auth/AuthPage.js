@@ -7,6 +7,8 @@ import Login from "./Login";
 import "../../_metronic/_assets/sass/pages/login/login-3.scss";
 
 
+
+
 export default function AuthPage() {
     return (
         <div className="d-flex flex-column flex-root">

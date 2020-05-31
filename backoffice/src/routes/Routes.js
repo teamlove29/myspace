@@ -1,33 +1,23 @@
 import React from 'react';
 import history from '../utils/history';
-import {Layout} from "../components/_metronic/layout";
 import { Router, Route, Redirect, Switch } from 'react-router-dom'
-import Main from '../components/pages/Main/Main'
+// import {Layout} from "../components/_metronic/layout";
 import AuthPage from '../components/pages/auth/AuthPage'
 import Logout from '../components/pages/auth/Logout'
 import NotFound from '../components/pages/NotFound'
-import BasePage from './BasePage'
-
+import BasePage from '../components/pages/Main/BasePage'
 
 
 // const redirectToNotFound = () => {
 //     return <Redirect to="/NotFound" />
 //   }
 
-
 const isLoggedIn = () => {
-
   const token = localStorage.getItem('access-token-test')
-  if(!token){
-    return false
-  }else{
-    return true
-  }
+    return token
 
-  // console.log(test == 'true')
-  // localStorage.getItem('access-token-test')
-  // return localStorage.getItem(server.LOGIN_PASSED) == YES;
 };
+const Token = isLoggedIn()
 
 // const SecuredRoute = ({ component: Component, ...rest }) => (
 //   <Route
@@ -43,59 +33,38 @@ const isLoggedIn = () => {
 // );
 
 const Routes = () => {
-  
   return (
     <Router history={history}>
       <Switch>
-
-
-      {isLoggedIn() ?(
-        <Route>
-          <BasePage/>
-        </Route>
-        
-      ) : (
-        <Route>
+้
+        {!Token ? (
+          // เข้าหน้าสู่ระบบ
+          /*Render auth page when user at `/auth` and not authorized.*/
+          <Route>
             <AuthPage />
-        </Route>
-          
-      )}
+          </Route>
+        ) : (
+            // ถ้าเคยเข้าแล้วให้ไปที่หน้าหลัก
+            /*Otherwise redirect to root page (`/`)*/
+            <Redirect from="/auth" to="/" />
+          )}
 
-        <Route path="/NotFound" component={NotFound} />
         <Route path="/logout" component={Logout} />
-      
-{/* {!isLoggedIn() ?(
-       <Redirect to="/auth/login"/>
-      ) : (
-        <Route>
-            <BasePage/>
-        </Route>
-          
-      )} */}
+        <Route path="/NotFound" component={NotFound} />
+
+        {!Token ? (
+           
+          /*Redirect to `/auth` when user is not authorized*/
+          <Redirect to="/auth/login" />
+        ) : (
+          // ถ้าเข้ามายังหน้า /auth แล้วพบว่าเคยเข้าระบบมาก่อน
+          <BasePage />
+          )}
 
       </Switch>
-
-
     </Router>);
 }
 
 export default Routes;
-
-
-
-
-// 
-// {
-//   <Redirect exact from="/" to="/dashboard"/>
-// }
-
-{/* <SecuredRoute exact path="/dashboard" component={Dashboard} /> */ }
-{/* <SecuredRoute exact path="/Member" component={Member} /> */ }
-{/* <SecuredLogin exact path="/auth" component={AuthPage} /> */ }
-{/* <Route exact path="/test" component={TestPage} /> */ }
-
-
-{/* <Route component={NotFound} /> */ }
-
 
 

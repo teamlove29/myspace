@@ -26,16 +26,16 @@ import React from 'react';
 import { Redirect, useHistory } from "react-router-dom";
 
 const Logout = () => {
-    const history = useHistory();
-    const SingOut = () => {
-        const ok = 'OK'
+
+    const SingOut =  (e) => {
         localStorage.removeItem('access-token-test');
-        return ok
+        window.location.href= "/auth"
+ 
     }
 
     return (
         <div>
-            {SingOut() == 'OK' ? history.push("/") : <h1> NoSuscess </h1>}
+            {SingOut()}
         </div>
     );
 }

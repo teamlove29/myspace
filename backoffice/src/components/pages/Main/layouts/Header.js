@@ -2,9 +2,10 @@ import React from 'react'
 
 function Header() {
     return (
-        <div>
-     {/*begin::Header Mobile*/}
+
+     
 <div id="kt_header_mobile" className="header-mobile align-items-center header-mobile-fixed">
+  {/*begin::Header Mobile*/}
   {/*begin::Logo*/}
   <a href="index.html">
     <img alt="Logo" src="assets/media/logos/logo-light.png" />
@@ -18,9 +19,9 @@ function Header() {
     </button>
     {/*end::Aside Mobile Toggle*/}
     {/*begin::Header Menu Mobile Toggle*/}
-    <button className="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
+    {/* <button className="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
       <span />
-    </button>
+    </button> */}
     {/*end::Header Menu Mobile Toggle*/}
     {/*begin::Topbar Mobile Toggle*/}
     <button className="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
@@ -39,7 +40,7 @@ function Header() {
     {/*end::Topbar Mobile Toggle*/}
   </div>
   {/*end::Toolbar*/}
-</div>
+
 {/*end::Header Mobile*/}
 
 
