@@ -4,7 +4,22 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
 
 # Thumbnails
 ._*
