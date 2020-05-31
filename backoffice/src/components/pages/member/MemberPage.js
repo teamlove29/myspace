@@ -19,7 +19,7 @@ class MemberPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            members: null,
+            data: [],
             err : null
         };
       }
@@ -34,11 +34,11 @@ componentDidMount(){
       this.setState({err:err})
     })
 }
-    render() {
-        const members = this.state
+    render() { 
+        const data = this.state
         return (
             <div>
-                <MemberList members={members} />
+                <MemberList members={data} />
             </div>
         );
     }
