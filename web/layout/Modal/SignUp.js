@@ -41,11 +41,13 @@ return(
         <Button className="signup-btn" onClick={props.onHide}>Create Account</Button>
       </Modal.Footer>
     </Modal>
-
-    <SignIn show={signInShow}
-    onHide={() => setSignInShow(false)}
-    />
   </div>
 )
-
+  function SignIn(){
+    props.onHide;
+    <SignIn
+    show={signInShow}
+    onHide={() => setSignInShow(false)}
+    />
+  }
 }

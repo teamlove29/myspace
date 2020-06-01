@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router'
-import Header from './layout/Header'
-import Layout from './component/Layout'
-import SignIn from './component/Modal/SignUp'
-import {Button} from 'react-bootstrap';
+import Layout from '../layout/Layout'
+import styles from 'styled-components'
+import Test from '../test/test'
 
 export default function Home() {
   return (
@@ -10,6 +9,7 @@ export default function Home() {
       <Layout>
         Hello Next js World
       </Layout>
+      <Test/>
     </div>
   );
 }

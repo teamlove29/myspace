@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import {userRouter} from 'next/router'
 import { Navbar , Nav , NavDropdown} from 'react-bootstrap'
-import SignUp from '../component/Modal/SignUp'
-import SignIn from '../component/Modal/SignIn'
+import SignUp from '../layout/Modal/SignUp'
+import SignIn from '../layout/Modal/SignIn'
 
     export default function Header() {
         const [signUpShow, setSignUpShow] = React.useState(false);

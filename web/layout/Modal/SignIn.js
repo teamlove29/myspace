@@ -1,11 +1,12 @@
 import {Modal, Button } from 'react-bootstrap'
-import { setState } from 'react'
-import ReactDOM from 'react-dom'
 import { AiFillFacebook , AiFillGooglePlusCircle , AiFillTwitterCircle } from "react-icons/ai"
+import Link from 'next/link'
+import SignUp from './SignUp'
 
 export default function SignInPage(props) {
-
+  const [signUpShow, setSignUpShow] = React.useState(false);
 return(
+  <div>
 <Modal
       {...props}
       size="lg"
@@ -30,14 +31,23 @@ return(
         <br/>
         <div className="form-group" >
               <span className="txt2" > or </span>
-              <a><AiFillFacebook className="fb-login"/></a>
-              <a><AiFillTwitterCircle className="twt-login"/></a>
-              <a><AiFillGooglePlusCircle className="google-login"/></a>
+              <Link href="#" ><a><AiFillFacebook className="fb-login"/></a></Link>
+              <Link href="#" ><a><AiFillTwitterCircle className="twt-login"/></a></Link>
+              <Link href="#" ><a><AiFillGooglePlusCircle className="google-login"/></a></Link>
         </div>
       </Modal.Body>
       <Modal.Footer className="footer">
         <Button className=" btn signIn-btn" onClick={props.onHide}>Sign in</Button>
       </Modal.Footer>
     </Modal>
-)
+  </div>
+    )
+
+    function SignUp() {
+      props.onHide;
+      <SignUp
+      show={signUpShow}
+      onHide={() => setSignUpShow(false)}
+      />
+    }
 }
