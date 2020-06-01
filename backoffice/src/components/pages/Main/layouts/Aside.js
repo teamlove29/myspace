@@ -66,7 +66,6 @@ function Aside() {
                 </NavLink>
               </li>
 
-
               <li className={`menu-item ${getMenuItemActive("/member")}`} aria-haspopup="true">
                 <NavLink to="/member" className="menu-link">
                   <span className="svg-icon menu-icon">
