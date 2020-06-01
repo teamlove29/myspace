@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { withRouter } from "react-router";
-// import { FormattedMessage, injectIntl } from "react-intl";
 import { useHistory } from "react-router-dom";
 import {
   useLocation,
@@ -40,7 +38,7 @@ function Login() {
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Wrong email format")
+      .email("Invalid email")
       .min(3, "Minimum 3 symbols")
       .max(50, "Maximum 50 symbols")
       .required('Required'),
@@ -117,16 +115,7 @@ function Login() {
           <div className="mb-10 alert alert-custom alert-light-danger alert-dismissible">
             <div className="alert-text font-weight-bold">{formik.status}</div>
           </div>
-        ) : null
-          // (
-          //   <div className="mb-10 alert alert-custom alert-light-info alert-dismissible">
-          //     <div className="alert-text ">
-          //       Use account <strong>admin@demo.com</strong> and password{" "}
-          //       <strong>demo</strong> to continue.
-          //     </div>
-          //   </div>
-          // )
-        }
+        ) : null}
 
         <div className="form-group fv-plugins-icon-container">
           <input
@@ -181,6 +170,7 @@ function Login() {
         </div>
       </form>
       {/*end::Form*/}
+      
     </div>
   )
 }

@@ -5,6 +5,8 @@ import Header from './layouts/Header'
 import Footer from './layouts/Footer'
 import Content from '../dashboard/Dashboard'
 import Member from '../member/MemberPage'
+import testPage from '../TestPage'
+import testPage2 from '../TestPage2'
 import NotFound from '../NotFound'
 // import Member from './components/pages/members/Member'
 // import TestPage from './components/pages/TestPage'
@@ -19,12 +21,11 @@ export default function BasePage() {
             <Aside />
             <div className="content d-flex flex-column flex-column-fluid" id="kt_content">
                 <Switch>
-                {
-                    /* Redirect from root URL to /dashboard. */
-                    <Redirect exact from="/" to="/dashboard"/>
-                }
                     <Route path="/dashboard" component={Content} />
                     <Route path="/member" component={Member} />
+                    <Route exact path="/testPage" component={testPage} />
+                    <Route path="/testPage/:id" component={testPage2} />
+                    <Redirect to="/dashboard"/>
                     {/* <Redirect to="NotFound"/> */}
                 </Switch>
             </div>

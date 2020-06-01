@@ -3,6 +3,7 @@ import { Link, Switch, Route,Redirect } from "react-router-dom";
 import Aside from './layout/Aside'
 import Footer from './layout/Footer'
 import Login from "./Login";
+import Logout from "./Logout";
 
 import "../../_metronic/_assets/sass/pages/login/login-3.scss";
 
@@ -30,9 +31,10 @@ export default function AuthPage() {
                     <div className="d-flex flex-column-fluid flex-center mt-30 mt-lg-0">
 
                         <Switch>
-                            <Route path="/auth/login" component={Login} />
-                            <Redirect from="/auth" exact={true} to="/auth/login"/>
-                            <Redirect to="/auth/login"/>
+                            <Route exact path="/" component={Login} />
+                            {/* <Route exact path="/logout" component={Logout} /> */}
+                            {/* <Redirect from="/auth" exact={true} to="/auth/login"/> */}
+                            <Redirect to="/"/>
                         </Switch>
                     </div>
                     {/*end::Content body*/} 

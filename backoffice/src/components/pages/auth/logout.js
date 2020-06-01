@@ -27,10 +27,11 @@ import { Redirect, useHistory } from "react-router-dom";
 
 const Logout = () => {
 
+    let history = useHistory();
     const SingOut =  (e) => {
         localStorage.removeItem('access-token-test');
-        window.location.href= "/auth"
- 
+        history.push('/')
+        // window.location.href= "/"
     }
 
     return (

@@ -1,48 +1,27 @@
-import React, { Component } from 'react';
+import React,{useEffect,useState} from 'react';
 import axios from 'axios';
-import {
-    Table, Button,
-    Card,
-    ListGroup,
-    ListGroupItem,
-    Nav,
-    CardGroup,
-    CardDeck,
-    CardColumns
-} from 'react-bootstrap';
 import MemberList from './MemberList';
 
+const MemberPage = () => {
 
-class MemberPage extends Component {
+const [members, setMember] = useState([]);
+const [err, setErr] = useState();
 
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            err : null
-        };
-      }
-
-
-componentDidMount(){
+useEffect(() => {
     axios.get("https://jsonplaceholder.typicode.com/users")
     .then(response => {
-        this.setState({data:response.data})
+        setMember(response.data)
     })
     .catch(err => {
-      this.setState({err:err})
+        setErr(err)
     })
-}
-    render() { 
-        const data = this.state
-        return (
-            <div>
-                <MemberList members={data} />
-            </div>
-        );
-    }
+}, []);
+
+    return (
+        <div>
+            <MemberList members={members} />
+        </div>
+    );
 }
 
 export default MemberPage;
-
