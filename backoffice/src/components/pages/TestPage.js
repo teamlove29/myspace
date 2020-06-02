@@ -1,25 +1,31 @@
 import React, { useEffect, useState, useMemo } from 'react'
+import { NavLink } from "react-router-dom";
 import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
+import paginationFactory, { PaginationProvider } from 'react-bootstrap-table2-paginator';
 import { useHistory } from "react-router-dom";
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import filterFactory, { selectFilter  } from 'react-bootstrap-table2-filter';
+import overlayFactory from 'react-bootstrap-table2-overlay';
 import axios from 'axios';
 import {
   Table,
   Card,
 
 } from 'react-bootstrap';
+import { Pagination } from "../_metronic/_partials/controls";
+
 export default function TestPage() {
 
-  const [products, setProduct] = useState([]);
+  const [member, setMember] = useState([]);
   const [err, setErr] = useState();
   const history = useHistory();
   const { SearchBar } = Search;
 
+
   useEffect(() => {
     axios.get("https://jsonplaceholder.typicode.com/users")
       .then(response => {
-        setProduct(response.data)
+        setMember(response.data)
       })
       .catch(err => {
         setErr({ err: err })
@@ -29,20 +35,18 @@ export default function TestPage() {
 
 
   const Avater = (row) => {
-   
     const TextAvatar = row.substring(0,1)
     return (
-
       <div class="symbol ">
-        <span class="symbol-label font-size-h5">{TextAvatar}</span>
-    </div>
-  
+        <span class="symbol-label font-size-h6">{TextAvatar}</span>
+      </div>
+
     )
   }
 
-  const LookMember = () => {
+  const actionButton = () => {
     return (
-      <button  className="btn btn-sm btn-clean btn-icon">
+      <button className="btn btn-sm btn-clean btn-icon">
         <i class="flaticon2-gear"></i>
       </button>
     );
@@ -51,7 +55,7 @@ export default function TestPage() {
   const iconOnline = () => {
     return (
       <>
-        <span class="label label-dot label-success"></span> online
+        <span class="label label-dot label-success"></span> Active
       </>
     );
   }
@@ -64,7 +68,7 @@ export default function TestPage() {
     )
   }
 
-// คลิกแล้วไปไหน 
+  // คลิกแล้วไปไหน 
   const rowEvents = {
     onClick: (e, column, columnIndex, row, rowIndex) => {
       // console.log(row.id)
@@ -79,65 +83,82 @@ export default function TestPage() {
   }];
 
   const dataEmpty = () => {
-    return(
+    return (
       <>
-      <h3 className="text-center pt-5 mt-5">Table is Empty</h3>
+        <h3 className="text-center pt-5 mt-5">Table is Empty...</h3>
       </>
     )
   }
 
-  const columns = [
-    // { dataField: 'id', text: 'ID', classes: 'text-center align-middle', headerClasses: 'text-center' ,sort: true},
-    { dataField: 'name', text: 'Avatar', classes: '', formatter: Avater, headerClasses: '' },
-    { dataField: 'name', text: 'Name', classes: 'align-middle' ,sort: true},
-    { dataField: 'email', text: 'Email', classes: 'align-middle ' ,sort: true},
-    { dataField: 'phone', text: 'Phone', classes: 'align-middle ' ,sort: true},
-    { dataField: 'type', text: 'Type',classes:'align-middle' ,formatter: memberLogo, align: 'center', headerClasses: 'text-center' ,sort: true},
-    { dataField: 'status', text: 'Status', formatter: iconOnline, classes: 'text-center align-middle', headerClasses: 'text-center' ,sort: true},
-    { dataField: 'action', text: 'Action', formatter: LookMember, events: rowEvents, classes: 'text-center align-middle', headerClasses: 'text-center' },
-  ]
+  const selectOptions = {
+    1: 'Member',
+    2: 'Artist',
+  };
 
+  const width70PX = {
+     width: '70px'
+  }
+
+
+  const columns = [
+    // { dataField: 'id', text: 'ID', classes: 'text-center align-middle', headerClasses: 'text-center' },
+    { dataField: 'name', text: 'Avatar', classes: '', headerClasses: '' , headerStyle: width70PX , formatter: Avater, },
+    { dataField: 'name', text: 'Name', classes: 'align-middle', sort: true },
+    { dataField: 'email', text: 'Email', classes: 'align-middle ', sort: true },
+    { dataField: 'phone', text: 'Phone', classes: 'align-middle ', sort: true },
+    { dataField: 'type', text: '', classes: 'align-middle', formatter: memberLogo, align: 'center', headerClasses: 'text-center', filter: selectFilter({options: selectOptions ,defaultValue: null}) },
+    { dataField: 'status', text: 'Status', formatter: iconOnline, classes: 'text-center align-middle', headerClasses: 'text-center', sort: true },
+    { dataField: 'action', text: 'Action', formatter: actionButton, events: rowEvents, classes: 'text-center align-middle', headerClasses: 'text-center' , headerStyle: width70PX },
+  ]
 
 
   return (
     <div className="container">
+
       <Card >
         <Card.Body>
-
           <ToolkitProvider
             keyField="id"
-            data={products}
+            data={member}
             columns={columns}
             search>
             {props => (
-                <div>
-                  <h3>Member testPage </h3>
-                  <hr />
-                  <SearchBar {...props.searchProps} />
-                  <BootstrapTable
-                    {...props.baseProps}
-                    classes="table-sm"
-                    loading={true}
-                    keyField='id'
-                    data={products}
-                    columns={columns}
-                    bordered={ false }
-                    defaultSorted={ defaultSorted } 
-                    noDataIndication={dataEmpty}
-                    pagination={paginationFactory()}
-                    
-                  />
-                </div>
-              )
+              <>
+                <h3>Member List</h3>
+                <hr />
+                 <SearchBar {...props.searchProps} />
+                 <br/>
+                 <small className="text-muted"> <b>Search</b> in all fields</small>
+                
+                <BootstrapTable
+                  {...props.baseProps}
+                  wrapperClasses="table-responsive"
+                  classes="table table-sm table-head-custom table-vertical-center"
+                  bootstrap4
+                  // loading={true}
+                  // overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
+                  keyField='id'
+                  // ข้อมูลในตาราง
+                  data={member === null ? [] : member}
+                  // รูปแบบตาราง
+                  columns={columns}
+                  bordered={false}
+
+                  // ค่าเริ่มต้นให้ DESC หรือ ASC ตามที่กำหนด
+                  // defaultSorted={defaultSorted}
+
+                  // ถ้าค่าว่างให้ทำการ...
+                  noDataIndication={dataEmpty}
+                  // กรองข้อมูล
+                  filter={filterFactory()}
+                  // ตัวเลื่อนหน้า
+                  pagination={paginationFactory()} />
+              </>
+            )
             }
           </ToolkitProvider>
         </Card.Body>
-
       </Card>
-
-
-
-
     </div>
   )
 }

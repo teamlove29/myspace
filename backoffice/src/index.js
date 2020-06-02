@@ -9,6 +9,9 @@ import "socicon/css/socicon.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./components/_metronic/_assets/plugins/flaticon/flaticon.css";
 import "./components/_metronic/_assets/plugins/flaticon2/flaticon.css";
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 import {

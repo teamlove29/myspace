@@ -34,10 +34,7 @@ const isLoggedIn = () => {
 const SecuredRoute = () => (
       // ถ้าล็อคอินแล้วให้ไป basepage ถ้ายัง ให้ไปหน้า login
       isLoggedIn() === true ? (<BasePage />) : (<AuthPage />)
-
 );
-
-
 
 const Routes = () => {
   return (

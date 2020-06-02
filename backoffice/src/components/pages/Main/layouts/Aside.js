@@ -565,11 +565,11 @@ function Aside() {
               </li> */}
 
               <li className="menu-section">
-                <h4 className="menu-text">Layout</h4>
+                <h4 className="menu-text">Example</h4>
                 <i className="menu-icon ki ki-bold-more-hor icon-md" />
               </li>
 
-              <li className="menu-item " aria-haspopup="true">
+              <li className={`menu-item ${getMenuItemActive("/testPage")}`} aria-haspopup="true">
                 <NavLink to="/testPage" className="menu-link">
                   <span className="svg-icon menu-icon">
                     {/*begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Code.svg*/}<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
