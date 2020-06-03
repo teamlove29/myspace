@@ -76,6 +76,10 @@
   overflow-x: auto;
 }
 
+.react-bootstrap-table table {
+  table-layout: auto;
+}
+
 .react-bootstrap-table {
   th {
     outline: none;
@@ -101,6 +105,8 @@
     }
   }
 }
+
+
 
 // .nav-link:focus {  
 //     outline: none;  

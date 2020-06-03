@@ -38,11 +38,14 @@ export default function TestPage() {
     );
   };
 
-  const actionButton = () => {
+  const actionButton = (row) => {
     return (
-      <button className="btn btn-sm btn-clean btn-icon">
+      <NavLink
+        to={`/testPage/${row}`}
+        className="btn btn-sm btn-clean btn-icon"
+      >
         <i class="flaticon2-gear"></i>
-      </button>
+      </NavLink>
     );
   };
 
@@ -133,10 +136,10 @@ export default function TestPage() {
       sort: true,
     },
     {
-      dataField: "action",
+      dataField: "id",
       text: "Action",
       formatter: actionButton,
-      events: rowEvents,
+      // events: rowEvents,
       classes: "text-center align-middle",
       headerClasses: "text-center",
       headerStyle: width70PX,

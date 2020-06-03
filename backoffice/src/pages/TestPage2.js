@@ -9,15 +9,8 @@ export default function TestPage2(props) {
   const params = props.match.params.id;
   return (
     <div className="container">
-      {/* <h1>This id member : {params}</h1> */}
-      {/* <button
-        className="btn btn-sm font-weight-bold btn-primary"
-        onClick={() => {
-          props.history.goBack();
-        }}
-      >
-        Back Page
-      </button> */}
+      <h1>This id member : {params}</h1>
+      <br />
 
       {/*begin::Content*/}
       <div className="flex-row-fluid ml-lg-8">
@@ -34,12 +27,13 @@ export default function TestPage2(props) {
               </span>
             </div>
             <div className="card-toolbar">
-              <button 
-               className="btn btn-sm font-weight-bold btn-primary"
-               onClick={() => {
-                 props.history.goBack();
-               }}
-              className="btn btn-secondary">
+              <button
+                className="btn btn-sm font-weight-bold btn-primary"
+                onClick={() => {
+                  props.history.goBack();
+                }}
+                className="btn btn-secondary"
+              >
                 Back Page
               </button>
             </div>
@@ -50,10 +44,20 @@ export default function TestPage2(props) {
             {/*begin::Body*/}
             <div className="card-body">
               <div className="row">
+                {/* begin Avatar */}
                 <label className="col-xl-3" />
+                Avatar
                 <div className="col-lg-9 col-xl-6">
-                  {/* <h5 className="font-weight-bold mb-6">Customer Info</h5> */}
+                  <h5 className="font-weight-bold mb-6">Customer Info</h5>
                 </div>
+                {/* End Avatar */}
+                {/* begin Name */}
+                <label className="col-xl-3" />
+                Name :
+                <div className="col-lg-9 col-xl-6">
+                  <h5 className="font-weight-bold mb-6">Jordy Jamcater</h5>
+                </div>
+                {/* End Name */}
               </div>
             </div>
             {/*end::Body*/}

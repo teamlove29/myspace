@@ -3,8 +3,6 @@ import { Link, Switch, Route,Redirect } from "react-router-dom";
 import Aside from '../../components/layoutsAuth/Aside'
 import Footer from '../../components/layoutsAuth/Footer'
 import Login from "./Login";
-import Logout from "./Logout";
-
 import "../../_metronic/_assets/sass/pages/login/login-3.scss";
 
 
@@ -32,7 +30,6 @@ export default function AuthPage() {
 
                         <Switch>
                             <Route exact path="/" component={Login} />
-                            {/* <Route exact path="/logout" component={Logout} /> */}
                             {/* <Redirect from="/auth" exact={true} to="/auth/login"/> */}
                             <Redirect to="/"/>
                         </Switch>

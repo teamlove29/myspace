@@ -3,7 +3,7 @@ import history from '../utils/history';
 import { Router, Route, Redirect, Switch } from 'react-router-dom'
 import AuthPage from '../pages/auth/AuthPage'
 import Logout from '../pages/auth/Logout'
-// import NotFound from '../components/pages/NotFound'
+import NotFound from '../pages/NotFound'
 import BasePage from '../pages/main/BasePage'
 
 
@@ -42,7 +42,7 @@ const Routes = () => {
       <Switch>
         <Route path="/logout" component={Logout} />
         <SecuredRoute />
-        {/* <Route  component={NotFound} /> */}
+        <Route component={NotFound} />
       </Switch>
     </Router>);
 }
