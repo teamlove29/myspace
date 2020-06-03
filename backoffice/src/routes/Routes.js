@@ -1,10 +1,10 @@
 import React from 'react';
 import history from '../utils/history';
 import { Router, Route, Redirect, Switch } from 'react-router-dom'
-import AuthPage from '../components/pages/auth/AuthPage'
-import Logout from '../components/pages/auth/Logout'
-import NotFound from '../components/pages/NotFound'
-import BasePage from '../components/pages/Main/BasePage'
+import AuthPage from '../pages/auth/AuthPage'
+import Logout from '../pages/auth/Logout'
+// import NotFound from '../components/pages/NotFound'
+import BasePage from '../pages/main/BasePage'
 
 
 const isLoggedIn = () => {

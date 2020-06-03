@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Switch, Route,Redirect } from "react-router-dom";
-import Aside from './layout/Aside'
-import Footer from './layout/Footer'
+import Aside from '../../components/layoutsAuth/Aside'
+import Footer from '../../components/layoutsAuth/Footer'
 import Login from "./Login";
 import Logout from "./Logout";
 
