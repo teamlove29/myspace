@@ -9,4 +9,4 @@ const config = {
   measurementId: "G-YQVB6MPMV3",
 };
 
-export default config;
+firebase.initailizeApp(config);
