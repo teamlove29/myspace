@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import {
-  useLocation,
-  Link,
-  Redirect
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -26,6 +22,7 @@ function Login() {
     setLoading(false);
   };
 
+  //ถ้ากดช่องอินพุต + formik.errors ให้ invalid
   const getInputClasses = (fieldname) => {
     if (formik.touched[fieldname] && formik.errors[fieldname]) {
       return "is-invalid";
