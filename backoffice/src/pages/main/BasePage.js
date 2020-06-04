@@ -10,9 +10,7 @@ import MemberProfile from "../member/MemberProfile";
 import TestPage from "../TestPage";
 import { Cube } from "styled-loaders-react";
 
-
 export default function BasePage() {
-
   return (
     <div className="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
       <Header />
@@ -21,13 +19,13 @@ export default function BasePage() {
         className="content d-flex flex-column flex-column-fluid"
         id="kt_content"
       >
-          <Switch>
-            <Route path="/dashboard" component={Content} />
-            <Route exact path="/member" component={MemberPage} />
-            <Route path="/member/:id" component={MemberProfile} />
-            <Route path="/testPage" component={TestPage} />
-            <Redirect to="/dashboard" />
-          </Switch>
+        <Switch>
+          <Route path="/dashboard" component={Content} />
+          <Route exact path="/member" component={MemberPage} />
+          <Route path="/member/:id" component={MemberProfile} />
+          <Route path="/testPage" component={TestPage} />
+          <Redirect to="/dashboard" />
+        </Switch>
       </div>
       <Footer />
     </div>
