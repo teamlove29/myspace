@@ -32,6 +32,7 @@ npm-web:
     when: always
   only:
     - dev-release-web
+    - 172-
 
 #
 # Dev ENV
