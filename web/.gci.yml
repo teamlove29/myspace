@@ -50,6 +50,7 @@ dev-build-web:
       - $WEB_PATH/nextjs
     expire_in: 1 hrs
     when: always
+  <<: *dev_only
 dev-deploy-web:
   stage: deploy
   image: registry.gitlab.com/twin-intern/lampang-2020/lampang-myspace:node-firebase
