@@ -1,6 +1,6 @@
 import {Modal} from 'react-bootstrap'
-import CorrectIcon from '../common/img-Correct'
-export default function LoginSuccess(props) {
+import CorrectIcon from '../../../common/img-Correct'
+export default function SendEmail(props) {
     return(
         <>
         <Modal
@@ -14,13 +14,13 @@ export default function LoginSuccess(props) {
       <Modal.Body>
       <div className="form-group" align="center">
       <CorrectIcon />
-      <h3> เข้าสู่ระบบเรียบร้อยแล้ว </h3>
+      <h2> ระบบได้ส่ง link ไปยัง e-mail ของคุณ <br /> กรุณาเข้าไปที่อีเมลเพื่อทำการ Reset Password </h2>
       </div>
       </Modal.Body>
   <style jsx>{`
-  h3 {
+  h2 {
     font-weight: 750;
-    font-size: 25px;
+    font-size: 18px;
     align-items: center;
     padding-left: 5px ;
   }

@@ -1,5 +1,5 @@
 import {Modal , Card } from 'react-bootstrap'
-import Button from '../button/loginButton'
+import Button from '../../button/loginButton'
 import Listener from '../../public/assets/img/option/Listen to music.png'
 import Artist from '../../public/assets/img/option/Artits.png'
 export default function SelectModal(props) {

@@ -1,5 +1,5 @@
 import {Modal} from 'react-bootstrap'
-import Button from '../button/loginButton'
+import Button from '../../../button/loginButton'
 export default function forgotPass(props) {
     return (
         <>
