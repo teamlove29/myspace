@@ -2,12 +2,22 @@
   "name": "next-login",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "scripts": {
+    "clean": "rimraf nextjs/",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "predeploy": "npm run clean && next build",
+    "deploy": "firebase deploy --only functions,hosting:web"
+  },
+  "engines": {
+    "node": "10"
   },
   "dependencies": {
+    "firebase": "^7.14.2",
+    "firebase-admin": "^8.11.0",
+    "firebase-functions": "~3.6.2",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "bootstrap": "^4.5.0",
     "css-loader": "^3.5.3",
@@ -30,7 +40,14 @@
     "yup": "^0.29.1"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "file-loader": "^6.0.0",
     "url-loader": "^4.1.0"
+=======
+    "cross-env": "~7.0.2",
+    "firebase-functions-test": "^0.2.1",
+    "rimraf": "~3.0.2",
+    "shelljs": "^0.8.4"
+>>>>>>> c8bec8cb8a7564a9754baf6ced2c0b9480392e35
   }
 }

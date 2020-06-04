@@ -1,0 +1,62 @@
+.dev_only: &dev_only
+  only:
+    - dev-release-web
+
+variables:
+  WEB_PATH: "web"
+
+#
+# Install node_module
+#
+npm-web:
+  stage: npm
+  image: $NODE_IMAGE
+  script:
+    - cd $WEB_PATH
+    - "[ -f package-lock.json ] && rm package-lock.json"
+    - npm i
+  cache:
+    paths:
+      - $WEB_PATH/node_modules
+  artifacts:
+    paths:
+      - $WEB_PATH/node_modules
+    expire_in: 1 hrs
+    when: always
+  only:
+    - dev-release-web
+
+#
+# Dev ENV
+#
+dev-build-web:
+  stage: build
+  image: $NODE_IMAGE
+  dependencies:
+    - npm-web
+  script:
+    - cd $WEB_PATH
+    - npm run predeploy
+  cache:
+    paths:
+      - $WEB_PATH/nextjs
+  artifacts:
+    paths:
+      - $WEB_PATH/nextjs
+    expire_in: 1 hrs
+    when: always
+  <<: *dev_only
+dev-deploy-web:
+  stage: deploy
+  image: registry.gitlab.com/twin-intern/lampang-2020/lampang-myspace:node-firebase
+  dependencies:
+    - dev-build-web
+    - npm-web
+  script:
+    - cd $WEB_PATH
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID"
+      --only functions,hosting:web
+      --non-interactive
+      --token $FIREBASE_TOKEN
+      --project $DEV_FIREBASE_PROJECT
+  <<: *dev_only
