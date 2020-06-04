@@ -14,7 +14,7 @@ admin.initializeApp({
 exports.RegisterEmail = functions.https.onRequest((req, res) => {
   firebaseApp
     .auth()
-    .createUserWithEmailAndPassword(req.query.email, req.query.password)
+    .createUserWithEmailAndPassword(req.param.email, req.param.password)
     .catch(function (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
