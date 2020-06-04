@@ -6,8 +6,6 @@
 .dev_only: &dev_only
   only:
     - dev-release-web
-  tags:
-    - runner-twin
 
 variables:
   DEV_WEB_BRANCH: "dev-release-web"
@@ -34,8 +32,6 @@ npm-web:
     when: always
   only:
     - dev-release-web
-  tags:
-    - runner-twin
 
 #
 # Dev ENV
