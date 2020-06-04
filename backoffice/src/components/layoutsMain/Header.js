@@ -16,7 +16,6 @@ function Header() {
     subheader.setBreadcrumbs(aside.breadcrumbs || header.breadcrumbs);
     subheader.setTitle(aside.title || header.title);
     // eslint-disable-next-line
-    console.log(location)
   }, [location.pathname]);
 
   useEffect(() => {}, [subheader]);

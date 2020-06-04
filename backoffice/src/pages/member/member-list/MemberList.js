@@ -10,9 +10,9 @@ import filterFactory, { selectFilter } from "react-bootstrap-table2-filter";
 import overlayFactory from "react-bootstrap-table2-overlay";
 import axios from "axios";
 import { Table, Card } from "react-bootstrap";
-import { Pagination } from "../../_metronic/_partials/controls";
+import { Pagination } from "../../../_metronic/_partials/controls";
 
-export default function TestPage() {
+export default function MemberList() {
   const [member, setMember] = useState([]);
   const [err, setErr] = useState();
   const history = useHistory();
@@ -41,7 +41,7 @@ export default function TestPage() {
   const actionButton = (row) => {
     return (
       <NavLink
-        to={`/member/${row}`}
+        to={`/member/overview/${row}`}
         className="btn btn-sm btn-clean btn-icon"
       >
         <i class="flaticon2-gear"></i>
