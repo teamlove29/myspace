@@ -1,49 +1,26 @@
 {
-  "name": "next-login",
-  "version": "0.1.0",
-  "private": true,
-  "main": "server.js",
+  "name": "web",
+  "version": "1.0.0",
+  "description": "```shell\r # development\r npm install\r npm run dev\r # or\r yarn\r yarn dev",
+  "main": "next.config.js",
   "scripts": {
-    "clean": "rimraf nextjs/",
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "predeploy": "npm run clean && next build",
-    "deploy": "firebase deploy --only functions,hosting:web"
+    "start": "next start"
   },
-  "engines": {
-    "node": "10"
-  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
-    "css-loader": "^3.5.3",
-    "firebase": "^7.14.2",
-    "firebase-admin": "^8.11.0",
-    "firebase-functions": "~3.6.2",
     "formik": "^2.1.4",
     "next": "^9.4.4",
     "next-images": "^1.4.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
-    "react-icons": "^3.10.0",
-    "react-image": "^4.0.1",
-    "react-modal": "^3.11.2",
-    "sass": "^1.26.7",
-    "style-loader": "^1.2.1",
     "styled-components": "^5.1.1",
     "styled-jsx": "^3.3.0",
-    "webfontloader": "^1.6.28",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
     "yup": "^0.29.1"
-  },
-  "devDependencies": {
-    "cross-env": "~7.0.2",
-    "firebase-functions-test": "^0.2.1",
-    "rimraf": "~3.0.2",
-    "shelljs": "^0.8.4"
   }
 }
