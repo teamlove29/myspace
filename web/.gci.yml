@@ -5,10 +5,10 @@
     - npm install -g firebase-tools@latest
 .dev_only: &dev_only
   only:
-    - dev-release-web
+    # - dev-release-web
+    - 172-
 
 variables:
-  DEV_WEB_BRANCH: "dev-release-web"
   WEB_PATH: "web"
 
 #
