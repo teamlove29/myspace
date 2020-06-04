@@ -57,6 +57,7 @@ dev-deploy-web:
   image: $NODE_IMAGE
   dependencies:
     - dev-build-web
+    - npm-web
   <<: *add_firebase
   script:
     - cd $WEB_PATH
