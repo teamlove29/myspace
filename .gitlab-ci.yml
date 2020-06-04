@@ -17,5 +17,3 @@ stages:
 
 include:
   - "/web/.gci.yml"
-  - "/backoffice/.gci.yml"
-  - "/api/.gci.yml"
