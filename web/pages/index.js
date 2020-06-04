@@ -1,15 +1,12 @@
-import { useRouter } from 'next/router'
-import Layout from '../layout/Layout'
-import styles from 'styled-components'
-import Test from '../test/test'
+import Header from '../component/Header'
+import Nav from '../component/Nav'
+
 
 export default function Home() {
   return (
-    <div>
-      <Layout>
-        Hello Next js World
-      </Layout>
-      <Test/>
-    </div>
+    <>
+    <Nav />
+    <Header />
+    </>
   );
 }
