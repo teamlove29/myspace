@@ -1,12 +1,14 @@
-const config = {
-  apiKey: "AIzaSyCPZyWWf8oQi3e8o3aqEcUlJNhc30j9ars",
-  authDomain: "myspace-dev-1ae9e.firebaseapp.com",
-  databaseURL: "https://myspace-dev-1ae9e.firebaseio.com",
-  projectId: "myspace-dev-1ae9e",
-  storageBucket: "myspace-dev-1ae9e.appspot.com",
-  messagingSenderId: "379818176061",
-  appId: "1:379818176061:web:9e431d12e626f04e03c454",
-  measurementId: "G-YQVB6MPMV3",
+const firebase = require("firebase");
+const firebaseConfig = {
+  apiKey: "AIzaSyCRzwfUN9yWSL6-ksSYhi1bSfZkjIIU-DM",
+  authDomain: "test-f34cc.firebaseapp.com",
+  databaseURL: "https://test-f34cc.firebaseio.com/",
+  projectId: "test-f34cc",
+  storageBucket: "test-f34cc.appspot.com",
+  messagingSenderId: "215446099997",
+  appId: "1:215446099997:web:e3ac2e5c44a52b98ac4ef4",
 };
+firebase.initializeApp(config);
 
-firebase.initailizeApp(config);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+export default firebaseApp;

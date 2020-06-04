@@ -18,5 +18,8 @@
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"
   },
+  "engines": {
+    "node": "10"
+  },
   "private": true
 }
