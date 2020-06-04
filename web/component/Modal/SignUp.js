@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Facebook from '../../public/assets/img/icon/Facebook.png'
 import Twitter from '../../public/assets/img/icon/Twitter.png'
 import Google from '../../public/assets/img/icon/Google.png'
+import axios from 'axios'
 
 export default function SignUpPage(props) {
   const [signInShow, setSignInShow] = React.useState(false);
@@ -25,13 +26,28 @@ return(
 <Modal
       {...props}
       aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+      centered >
+      <Modal.Header
+      className="header"
+      closeButton>
+      </Modal.Header>
       <Modal.Body>
       <div className="form-group"><h3> Welcome! Let's create your profile </h3>
       <span className="text-sm-left txt2" id="describe"> Getting in is easy. Use one of your social network or start fresh with an email address
       Already have a Myspace account? <a className="txt1"> Sign in </a></span> </div>
-      <Formik initialValues={{ email: '', password: ''}} validationSchema={RegisSchema} onSubmit={values =>{console.log(values);}}>
+      <Formik
+      initialValues={{ email: '', password: ''}}
+      validationSchema={RegisSchema}
+      onSubmit={values =>
+      {axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/test',{
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+        }).then( response => {
+          console.log(response);
+          }).catch((error) => {
+            console.log(error);
+            });}}
+      >
       {({ errors ,touched }) => (
       <Form>
       <div className="form-group">
@@ -39,17 +55,21 @@ return(
           <Field
           name="email"
           type="email"
-          className={`form-control ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : ''}`}
+          className={`form-control input-frm ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : ''}`}
           id="email"
            />
-           <ErrorMessage component="div" name="email" className="invalid-feedback" />
+           <ErrorMessage
+           component="div"
+           name="email"
+           className="invalid-feedback"
+           />
         </div>
         <div>
           <label className="input-title">Password</label>
           <Field
           name="password"
           type="password"
-          className={`form-control ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : ''}`}
+          className={`form-control input-frm ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : ''}`}
           id="pass"
           />
           <ErrorMessage component="div" name="password" className="invalid-feedback" />
@@ -62,7 +82,7 @@ return(
               <Link href="#"><a><img src={Google} /></a></Link>
         </div>
         <div className="footer">
-      <Button type="submit"> Create account </Button>
+      <Button  type="submit"> Create account </Button>
       </div>
       </Form>
       )}
@@ -97,8 +117,9 @@ return(
     font-size: 13px;
   }
 
-  .frm-input{
+  .input-frm{
     border-color: #e7e7e7;
+    font-size: 13px;
   }
 
   .header {

@@ -1,6 +1,4 @@
 import {Modal , Card } from 'react-bootstrap'
-import { AiFillFacebook , AiFillGooglePlusCircle , AiFillTwitterCircle } from "react-icons/ai"
-import Link from 'next/link'
 import Button from '../button/loginButton'
 import Listener from '../../public/assets/img/option/Listen to music.png'
 import Artist from '../../public/assets/img/option/Artits.png'
@@ -10,11 +8,15 @@ return(
       <Modal
       {...props}
       aria-labelledby="contained-modal-title-center"
-      centered
-    >
-      <Modal.Body>
-      <div className="form-group" align="center"><h3> Select the option the best describe you. </h3>
-      <span className="text-sm-left txt2" id="describe"> Select the option the best describe you. </span></div>
+      centered >
+      <Modal.Header closeButton></Modal.Header>
+      <Modal.Body closeButton>
+      <div className="form-group" align="center">
+      <h3> Select the option the best describe you. </h3>
+      <span className="text-sm-left txt2" id="describe">
+      Select the option the best describe you.
+      </span>
+      </div>
       <div className="row">
     <Card style={{ width: '12rem' }} className="card">
     <br />
@@ -22,7 +24,9 @@ return(
   <Card.Body>
     <div className="form-check ">
     <div>
-        <label className="text-title">Listen to music</label>
+        <label className="text-title">
+        Listen to music
+        </label>
     </div>
         <input className="form-check-input radio" type="radio" value="option1"  />
     </div>

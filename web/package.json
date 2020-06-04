@@ -2,7 +2,7 @@
   "name": "next-login",
   "version": "0.1.0",
   "private": true,
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "clean": "rimraf nextjs/",
     "dev": "next dev",
@@ -15,12 +15,13 @@
     "node": "10"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "css-loader": "^3.5.3",
     "firebase": "^7.14.2",
     "firebase-admin": "^8.11.0",
     "firebase-functions": "~3.6.2",
-    "@fortawesome/fontawesome-free": "^5.13.0",
-    "bootstrap": "^4.5.0",
-    "css-loader": "^3.5.3",
     "formik": "^2.1.4",
     "next": "^9.4.4",
     "next-images": "^1.4.0",
