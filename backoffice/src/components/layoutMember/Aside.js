@@ -27,10 +27,8 @@ export default function Aside(props) {
             </div>
             <div>
               <a href="#" className="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">James Jones</a>
-              <div className="text-muted">Application Developer</div>
+              <div className="text-muted"><span class="label label-success  label-pill label-inline ">Member</span></div>
               <div className="mt-2">
-                <a href="#" className="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Chat</a>
-                <a href="#" className="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Follow</a>
               </div>
             </div>
           </div>

@@ -22,7 +22,9 @@ export default function BasePage() {
             <Route path="/dashboard" component={Content} />
             <Route exact path="/member" component={MemberList} />
             <Route path="/member/overview/:id" component={MemberOverView} />
+            <Route path="/member" component={MemberOverView} />
             <Route path="/testPage" component={TestPage} />
+
             {/* <Redirect to="/dashboard" /> */}
           </Switch>
       </div>

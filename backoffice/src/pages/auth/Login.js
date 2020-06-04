@@ -49,9 +49,6 @@ function Login() {
   });
 
 
-  const toDashboard = () => {
-    return <Redirect to='/dashboard' />
-  }
 
   const formik = useFormik({
     initialValues,
@@ -63,15 +60,12 @@ function Login() {
           disableLoading();
           localStorage.setItem('access-token-test', 'true');
           window.location.href = "/dashboard";
-          toDashboard()
-          console.log('Sucess')
         } else {
           disableLoading()
           setSubmitting(false);
           setStatus(
             'The login detail is incorrect'
           );
-          console.log('Noo')
         }
         // submit to backend 
         // login(value.email,value.password)
