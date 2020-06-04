@@ -3,11 +3,17 @@ import Link from 'next/link'
 import Button from '../../button/loginButton'
 import { Formik , Form , Field , ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import Facebook from '../../public/assets/img/icon/Facebook.png'
-import Twitter from '../../public/assets/img/icon/Twitter.png'
-import Google from '../../public/assets/img/icon/Google.png'
-
+import Facebook from '../../../public/assets/img/icon/Facebook.png'
+import Twitter from '../../../public/assets/img/icon/Twitter.png'
+import Google from '../../../public/assets/img/icon/Google.png'
+import LoginSuccessModal from './LoginSuccess'
+import SignUp from '../Register/SignUp'
+import FotgotPassModal from './forgotPassword/forgotPassword'
 export default function SignInPage(props) {
+
+  const [signUpShow, setSignUpShow] = React.useState(false);
+  const [successShow, setSuccessModalShow] = React.useState(false);
+  const [forgotPassShow, setForgotPassShow] = React.useState(false);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -17,6 +23,26 @@ export default function SignInPage(props) {
     .min(3 , 'Please Input less than 3 Letters')
     .required('Please Input Password')
   });
+
+  const SignUpClick = () => {
+    props.onHide()
+    setSignUpShow(true)
+  }
+
+
+  const SignInClick = () => {
+    values => console.log(values)
+    props.onHide()
+    setSuccessModalShow(true)
+
+  }
+
+  const ForgotPassClick = () => {
+    props.onHide()
+    setForgotPassShow(true)
+
+  }
+
 return(
   <>
       <Modal
@@ -36,13 +62,13 @@ return(
       Start listening with myspec.
       </span>
       <a
-      onClick={() => this.props.onClickUp()} >
+      onClick={SignUpClick} >
       Sign up
       </a></div>
       <Formik
       initialValues={{ email: '', password: ''}}
       validationSchema={LoginSchema}
-      onSubmit={values =>{console.log(values) , props.onHide}}
+      onSubmit={SignInClick}
       >
       {({ errors ,touched }) => (
       <Form>
@@ -93,7 +119,12 @@ return(
               <Link href="#">
               <a><img src={Google} /></a>
               </Link>
+              <a className="forgot"
+                onClick={ForgotPassClick} >
+                forgot password
+              </a>
         </div>
+        <br />
       <div
       className="footer"
       >
@@ -148,9 +179,28 @@ return(
     align-items: center;
     margin-left: 150px;
   }
+
+  .forgot {
+    margin-left: 275px;
+  }
     `}</style>
-    </Modal>
+  </Modal>
+
+  <SignUp
+    show={signUpShow}
+    onHide={() => setSignUpShow(false)}
+  />
+
+  <LoginSuccessModal
+  show={successShow}
+  onHide={() => setSuccessModalShow(false)}
+  />
+
+  <FotgotPassModal
+  show={forgotPassShow}
+  onHide={() => setForgotPassShow(false)}
+  />
+
   </>
     )
-
   }

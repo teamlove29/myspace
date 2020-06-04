@@ -1,15 +1,19 @@
 import {Modal} from 'react-bootstrap'
 import Button from '../../button/loginButton'
+import React, { useState } from 'react'
 import { Formik , Form , Field , ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import Link from 'next/link'
-import Facebook from '../../public/assets/img/icon/Facebook.png'
-import Twitter from '../../public/assets/img/icon/Twitter.png'
-import Google from '../../public/assets/img/icon/Google.png'
+import Facebook from '../../../public/assets/img/icon/Facebook.png'
+import Twitter from '../../../public/assets/img/icon/Twitter.png'
+import Google from '../../../public/assets/img/icon/Google.png'
 import axios from 'axios'
+import ModalSelection from './ModalSelection'
+import SignIn from '../Login/SignIn'
 
 export default function SignUpPage(props) {
   const [signInShow, setSignInShow] = React.useState(false);
+  const [SelectModalShow , setSelectModalShow] = React.useState(false);
 
   const RegisSchema = Yup.object().shape({
     email: Yup.string()
@@ -20,7 +24,23 @@ export default function SignUpPage(props) {
     .required('Please Input Password')
   });
 
+  const SignUpClick = () => {
+    // {axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/authen-login',{
+    //   firstName: 'Fred',
+    //   lastName: 'Flintstone'
+    //   }).then( response => {
+    //     console.log(response);
+    //     }).catch((error) => {
+    //       console.log(error);
+    //     });}
+    props.onHide()
+    setSelectModalShow(true)
+  }
 
+  const SignInClick = () => {
+    props.onHide()
+    setSignInShow(true)
+  }
 return(
   <>
 <Modal
@@ -34,19 +54,15 @@ return(
       <Modal.Body>
       <div className="form-group"><h3> Welcome! Let's create your profile </h3>
       <span className="text-sm-left txt2" id="describe"> Getting in is easy. Use one of your social network or start fresh with an email address
-      Already have a Myspace account? <a className="txt1"> Sign in </a></span> </div>
+      Already have a Myspace account?
+      <a className="txt1" onClick={SignInClick}>
+       Sign in
+       </a>
+       </span> </div>
       <Formik
       initialValues={{ email: '', password: ''}}
       validationSchema={RegisSchema}
-      onSubmit={values =>
-      {axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/test',{
-        firstName: 'Fred',
-        lastName: 'Flintstone'
-        }).then( response => {
-          console.log(response);
-          }).catch((error) => {
-            console.log(error);
-            });}}
+      onSubmit={SignUpClick}
       >
       {({ errors ,touched }) => (
       <Form>
@@ -132,13 +148,16 @@ return(
   }
     `}</style>
     </Modal>
-  </>
-)
-  function SignIn(){
-    props.onHide;
+
     <SignIn
     show={signInShow}
-    onHide={() => setSignInShow(false)}
-    />
+    onHide={() => setSignInShow(false)}/>
+
+    <ModalSelection
+    show={SelectModalShow}
+    onHide={() => setSelectModalShow(false)}
+     />
+  </>
+)
+
   }
-}
