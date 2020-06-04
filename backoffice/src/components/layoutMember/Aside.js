@@ -36,16 +36,16 @@ export default function Aside(props) {
           {/*begin::Contact*/}
           <div className="py-9">
             <div className="d-flex align-items-center justify-content-between mb-2">
-              <span className="font-weight-bold mr-2">Email:</span>
-              <a href="#" className="text-muted text-hover-primary">matt@fifestudios.com</a>
+              <span className="font-weight-bold mr-2">Email :</span>
+              <a href="#" className="text-muted text-hover-primary">demo@demo.com</a>
             </div>
             <div className="d-flex align-items-center justify-content-between mb-2">
-              <span className="font-weight-bold mr-2">Phone:</span>
-              <span className="text-muted">44(76)34254578</span>
+              <span className="font-weight-bold mr-2">Phone :</span>
+              <span className="text-muted">(66)34254578</span>
             </div>
             <div className="d-flex align-items-center justify-content-between">
-              <span className="font-weight-bold mr-2">Location:</span>
-              <span className="text-muted">Melbourne</span>
+              <span className="font-weight-bold mr-2">Create date :</span>
+              <span className="text-muted">01/01/2020</span>
             </div>
           </div>
           {/*end::Contact*/}
@@ -146,6 +146,27 @@ export default function Aside(props) {
               </a>
             </div>
         
+            <div className="navi-item mb-2 ">
+              <a href="#" className="navi-link py-4" onClick={() => { props.history.push("/member")}}>
+                <span className="navi-icon  mr-2">
+<span className="svg-icon  svg-icon-2x">
+  {/*begin::Svg Icon | path:/home/keenthemes/www/metronic/themes/metronic/theme/html/demo1/dist/../src/media/svg/icons/Media/Backward.svg*/}
+  <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+      <rect x={0} y={0} width={24} height={24} />
+      <path d="M11.0879549,18.2771971 L17.8286578,12.3976203 C18.0367595,12.2161036 18.0583109,11.9002555 17.8767943,11.6921539 C17.8622027,11.6754252 17.8465132,11.6596867 17.8298301,11.6450431 L11.0891271,5.72838979 C10.8815919,5.54622572 10.5656782,5.56679309 10.3835141,5.7743283 C10.3034433,5.86555116 10.2592899,5.98278612 10.2592899,6.10416552 L10.2592899,17.9003957 C10.2592899,18.1765381 10.4831475,18.4003957 10.7592899,18.4003957 C10.8801329,18.4003957 10.9968872,18.3566309 11.0879549,18.2771971 Z" fill="#000000" opacity="0.3" transform="translate(14.129645, 12.002277) scale(-1, 1) translate(-14.129645, -12.002277) " />
+      <path d="M5.08795487,18.2771971 L11.8286578,12.3976203 C12.0367595,12.2161036 12.0583109,11.9002555 11.8767943,11.6921539 C11.8622027,11.6754252 11.8465132,11.6596867 11.8298301,11.6450431 L5.08912711,5.72838979 C4.8815919,5.54622572 4.56567821,5.56679309 4.38351414,5.7743283 C4.30344325,5.86555116 4.25928988,5.98278612 4.25928988,6.10416552 L4.25928988,17.9003957 C4.25928988,18.1765381 4.48314751,18.4003957 4.75928988,18.4003957 C4.88013293,18.4003957 4.99688719,18.3566309 5.08795487,18.2771971 Z" fill="#000000" transform="translate(8.129645, 12.002277) scale(-1, 1) translate(-8.129645, -12.002277) " />
+    </g>
+  </svg>
+  {/*end::Svg Icon*/}</span>
+
+
+                </span>
+                <span className="navi-text font-size-lg">Back Page</span>
+              </a>
+            </div>
+
+
           </div>
           {/*end::Nav*/}
         </div>

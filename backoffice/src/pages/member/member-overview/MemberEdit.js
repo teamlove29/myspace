@@ -9,7 +9,8 @@ export default function MemberEdit() {
   const initialValues = {
     FirstName: "",
     LastName: "",
-    Country:""
+    Country:"",
+    Status:""
   };
 
   const enableLoading = () => {
@@ -42,6 +43,8 @@ export default function MemberEdit() {
       .max(50, "Maximum 50 symbols")
       .required('Required'),
       Country:Yup.string()
+      .required('Required'),
+      Status:Yup.string()
       .required('Required'),
   });
 
@@ -147,7 +150,7 @@ export default function MemberEdit() {
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Cover</label>
               <div className="col-lg-9 col-xl-6">
                 <div className="image-input image-input-outline" id="kt_profile_avatar" style={{backgroundImage: 'url(assets/media/users/blank.png)'}}>
-                  <div className="image-input-wrapper" style={{backgroundImage: 'url(assets/media/users/300_21.jpg)'}} />
+                  <div className="image-input-wrapper" style={{backgroundImage: 'url(assets/media/users/300_21.jpg)', width:'280px'}} />
                   <label className="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title data-original-title="Change avatar">
                     <i className="fa fa-pen icon-sm text-muted" />
                     <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
@@ -203,12 +206,9 @@ export default function MemberEdit() {
             </div>
             {/* begin LastName */}
             {/* begin Country */}
-
             <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Country</label>
               <div className="col-lg-9 col-xl-6">
-                {/* <input className="form-control form-control-lg form-control-solid" type="text" defaultValue="" /> */}
-                
                 <select class={`form-control form-control-lg form-control-solid" ${getInputClasses("Country")}`}
                 name="Country"
                 {...formik.getFieldProps("Country")}>
@@ -220,23 +220,36 @@ export default function MemberEdit() {
               </div>
             </div>
 {/* End Country */}
-
-{/* 
-         
-           
             <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Website</label>
               <div className="col-lg-9 col-xl-6">
                 <input className="form-control form-control-lg form-control-solid" type="text" defaultValue="" />
               </div>
-            </div>
-            <div className="form-group row">
+              </div>
+
+              <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">About You</label>
               <div className="col-lg-9 col-xl-6">
                 <textarea rows="3" className="form-control form-control-lg form-control-solid" type="text" defaultValue="" />
               </div>
             </div>
+
             <div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">Status</label>
+              <div className="col-lg-9 col-xl-6">
+              <select class={`form-control form-control-lg form-control-solid" ${getInputClasses("Status")}`}
+                name="Status"
+                {...formik.getFieldProps("Status")}>
+      <option value="" label="Select Status ..." />
+        <option value="active" label="Active" />
+        <option value="deactivate" label="Deactivate" />
+    </select>
+                <span className="form-text text-muted">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
+              </div>
+            </div>
+
+
+            {/* <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Email Address</label>
               <div className="col-lg-9 col-xl-6">
                 <div className="input-group input-group-lg input-group-solid">
@@ -248,14 +261,19 @@ export default function MemberEdit() {
                   <input type="text" className="form-control form-control-lg form-control-solid" defaultValue="nick.bold@loop.com" placeholder="Email" />
                 </div>
               </div>
-            </div>
-            <div className="form-group row">
-              <label className="col-xl-3 col-lg-3 col-form-label text-right">Status</label>
-              <div className="col-lg-9 col-xl-6">
-                <input className="form-control form-control-lg form-control-solid" type="text" defaultValue="" />
-                <span className="form-text text-muted">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
-              </div>
-            </div>
+            </div> */}
+
+
+
+{/* 
+         
+           
+          
+            
+        
+           
+               
+        
             <div className="row">
               <label className="col-xl-3" />
               <div className="col-lg-9 col-xl-6">
