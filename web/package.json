@@ -2,7 +2,7 @@
   "name": "next-login",
   "version": "0.1.0",
   "private": true,
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "clean": "rimraf nextjs/",
     "dev": "next dev",
@@ -40,14 +40,9 @@
     "yup": "^0.29.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "file-loader": "^6.0.0",
-    "url-loader": "^4.1.0"
-=======
     "cross-env": "~7.0.2",
     "firebase-functions-test": "^0.2.1",
     "rimraf": "~3.0.2",
     "shelljs": "^0.8.4"
->>>>>>> c8bec8cb8a7564a9754baf6ced2c0b9480392e35
   }
 }

@@ -9,7 +9,6 @@ import Twitter from '../../public/assets/img/icon/Twitter.png'
 import Google from '../../public/assets/img/icon/Google.png'
 
 export default function SignInPage(props) {
-  const [signUpShow, setSignUpShow] = React.useState(false);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()

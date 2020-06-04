@@ -9,6 +9,7 @@ import Google from '../../public/assets/img/icon/Google.png'
 
 export default function SignUpPage(props) {
   const [signInShow, setSignInShow] = React.useState(false);
+
   const RegisSchema = Yup.object().shape({
     email: Yup.string()
     .email('Invalid email')
@@ -17,6 +18,8 @@ export default function SignUpPage(props) {
     .min(3 , 'Please Input less than 3 Letters')
     .required('Please Input Password')
   });
+
+
 return(
   <>
 <Modal
