@@ -1,0 +1,56 @@
+.add_firebase: &add_firebase
+  before_script:
+    - apk add --update curl
+    - npm config set unsafe-perm true
+    - npm install -g firebase-tools@latest
+.dev_only: &dev_only
+  only:
+    - dev-release-web
+  tags:
+    - runner-twin
+
+variables:
+  DEV_WEB_BRANCH: "dev-release-web"
+  WEB_PATH: "web"
+
+#
+# Install node_module
+#
+npm-web:
+  stage: build
+  image: $NODE_IMAGE
+  script:
+    - cd $WEB_PATH
+    - "[ -f package-lock.json ] && rm package-lock.json"
+    - npm i && npm audit fix
+  cache:
+    key: npm-web-cache
+    paths:
+      - $WEB_PATH/node_modules
+  artifacts:
+    paths:
+      - $WEB_PATH/node_modules
+    expire_in: 1 hrs
+    when: always
+  only:
+    - dev-release-web
+  tags:
+    - runner-twin
+
+#
+# Dev ENV
+#
+dev-deploy-web:
+  stage: deploy
+  image: $NODE_IMAGE
+  dependencies:
+    - npm-web
+  <<: *add_firebase
+  script:
+    - cd $WEB_PATH
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID"
+      --only functions,hosting:web
+      --non-interactive
+      --token $FIREBASE_TOKEN
+      --project $DEV_FIREBASE_PROJECT
+  <<: *dev_only
