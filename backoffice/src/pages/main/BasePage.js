@@ -9,9 +9,7 @@ import MemberOverView from "../member";
 import TestPage from "../TestPage";
 
 
-
 export default function BasePage() {
-
   return (
     <div className="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
       <Header />
