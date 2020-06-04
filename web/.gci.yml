@@ -1,8 +1,3 @@
-.add_firebase: &add_firebase
-  before_script:
-    - apk add --update curl
-    - npm config set unsafe-perm true
-    - npm install -g firebase-tools@latest
 .dev_only: &dev_only
   only:
     - dev-release-web
@@ -57,7 +52,6 @@ dev-deploy-web:
   dependencies:
     - dev-build-web
     - npm-web
-  <<: *add_firebase
   script:
     - cd $WEB_PATH
     - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID"
