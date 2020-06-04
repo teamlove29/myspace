@@ -21,7 +21,6 @@ npm-web:
     - cd $WEB_PATH
     - "[ -f package-lock.json ] && rm package-lock.json"
     - npm i
-    - npm audit fix
   cache:
     paths:
       - $WEB_PATH/node_modules
