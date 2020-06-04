@@ -15,14 +15,14 @@ variables:
 # Install node_module
 #
 npm-web:
-  stage: build
+  stage: npm
   image: $NODE_IMAGE
   script:
     - cd $WEB_PATH
     - "[ -f package-lock.json ] && rm package-lock.json"
-    - npm i && npm audit fix
+    - npm i
+    - npm audit fix
   cache:
-    key: npm-web-cache
     paths:
       - $WEB_PATH/node_modules
   artifacts:
@@ -36,11 +36,27 @@ npm-web:
 #
 # Dev ENV
 #
+dev-build-web:
+  stage: build
+  image: $NODE_IMAGE
+  dependencies:
+    - npm-web
+  script:
+    - cd $WEB_PATH
+    - npm run predeploy
+  cache:
+    paths:
+      - $WEB_PATH/nextjs
+  artifacts:
+    paths:
+      - $WEB_PATH/nextjs
+    expire_in: 1 hrs
+    when: always
 dev-deploy-web:
   stage: deploy
   image: $NODE_IMAGE
   dependencies:
-    - npm-web
+    - dev-build-web
   <<: *add_firebase
   script:
     - cd $WEB_PATH

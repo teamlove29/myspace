@@ -11,6 +11,7 @@ variables:
   APK_BUILD_PACKETS: "apk add --update-cache python python-dev py-pip alpine-sdk"
 
 stages:
+  - npm
   - build
   - release
   - deploy
