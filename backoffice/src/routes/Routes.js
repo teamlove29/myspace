@@ -42,7 +42,7 @@ const Routes = () => {
       <Switch>
         <Route path="/logout" component={Logout} />
         <SecuredRoute />
-        <Route component={NotFound} />
+        <Route component={NotFound} />ก
       </Switch>
     </Router>);
 }

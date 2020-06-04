@@ -5,8 +5,9 @@ import Header from "../../components/layoutsMain/Header";
 import Footer from "../../components/layoutsMain/Footer";
 import Content from "../dashboard/Dashboard";
 import Member from "../member/MemberPage";
-import testPage from "../TestPage";
-import testPage2 from "../TestPage2";
+import MemberPage from "../member/MemberPage";
+import MemberProfile from "../member/MemberProfile";
+import TestPage from "../TestPage";
 import { Cube } from "styled-loaders-react";
 
 
@@ -22,9 +23,9 @@ export default function BasePage() {
       >
           <Switch>
             <Route path="/dashboard" component={Content} />
-            <Route path="/member" component={Member} />
-            <Route exact path="/testPage" component={testPage} />
-            <Route path="/testPage/:id" component={testPage2} />
+            <Route exact path="/member" component={MemberPage} />
+            <Route path="/member/:id" component={MemberProfile} />
+            <Route path="/testPage" component={TestPage} />
             <Redirect to="/dashboard" />
           </Switch>
       </div>

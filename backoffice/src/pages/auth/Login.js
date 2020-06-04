@@ -59,7 +59,7 @@ function Login() {
     onSubmit: (value, { setStatus, setSubmitting }) => {
       enableLoading();
       setTimeout(() => {
-        if (value.email == 'admin@demo.com' && value.password == 'demo') {
+        if (value.email === 'admin@demo.com' && value.password === 'demo') {
           disableLoading();
           localStorage.setItem('access-token-test', 'true');
           window.location.href = "/dashboard";

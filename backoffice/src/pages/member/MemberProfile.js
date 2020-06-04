@@ -1,4 +1,5 @@
 import React from "react";
+import { toAbsoluteUrl, checkIsActive } from "../../_helpers";
 export default function TestPage2(props) {
   // ดึงค่าจาก /xxx?user:1234
   // const search = new URLSearchParams(props.locations.search)
@@ -46,18 +47,32 @@ export default function TestPage2(props) {
               <div className="row">
                 {/* begin Avatar */}
                 <label className="col-xl-3" />
-                Avatar
+                <span className="my-auto">Avatar</span>
                 <div className="col-lg-9 col-xl-6">
-                  <h5 className="font-weight-bold mb-6">Customer Info</h5>
+                  <div class="symbol symbol-70">
+                    <img 
+                      className="mb-3"
+
+                      alt="Pic"
+                      src={toAbsoluteUrl("/media/users/300_22.jpg")}
+                    />
+                  </div>
                 </div>
                 {/* End Avatar */}
                 {/* begin Name */}
                 <label className="col-xl-3" />
                 Name :
                 <div className="col-lg-9 col-xl-6">
-                  <h5 className="font-weight-bold mb-6">Jordy Jamcater</h5>
+                  <h6 className="font-weight-bold mb-6">Jordy Jamcater</h6>
                 </div>
                 {/* End Name */}
+                {/* begin Email */}
+                <label className="col-xl-3" />
+                Email :
+                <div className="col-lg-9 col-xl-6">
+                  <h6 className="font-weight-bold mb-6">demo@demo.com</h6>
+                </div>
+                {/* End Email */}
               </div>
             </div>
             {/*end::Body*/}
