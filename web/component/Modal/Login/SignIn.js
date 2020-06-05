@@ -3,11 +3,14 @@ import Link from 'next/link'
 import Button from '../../button/loginButton'
 import { Formik , Form , Field , ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import Facebook from '../../public/assets/img/icon/Facebook.png'
-import Twitter from '../../public/assets/img/icon/Twitter.png'
-import Google from '../../public/assets/img/icon/Google.png'
+import Facebook from '../../../public/assets/img/icon/Facebook.png'
+import Twitter from '../../../public/assets/img/icon/Twitter.png'
+import Google from '../../../public/assets/img/icon/Google.png'
+import SignUpPage from '../Register/SignUp'
 
 export default function SignInPage(props) {
+
+  const [SignUpShow, setSignUpShow] = React.useState(false)
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -17,6 +20,23 @@ export default function SignInPage(props) {
     .min(3 , 'Please Input less than 3 Letters')
     .required('Please Input Password')
   });
+
+  const SignUpClick = () => {
+    props.onHide()
+    setSignUpShow(true)
+  }
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCPZyWWf8oQi3e8o3aqEcUlJNhc30j9ars",
+    authDomain: "myspace-dev-1ae9e.firebaseapp.com",
+    databaseURL: "https://myspace-dev-1ae9e.firebaseio.com",
+    projectId: "myspace-dev-1ae9e",
+    storageBucket: "myspace-dev-1ae9e.appspot.com",
+    messagingSenderId: "379818176061",
+    appId: "1:379818176061:web:9e431d12e626f04e03c454",
+    measurementId: "G-YQVB6MPMV3"
+  };
+
 return(
   <>
       <Modal
@@ -36,13 +56,13 @@ return(
       Start listening with myspec.
       </span>
       <a
-      onClick={() => this.props.onClickUp()} >
+      onClick={SignUpClick} >
       Sign up
       </a></div>
       <Formik
       initialValues={{ email: '', password: ''}}
       validationSchema={LoginSchema}
-      onSubmit={values =>{console.log(values) , props.onHide}}
+      onSubmit={values =>console.log(values)}
       >
       {({ errors ,touched }) => (
       <Form>
@@ -150,6 +170,9 @@ return(
   }
     `}</style>
     </Modal>
+    <SignUpPage
+    show={SignUpShow}
+    onHide={() => setSignUpShow(false)} />
   </>
     )
 

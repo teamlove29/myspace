@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
 import { Navbar , Nav } from 'react-bootstrap'
-import SignUp from './Modal/SignUp'
-import SignIn from './Modal/SignIn'
-import SelectModal from './Modal/ModalSelection'
-import ForgotPass from './Modal/forgotPassword'
-import LoginSuccess from './Modal/LoginSuccess'
-import SendEmailModal from './Modal/sendEmail'
-import RegisterSuccessModal from './RegisterSuccess'
+import SignUp from './Modal/Register/SignUp'
+import SignIn from './Modal/Login/SignIn'
 
 export default function NavBar() {
     const [signUpShow, setSignUpShow] = React.useState(false);
@@ -26,11 +21,6 @@ export default function NavBar() {
                 <Nav>
                     <Nav.Link onClick={() => setSignUpShow(true)}> Sign up </Nav.Link>
                     <Nav.Link onClick={() => setSignInShow(true)}> Sign in </Nav.Link>
-                    <Nav.Link onClick={() => setModalShow(true)}> Select Option Modal </Nav.Link>
-                    <Nav.Link onClick={() => setForgotModalShow(true)}> Forgot password Modal </Nav.Link>
-                    <Nav.Link onClick={() => setSuccessModalShow(true)}> Login Success Modal </Nav.Link>
-                    <Nav.Link onClick={() => setSendEmailShow(true)}> Reset Password Alert Modal </Nav.Link>
-                    <Nav.Link onClick={() => setRegisterSuccessShow(true)}> Register Success Alert Modal </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
             <style jsx>{`
@@ -38,9 +28,6 @@ export default function NavBar() {
                 z-index: 2048;
             }
             `}</style>
-        <ForgotPass
-        show={forgotShow}
-        onHide={() => setForgotModalShow(false)} />
         <SignUp
         show={signUpShow}
         onHide={() => setSignUpShow(false)}
@@ -48,22 +35,6 @@ export default function NavBar() {
         <SignIn
         show={signInShow}
         onHide={() => setSignInShow(false)}
-        />
-        <SelectModal
-        show={selectShow}
-        onHide={() => setModalShow(false)}
-        />
-        <LoginSuccess
-        show={successShow}
-        onHide={() => setSuccessModalShow(false)}
-        />
-        <SendEmailModal
-        show={sendEmailShow}
-        onHide={() => setSendEmailShow(false)}
-        />
-        <RegisterSuccessModal
-            show={registerSuccessShow}
-            onHide={() => setRegisterSuccessShow(false)}
         />
         </Navbar>
         </>

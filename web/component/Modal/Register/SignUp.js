@@ -3,10 +3,11 @@ import Button from '../../button/loginButton'
 import { Formik , Form , Field , ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import Link from 'next/link'
-import Facebook from '../../public/assets/img/icon/Facebook.png'
-import Twitter from '../../public/assets/img/icon/Twitter.png'
-import Google from '../../public/assets/img/icon/Google.png'
+import Facebook from '../../../public/assets/img/icon/Facebook.png'
+import Twitter from '../../../public/assets/img/icon/Twitter.png'
+import Google from '../../../public/assets/img/icon/Google.png'
 import axios from 'axios'
+import SignInPage from '../Login/SignIn'
 
 export default function SignUpPage(props) {
   const [signInShow, setSignInShow] = React.useState(false);
@@ -21,6 +22,10 @@ export default function SignUpPage(props) {
   });
 
 
+  const SignInClick = () => {
+    props.onHide()
+    setSignInShow(true)
+  }
 return(
   <>
 <Modal
@@ -39,7 +44,7 @@ return(
       initialValues={{ email: '', password: ''}}
       validationSchema={RegisSchema}
       onSubmit={values =>
-      {axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/test',{
+      {axios.post('',{
         firstName: 'Fred',
         lastName: 'Flintstone'
         }).then( response => {
@@ -134,11 +139,4 @@ return(
     </Modal>
   </>
 )
-  function SignIn(){
-    props.onHide;
-    <SignIn
-    show={signInShow}
-    onHide={() => setSignInShow(false)}
-    />
-  }
 }
