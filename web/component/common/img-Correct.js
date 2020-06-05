@@ -1,15 +1,15 @@
-import CorrectIcon from '../../assets/img/icon/icon-correct.png'
+import CorrectIcon from "../../assets/img/icon/icon-correct.png";
 
 export default function imgIcon() {
-    return(
-        <>
-        <img src={CorrectIcon} />
-        <style jsx>{`
+  return (
+    <>
+      <img src={CorrectIcon} />
+      <style jsx>{`
         img {
-            width: 120px;
-            height: 150px;
+          width: 120px;
+          height: 150px;
         }
-        `}</style>
-        </>
-    )
+      `}</style>
+    </>
+  );
 }

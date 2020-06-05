@@ -1,159 +1,197 @@
-import {Modal} from 'react-bootstrap'
-import Button from '../../button/loginButton'
-import React, { useState } from 'react'
-import { Formik , Form , Field , ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-import Link from 'next/link'
-import Facebook from '../../../assets/img/icon/Facebook.png'
-import Twitter from '../../../assets/img/icon/Twitter.png'
-import Google from '../../../assets/img/icon/Google.png'
-import axios from 'axios'
+import { Modal } from "react-bootstrap";
+import Button from "../../button/loginButton";
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import Link from "next/link";
+import Facebook from "../../../assets/img/icon/Facebook.png";
+import Twitter from "../../../assets/img/icon/Twitter.png";
+import Google from "../../../assets/img/icon/Google.png";
+import firebase from 'firebase'
+import Counter from '../../../api/functions/config/config'
+import SelectModal from './ModalSelection'
 
 export default function SignUpPage(props) {
   const [signInShow, setSignInShow] = React.useState(false);
-  const [SelectModalShow , setSelectModalShow] = React.useState(false);
+  const [selectModalShow, setSelectModalShow] = React.useState(false);
 
   const RegisSchema = Yup.object().shape({
     email: Yup.string()
-    .email('Invalid email')
-    .required('Please Input Your Email.'),
-    password:Yup.string()
-    .min(3 , 'Please Input less than 3 Letters')
-    .required('Please Input Password')
+      .email("Invalid email")
+      .required("Please Input Your Email."),
+    password: Yup.string()
+      .min(3, "Please Input less than 3 Letters")
+      .required("Please Input Password"),
   });
 
-  const SignUpClick = () => {
-    // {axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/authen-login',{
-    //   firstName: 'Fred',
-    //   lastName: 'Flintstone'
-    //   }).then( response => {
-    //     console.log(response);
-    //     }).catch((error) => {
-    //       console.log(error);
-    //     });}
-    props.onHide()
-    setSelectModalShow(true)
-  }
+  // const Firebase =  firebase.initializeApp(FirebaseApp)
+  // const SignUpClick = () => {
+  //   firebase
+  //     .auth()
+  //     .createUserWithEmailAndPassword(div.email, div.password)
+  //     .then(() => {
+  //       res.status(200);
+  //     })
+  //     .catch(() => {
+  //       res.status(400);
+  //     });
+  //   props.onHide();
+  //   setSelectModalShow(true);
+  // };
 
   const SignInClick = () => {
-    props.onHide()
-    setSignInShow(true)
-  }
-return(
-  <>
-<Modal
-      {...props}
-      aria-labelledby="contained-modal-title-vcenter"
-      centered >
-      <Modal.Header
-      className="header"
-      closeButton>
-      </Modal.Header>
-      <Modal.Body>
-      <div className="form-group"><h3> Welcome! Let's create your profile </h3>
-      <span className="text-sm-left txt2" id="describe"> Getting in is easy. Use one of your social network or start fresh with an email address
-      Already have a Myspace account?
-      <a className="txt1" onClick={SignInClick}>
-       Sign in
-       </a>
-       </span> </div>
-      <Formik
-      initialValues={{ email: '', password: ''}}
-      validationSchema={RegisSchema}
-      onSubmit={values =>
-      {axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/authen-login/SignUp',{
-        email: values.email,
-        password: values.password
-        }).then( response => {
-          console.log(response);
-          }).catch((error) => {
-            console.log(error);
-            });}}
+    props.onHide();
+    setSignInShow(true);
+  };
+  return (
+    <>
+      <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
       >
-      {({ errors ,touched }) => (
-      <Form>
-      <div className="form-group">
-          <label className="input-title"> Email </label>
-          <Field
-          name="email"
-          type="email"
-          className={`form-control input-frm ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : ''}`}
-          id="email"
-           />
-           <ErrorMessage
-           component="div"
-           name="email"
-           className="invalid-feedback"
-           />
-        </div>
-        <div>
-          <label className="input-title">Password</label>
-          <Field
-          name="password"
-          type="password"
-          className={`form-control input-frm ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : ''}`}
-          id="pass"
-          />
-          <ErrorMessage component="div" name="password" className="invalid-feedback" />
-        </div>
-      <br/>
-        <div className="form-group" >
-              <span className="txt2" > or </span>
-              <Link href="#"><a><img src={Facebook} /></a></Link>
-              <Link href="#"><a><img src={Twitter} /></a></Link>
-              <Link href="#"><a><img src={Google} /></a></Link>
-        </div>
-        <div className="footer">
-      <Button  type="submit"> Create account </Button>
-      </div>
-      </Form>
-      )}
-      </Formik>
-        <br/>
-      </Modal.Body>
-      <style jsx>{`
-  h3 {
-    font-weight: 750;
-    font-size: 25px;
-    align-items: center;
-    padding-left: 5px ;
-  }
+        <Modal.Header className="header" closeButton></Modal.Header>
+        <Modal.Body>
+          <div className="form-group">
+            <h3> Welcome! Let's create your profile </h3>
+            <span className="text-sm-left txt2" id="describe">
+              {" "}
+              Getting in is easy. Use one of your social network or start fresh
+              with an email address Already have a Myspace account?
+              <a className="txt1" onClick={SignInClick}>
+                Sign in
+              </a>
+            </span>{" "}
+          </div>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={RegisSchema}
+            onSubmit={values =>
+      Counter
+      .auth()
+      .createUserWithEmailAndPassword(values.email, values.password)
+      .then(() => {
+        props.onHide()
+        setSelectModalShow(true)
+      })
+      .catch(() => {
+        console.log("No")
+      })
+      }
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <div className="form-group">
+                  <label className="input-title"> Email </label>
+                  <Field
+                    name="email"
+                    type="email"
+                    className={`form-control input-frm ${
+                      touched.email
+                        ? errors.email
+                          ? "is-invalid"
+                          : "is-valid"
+                        : ""
+                    }`}
+                    id="email"
+                  />
+                  <ErrorMessage
+                    component="div"
+                    name="email"
+                    className="invalid-feedback"
+                  />
+                </div>
+                <div>
+                  <label className="input-title">Password</label>
+                  <Field
+                    name="password"
+                    type="password"
+                    className={`form-control input-frm ${
+                      touched.password
+                        ? errors.password
+                          ? "is-invalid"
+                          : "is-valid"
+                        : ""
+                    }`}
+                    id="pass"
+                  />
+                  <ErrorMessage
+                    component="div"
+                    name="password"
+                    className="invalid-feedback"
+                  />
+                </div>
+                <br />
+                <div className="form-group">
+                  <span className="txt2"> or </span>
+                  <Link href="#">
+                    <a>
+                      <img src={Facebook} />
+                    </a>
+                  </Link>
+                  <Link href="#">
+                    <a>
+                      <img src={Twitter} />
+                    </a>
+                  </Link>
+                  <Link href="#">
+                    <a>
+                      <img src={Google} />
+                    </a>
+                  </Link>
+                </div>
+                <div className="footer">
+                  <Button type="submit"> Create account </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+          <br />
+        </Modal.Body>
+        <style jsx>{`
+          h3 {
+            font-weight: 750;
+            font-size: 25px;
+            align-items: center;
+            padding-left: 5px;
+          }
 
-  a {
-    font-size: 12px;
-    color: rgb(224, 139, 28);
-    padding-left: 5px ;
-  }
+          a {
+            font-size: 12px;
+            color: rgb(224, 139, 28);
+            padding-left: 5px;
+          }
 
-  img {
-    width: 18px;
-    height: 18px;
-  }
+          img {
+            width: 18px;
+            height: 18px;
+          }
 
-  .txt2 {
-    font-size: 11px;
-    color: #b6b6b6;
-  }
+          .txt2 {
+            font-size: 11px;
+            color: #b6b6b6;
+          }
 
-  .input-title {
-    font-size: 13px;
-  }
+          .input-title {
+            font-size: 13px;
+          }
 
-  .input-frm{
-    border-color: #e7e7e7;
-    font-size: 13px;
-  }
+          .input-frm {
+            border-color: #e7e7e7;
+            font-size: 13px;
+          }
 
-  .header {
-    border: 0;
-  }
+          .header {
+            border: 0;
+          }
 
-  .footer {
-    align-items: center;
-    margin-left: 150px;
-  }
-    `}</style>
-    </Modal>
-  </>
-)
+          .footer {
+            align-items: center;
+            margin-left: 150px;
+          }
+        `}</style>
+      </Modal>
+      <SelectModal show={selectModalShow} onHide={() => setSelectModalShow(false)}/>
+    </>
+  );
 }

@@ -6,7 +6,7 @@ import RegisterSuccess from './RegisterSuccess'
 export default function SelectModal(props) {
   const [registerModalShow, setRegisterSuccessModal] = React.useState(false);
 
-  const RisterAlert = () => {
+  const RegisterAlert = () => {
     props.onHide()
     setRegisterSuccessModal(true)
   }
@@ -35,7 +35,7 @@ return(
         Listen to music
         </label>
     </div>
-        <input className="form-check-input radio" type="radio" name="optradio" value="option1"  />
+        <input className="form-check-input radio" type="radio" name="Option" value="option1"  />
     </div>
   </Card.Body>
     </Card>
@@ -47,14 +47,14 @@ return(
     <div>
         <span className="text-title">Artist</span>
     </div>
-        <input className="form-check-input radio" type="radio" name="optradio" value="option1"  />
+        <input className="form-check-input radio" type="radio" name="Option" value="option2"  />
     </div>
   </Card.Body>
     </Card>
       </div>
       <br />
       <div className="footer">
-      <Button onClick={RisterAlert} > Finish </Button>
+      <Button type="submit" onSubmit={() => setRegisterSuccessModal(true)} > Finish </Button>
       </div>
       </Modal.Body>
   <style jsx>{`
