@@ -2,15 +2,24 @@
   "name": "web",
   "version": "1.0.0",
   "description": "```shell\r # development\r npm install\r npm run dev\r # or\r yarn\r yarn dev",
-  "main": "next.config.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "next",
+    "clean": "rimraf nextjs/",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "predeploy": "npm run clean && next build",
+    "deploy": "firebase deploy --only functions,hosting:web"
+  },
+  "engines": {
+    "node": "10"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "firebase": "^7.14.2",
+    "firebase-admin": "^8.11.0",
+    "firebase-functions": "~3.6.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "formik": "^2.1.4",
@@ -22,5 +31,11 @@
     "styled-components": "^5.1.1",
     "styled-jsx": "^3.3.0",
     "yup": "^0.29.1"
+  },
+  "devDependencies": {
+    "cross-env": "~7.0.2",
+    "firebase-functions-test": "^0.2.1",
+    "rimraf": "~3.0.2",
+    "shelljs": "^0.8.4"
   }
 }
