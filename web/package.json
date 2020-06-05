@@ -17,16 +17,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "@fortawesome/fontawesome-free": "^5.13.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "css-loader": "^3.5.3",
     "dotenv": "^8.2.0",
     "firebase": "^7.15.0",
-=======
-    "firebase": "^7.14.2",
->>>>>>> 92f1121a78316f5f61e3c560a3bd857348df5bd0
     "firebase-admin": "^8.11.0",
     "firebase-functions": "~3.6.2",
     "axios": "^0.19.2",

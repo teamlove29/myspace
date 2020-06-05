@@ -8,7 +8,6 @@ import Facebook from '../../../public/assets/img/icon/Facebook.png'
 import Twitter from '../../../public/assets/img/icon/Twitter.png'
 import Google from '../../../public/assets/img/icon/Google.png'
 import axios from 'axios'
-import SignInPage from '../Login/SignIn'
 
 export default function SignUpPage(props) {
   const [signInShow, setSignInShow] = React.useState(false);
