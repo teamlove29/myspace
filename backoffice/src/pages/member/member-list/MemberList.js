@@ -11,6 +11,7 @@ import overlayFactory from "react-bootstrap-table2-overlay";
 import axios from "axios";
 import { Table, Card } from "react-bootstrap";
 import { Pagination } from "../../../_metronic/_partials/controls";
+import members from "../../../member.json";
 
 export default function MemberList() {
   const [member, setMember] = useState([]);
@@ -18,16 +19,16 @@ export default function MemberList() {
   const history = useHistory();
   const { SearchBar } = Search;
 
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((response) => {
-        setMember(response.data);
-      })
-      .catch((err) => {
-        setErr({ err: err });
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/users")
+  //     .then((response) => {
+  //       setMember(response.data);
+  //     })
+  //     .catch((err) => {
+  //       setErr({ err: err });
+  //     });
+  // }, []);
 
   const Avater = (row) => {
     const TextAvatar = row.substring(0, 1);
@@ -42,7 +43,7 @@ export default function MemberList() {
     return (
       <NavLink
         to={`/member/overview/${row}`}
-        className="btn btn-sm btn-clean btn-icon"
+        className="btn btn-sm btn-clean btn-icon "
       >
         <i class="flaticon2-gear"></i>
       </NavLink>
@@ -57,12 +58,18 @@ export default function MemberList() {
     );
   };
 
-  const memberLogo = () => {
+  const memberLogo = (row) => {
     return (
       <>
-        <span class="label label-rounded label-primary label-pill label-inline mr-2">
-          member
-        </span>
+        {row === "artist" ? (
+          <span class="label label-rounded label-warning label-pill label-inline mr-2">
+            {row}
+          </span>
+        ) : (
+          <span class="label label-rounded label-primary label-pill label-inline mr-2">
+            {row}
+          </span>
+        )}
       </>
     );
   };
@@ -97,8 +104,8 @@ export default function MemberList() {
   };
 
   const selectOptions = {
-    1: "Member",
-    2: "Artist",
+    member: "Member",
+    artist: "Artist",
   };
 
   const width70PX = {
@@ -150,7 +157,12 @@ export default function MemberList() {
     <div className="container">
       <Card>
         <Card.Body>
-          <ToolkitProvider keyField="id" data={member} columns={columns} search>
+          <ToolkitProvider
+            keyField="id"
+            data={members}
+            columns={columns}
+            search
+          >
             {(props) => (
               <>
                 <h3>Member List</h3>
@@ -171,7 +183,7 @@ export default function MemberList() {
                   // overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
                   keyField="id"
                   // ข้อมูลในตาราง
-                  data={member === null ? [] : member}
+                  data={members === null ? [] : members}
                   // รูปแบบตาราง
                   columns={columns}
                   bordered={false}

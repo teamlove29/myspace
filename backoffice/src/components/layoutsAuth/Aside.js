@@ -1,10 +1,11 @@
 import React from 'react'
 import {toAbsoluteUrl} from "../../_helpers";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 
 export default function Aside() {
     return (
+      
         <div className="login-aside d-flex flex-row-auto bgi-size-cover bgi-no-repeat p-10 p-lg-10"
         style={{
           backgroundImage: `url(${toAbsoluteUrl("/media/bg/bg-4.jpg")})`
@@ -15,13 +16,13 @@ export default function Aside() {
             {/*begin: Aside Container*/}
             <div className="d-flex flex-row-fluid flex-column justify-content-between">
               {/* start:: Aside header */}
-              <Link to="/" className="flex-column-auto mt-5">
+              <NavLink to="/" className="flex-column-auto mt-5">
                 <img
                     alt="Logo"
                     className="max-h-70px"
                     src={toAbsoluteUrl("/media/logos/logo-letter-1.png")}
                 />
-              </Link>
+              </NavLink>
               {/* end:: Aside header */}
 
               {/* start:: Aside content */}
@@ -42,15 +43,15 @@ export default function Aside() {
                   &copy; 2020 Metronic
                 </div>
                 <div className="d-flex">
-                  <Link to="/terms" className="text-white">
+                  <NavLink to="/terms" className="text-white">
                     Privacy
-                  </Link>
-                  <Link to="/terms" className="text-white ml-10">
+                  </NavLink>
+                  <NavLink to="/terms" className="text-white ml-10">
                     Legal
-                  </Link>
-                  <Link to="/terms" className="text-white ml-10">
+                  </NavLink>
+                  <NavLink to="/terms" className="text-white ml-10">
                     Contact
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
               {/* end:: Aside footer for desktop */}
@@ -61,5 +62,6 @@ export default function Aside() {
     
 
       </div>
+
     )
 }

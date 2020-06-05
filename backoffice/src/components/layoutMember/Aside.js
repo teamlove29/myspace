@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 import { toAbsoluteUrl, checkIsActive } from "../../_helpers";
 export default function Aside(props) {
+    const type = props.type
     const paramsId = props.match.params.id;
     const location = useLocation();
     const getMenuItemActive = (url) => {
@@ -27,7 +28,7 @@ export default function Aside(props) {
             </div>
             <div>
               <a href="#" className="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">James Jones</a>
-              <div className="text-muted"><span class="label label-success  label-pill label-inline ">Member</span></div>
+    <div className="text-muted"><span class="label label-success  label-pill label-inline ">{type}</span></div>
               <div className="mt-2">
               </div>
             </div>

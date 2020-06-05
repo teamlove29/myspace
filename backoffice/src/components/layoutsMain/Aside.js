@@ -11,10 +11,7 @@ function Aside() {
       : "";
   };
   return (
-    <div>
-
-
-
+    <>
       {/*begin::Aside*/}
       <div className="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
         {/*begin::Brand*/}
@@ -775,7 +772,7 @@ function Aside() {
 
 
 
-    </div>
+    </>
   )
 }
 

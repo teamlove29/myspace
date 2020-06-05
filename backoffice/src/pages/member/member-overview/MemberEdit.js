@@ -3,14 +3,20 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toAbsoluteUrl, checkIsActive } from "../../../_helpers";
 import axios from 'axios';
-export default function MemberEdit() {
-
+export default function MemberEdit(props) {
+  const type = props.type
   const [loading, setLoading] = useState(false);
   const initialValues = {
     FirstName: "",
     LastName: "",
+    Email:"",
     Country:"",
-    Status:""
+    Status:"",
+    Tel:"",
+    Website:"",
+    Facebook:"",
+    instagram:"",
+    AboutYou:"",
   };
 
   const enableLoading = () => {
@@ -32,9 +38,10 @@ export default function MemberEdit() {
     return "";
   };
 
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
   const MemberSchema = Yup.object().shape({
     FirstName: Yup.string()
-      // .email("Invalid email")
       .min(3, "Minimum 3 symbols")
       .max(50, "Maximum 50 symbols")
       .required('Required'),
@@ -42,9 +49,16 @@ export default function MemberEdit() {
       .min(3, "Minimum 3 symbols")
       .max(50, "Maximum 50 symbols")
       .required('Required'),
+      Email:Yup.string()
+      .email("Invalid email")
+      .required('Required'),
       Country:Yup.string()
       .required('Required'),
       Status:Yup.string()
+      .required('Required'),
+      Tel:Yup.string()
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .max(10, "Maximum 10 symbols")
       .required('Required'),
   });
 
@@ -54,19 +68,10 @@ export default function MemberEdit() {
     validationSchema: MemberSchema,
     onSubmit: (value, { setStatus, setSubmitting }) => {
       enableLoading();
-      axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/test', {
-        firstName: 'Fred',
-        lastName: 'Flintstone'
-      })
-      .then( response => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
        setTimeout(() => {
          disableLoading();
          setSubmitting(false);
+         console.log(value)
        }, 1000)
     }
   })
@@ -174,7 +179,7 @@ export default function MemberEdit() {
               <label className="col-xl-3 col-lg-3 col-form-label text-right">First Name</label>
               <div className="col-lg-9 col-xl-6">
                 <input 
-                className={`form-control form-control-lg form-control-solid" ${getInputClasses("FirstName")}`}
+                className={`form-control form-control-lg " ${getInputClasses("FirstName")}`}
                 type="text" 
                 name="FirstName"
                 {...formik.getFieldProps("FirstName")}
@@ -185,14 +190,14 @@ export default function MemberEdit() {
             </div>
           ) : null}
               </div>
-            </div>
+            </div> 
 {/* end FirstName */}
 {/* begin LastName */}
             <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Last Name</label>
               <div className="col-lg-9 col-xl-6">
                 <input 
-                className={`form-control form-control-lg form-control-solid" ${getInputClasses("LastName")}`}
+                className={`form-control form-control-lg " ${getInputClasses("LastName")}`}
                 type="text"  
                 name="LastName"
                 {...formik.getFieldProps("LastName")}
@@ -205,39 +210,64 @@ export default function MemberEdit() {
               </div>
             </div>
             {/* begin LastName */}
+{/* begin Email */}
+<div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">Email</label>
+              <div className="col-lg-9 col-xl-6">
+                <input 
+                className={`form-control form-control-lg " ${getInputClasses("Email")}`}
+                type="text"  
+                name="LastName"
+                {...formik.getFieldProps("Email")}
+                />
+                 {formik.touched.Email && formik.errors.Email ? (
+            <div className="fv-plugins-message-container">
+              <div className="fv-help-block">{formik.errors.Email}</div>
+            </div>
+          ) : null}
+              </div>
+            </div>
+            {/* begin Email */}
+{/* begin tel */}
+<div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">Tel</label>
+              <div className="col-lg-9 col-xl-6">
+                <input 
+                className={`form-control form-control-lg " ${getInputClasses("Tel")}`}
+                type="text"  
+                name="LastName"
+                {...formik.getFieldProps("Tel")}
+                />
+                 {formik.touched.Tel && formik.errors.Tel ? (
+            <div className="fv-plugins-message-container">
+              <div className="fv-help-block">{formik.errors.Tel}</div>
+            </div>
+          ) : null}
+              </div>
+            </div>
+            {/* begin tel */}
+
             {/* begin Country */}
             <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Country</label>
               <div className="col-lg-9 col-xl-6">
-                <select class={`form-control form-control-lg form-control-solid" ${getInputClasses("Country")}`}
+                <select 
+                class={`form-control form-control-lg " ${getInputClasses("Country")}`}
                 name="Country"
                 {...formik.getFieldProps("Country")}>
       <option value="" label="Select Country ..." />
-        <option value="thailand" label="thailand" />
-        <option value="chaina" label="chaina" />
-        <option value="usa" label="usa" />
+        <option value="thailand" label="Thailand" />
+        <option value="chaina" label="Chaina" />
+        <option value="usa" label="USA" />
     </select>
               </div>
             </div>
 {/* End Country */}
-            <div className="form-group row">
-              <label className="col-xl-3 col-lg-3 col-form-label text-right">Website</label>
-              <div className="col-lg-9 col-xl-6">
-                <input className="form-control form-control-lg form-control-solid" type="text" defaultValue="" />
-              </div>
-              </div>
-
-              <div className="form-group row">
-              <label className="col-xl-3 col-lg-3 col-form-label text-right">About You</label>
-              <div className="col-lg-9 col-xl-6">
-                <textarea rows="3" className="form-control form-control-lg form-control-solid" type="text" defaultValue="" />
-              </div>
-            </div>
-
-            <div className="form-group row">
+{/* begin Status */}
+<div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Status</label>
               <div className="col-lg-9 col-xl-6">
-              <select class={`form-control form-control-lg form-control-solid" ${getInputClasses("Status")}`}
+              <select class={`form-control form-control-lg " ${getInputClasses("Status")}`}
                 name="Status"
                 {...formik.getFieldProps("Status")}>
       <option value="" label="Select Status ..." />
@@ -247,6 +277,67 @@ export default function MemberEdit() {
                 <span className="form-text text-muted">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
               </div>
             </div>
+{/* End Status */}
+{/* begin Artist Info */}
+{type === 'artist' ? <> <hr/>
+<div className="row">
+              <label className="col-xl-3" />
+              <div className="col-lg-9 col-xl-6">
+                <h5 className="font-weight-bold mb-6">Artist Info</h5>
+              </div>
+            </div>
+{/* begin Website */}
+            <div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">Website</label>
+              <div className="col-lg-9 col-xl-6">
+                <input 
+                className={`form-control form-control-lg " ${getInputClasses("Website")}`}
+                type="text" 
+                name="Website"
+                name="Website"
+                {...formik.getFieldProps("Website")} />
+              </div>
+              </div>
+{/* End Website */}
+{/* begin Facebook */}
+<div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">Facebook</label>
+              <div className="col-lg-9 col-xl-6">
+                <input 
+                className={`form-control form-control-lg " ${getInputClasses("Facebook")}`}
+                type="text" 
+                name="Facebook"
+                {...formik.getFieldProps("Facebook")} />
+              </div>
+              </div>
+{/* End Facebook */}
+{/* begin instagram */}
+<div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">instagram</label>
+              <div className="col-lg-9 col-xl-6">
+                <input 
+                className={`form-control form-control-lg " ${getInputClasses("instagram")}`}
+                type="text" 
+                name="instagram"
+                {...formik.getFieldProps("instagram")} />
+              </div>
+              </div>
+{/* End instagram */}
+{/* begin AboutYou */}
+              <div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">About You</label>
+              <div className="col-lg-9 col-xl-6">
+                <textarea 
+                rows="3" 
+                className={`form-control form-control-lg " ${getInputClasses("AboutYou")}`}
+                type="text" 
+                name="AboutYou"
+                {...formik.getFieldProps("AboutYou")} />
+              </div>
+            </div>
+{/* End AboutYou */} </> : null}
+
+{/* End Artist Info */}
 
 
             {/* <div className="form-group row">
@@ -258,7 +349,7 @@ export default function MemberEdit() {
                       <i className="la la-at" />
                     </span>
                   </div>
-                  <input type="text" className="form-control form-control-lg form-control-solid" defaultValue="nick.bold@loop.com" placeholder="Email" />
+                  <input type="text" className="form-control form-control-lg " defaultValue="nick.bold@loop.com" placeholder="Email" />
                 </div>
               </div>
             </div> */}
@@ -289,7 +380,7 @@ export default function MemberEdit() {
                       <i className="la la-phone" />
                     </span>
                   </div>
-                  <input type="text" className="form-control form-control-lg form-control-solid" defaultValue={+35278953712} placeholder="Phone" />
+                  <input type="text" className="form-control form-control-lg " defaultValue={+35278953712} placeholder="Phone" />
                 </div>
                 <span className="form-text text-muted">We'll never share your email with anyone else.</span>
               </div>
@@ -303,7 +394,7 @@ export default function MemberEdit() {
                       <i className="la la-at" />
                     </span>
                   </div>
-                  <input type="text" className="form-control form-control-lg form-control-solid" defaultValue="nick.bold@loop.com" placeholder="Email" />
+                  <input type="text" className="form-control form-control-lg " defaultValue="nick.bold@loop.com" placeholder="Email" />
                 </div>
               </div>
             </div>
@@ -311,7 +402,7 @@ export default function MemberEdit() {
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Company Site</label>
               <div className="col-lg-9 col-xl-6">
                 <div className="input-group input-group-lg input-group-solid">
-                  <input type="text" className="form-control form-control-lg form-control-solid" placeholder="Username" defaultValue="loop" />
+                  <input type="text" className="form-control form-control-lg " placeholder="Username" defaultValue="loop" />
                   <div className="input-group-append">
                     <span className="input-group-text">.com</span>
                   </div>

@@ -8,8 +8,7 @@ import MemberList from "../member/member-list/MemberList";
 import MemberOverView from "../member";
 import TestPage from "../TestPage";
 
-
-export default function BasePage() {
+export default function BasePage(props) {
   return (
     <div className="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
       <Header />
@@ -22,7 +21,7 @@ export default function BasePage() {
             <Route path="/dashboard" component={Content} />
             <Route exact path="/member" component={MemberList} />
             <Route path="/member/overview/:id" component={MemberOverView} />
-            <Route path="/member" component={MemberOverView} />
+            <Route path="/member/edit/:id" component={MemberOverView} />
             <Route path="/testPage" component={TestPage} />
 
             {/* <Redirect to="/dashboard" /> */}
