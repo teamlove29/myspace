@@ -61,9 +61,9 @@ return(
       initialValues={{ email: '', password: ''}}
       validationSchema={RegisSchema}
       onSubmit={values =>
-      {axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/authen-login',{
-        firstName: 'Fred',
-        lastName: 'Flintstone'
+      {axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/authen-login/SignUp',{
+        email: values.email,
+        password: values.password
         }).then( response => {
           console.log(response);
           }).catch((error) => {

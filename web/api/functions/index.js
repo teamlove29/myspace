@@ -10,5 +10,5 @@ const firebase = require("firebase");
 app.use(cors({ origin: true }));
 app.use(bodyparser.urlencoded({ extended: false }));
 
-exports.authen = require("./controllers/auth");
+exports.authen = require("./controller/auth");
 
