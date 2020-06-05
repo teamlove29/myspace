@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 import { Formik , Form , Field , ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import Link from 'next/link'
-import Facebook from '../../../public/assets/img/icon/Facebook.png'
-import Twitter from '../../../public/assets/img/icon/Twitter.png'
-import Google from '../../../public/assets/img/icon/Google.png'
+import Facebook from '../../../assets/img/icon/Facebook.png'
+import Twitter from '../../../assets/img/icon/Twitter.png'
+import Google from '../../../assets/img/icon/Google.png'
 import axios from 'axios'
 
 export default function SignUpPage(props) {

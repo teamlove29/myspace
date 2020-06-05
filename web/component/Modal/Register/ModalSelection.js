@@ -1,7 +1,7 @@
 import {Modal , Card } from 'react-bootstrap'
 import Button from '../../button/loginButton'
-import Listener from '../../../public/assets/img/option/Listen to music.png'
-import Artist from '../../../public/assets/img/option/Artits.png'
+import Listener from '../../../assets/img/option/Listen to music.png'
+import Artist from '../../../assets/img/option/Artits.png'
 import RegisterSuccess from './RegisterSuccess'
 export default function SelectModal(props) {
   const [registerModalShow, setRegisterSuccessModal] = React.useState(false);
