@@ -1,8 +1,15 @@
 import {Modal , Card } from 'react-bootstrap'
 import Button from '../../button/loginButton'
-import Listener from '../../public/assets/img/option/Listen to music.png'
-import Artist from '../../public/assets/img/option/Artits.png'
+import Listener from '../../../public/assets/img/option/Listen to music.png'
+import Artist from '../../../public/assets/img/option/Artits.png'
+import RegisterSuccess from './RegisterSuccess'
 export default function SelectModal(props) {
+  const [registerModalShow, setRegisterSuccessModal] = React.useState(false);
+
+  const RisterAlert = () => {
+    props.onHide()
+    setRegisterSuccessModal(true)
+  }
 return(
   <>
       <Modal
@@ -28,7 +35,7 @@ return(
         Listen to music
         </label>
     </div>
-        <input className="form-check-input radio" type="radio" value="option1"  />
+        <input className="form-check-input radio" type="radio" name="optradio" value="option1"  />
     </div>
   </Card.Body>
     </Card>
@@ -40,14 +47,14 @@ return(
     <div>
         <span className="text-title">Artist</span>
     </div>
-        <input className="form-check-input radio" type="radio" value="option1"  />
+        <input className="form-check-input radio" type="radio" name="optradio" value="option1"  />
     </div>
   </Card.Body>
     </Card>
       </div>
       <br />
       <div className="footer">
-      <Button type="submit"> Finish </Button>
+      <Button onClick={RisterAlert} > Finish </Button>
       </div>
       </Modal.Body>
   <style jsx>{`
@@ -108,6 +115,10 @@ return(
   }
     `}</style>
     </Modal>
+    <RegisterSuccess
+      show={registerModalShow}
+      onHide={() => setRegisterSuccessModal(false)}
+    />
   </>
     )
 

@@ -6,11 +6,22 @@ import * as Yup from 'yup'
 import Facebook from '../../../public/assets/img/icon/Facebook.png'
 import Twitter from '../../../public/assets/img/icon/Twitter.png'
 import Google from '../../../public/assets/img/icon/Google.png'
+<<<<<<< HEAD
 import SignUpPage from '../Register/SignUp'
 
 export default function SignInPage(props) {
 
   const [SignUpShow, setSignUpShow] = React.useState(false)
+=======
+import LoginSuccessModal from './LoginSuccess'
+import SignUp from '../Register/SignUp'
+import FotgotPassModal from './forgotPassword/forgotPassword'
+export default function SignInPage(props) {
+
+  const [signUpShow, setSignUpShow] = React.useState(false);
+  const [successShow, setSuccessModalShow] = React.useState(false);
+  const [forgotPassShow, setForgotPassShow] = React.useState(false);
+>>>>>>> 92f1121a78316f5f61e3c560a3bd857348df5bd0
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -26,6 +37,7 @@ export default function SignInPage(props) {
     setSignUpShow(true)
   }
 
+<<<<<<< HEAD
   const firebaseConfig = {
     apiKey: "AIzaSyCPZyWWf8oQi3e8o3aqEcUlJNhc30j9ars",
     authDomain: "myspace-dev-1ae9e.firebaseapp.com",
@@ -36,6 +48,21 @@ export default function SignInPage(props) {
     appId: "1:379818176061:web:9e431d12e626f04e03c454",
     measurementId: "G-YQVB6MPMV3"
   };
+=======
+
+  const SignInClick = () => {
+    values => console.log(values)
+    props.onHide()
+    setSuccessModalShow(true)
+
+  }
+
+  const ForgotPassClick = () => {
+    props.onHide()
+    setForgotPassShow(true)
+
+  }
+>>>>>>> 92f1121a78316f5f61e3c560a3bd857348df5bd0
 
 return(
   <>
@@ -62,7 +89,11 @@ return(
       <Formik
       initialValues={{ email: '', password: ''}}
       validationSchema={LoginSchema}
+<<<<<<< HEAD
       onSubmit={values =>console.log(values)}
+=======
+      onSubmit={SignInClick}
+>>>>>>> 92f1121a78316f5f61e3c560a3bd857348df5bd0
       >
       {({ errors ,touched }) => (
       <Form>
@@ -113,7 +144,12 @@ return(
               <Link href="#">
               <a><img src={Google} /></a>
               </Link>
+              <a className="forgot"
+                onClick={ForgotPassClick} >
+                forgot password
+              </a>
         </div>
+        <br />
       <div
       className="footer"
       >
@@ -168,12 +204,35 @@ return(
     align-items: center;
     margin-left: 150px;
   }
+
+  .forgot {
+    margin-left: 275px;
+  }
     `}</style>
+<<<<<<< HEAD
     </Modal>
     <SignUpPage
     show={SignUpShow}
     onHide={() => setSignUpShow(false)} />
+=======
+  </Modal>
+
+  <SignUp
+    show={signUpShow}
+    onHide={() => setSignUpShow(false)}
+  />
+
+  <LoginSuccessModal
+  show={successShow}
+  onHide={() => setSuccessModalShow(false)}
+  />
+
+  <FotgotPassModal
+  show={forgotPassShow}
+  onHide={() => setForgotPassShow(false)}
+  />
+
+>>>>>>> 92f1121a78316f5f61e3c560a3bd857348df5bd0
   </>
     )
-
   }
