@@ -1,18 +1,18 @@
 import { Modal } from "react-bootstrap";
 import Button from "../../button/loginButton";
-import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 import Facebook from "../../../assets/img/icon/Facebook.png";
 import Twitter from "../../../assets/img/icon/Twitter.png";
 import Google from "../../../assets/img/icon/Google.png";
+import SelectModal from './ModalSelection'
+import SignInModal from '../Login/SignIn'
 import firebase from 'firebase'
 import Counter from '../../../api/functions/config/config'
-import SelectModal from './ModalSelection'
+
 
 export default function SignUpPage(props) {
-  const [signInShow, setSignInShow] = React.useState(false);
   const [selectModalShow, setSelectModalShow] = React.useState(false);
 
   const RegisSchema = Yup.object().shape({
@@ -24,24 +24,9 @@ export default function SignUpPage(props) {
       .required("Please Input Password"),
   });
 
-  // const Firebase =  firebase.initializeApp(FirebaseApp)
-  // const SignUpClick = () => {
-  //   firebase
-  //     .auth()
-  //     .createUserWithEmailAndPassword(div.email, div.password)
-  //     .then(() => {
-  //       res.status(200);
-  //     })
-  //     .catch(() => {
-  //       res.status(400);
-  //     });
-  //   props.onHide();
-  //   setSelectModalShow(true);
-  // };
-
   const SignInClick = () => {
     props.onHide();
-    setSignInShow(true);
+    props.setSignInShow(true);
   };
   return (
     <>
@@ -50,7 +35,11 @@ export default function SignUpPage(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header className="header" closeButton></Modal.Header>
+        <Modal.Header
+          style={{ border: 0 }}
+          className="header"
+          closeButton
+        ></Modal.Header>
         <Modal.Body>
           <div className="form-group">
             <h3> Welcome! Let's create your profile </h3>
@@ -58,26 +47,27 @@ export default function SignUpPage(props) {
               {" "}
               Getting in is easy. Use one of your social network or start fresh
               with an email address Already have a Myspace account?
-              <a className="txt1" onClick={SignInClick}>
-                Sign in
-              </a>
+              <Link href="/">
+                <a className="txt1" onClick={SignInClick}>
+                  Sign in
+                </a>
+              </Link>
             </span>{" "}
           </div>
           <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={RegisSchema}
-            onSubmit={values =>
-      Counter
-      .auth()
-      .createUserWithEmailAndPassword(values.email, values.password)
-      .then(() => {
-        props.onHide()
-        setSelectModalShow(true)
-      })
-      .catch(() => {
-        console.log("No")
-      })
-      }
+            onSubmit={(values) =>
+              Counter.auth()
+                .createUserWithEmailAndPassword(values.email, values.password)
+                .then(() => {
+                  props.onHide();
+                  setSelectModalShow(true);
+                })
+                .catch(() => {
+                  console.log("No");
+                })
+            }
           >
             {({ errors, touched }) => (
               <Form>
@@ -191,7 +181,10 @@ export default function SignUpPage(props) {
           }
         `}</style>
       </Modal>
-      <SelectModal show={selectModalShow} onHide={() => setSelectModalShow(false)}/>
+      <SelectModal
+        show={selectModalShow}
+        onHide={() => setSelectModalShow(false)}
+      />
     </>
   );
 }

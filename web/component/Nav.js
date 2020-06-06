@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import SignUp from "./Modal/Register/SignUp";
 import SignIn from "./Modal/Login/SignIn";
@@ -23,9 +22,9 @@ export default function NavBar() {
             z-index: 2048;
           }
         `}</style>
-        <SignUp show={signUpShow} onHide={() => setSignUpShow(false)} />
-        <SignIn show={signInShow} onHide={() => setSignInShow(false)} />
       </Navbar>
+      <SignUp show={signUpShow} onHide={() => setSignUpShow(false)} />
+      <SignIn show={signInShow} onHide={() => setSignInShow(false)} />
     </>
   );
 }

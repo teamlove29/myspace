@@ -37,16 +37,21 @@ export default function SignInPage(props) {
 
   return (
     <>
-      <Modal {...props} aria-labelledby="contained-modal-title-center" centered>
-        <Modal.Header className="header" closeButton></Modal.Header>
+      <Modal
+      {...props}
+      aria-labelledby="contained-modal-title-center"
+      centered
+      >
+        <Modal.Header style={{border: 0}} className="header" closeButton></Modal.Header>
         <Modal.Body>
-          <div className="form-group" align="center">
+          <div  className="form-group " >
+          <div align="center">
             <h3> Sign in </h3>
             <span className="text-sm-left txt2" id="describe">
               Start listening with myspec.
             </span>
-            <a onClick={SignUpClick}>Sign up</a>
-          </div>
+            <Link href="/" ><a onClick={SignUpClick}>Sign up</a></Link>
+            </div>
           <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
@@ -108,24 +113,27 @@ export default function SignInPage(props) {
                 <br />
                 <div className="form-group">
                   <span className="txt2"> or </span>
-                  <Link href="#">
+                  <Link href="/">
                     <a>
                       <img src={Facebook} />
                     </a>
                   </Link>
-                  <Link href="#">
+                  <Link href="/">
                     <a>
                       <img src={Twitter} />
                     </a>
                   </Link>
-                  <Link href="#">
+                  <Link href="/">
                     <a>
                       <img src={Google} />
                     </a>
                   </Link>
+                  <Link href="/">
                   <a className="forgot" onClick={ForgotPassClick}>
                     forgot password
                   </a>
+                  </Link>
+
                 </div>
                 <br />
                 <div className="footer">
@@ -134,6 +142,7 @@ export default function SignInPage(props) {
               </Form>
             )}
           </Formik>
+          </div>
         </Modal.Body>
         <style jsx>{`
           h3 {
@@ -153,6 +162,9 @@ export default function SignInPage(props) {
             width: 18px;
             height: 18px;
           }
+
+          .modal-size {
+            width: 70%;          }
 
           .txt2 {
             font-size: 11px;
@@ -180,6 +192,11 @@ export default function SignInPage(props) {
           .forgot {
             margin-left: 275px;
           }
+
+          .frm-input {
+            margin-left: 180px;
+          }
+
         `}</style>
       </Modal>
       <SignUpPage show={SignUpShow} onHide={() => setSignUpShow(false)} />
