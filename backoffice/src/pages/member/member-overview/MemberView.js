@@ -178,7 +178,7 @@ export default function MemberView(props) {
             <td className="p-0 py-4">
               <div className="symbol symbol-50 symbol-light mr-5">
                 <span className="symbol-label">
-                  <img src="assets/media/svg/misc/003-puzzle.svg" className="h-50 align-self-center" alt />
+                  <img src={toAbsoluteUrl('/assets/media/svg/misc/003-puzzle.svg')} className="h-50 align-self-center" alt />
                 </span>
               </div>
             </td>

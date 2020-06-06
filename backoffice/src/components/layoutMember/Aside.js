@@ -91,26 +91,53 @@ export default function Aside(props) {
             <div className="navi-item mb-2">
               <a href="#" className={`navi-link py-4 ${getMenuItemActive("/member/xxx/")}`}>
                 <span className="navi-icon mr-2">
-                  <span className="svg-icon">
-                    {/*begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg*/}
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                        <rect x={0} y={0} width={24} height={24} />
-                        <path d="M2.56066017,10.6819805 L4.68198052,8.56066017 C5.26776695,7.97487373 6.21751442,7.97487373 6.80330086,8.56066017 L8.9246212,10.6819805 C9.51040764,11.267767 9.51040764,12.2175144 8.9246212,12.8033009 L6.80330086,14.9246212 C6.21751442,15.5104076 5.26776695,15.5104076 4.68198052,14.9246212 L2.56066017,12.8033009 C1.97487373,12.2175144 1.97487373,11.267767 2.56066017,10.6819805 Z M14.5606602,10.6819805 L16.6819805,8.56066017 C17.267767,7.97487373 18.2175144,7.97487373 18.8033009,8.56066017 L20.9246212,10.6819805 C21.5104076,11.267767 21.5104076,12.2175144 20.9246212,12.8033009 L18.8033009,14.9246212 C18.2175144,15.5104076 17.267767,15.5104076 16.6819805,14.9246212 L14.5606602,12.8033009 C13.9748737,12.2175144 13.9748737,11.267767 14.5606602,10.6819805 Z" fill="#000000" opacity="0.3" />
-                        <path d="M8.56066017,16.6819805 L10.6819805,14.5606602 C11.267767,13.9748737 12.2175144,13.9748737 12.8033009,14.5606602 L14.9246212,16.6819805 C15.5104076,17.267767 15.5104076,18.2175144 14.9246212,18.8033009 L12.8033009,20.9246212 C12.2175144,21.5104076 11.267767,21.5104076 10.6819805,20.9246212 L8.56066017,18.8033009 C7.97487373,18.2175144 7.97487373,17.267767 8.56066017,16.6819805 Z M8.56066017,4.68198052 L10.6819805,2.56066017 C11.267767,1.97487373 12.2175144,1.97487373 12.8033009,2.56066017 L14.9246212,4.68198052 C15.5104076,5.26776695 15.5104076,6.21751442 14.9246212,6.80330086 L12.8033009,8.9246212 C12.2175144,9.51040764 11.267767,9.51040764 10.6819805,8.9246212 L8.56066017,6.80330086 C7.97487373,6.21751442 7.97487373,5.26776695 8.56066017,4.68198052 Z" fill="#000000" />
-                      </g>
-                    </svg>
-                    {/*end::Svg Icon*/}
-                  </span>
-                </span>
-                <span className="navi-text font-size-lg">Account Information</span>
+   <span className="svg-icon svg-icon-2x">
+     {/*begin::Svg Icon | path:/home/keenthemes/www/metronic/themes/metronic/theme/html/demo1/dist/../src/media/svg/icons/Design/Image.svg*/}
+     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+      <polygon points="0 0 24 0 24 24 0 24" />
+      <path d="M6,5 L18,5 C19.6568542,5 21,6.34314575 21,8 L21,17 C21,18.6568542 19.6568542,20 18,20 L6,20 C4.34314575,20 3,18.6568542 3,17 L3,8 C3,6.34314575 4.34314575,5 6,5 Z M5,17 L14,17 L9.5,11 L5,17 Z M16,14 C17.6568542,14 19,12.6568542 19,11 C19,9.34314575 17.6568542,8 16,8 C14.3431458,8 13,9.34314575 13,11 C13,12.6568542 14.3431458,14 16,14 Z" fill="#000000" />
+    </g>
+  </svg>
+  {/*end::Svg Icon*/}
+  </span>
+  </span>
+
+                <span className="navi-text font-size-lg">Album Photo</span>
+                {/* <span className="navi-label">
+                  <span className="label label-light-warning label-rounded font-weight-bold">5</span>
+                </span> */}
               </a>
             </div>
+
+            <div className="navi-item mb-2">
+              <a href="#" className={`navi-link py-4 ${getMenuItemActive("/member/xxx/")}`}>
+                <span className="navi-icon mr-2">
+<span className="svg-icon svg-icon-2x">
+  {/*begin::Svg Icon | path:/home/keenthemes/www/metronic/themes/metronic/theme/html/demo1/dist/../src/media/svg/icons/Files/Music.svg*/}
+  <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+      <polygon points="0 0 24 0 24 24 0 24" />
+      <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
+      <path d="M9.83333333,17 C8.82081129,17 8,16.3159906 8,15.4722222 C8,14.6284539 8.82081129,13.9444444 9.83333333,13.9444444 C10.0476105,13.9444444 10.2533018,13.9750785 10.4444444,14.0313779 L10.4444444,9.79160113 C10.4444444,9.47824076 10.6398662,9.20124044 10.9268804,9.10777287 L14.4407693,8.0331119 C14.8834716,7.88894376 15.3333333,8.23360047 15.3333333,8.71694016 L15.3333333,9.79160113 C15.3333333,10.1498215 14.9979332,10.3786009 14.7222222,10.4444444 C14.3255297,10.53918 13.3070112,10.7428837 11.6666667,11.0555556 L11.6666667,15.5035214 C11.6666667,15.5583862 11.6622174,15.6091837 11.6535404,15.6559869 C11.5446237,16.4131089 10.771224,17 9.83333333,17 Z" fill="#000000" />
+    </g>
+  </svg>
+  {/*end::Svg Icon*/}
+  </span>
+
+  </span>
+
+                <span className="navi-text font-size-lg">Playlist</span>
+                {/* <span className="navi-label">
+                  <span className="label label-light-warning label-rounded font-weight-bold">5</span>
+                </span> */}
+              </a>
+            </div>
+
             <div className="navi-item mb-2">
               <a href="#" className={`navi-link py-4 ${getMenuItemActive("/member/xxx/")}`}>
                 <span className="navi-icon mr-2">
                   <span className="svg-icon">
-                    {/*begin::Svg Icon | path:assets/media/svg/icons/Communication/Shield-user.svg*/}
                     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
                         <rect x={0} y={0} width={24} height={24} />
@@ -119,20 +146,16 @@ export default function Aside(props) {
                         <path d="M7.00036205,16.4995035 C7.21569918,13.5165724 9.36772908,12 11.9907452,12 C14.6506758,12 16.8360465,13.4332455 16.9988413,16.5 C17.0053266,16.6221713 16.9988413,17 16.5815,17 C14.5228466,17 11.463736,17 7.4041679,17 C7.26484009,17 6.98863236,16.6619875 7.00036205,16.4995035 Z" fill="#000000" opacity="0.3" />
                       </g>
                     </svg>
-                    {/*end::Svg Icon*/}
                   </span>
                 </span>
-                <span className="navi-text font-size-lg">Change Passwort</span>
-                <span className="navi-label">
-                  <span className="label label-light-danger label-rounded font-weight-bold">5</span>
-                </span>
+                <span className="navi-text font-size-lg">Change Password</span>
               </a>
             </div>
-            <div className="navi-item mb-2">
+
+            {/* <div className="navi-item mb-2">
               <a href="#" className={`navi-link py-4 ${getMenuItemActive("/member/xxx/")}`}>
                 <span className="navi-icon mr-2">
                   <span className="svg-icon">
-                    {/*begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg*/}
                     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
                         <rect x={0} y={0} width={24} height={24} />
@@ -140,12 +163,12 @@ export default function Aside(props) {
                         <path d="M3.79274528,6.57253826 L12,12.5 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 Z" fill="#000000" />
                       </g>
                     </svg>
-                    {/*end::Svg Icon*/}
+
                   </span>
                 </span>
                 <span className="navi-text font-size-lg">Email settings</span>
               </a>
-            </div>
+            </div> */}
         
             <div className="navi-item mb-2 ">
               <a href="#" className="navi-link py-4" onClick={() => { props.history.push("/member")}}>

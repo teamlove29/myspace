@@ -4,6 +4,7 @@ import { useLocation } from "react-router";
 import { toAbsoluteUrl, checkIsActive } from "../../_helpers";
 
 function Aside() {
+  console.log(toAbsoluteUrl('/assets/media/logos/logo-light.png'))
   const location = useLocation();
   const getMenuItemActive = (url) => {
     return checkIsActive(location, url)

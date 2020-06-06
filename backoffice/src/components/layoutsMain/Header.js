@@ -37,6 +37,9 @@ function Header() {
           />
         </a>
         {/*end::Logo*/}
+
+
+        
         {/*begin::Toolbar*/}
         <div className="d-flex align-items-center">
           {/*begin::Aside Mobile Toggle*/}
@@ -580,12 +583,18 @@ function Header() {
 
       {/*begin::Subheader*/}
       <div
-        className="subheader py-2 py-lg-4 subheader-transparent header header-static"
+        className="subheader py-2 py-lg-4 subheader-solid"
         id="kt_subheader"
       >
         <div className="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
           {/*begin::Info*/}
           <div className="d-flex align-items-center flex-wrap mr-1">
+      {/*begin::Mobile Toggle*/}
+<button className="burger-icon burger-icon-left mr-4 d-inline-block d-lg-none" id="kt_subheader_mobile_toggle">
+  <span />
+</button>
+{/*end::Mobile Toggle*/}
+
             {/*begin::Page Heading*/}
             <div className="d-flex align-items-baseline mr-5">
               {/*begin::Breadcrumb*/}
@@ -613,6 +622,13 @@ function Header() {
   </span>
 </div>
 {/*end::Scrolltop*/}
+
+
+
+
+
+
+
 
       {/*end::Header*/}
     </>
