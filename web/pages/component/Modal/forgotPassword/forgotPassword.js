@@ -18,6 +18,7 @@ export default function forgotPass(props) {
   return (
     <>
       <Modal
+      {...props}
         show={show}
         onHide={handleClose}
         aria-labelledby="contained-modal-title-center"

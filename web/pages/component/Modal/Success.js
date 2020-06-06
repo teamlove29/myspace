@@ -1,10 +1,11 @@
 import { Modal } from "react-bootstrap";
-import CorrectIcon from "../../common/img-Correct";
-export default function RegisterSuccess(props) {
+import { Children } from "react";
+import CorrectIcon from '../common/img-Correct'
+export default function Success(props) {
   return (
     <>
       <Modal
-        {...props}
+      {...props}
         aria-labelledby="contained-modal-title-center"
         centered
         closeButton
@@ -13,11 +14,7 @@ export default function RegisterSuccess(props) {
         <Modal.Body>
           <div className="form-group" align="center">
             <CorrectIcon />
-            <h3> สมัครสามชิกเรียบร้อยแล้ว </h3>
-            <span className="text-sm-left txt2" id="describe">
-              ระบบได้ส่ง link ไปยัง e-mail ของคุณ
-              กรุณาเข้าไปที่อีเมลเพื่อยืนยันตัวตน
-            </span>
+            {Children}
           </div>
         </Modal.Body>
         <style jsx>{`
@@ -26,11 +23,6 @@ export default function RegisterSuccess(props) {
             font-size: 25px;
             align-items: center;
             padding-left: 5px;
-          }
-
-          .txt2 {
-            font-size: 13px;
-            color: #b6b6b6;
           }
         `}</style>
       </Modal>

@@ -8,9 +8,11 @@ import Facebook from "../../../../assets/img/icon/Facebook.png";
 import Twitter from "../../../../assets/img/icon/Twitter.png";
 import Google from "../../../../assets/img/icon/Google.png";
 import Counter from '../../../../api/functions/config/config'
+import SignInSuccess from './LoginSuccess'
 
 export default function SignInPage(props) {
   const [show, setShow] = React.useState(true);
+  const [successShow, setSuccessShow] = React.useState(false);
   const handleClose = () => Router.push("/")
   
   const LoginSchema = Yup.object().shape({
@@ -49,8 +51,8 @@ export default function SignInPage(props) {
               .auth()
                 .signInWithEmailAndPassword(values.email, values.password)
                 .then(() => {
-                  onHide();
-                  Location:'./LoginSuccess'
+                  props.onHide();
+                  setSuccessShow(true);
                   console.log("Ok")
                 })
                 .catch(() => {
@@ -189,6 +191,7 @@ export default function SignInPage(props) {
 
         `}</style>
       </Modal>
+      <SignInSuccess show={successShow} onHide={() => setSuccessShow(false)} />
     </>
   );
 }
