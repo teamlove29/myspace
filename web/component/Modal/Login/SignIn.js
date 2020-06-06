@@ -8,10 +8,13 @@ import Twitter from "../../../assets/img/icon/Twitter.png";
 import Google from "../../../assets/img/icon/Google.png";
 import SignUpPage from "../Register/SignUp";
 import ForgotPassPage from "./forgotPassword/forgotPassword";
+import Counter from '../../../api/functions/config/config'
+import LoginSuccessModal from './LoginSuccess'
 
 export default function SignInPage(props) {
   const [SignUpShow, setSignUpShow] = React.useState(false);
   const [ForgotShow, setForgotShow] = React.useState(false);
+  const [SuccessShow, setSuccessShow] = React.useState(false);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -47,7 +50,18 @@ export default function SignInPage(props) {
           <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) =>
+              Counter
+              .auth()
+                .signInWithEmailAndPassword(values.email, values.password)
+                .then(() => {
+                  props.onHide();
+                  setSuccessShow(true);
+                })
+                .catch(() => {
+                  console.log("No");
+                })
+            }
           >
             {({ errors, touched }) => (
               <Form>
@@ -171,6 +185,8 @@ export default function SignInPage(props) {
       <SignUpPage show={SignUpShow} onHide={() => setSignUpShow(false)} />
 
       <ForgotPassPage show={ForgotShow} onHide={() => setForgotShow(false)} />
+
+      <LoginSuccessModal show={SuccessShow} onHide={() => setSuccessShow(false)} />
     </>
   );
 }
