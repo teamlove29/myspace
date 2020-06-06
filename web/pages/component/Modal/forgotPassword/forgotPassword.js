@@ -1,11 +1,13 @@
 import { Modal } from "react-bootstrap";
 import React, { useState } from "react";
-import Button from "../../../button/loginButton";
+import Button from "../../button/loginButton";
 import { Formik, Form, Filed, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import ForgotSuccessModal from "./sendEmail";
+import Router from "next/router";
 export default function forgotPass(props) {
-  const [forgotSuccess, setForgotSuccess] = React.useState(false);
+  const [show, setShow] = React.useState(true);
+  const handleClose = () => Router.push("/")
+  
 
   const Forgot = Yup.object().shape({
     email: Yup.string()
@@ -13,15 +15,11 @@ export default function forgotPass(props) {
       .required("Please Input Your Email."),
   });
 
-  const SendEmailClick = () => {
-    props.onHide();
-    setForgotSuccess(true);
-  };
-
   return (
     <>
       <Modal
-        {...props}
+        show={show}
+        onHide={handleClose}
         aria-labelledby="contained-modal-title-center"
         centered
         closeButton
@@ -51,7 +49,7 @@ export default function forgotPass(props) {
                 Back
               </button>
             </div>
-            <Button type="submit">Send</Button>
+            <Button>Send</Button>
           </div>
         </Modal.Body>
         <style jsx>{`

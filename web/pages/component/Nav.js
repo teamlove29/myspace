@@ -3,8 +3,6 @@ import SignUp from "./Modal/Register/SignUp";
 import SignIn from "./Modal/Login/SignIn";
 
 export default function NavBar() {
-  const [signUpShow, setSignUpShow] = React.useState(false);
-  const [signInShow, setSignInShow] = React.useState(false);
 
   return (
     <>
@@ -13,8 +11,8 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <Nav.Link onClick={() => setSignUpShow(true)}> Sign up </Nav.Link>
-            <Nav.Link onClick={() => setSignInShow(true)}> Sign in </Nav.Link>
+            <Nav.Link href="./component/Modal/Register/SignUp"> Sign up </Nav.Link>
+            <Nav.Link href="./component/Modal/Login/SignIn"> Sign in </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <style jsx>{`
@@ -23,8 +21,6 @@ export default function NavBar() {
           }
         `}</style>
       </Navbar>
-      <SignUp show={signUpShow} onHide={() => setSignUpShow(false)} />
-      <SignIn show={signInShow} onHide={() => setSignInShow(false)} />
     </>
   );
 }

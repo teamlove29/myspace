@@ -1,5 +1,5 @@
 import { Modal } from "react-bootstrap";
-import CorrectIcon from "../../../common/img-Correct";
+import CorrectIcon from "../../common/img-Correct";
 export default function SendEmail(props) {
   return (
     <>

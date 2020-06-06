@@ -1,19 +1,21 @@
+import React from 'react'
 import { Modal } from "react-bootstrap";
 import Button from "../../button/loginButton";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import Facebook from "../../../assets/img/icon/Facebook.png";
-import Twitter from "../../../assets/img/icon/Twitter.png";
-import Google from "../../../assets/img/icon/Google.png";
-import SelectModal from './ModalSelection'
-import SignInModal from '../Login/SignIn'
+import Facebook from "../../../../assets/img/icon/Facebook.png";
+import Twitter from "../../../../assets/img/icon/Twitter.png";
+import Google from "../../../../assets/img/icon/Google.png";
 import firebase from 'firebase'
-import Counter from '../../../api/functions/config/config'
+import Router from "next/router";
+import Counter from '../../../../api/functions/config/config'
 
 
 export default function SignUpPage(props) {
-  const [selectModalShow, setSelectModalShow] = React.useState(false);
+  const [show, setShow] = React.useState(true);
+
+  const handleClose = () => Router.push("/")
 
   const RegisSchema = Yup.object().shape({
     email: Yup.string()
@@ -24,14 +26,11 @@ export default function SignUpPage(props) {
       .required("Please Input Password"),
   });
 
-  const SignInClick = () => {
-    props.onHide();
-    props.setSignInShow(true);
-  };
   return (
     <>
       <Modal
-        {...props}
+        show={show}
+        onHide={handleClose}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
@@ -47,8 +46,8 @@ export default function SignUpPage(props) {
               {" "}
               Getting in is easy. Use one of your social network or start fresh
               with an email address Already have a Myspace account?
-              <Link href="/">
-                <a className="txt1" onClick={SignInClick}>
+              <Link href="../Login/SignIn">
+                <a className="txt1">
                   Sign in
                 </a>
               </Link>
@@ -58,11 +57,12 @@ export default function SignUpPage(props) {
             initialValues={{ email: "", password: "" }}
             validationSchema={RegisSchema}
             onSubmit={(values) =>
-              Counter.auth()
+              Counter
+              .auth()
                 .createUserWithEmailAndPassword(values.email, values.password)
                 .then(() => {
                   props.onHide();
-                  setSelectModalShow(true);
+                  Location:'./Selection'
                 })
                 .catch(() => {
                   console.log("No");
@@ -181,10 +181,6 @@ export default function SignUpPage(props) {
           }
         `}</style>
       </Modal>
-      <SelectModal
-        show={selectModalShow}
-        onHide={() => setSelectModalShow(false)}
-      />
     </>
   );
 }
