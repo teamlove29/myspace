@@ -1,125 +1,86 @@
-import {Modal , Card } from 'react-bootstrap'
-import Button from '../../button/loginButton'
-import Listener from '../../../assets/img/option/Listen to music.png'
-import Artist from '../../../assets/img/option/Artits.png'
-import RegisterSuccess from './RegisterSuccess'
+import React, { useState } from "react";
+import { Modal, Card } from "react-bootstrap";
+import Button from "../../button/loginButton";
+import Listener from "../../../../assets/img/option/Listen to music.png";
+import Artist from "../../../../assets/img/option/Artits.png";
+import RegisterSuccess from "../RegisterSuccess";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from "axios";
+import * as Yup from "yup";
+import { Router } from "next/router";
 export default function SelectModal(props) {
-  const [registerModalShow, setRegisterSuccessModal] = React.useState(false);
+  const [registerModalShow, setRegisterSuccessModal] = useState(false);
+  const [show, setShow] = useState(true);
+  const handleClose = () => Router.push("/");
 
-  const RegisterAlert = () => {
-    props.onHide()
-    setRegisterSuccessModal(true)
-  }
-return(
-  <>
+  return (
+    <>
       <Modal
-      {...props}
-      aria-labelledby="contained-modal-title-center"
-      centered >
-      <Modal.Header closeButton></Modal.Header>
-      <Modal.Body closeButton>
-      <div className="form-group" align="center">
-      <h3> Select the option the best describe you. </h3>
-      <span className="text-sm-left txt2" id="describe">
-      Select the option the best describe you.
-      </span>
-      </div>
-      <div className="row">
-    <Card style={{ width: '12rem' }} className="card">
-    <br />
-  <img src={Listener} />
-  <Card.Body>
-    <div className="form-check ">
-    <div>
-        <label className="text-title">
-        Listen to music
-        </label>
-    </div>
-        <input className="form-check-input radio" type="radio" name="Option" value="option1"  />
-    </div>
-  </Card.Body>
-    </Card>
-    <Card style={{ width: '12rem' }}>
-    <br />
-  <img src={Artist}alt="Artist" />
-  <Card.Body>
-    <div className="form-check ">
-    <div>
-        <span className="text-title">Artist</span>
-    </div>
-        <input className="form-check-input radio" type="radio" name="Option" value="option2"  />
-    </div>
-  </Card.Body>
-    </Card>
-      </div>
-      <br />
-      <div className="footer">
-      <Button type="submit" onSubmit={() => setRegisterSuccessModal(true)} > Finish </Button>
-      </div>
-      </Modal.Body>
-  <style jsx>{`
-  h3 {
-    font-weight: 750;
-    font-size: 25px;
-    align-items: center;
-    padding-left: 5px ;
-  }
-
-  a {
-    font-size: 12px;
-    color: rgb(224, 139, 28);
-    padding-left: 5px ;
-  }
-
-  img {
-    width: 75px;
-    height: 75px;
-    margin-left: 60px;
-  }
-
-  .txt2 {
-    font-size: 11px;
-    color: #b6b6b6;
-  }
-
-  .input-title {
-    font-size: 13px;
-  }
-
-  .frm-input{
-    border-color: #e7e7e7;
-  }
-
-  .header {
-    border: 0;
-  }
-
-  .footer {
-    align-items: center;
-    margin-left: 150px;
-  }
-
-  .row {
-    margin-left: 40px;
-  }
-
-  .radio {
-      margin-left: 40px;
-      align-items: center;
-  }
-
-  .text-title{
-      font-size: 11px;
-      align-items: center;
-      margin-left: 30px;
-  }
-    `}</style>
-    </Modal>
-    <RegisterSuccess
-      show={registerModalShow}
-      onHide={() => setRegisterSuccessModal(false)}
-    />
-  </>
-    )
-
-  }
+        show={show}
+        onHide={handleClose}
+        {...props}
+        aria-labelledby="contained-modal-title-center"
+        centered
+      >
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body closeButton>
+          <div className="form-group" align="center">
+            <h3> Select the option the best describe you. </h3>
+            <span className="text-sm-left txt2" id="describe">
+              Select the option the best describe you.
+            </span>
+            <Formik
+              initialValues={{ type: "" }}
+              onSubmit={(values) => {
+                console.log(values)
+                setShow(false)
+                setRegisterSuccessModal(true)
+              }}
+            >
+              {({ errors, touched }) => (
+                <Form>
+                  <label className="input-title"> Listen to music </label>
+                  <Field
+                    name="type"
+                    type="radio"
+                    value="Listener"
+                    className={`input-frm ${
+                      touched.Option
+                        ? errors.Option
+                          ? "is-invalid"
+                          : "is-valid"
+                        : ""
+                    }`}
+                    id="email"
+                  />
+                  <label className="input-title">Artist</label>
+                  <Field
+                    name="type"
+                    type="radio"
+                    value="Artist"
+                    className={`input-frm ${
+                      touched.Option
+                        ? errors.Option
+                          ? "is-invalid"
+                          : "is-valid"
+                        : ""
+                    }`}
+                    id="pass"
+                  />
+                  <br />
+                  <div className="footer">
+                    <Button type="submit"> Finish </Button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          </div>
+        </Modal.Body>
+      </Modal>
+      <RegisterSuccess
+        show={registerModalShow}
+        onHide={() => setRegisterSuccessModal(false)}
+      />
+    </>
+  );
+}

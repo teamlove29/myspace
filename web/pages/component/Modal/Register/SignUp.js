@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "../../button/loginButton";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -7,15 +7,17 @@ import Link from "next/link";
 import Facebook from "../../../../assets/img/icon/Facebook.png";
 import Twitter from "../../../../assets/img/icon/Twitter.png";
 import Google from "../../../../assets/img/icon/Google.png";
-import firebase from 'firebase'
+import firebase from "firebase";
 import Router from "next/router";
-import Counter from '../../../../api/functions/config/config'
-
+import Counter from "../../../../api/functions/config/config";
+import SelectModal from "./Selection";
+import axios from "axios";
 
 export default function SignUpPage(props) {
-  const [show, setShow] = React.useState(true);
-
-  const handleClose = () => Router.push("/")
+  const [show, setShow] = useState(true);
+  const [SelectShow, setSelectShow] = useState(false);
+  const handleClose = () => Router.push("/");
+  const [state, setState] = useState(null);
 
   const RegisSchema = Yup.object().shape({
     email: Yup.string()
@@ -29,8 +31,9 @@ export default function SignUpPage(props) {
   return (
     <>
       <Modal
-        show={show}
+        {...props}
         onHide={handleClose}
+        show={show}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
@@ -47,9 +50,7 @@ export default function SignUpPage(props) {
               Getting in is easy. Use one of your social network or start fresh
               with an email address Already have a Myspace account?
               <Link href="../Login/SignIn">
-                <a className="txt1">
-                  Sign in
-                </a>
+                <a className="txt1">Sign in</a>
               </Link>
             </span>{" "}
           </div>
@@ -57,15 +58,36 @@ export default function SignUpPage(props) {
             initialValues={{ email: "", password: "" }}
             validationSchema={RegisSchema}
             onSubmit={(values) =>
-              Counter
-              .auth()
+              // {           setShow(false)
+              //             setSelectShow(true)
+              //             console.log(values)}
+              Counter.auth()
                 .createUserWithEmailAndPassword(values.email, values.password)
-                .then(() => {
-                  props.onHide();
-                  Location:'./Selection'
+                .then((values) => {
+                  // props.onHide();
+                  console.log(values);
+                  setState(values);
+                  axios
+                    .post(
+                      "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/Add-singup",
+                      {
+                        uid: values.user.uid,
+                        type: 0,
+                      }
+                    )
+                    .then((res) => {
+                      console.log(res);
+                      setShow(false);
+                      setSelectShow(true);
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
                 })
-                .catch(() => {
-                  console.log("No");
+                .catch((error) => {
+                  var errorCode = error.code;
+                  var errorMessage = error.message;
+                  console.log(errorCode, errorMessage);
                 })
             }
           >
@@ -181,6 +203,7 @@ export default function SignUpPage(props) {
           }
         `}</style>
       </Modal>
+      <SelectModal show={SelectShow} onHide={() => setSelectShow(false)} />
     </>
   );
 }

@@ -1,6 +1,4 @@
 import { Navbar, Nav } from "react-bootstrap";
-import SignUp from "./Modal/Register/SignUp";
-import SignIn from "./Modal/Login/SignIn";
 
 export default function NavBar() {
 
@@ -11,8 +9,10 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <Nav.Link href="./component/Modal/Register/SignUp"> Sign up </Nav.Link>
+            <Nav.Link href="./component/Modal/Register/SignUp" className="nav-link"> Sign up </Nav.Link>
             <Nav.Link href="./component/Modal/Login/SignIn"> Sign in </Nav.Link>
+            <Nav.Link href="./component/Modal/Register/Selection"> Selector </Nav.Link>
+            <Nav.Link href="../SignIn/SignIn"> Test </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <style jsx>{`

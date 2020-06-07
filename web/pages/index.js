@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
     <Nav />
-    <Header />
+    <Header> This is Header </Header>
     </>
   );
 }
