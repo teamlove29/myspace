@@ -52,7 +52,6 @@ export default function StyleJSX(props) {
           }
 
           .footer {
-            align-items: center;
             margin-left: 150px;
           }
 
@@ -64,6 +63,12 @@ export default function StyleJSX(props) {
             margin-left: 180px;
           }
 
+          .prev-btn {
+            width: 150px;
+            font-weight: 500;
+            font-size: 13px;
+            border-radius: 25px;
+          }
         `}</style>
         </>
     )

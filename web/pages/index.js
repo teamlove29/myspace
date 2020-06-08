@@ -1,11 +1,9 @@
-import Header from './component/Header'
-import Nav from './component/Nav'
+import Header from '../component/Header'
 
 
 export default function Home() {
   return (
     <>
-    <Nav />
     <Header> This is Header </Header>
     </>
   );

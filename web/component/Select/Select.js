@@ -1,30 +1,22 @@
-import React, { useState } from "react";
-import { Modal, Card } from "react-bootstrap";
-import Button from "../../button/loginButton";
-import Listener from "../../../../assets/img/option/Listen to music.png";
-import Artist from "../../../../assets/img/option/Artits.png";
-import RegisterSuccess from "../RegisterSuccess";
+import React, { useState , useContext } from "react";
+import Button from "../button/loginButton";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import ModalBlock from '../Modal/Modal'
 import axios from "axios";
 import * as Yup from "yup";
 import { Router } from "next/router";
-export default function SelectModal(props) {
-  const [registerModalShow, setRegisterSuccessModal] = useState(false);
-  const [show, setShow] = useState(true);
-  const handleClose = () => Router.push("/");
+import DataSignUp from '../SignUp/SignUp';
+import SignUp from "../SignUp/SignUp";
 
-  return (
-    <>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        {...props}
-        aria-labelledby="contained-modal-title-center"
-        centered
-      >
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body closeButton>
-          <div className="form-group" align="center">
+export default function SelectModal(props) {
+
+  const emailpass = useContext(SignUp)
+
+   const [state, setstate] = useState(null)
+    return (
+        <>
+        <ModalBlock {...props}>
+        <div className="form-group" align="center">
             <h3> Select the option the best describe you. </h3>
             <span className="text-sm-left txt2" id="describe">
               Select the option the best describe you.
@@ -33,8 +25,42 @@ export default function SelectModal(props) {
               initialValues={{ type: "" }}
               onSubmit={(values) => {
                 console.log(values)
-                setShow(false)
-                setRegisterSuccessModal(true)
+            // Counter
+            // .auth()
+            //   .createUserWithEmailAndPassword(values.email, values.password)
+            //   .then((values) => {
+            //     // props.onHide();
+            //     console.log(values);
+            //     setState(values);
+            //     Counter
+            //     .auth()
+            //       .currentUser.user.sendEmailVerification()
+            //       .then(function () {
+            //         // Email sent.
+            //       })
+            //       .catch(function (error) {
+            //         // An error happened.
+            //       });
+            //     axios
+            //       .post(
+            //         "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/Add-singup",
+            //         {
+            //           uid: values.user.uid,
+            //           type: 0,
+            //         }
+            //       )
+            //       .then((res) => {
+            //         console.log(res);
+            //       })
+            //       .catch((error) => {
+            //         console.log(error);
+            //       });
+            //   })
+            //   .catch((error) => {
+            //     var errorCode = error.code;
+            //     var errorMessage = error.message;
+            //     console.log(errorCode, errorMessage);
+            //   })
               }}
             >
               {({ errors, touched }) => (
@@ -53,6 +79,7 @@ export default function SelectModal(props) {
                     }`}
                     id="email"
                   />
+                  {props.value}
                   <label className="input-title">Artist</label>
                   <Field
                     name="type"
@@ -75,12 +102,7 @@ export default function SelectModal(props) {
               )}
             </Formik>
           </div>
-        </Modal.Body>
-      </Modal>
-      <RegisterSuccess
-        show={registerModalShow}
-        onHide={() => setRegisterSuccessModal(false)}
-      />
-    </>
-  );
+        </ModalBlock>
+        </>
+    )
 }
