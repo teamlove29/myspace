@@ -6,10 +6,12 @@ import * as Yup from "yup";
 import Link from "next/link";
 import SocialIcon from "../socialLogin";
 import Select from "../Select/Select";
+import Firebase from "../../api/functions/config/config";
 
 export default function SignUpModal(props) {
   const [SignInShow, setSignInShow] = useState(false);
   const [SelectShow, setSelectShow] = useState(false);
+  const [RegisSuccess, setRegisSuccess] = useState(false);
 
   const [State, setState] = useState({ email: "", password: "" });
 
@@ -45,47 +47,26 @@ export default function SignUpModal(props) {
               // {           setShow(false)
               //             setSelectShow(true)
               setState({ email: values.email, password: values.password });
-              props.onHide()
-              setSelectShow(true)
+              props.onHide();
+              setSelectShow(true);
+              // Firebase
+              // .auth()
+              //   .createUserWithEmailAndPassword(values.email, values.password)
+              //   .then((values) => {
+              //     // props.onHide();
+              //     console.log(values);
+              //     setState(values);
+              //     Firebase
+              //     .auth()
+              //       .currentUser.sendEmailVerification()
+              //       .then(function () {
+              //         // Email sent.
+              //       })
+              //       .catch(function (error) {
+              //         // An error happened.
+              //       });
+              //   });
             }}
-
-            // Counter
-            // .auth()
-            //   .createUserWithEmailAndPassword(values.email, values.password)
-            //   .then((values) => {
-            //     // props.onHide();
-            //     console.log(values);
-            //     setState(values);
-            //     Counter
-            //     .auth()
-            //       .currentUser.user.sendEmailVerification()
-            //       .then(function () {
-            //         // Email sent.
-            //       })
-            //       .catch(function (error) {
-            //         // An error happened.
-            //       });
-            //     axios
-            //       .post(
-            //         "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/Add-singup",
-            //         {
-            //           uid: values.user.uid,
-            //           type: 0,
-            //         }
-            //       )
-            //       .then((res) => {
-            //         console.log(res);
-            //       })
-            //       .catch((error) => {
-            //         console.log(error);
-            //       });
-            //   })
-            //   .catch((error) => {
-            //     var errorCode = error.code;
-            //     var errorMessage = error.message;
-            //     console.log(errorCode, errorMessage);
-            //   })
-            // }
           >
             {({ errors, touched }) => (
               <Form>
@@ -143,7 +124,11 @@ export default function SignUpModal(props) {
           <br />
         </Modal.Body>
       </Modal>
-      <Select show={SelectShow} onHide={() => setSelectShow(false)} data={State} />
+      <Select
+        show={SelectShow}
+        onHide={() => setSelectShow(false)}
+        data={State}
+      />
     </>
   );
 }

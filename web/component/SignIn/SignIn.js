@@ -9,8 +9,10 @@ import Counter from "../../api/functions/config/config";
 import SignUp from "../SignUp/SignUp";
 import Fotgot from "../Forgot/Forgotpass";
 import Firebase from "../../api/functions/config/config";
+import LoginSuccess from '../Success/LoginSuccess'
 export default function SignInModal(props) {
   const [SignUpShow, setSignUpShow] = useState(false);
+  const [LoginSuccessShow, setLoginSuccessShow] = useState(false)
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -55,6 +57,7 @@ export default function SignInModal(props) {
                     if (res.user.emailVerified) {
                       //This will return true or false
                       console.log("email is verified");
+                      setLoginSuccessShow(true)
                     } else {
                       console.log("email not verified");
                       alert("email not verified")
@@ -124,6 +127,7 @@ export default function SignInModal(props) {
         </Modal.Body>
       </Modal>
       <SignUp show={SignUpShow} onHide={() => setSignUpShow(false)} />
+      <LoginSuccess show={LoginSuccessShow} onHide={() => setLoginSuccessShow(false)} />
     </>
   );
 }

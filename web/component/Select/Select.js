@@ -5,11 +5,11 @@ import { Modal } from "react-bootstrap";
 import axios from "axios";
 import * as Yup from "yup";
 import { Router } from "next/router";
-import DataSignUp from "../SignUp/SignUp";
-import SignUp from "../SignUp/SignUp";
 import Firebase from "../../api/functions/config/config";
+import RegisSuccess from '../Success/RegisSuccess'
 
 export default function SelectModal(props) {
+  const [RegisSuccessShow, setRegisSuccessShow] = useState(false)
   return (
     <>
       <Modal {...props}>
@@ -33,22 +33,23 @@ export default function SelectModal(props) {
                     // Email sent.
                     console.log(re);
                     console.log("Email send!!");
-                    axios
-                      .post(
-                        "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/Add-singup",
-                        {
-                          uid: result.user.uid,
-                          type: values.type,
-                        }
-                      )
-                      .then((res) => {
-                        console.log(res)
-                      })
-                      .catch((error) => {
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.log(errorCode, errorMessage);
-                      });
+                    setRegisSuccessShow(true)
+                    // axios
+                    //   .post(
+                    //     "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/Add-singup",
+                    //     {
+                    //       uid: result.user.uid,
+                    //       type: values.type,
+                    //     }
+                    //   )
+                    //   .then((res) => {
+                    //     console.log(res)
+                    //   })
+                    //   .catch((error) => {
+                    //     var errorCode = error.code;
+                    //     var errorMessage = error.message;
+                    //     console.log(errorCode, errorMessage);
+                    //   });
                   });
                 });
             }}
@@ -93,6 +94,7 @@ export default function SelectModal(props) {
           </Formik>
         </div>
       </Modal>
+      <RegisSuccess show={RegisSuccessShow} onHide={() => setRegisSuccessShow(false)} />
     </>
   );
 }

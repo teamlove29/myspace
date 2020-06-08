@@ -1,13 +1,9 @@
 import React , { useState } from 'react'
-import CorrectIcon from '../common/img-Correct'
-import ModalBlock from '../../component/Modal'
 
-export default function Success() {
+export default function Artist() {
     return(
         <>
-        <ModalBlock>
-            
-        </ModalBlock>
+        <h1>This is Your Profile Artist</h1>
         </>
     )
 }

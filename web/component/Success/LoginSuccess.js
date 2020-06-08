@@ -3,7 +3,7 @@ import {Modal} from 'react-bootstrap'
 import Button from '../button/loginButton'
 import CorrectIcon from '../common/img-Correct'
 
-export default function LoginSuccess() {
+export default function LoginSuccess(props) {
   return (
     <>
       <Modal

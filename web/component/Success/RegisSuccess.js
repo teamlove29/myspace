@@ -2,12 +2,8 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import CorrectIcon from "../common/img-Correct";
 import Button from "../button/loginButton";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import Link from "next/link";
-import SocialLogin from "../component/socialLogin";
 
-export default function Success() {
+export default function Success(props) {
   return (
     <>
       <Modal
