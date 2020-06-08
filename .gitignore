@@ -4,7 +4,10 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
+# dependencies
+/node_modules
 
 # Thumbnails
 ._*
