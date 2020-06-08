@@ -8,20 +8,6 @@ import {
 } from "react-router-dom";
 import membersData from "../../member.json";
 export default function Index(props) {
-  // It checks if the user is authenticated, if they are,
-  // it renders the "component" prop. If not, it redirects
-  // the user to /login.
-  // const PrivateRoute  = ({ component: Component, ...rest }) => (
-  //   <Route {...rest} render={props =>
-  //       isLoggedIn() === 'true' ? (
-  //         <Component {...props} />
-  //       ) : (
-  //           <Redirect to="/auth" />
-  //         )
-  //     }
-  //   />
-  // );
-
   const id = parseInt(props.match.params.id);
   const [state, setstate] = useState();
 

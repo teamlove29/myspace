@@ -7,17 +7,22 @@ export default function MemberEdit(props) {
   const type = props.type
   const [loading, setLoading] = useState(false);
   const initialValues = {
-    FirstName: "",
-    LastName: "",
-    Email:"",
-    Country:"",
-    Status:"",
-    Tel:"",
-    Website:"",
-    Facebook:"",
-    instagram:"",
+    Avatar: null,
+    Cover: null,
+    FirstName: "Marutthep",
+    LastName: "Rompho",
+    Email:"TeemMarutthep@gmail.com",
+    Tel:"0965913095",
+    Country:"thailand",
     AboutYou:"",
+    Status:"active",
+    displayname:"Loui Vistone",
+    Website:"Loui.com",
+    Facebook:"Vistone",
+    instagram:"Vistone",
   };
+
+
 
   const enableLoading = () => {
     setLoading(true);
@@ -41,6 +46,10 @@ export default function MemberEdit(props) {
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
   const MemberSchema = Yup.object().shape({
+    // Avatar:  Yup.string()
+    // .required(),
+    // Cover:  Yup.string()
+    // .required(),
     FirstName: Yup.string()
       .min(3, "Minimum 3 symbols")
       .max(50, "Maximum 50 symbols")
@@ -132,41 +141,45 @@ export default function MemberEdit(props) {
             <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Avatar</label>
               <div className="col-lg-9 col-xl-6">   
-                <div className="image-input image-input-outline" id="kt_profile_avatar" style={{backgroundImage: 'url(assets/media/users/blank.png)'}}>
-                  <div className="image-input-wrapper" style={{backgroundImage: 'url(assets/media/users/300_21.jpg)'}} />
+                <div className="image-input image-input-outline" id="kt_profile_avatar" style={{backgroundImage: `url(${toAbsoluteUrl('/assets/media/users/blank.png')})` }}>
+                  {/* <div className="image-input-wrapper" style={{backgroundImage: 'url(assets/media/users/300_21.jpg)'}} /> */}
+                  <img 
+                  className="img-fluid"
+                  src="https://via.placeholder.com/150" alt=""/>
                   <label className="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title data-original-title="Change avatar">
                     <i className="fa fa-pen icon-sm text-muted" />
-                    <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
-                    <input type="hidden" name="profile_avatar_remove" />
+                    <input 
+                    type="file" 
+                    name="Avatar" 
+                    accept=".png, .jpg, .jpeg" 
+                    onChange={(event) => { 
+                      formik.setFieldValue("Avatar", event.currentTarget.files[0]);}}
+                       />
                   </label>
-                  <span className="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
-                    <i className="ki ki-bold-close icon-xs text-muted" />
-                  </span>
-                  <span className="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
-                    <i className="ki ki-bold-close icon-xs text-muted" />
-                  </span>
                 </div>
                 <span className="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
               </div>
             </div> 
-                {/* End Avatar
+                 {/* End Avatar */}
 {/* begin cover */}
             <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Cover</label>
               <div className="col-lg-9 col-xl-6">
-                <div className="image-input image-input-outline" id="kt_profile_avatar" style={{backgroundImage: 'url(assets/media/users/blank.png)'}}>
-                  <div className="image-input-wrapper" style={{backgroundImage: 'url(assets/media/users/300_21.jpg)', width:'280px'}} />
+                <div className="image-input image-input-outline" id="kt_profile_avatar" style={{backgroundImage: 'url(https://via.placeholder.com/150x300)'}}>
+                  {/* <div className="image-input-wrapper" style={{backgroundImage: 'url(assets/media/users/300_21.jpg)', width:"300px"}} /> */}
+                  <img 
+                  className="img-fluid"
+                  src="https://via.placeholder.com/400x150" alt=""/>
                   <label className="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title data-original-title="Change avatar">
                     <i className="fa fa-pen icon-sm text-muted" />
-                    <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
-                    <input type="hidden" name="profile_avatar_remove" />
+                    <input 
+                    type="file" 
+                    name="Cover" 
+                    accept=".png, .jpg, .jpeg" 
+                    onChange={(event) => { 
+                      formik.setFieldValue("Cover", event.currentTarget.files[0]);}}
+                      />
                   </label>
-                  <span className="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
-                    <i className="ki ki-bold-close icon-xs text-muted" />
-                  </span>
-                  <span className="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
-                    <i className="ki ki-bold-close icon-xs text-muted" />
-                  </span>
                 </div>
                 <span className="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
               </div>
@@ -263,6 +276,19 @@ export default function MemberEdit(props) {
               </div>
             </div>
 {/* End Country */}
+{/* begin AboutYou */}
+<div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">About You</label>
+              <div className="col-lg-9 col-xl-6">
+                <textarea 
+                rows="3" 
+                className={`form-control form-control-lg " ${getInputClasses("AboutYou")}`}
+                type="text" 
+                name="AboutYou"
+                {...formik.getFieldProps("AboutYou")} />
+              </div>
+            </div>
+{/* End AboutYou */} 
 {/* begin Status */}
 <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Status</label>
@@ -274,7 +300,9 @@ export default function MemberEdit(props) {
         <option value="active" label="Active" />
         <option value="deactivate" label="Deactivate" />
     </select>
-                <span className="form-text text-muted">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
+                <span className="form-text text-muted">
+                  If you want your invoices addressed to a company. Leave blank to use your full name.
+                  </span>
               </div>
             </div>
 {/* End Status */}
@@ -286,6 +314,19 @@ export default function MemberEdit(props) {
                 <h5 className="font-weight-bold mb-6">Artist Info</h5>
               </div>
             </div>
+{/* begin displayname */}
+            <div className="form-group row">
+              <label className="col-xl-3 col-lg-3 col-form-label text-right">Display Name</label>
+              <div className="col-lg-9 col-xl-6">
+                <input 
+                className={`form-control form-control-lg " ${getInputClasses("displayname")}`}
+                type="text" 
+                name="displayname"
+                name="displayname"
+                {...formik.getFieldProps("displayname")} />
+              </div>
+              </div>
+{/* End nameDisplay */}
 {/* begin Website */}
             <div className="form-group row">
               <label className="col-xl-3 col-lg-3 col-form-label text-right">Website</label>
@@ -323,19 +364,8 @@ export default function MemberEdit(props) {
               </div>
               </div>
 {/* End instagram */}
-{/* begin AboutYou */}
-              <div className="form-group row">
-              <label className="col-xl-3 col-lg-3 col-form-label text-right">About You</label>
-              <div className="col-lg-9 col-xl-6">
-                <textarea 
-                rows="3" 
-                className={`form-control form-control-lg " ${getInputClasses("AboutYou")}`}
-                type="text" 
-                name="AboutYou"
-                {...formik.getFieldProps("AboutYou")} />
-              </div>
-            </div>
-{/* End AboutYou */} </> : null}
+
+</> : null}
 
 {/* End Artist Info */}
 
