@@ -1,9 +1,9 @@
 import React , { useState} from 'react'
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import SignIn from './SignIn/SignIn'
 import SignUp from './SignUp/SignUp'
 
-export default function NavBar() {
+export default function NavBar(props) {
  const [SignUpShow, setSignUpShow] = useState(false)
  const [SignInShow, setSignInShow] = useState(false)
   return (
@@ -13,8 +13,8 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <Nav.Link><a onClick={() => setSignUpShow(true)}> Sign up </a></Nav.Link>
-            <Nav.Link><a onClick={() => setSignInShow(true)}> Sign In </a></Nav.Link>
+            <Nav.Link><Button onClick={() => setSignUpShow(true)}> Sign up </Button></Nav.Link>
+            <Nav.Link><Button onClick={() => setSignInShow(true)}> Sign In </Button></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

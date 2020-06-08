@@ -1,15 +1,16 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import Button from "../button/loginButton";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import {Modal} from 'react-bootstrap'
+import { Modal } from "react-bootstrap";
 import * as Yup from "yup";
 import Link from "next/link";
 import SocialLogin from "../socialLogin";
 import Counter from "../../api/functions/config/config";
-import SignUp from '../SignUp/SignUp'
+import SignUp from "../SignUp/SignUp";
+import Fotgot from "../Forgot/Forgotpass";
+import Firebase from "../../api/functions/config/config";
 export default function SignInModal(props) {
-  
-  const [SignUpShow, setSignUpShow] = useState(false)
+  const [SignUpShow, setSignUpShow] = useState(false);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -32,24 +33,34 @@ export default function SignInModal(props) {
                 Start listening with myspec.
               </span>
               <Link href="/">
-                <a onClick={() =>
-{                props.onHide(true)
-                setSignUpShow(true)}
-                }>Sign up</a>
+                <a
+                  className="link"
+                  onClick={() => {
+                    props.onHide(true);
+                    setSignUpShow(true);
+                  }}
+                >
+                  Sign up
+                </a>
               </Link>
             </div>
             <Formik
               initialValues={{ email: "", password: "" }}
               validationSchema={LoginSchema}
               onSubmit={(values) =>
-                Counter.auth()
+                Firebase.auth()
                   .signInWithEmailAndPassword(values.email, values.password)
                   .then((res) => {
                     console.log(res);
+                    if (res.user.emailVerified) {
+                      //This will return true or false
+                      console.log("email is verified");
+                    } else {
+                      console.log("email not verified");
+                      alert("email not verified")
+                    }
                   })
-                  .catch((error) => {
-                    console.log(error);
-                  })
+                  .catch(function (error) {})
               }
             >
               {({ errors, touched }) => (
@@ -99,7 +110,7 @@ export default function SignInModal(props) {
                     <span className="txt2"> or </span>
                     <SocialLogin />
                     <Link href="../Forgot/Forgotpass">
-                      <a className="forgot">forgot password</a>
+                      <a className="link forgot">forgot password</a>
                     </Link>
                   </div>
                   <br />

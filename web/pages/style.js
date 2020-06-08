@@ -14,7 +14,7 @@ export default function StyleJSX(props) {
             font-size: 16px;
           }
 
-          a {
+          .link {
             font-size: 12px;
             color: rgb(224, 139, 28);
             padding-left: 5px;

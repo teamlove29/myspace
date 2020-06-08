@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import Button from "../button/loginButton";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import {Modal} from 'react-bootstrap'
+import { Modal } from "react-bootstrap";
 import * as Yup from "yup";
 import Link from "next/link";
 import SocialIcon from "../socialLogin";
 import Select from "../Select/Select";
 
 export default function SignUpModal(props) {
-  const [SignInShow, setSignInShow] = useState(false)
+  const [SignInShow, setSignInShow] = useState(false);
+  const [SelectShow, setSelectShow] = useState(false);
+
+  const [State, setState] = useState({ email: "", password: "" });
 
   const RegisSchema = Yup.object().shape({
     email: Yup.string()
@@ -29,7 +32,7 @@ export default function SignUpModal(props) {
             <span className="text-sm-left txt2" id="describe">
               {" "}
               Getting in is easy. Use one of your social network or start fresh
-              with an email address Already have a Myspace account?
+              with an email address Already have a MySpace Account?
               {/* <Link href="/">
                 <a className="txt1">Sign in</a>
               </Link> */}
@@ -41,8 +44,9 @@ export default function SignUpModal(props) {
             onSubmit={(values) => {
               // {           setShow(false)
               //             setSelectShow(true)
-              const EmailPass = setState(values);
-              Select(EmailPass);
+              setState({ email: values.email, password: values.password });
+              props.onHide()
+              setSelectShow(true)
             }}
 
             // Counter
@@ -139,6 +143,7 @@ export default function SignUpModal(props) {
           <br />
         </Modal.Body>
       </Modal>
+      <Select show={SelectShow} onHide={() => setSelectShow(false)} data={State} />
     </>
   );
 }
