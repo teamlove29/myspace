@@ -27,10 +27,6 @@ const TestPage = () => {
     },
   });
 
-  console.log(process.env.REACT_APP_API_KEY)
-  console.log(process.env.REACT_APP_API_KEY_GO)
-  console.log(process.env.REACT_APP_TEST_NUM)
-
 
   return (
     <div className="container">

@@ -7,6 +7,10 @@ import Content from "../dashboard/Dashboard";
 import MemberList from "../member/member-list/MemberList";
 import MemberOverView from "../member";
 import TestPage from "../TestPage";
+import firebase from "../../config/config";
+
+
+
 
 export default function BasePage(props) {
   return (

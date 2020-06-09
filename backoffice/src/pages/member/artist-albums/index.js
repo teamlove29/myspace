@@ -64,6 +64,39 @@ export default function index(props) {
     <span>Taylor Swift</span>
     </div>
     </div>
+<div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+<div class="card-body text-left pt-4">
+    <img 
+    src="https://load1.mp34u.cc/artwork/NJIVSEQKea.jpg" 
+    alt=""
+    width={200}
+    />
+    <span>One Chance</span> <br/>
+    <span>Taylor Swift</span>
+    </div>
+    </div>
+<div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+<div class="card-body text-left pt-4">
+    <img 
+    src="https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/a7/31/24/a731244c-e065-2f44-63a2-d15b6b27fefa/00602577427657.rgb.jpg/170x170bb.png" 
+    alt=""
+    width={200}
+    />
+    <span>One Chance</span> <br/>
+    <span>Taylor Swift</span>
+    </div>
+    </div>
+<div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+<div class="card-body text-left pt-4">
+    <img 
+    src="https://is2-ssl.mzstatic.com/image/thumb/Music118/v4/2e/0d/94/2e0d944c-eb37-e725-70a0-1b11ea3c1843/00602567328056.rgb.jpg/170x170bb.png" 
+    alt=""
+    width={200}
+    />
+    <span>One Chance</span> <br/>
+    <span>Taylor Swift</span>
+    </div>
+    </div>
 
 
 

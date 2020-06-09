@@ -55,8 +55,8 @@ function Login() {
           .signInWithEmailAndPassword(value.email, value.password)
           .then((values) => {
             disableLoading();
-            console.log(values);
             window.location.href = "/dashboard";
+            // history.push('/dashboard')
           })
           .catch((error) => {
             var errorCode = error.code;
@@ -64,7 +64,7 @@ function Login() {
             formik.handleReset()
             disableLoading();
             setSubmitting(false);
-            setStatus(errorCode, errorMessage);
+            setStatus(errorMessage);
          
           });
       }, 1000);

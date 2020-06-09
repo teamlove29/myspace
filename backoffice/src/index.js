@@ -23,7 +23,6 @@ import { MetronicI18nProvider } from "./_metronic/i18n";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import "./index.scss"; // Standard version
-
 ReactDOM.render(
   <MetronicI18nProvider>
     <MetronicLayoutProvider>

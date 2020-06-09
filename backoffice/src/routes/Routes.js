@@ -21,6 +21,7 @@ import firebase from "../config/config";
 //   />
 // );
 
+
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState("ok");
   useEffect(() => {
@@ -40,10 +41,12 @@ const Routes = () => {
     });
   }, []);
 
+
   // ถ้าล็อคอินแล้วให้ไป basepage ถ้ายัง ให้ไปหน้า login
   const SecuredRoute = () =>
     currentUser === "ok" ? <BasePage /> : <AuthPage />;
 
+  
   return (
     <Router history={history}>
       <Switch>
