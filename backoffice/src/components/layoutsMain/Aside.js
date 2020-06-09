@@ -18,7 +18,7 @@ function Aside() {
         <div className="brand flex-column-auto" id="kt_brand">
           {/*begin::Logo*/}
           <a href="/" className="brand-logo">
-          
+
             <img alt="Logo" src={toAbsoluteUrl("/assets/media/logos/logo-light.png")} />
           </a>
           {/*end::Logo*/}
@@ -66,41 +66,40 @@ function Aside() {
               <li className={`menu-item ${getMenuItemActive("/member")}`} aria-haspopup="true">
                 <NavLink to="/member" className="menu-link">
                   <span className="svg-icon menu-icon">
-                    {/*begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg*/}
                     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                        <polygon points="0 0 24 0 24 24 0 24" />
-                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
-                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fillRule="nonzero" />
+                        <rect x={0} y={0} width={24} height={24} />
+                        <path d="M3.5,21 L20.5,21 C21.3284271,21 22,20.3284271 22,19.5 L22,8.5 C22,7.67157288 21.3284271,7 20.5,7 L10,7 L7.43933983,4.43933983 C7.15803526,4.15803526 6.77650439,4 6.37867966,4 L3.5,4 C2.67157288,4 2,4.67157288 2,5.5 L2,19.5 C2,20.3284271 2.67157288,21 3.5,21 Z" fill="#000000" opacity="0.3" />
+                        <path d="M12,13 C10.8954305,13 10,12.1045695 10,11 C10,9.8954305 10.8954305,9 12,9 C13.1045695,9 14,9.8954305 14,11 C14,12.1045695 13.1045695,13 12,13 Z" fill="#000000" opacity="0.3" />
+                        <path d="M7.00036205,18.4995035 C7.21569918,15.5165724 9.36772908,14 11.9907452,14 C14.6506758,14 16.8360465,15.4332455 16.9988413,18.5 C17.0053266,18.6221713 16.9988413,19 16.5815,19 C14.5228466,19 11.463736,19 7.4041679,19 C7.26484009,19 6.98863236,18.6619875 7.00036205,18.4995035 Z" fill="#000000" opacity="0.3" />
                       </g>
                     </svg>
-                    {/*end::Svg Icon*/}
                   </span>
+
+
 
                   <span className="menu-text">Members</span>
                 </NavLink>
               </li>
 
-
-              {/* <li className="menu-section">
-                <h4 className="menu-text">Custom</h4>
+              {/* 
+              <li className="menu-section">
+                <h4 className="menu-text">Settings</h4>
                 <i className="menu-icon ki ki-bold-more-hor icon-md" />
               </li> */}
-              
-              {/* <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+              {/*               
+              <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" className="menu-link menu-toggle">
-                  <span className="svg-icon menu-icon"> */}
-                    {/*begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg*/}
-                    {/* <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
                         <rect x={0} y={0} width={24} height={24} />
                         <rect fill="#000000" x={4} y={4} width={7} height={7} rx="1.5" />
                         <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3" />
                       </g>
-                    </svg> */}
-                    {/*end::Svg Icon*/}
-                  {/* </span>
-                  <span className="menu-text">Applications</span>
+                    </svg>
+                  </span>
+                  <span className="menu-text">Settings</span>
                   <i className="menu-arrow" />
                 </a>
                 <div className="menu-submenu">
@@ -108,10 +107,10 @@ function Aside() {
                   <ul className="menu-subnav">
                     <li className="menu-item menu-item-parent" aria-haspopup="true">
                       <span className="menu-link">
-                        <span className="menu-text">Applications</span>
+                        <span className="menu-text">Settings</span>
                       </span>
-                    </li>
-                    <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    </li> */}
+              {/* <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                       <a href="javascript:;" className="menu-link menu-toggle">
                         <i className="menu-bullet menu-bullet-line">
                           <span />
@@ -545,21 +544,87 @@ function Aside() {
                           </li>
                         </ul>
                       </div>
-                    </li>
-                    <li className="menu-item" aria-haspopup="true">
+                    </li> */}
+              {/* <li className="menu-item" aria-haspopup="true">
                       <a href="custom/apps/inbox.html" className="menu-link">
                         <i className="menu-bullet menu-bullet-line">
                           <span />
                         </i>
-                        <span className="menu-text">Inbox</span>
-                        <span className="menu-label">
-                          <span className="label label-danger label-inline">new</span>
-                        </span>
+                        <span className="menu-text">ManagerUser</span>
                       </a>
                     </li>
                   </ul>
                 </div>
               </li> */}
+
+              <li className="menu-section">
+                <h4 className="menu-text">Managers</h4>
+                <i className="menu-icon ki ki-bold-more-hor icon-md" />
+              </li>
+
+
+
+              <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" className="menu-link menu-toggle">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
+                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fillRule="nonzero" />
+                      </g>
+                    </svg>
+                  </span>
+                  <span className="menu-text">Users</span>
+                  <i className="menu-arrow" />
+                </a>
+                <div className="menu-submenu">
+                  <i className="menu-arrow" />
+                  <ul className="menu-subnav">
+                    <li className="menu-item menu-item-parent" aria-haspopup="true">
+                      <span className="menu-link">
+                        <span className="menu-text">Users</span>
+                      </span>
+                    </li>
+                    {/* begin All Users */}
+                    <li className={`menu-item ${getMenuItemActive("/manager/user/lists")}`} aria-haspopup="true">
+                      <NavLink to="/manager/user/lists" className="menu-link">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">All Users</span>
+                      </NavLink>
+                    </li>
+                    {/* end All Users */}
+                    {/* begin Add Users */}
+                    <li className={`menu-item ${getMenuItemActive("/manager/user/add")}`} aria-haspopup="true">
+                      <NavLink to="/manager/user/add" className="menu-link">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">Add Users</span>
+                      </NavLink>
+                    </li>
+                    {/* end All Users */}
+                  </ul>
+                </div>
+              </li>
+
+              <li className={`menu-item ${getMenuItemActive("/manager/genre")}`} aria-haspopup="true">
+                <NavLink to="/manager/genre" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
+                        <path d="M9.83333333,17 C8.82081129,17 8,16.3159906 8,15.4722222 C8,14.6284539 8.82081129,13.9444444 9.83333333,13.9444444 C10.0476105,13.9444444 10.2533018,13.9750785 10.4444444,14.0313779 L10.4444444,9.79160113 C10.4444444,9.47824076 10.6398662,9.20124044 10.9268804,9.10777287 L14.4407693,8.0331119 C14.8834716,7.88894376 15.3333333,8.23360047 15.3333333,8.71694016 L15.3333333,9.79160113 C15.3333333,10.1498215 14.9979332,10.3786009 14.7222222,10.4444444 C14.3255297,10.53918 13.3070112,10.7428837 11.6666667,11.0555556 L11.6666667,15.5035214 C11.6666667,15.5583862 11.6622174,15.6091837 11.6535404,15.6559869 C11.5446237,16.4131089 10.771224,17 9.83333333,17 Z" fill="#000000" />
+                      </g>
+                    </svg>
+                  </span>
+                  <span className="menu-text">Genre</span>
+                </NavLink>
+              </li>
+
 
               <li className="menu-section">
                 <h4 className="menu-text">Example</h4>

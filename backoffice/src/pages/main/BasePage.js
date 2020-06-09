@@ -7,6 +7,8 @@ import Content from "../dashboard/Dashboard";
 import MemberList from "../member/member-list/MemberList";
 import MemberOverView from "../member";
 import TestPage from "../TestPage";
+import ManagerUser from "../managerUser";
+import Genre from "../genres";
 import firebase from "../../config/config";
 
 
@@ -27,8 +29,10 @@ export default function BasePage(props) {
           <Route path="/member/overview/:id" component={MemberOverView} />
           <Route path="/member/edit/:id" component={MemberOverView} />
           <Route path="/member/albums/:id" component={MemberOverView} />
+          <Route path="/manager/user" component={ManagerUser} />
+          <Route path="/manager/genre" component={Genre} />
           <Route path="/testPage" component={TestPage} />
-          <Redirect to="/dashboard" />
+          {/* <Redirect to="/dashboard" /> */}
         </Switch>
       </div>
       <Footer />
