@@ -16,13 +16,20 @@ app.get("/conn", (req, res) => {});
 app.get("/", (req, res) => {
   condb.query("SELECT * FROM member", (err, result) => {
     if (err) {
-      res.send(err);
+      res.status(200).send(err);
     } else {
-      res.send(result);
+      res.status(400).send(result);
     }
   });
 });
 
-app.post("/add", (req, res) => {});
+// app.get("/add", (req, res) => {
+//   const uid = req.body.uid;
+//   var sql = "INSERT INTO member (mem_uid) VALUES ?";
+//   con.query(sql, uid, (err, result) => {
+//     if (err) throw err;
+//     console.log("Insert Sucsess" + result.affectedRows);
+//   });
+// });
 
 exports.singup = functions.https.onRequest(app);
