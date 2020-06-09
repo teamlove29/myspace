@@ -7,9 +7,7 @@ export default function Member(props) {
   const [Hide, setHide] = useState(true);
   return (
     <>
-      <Header>
-          {children}
-      </Header>
+      <Header/>
       <Button
         onClick={() =>
             Firebase

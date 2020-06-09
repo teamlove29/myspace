@@ -4,7 +4,7 @@ import SignIn from './SignIn/SignIn'
 import SignUp from './SignUp/SignUp'
 
 export default function NavBar(props) {
-  console.log(props.data.data)
+  // console.log(props.data.data)
  const [SignUpShow, setSignUpShow] = useState(false)
  const [SignInShow, setSignInShow] = useState(false)
   return (
