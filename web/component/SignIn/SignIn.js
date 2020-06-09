@@ -50,7 +50,8 @@ export default function SignInModal(props) {
               initialValues={{ email: "", password: "" }}
               validationSchema={LoginSchema}
               onSubmit={(values) =>
-                Firebase.auth()
+                Firebase
+                .auth()
                   .signInWithEmailAndPassword(values.email, values.password)
                   .then((res) => {
                     console.log(res);
@@ -58,6 +59,7 @@ export default function SignInModal(props) {
                       //This will return true or false
                       console.log("email is verified");
                       setLoginSuccessShow(true)
+                      window.location.href = "../../Member/Member"
                     } else {
                       console.log("email not verified");
                       alert("email not verified")

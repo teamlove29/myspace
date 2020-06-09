@@ -13,6 +13,8 @@ export default function SelectModal(props) {
   return (
     <>
       <Modal {...props}>
+      <Modal.Header style={{ border: 0 }} closeButton></Modal.Header>
+      <Modal.Body>
         <div className="form-group" align="center">
           <h3> Select the option the best describe you. </h3>
           <span className="text-sm-left txt2" id="describe">
@@ -31,8 +33,8 @@ export default function SelectModal(props) {
                 .then((result) => {
                   Firebase.auth().currentUser.sendEmailVerification().then(function (re) {
                     // Email sent.
-                    console.log(re);
                     console.log("Email send!!");
+                    props.onHide()
                     setRegisSuccessShow(true)
                     // axios
                     //   .post(
@@ -93,6 +95,7 @@ export default function SelectModal(props) {
             )}
           </Formik>
         </div>
+        </Modal.Body>
       </Modal>
       <RegisSuccess show={RegisSuccessShow} onHide={() => setRegisSuccessShow(false)} />
     </>
