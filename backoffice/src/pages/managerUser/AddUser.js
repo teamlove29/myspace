@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import firebase from '../../config/config'
+import Axios from 'axios';
+import ModalSuccess from '../../components/modal/ModalSuccess'
 
 export default function AddUser() {
 
@@ -34,32 +36,25 @@ export default function AddUser() {
   };
 
 const handleedit = (value,{ setStatus, setSubmitting }) => {
-
-  if(value.password != value.passwordConfirmation ){
-    setStatus('incorrent verify password')
-  }
-  else{
-    
-  }
+  const email = value.email
+  const password = value.password
+  const phone = value.phone
+  const firstName = value.firstName
+  const lastName = value.lastName
+    Axios.post('http://localhost:5001/myspace-dev-1ae9e/us-central1/backoffice-user/newUser'
+    ,{email,password,phone,firstName,lastName})
+    .then((res) => {
+      console.log(res)
+      formik.handleReset()
+    }).catch((err) => {
+      var errorCode = err.code;
+      var errorMessage = err.message;
+      setStatus(errorCode)
+      console.log(errorMessage)
+    })
+  
   disableLoading()
   setSubmitting(false);
-
-
-  // handleRegis(value)
-  // disableLoading();
-  // setSubmitting(false);
-  // console.log(value)
-  //  setStatus(errorMessage);
-  
-  // firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-  // .then((reslut) => {
-  //   console.log(reslut)
-  // })
-  // .catch((error) => {
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   console.log(errorMessage)
-  // });
 }
 
 
@@ -253,7 +248,7 @@ const handleedit = (value,{ setStatus, setSubmitting }) => {
                             {/* <div className="input-group input-group-lg input-group-solid"> */}
                               <input
                                 name="passwordConfirmation"
-                                type="passwordConfirmation"
+                                type="password"
                                 className={`form-control form-control-lg  ${getInputClasses(
                                   "passwordConfirmation"
                                 )}`}
@@ -277,6 +272,7 @@ const handleedit = (value,{ setStatus, setSubmitting }) => {
                   <div className="float-right">
 
                     <button
+                    type='reset'
                       onClick={formik.handleReset}
                       className="btn btn-secondary font-weight-bold px-9 py-4 mr-3"
                     >reset</button>
