@@ -20,7 +20,9 @@ export default function ManagerUser() {
     const { SearchBar } = Search;
 
   useEffect(() => {
-
+    // axios.get('https://example.com/getSomething', {
+    //   headers: { Authorization: token }
+    //  })
   }, []);
 
 const handleOnSelect = (row,isSelect) => {

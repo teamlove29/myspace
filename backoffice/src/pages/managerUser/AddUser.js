@@ -44,8 +44,8 @@ const handleedit = (value,{ setStatus, setSubmitting }) => {
     Axios.post('http://localhost:5001/myspace-dev-1ae9e/us-central1/backoffice-user/newUser'
     ,{email,password,phone,firstName,lastName})
     .then((res) => {
-      console.log(res)
-      formik.handleReset()
+      setStatus('Success bro !')
+      // formik.handleReset()
     }).catch((err) => {
       var errorCode = err.code;
       var errorMessage = err.message;

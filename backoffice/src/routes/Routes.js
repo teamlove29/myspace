@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import history from "../utils/history";
 import { Router, Route, Redirect, Switch } from "react-router-dom";
 import AuthPage from "../pages/auth/AuthPage";
@@ -6,6 +6,7 @@ import Logout from "../pages/auth/Logout";
 import NotFound from "../pages/NotFound";
 import BasePage from "../pages/main/BasePage";
 import firebase from "../config/config";
+import { StoreContext } from '../store/StoreContextProvider';
 
 // It checks if the user is authenticated, if they are,
 // it renders the "component" prop. If not, it redirects
@@ -20,7 +21,6 @@ import firebase from "../config/config";
 //     }
 //   />
 // );
-
 
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState("ok");
@@ -46,7 +46,8 @@ const Routes = () => {
   const SecuredRoute = () =>
     currentUser === "ok" ? <BasePage /> : <AuthPage />;
 
-  
+    const { token, setToken } = useContext(StoreContext)
+    console.log(token)
   return (
     <Router history={history}>
       <Switch>
