@@ -25,7 +25,7 @@ import firebase from "../config/config";
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState("ok");
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         var displayName = user.displayName;
         var email = user.email;

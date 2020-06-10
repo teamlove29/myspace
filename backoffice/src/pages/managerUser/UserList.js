@@ -10,23 +10,28 @@ import paginationFactory, {
 } from "react-bootstrap-table2-paginator";
 import Axios from 'axios'
 import users from "../../data/music/member.json";
+import firebase from '../../config/config'
+
 export default function ManagerUser() {
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState();
     const [err, setErr] = useState();
+    const [select, setSelect] = useState([1,2]);
     const history = useHistory();
     const { SearchBar } = Search;
 
-//   useEffect(() => {
-//     axios.get("https://jsonplaceholder.typicode.com/users")
-//       .then((response) => {
-//         console.log(response)
-//         setUsers(response.data);
-//       })
-//       .catch((err) => {
-//         console.log(err)
-//         setErr({ err: err });
-//       });
-//   }, []);
+  useEffect(() => {
+
+  }, []);
+
+const handleOnSelect = (row,isSelect) => {
+  if(isSelect){
+    setSelect([...select, row.id])
+  }else{
+
+  }
+  console.log(select)
+}
+
 
   const dataEmpty = () => {
     return (
@@ -48,12 +53,12 @@ export default function ManagerUser() {
           <NavLink
             to={`/manager/user/edit/${row}`}
             className="btn btn-sm btn-clean btn-icon ">
-            <i class="flaticon-edit"></i>
+            <i class="flaticon-edit text-warning"></i>
           </NavLink>
           <NavLink 
             to={`/manager/user/del/${row}`}
             className="btn btn-sm btn-clean btn-icon ">
-            <i class="flaticon2-rubbish-bin-delete-button"></i>
+            <i class="flaticon2-rubbish-bin-delete-button text-danger"></i>
           </NavLink>
             </>
         );
@@ -66,7 +71,7 @@ export default function ManagerUser() {
       const showType = () => {
         return(
           <>
-          admin
+          Administrator
           </>
         )
       }
@@ -95,14 +100,6 @@ export default function ManagerUser() {
           headerClasses: "text-center",
         },
         {
-          dataField: "username",
-          text: "Status",
-          formatter: showStatus,
-          classes: "text-center align-middle",
-          headerClasses: "text-center",
-          sort: true,
-        },
-        {
           dataField: "id",
           text: "Action",
           formatter: actionButton,
@@ -116,8 +113,8 @@ export default function ManagerUser() {
       const selectRow = {
         mode: 'checkbox',
         clickToSelect: true,
-        selected:'',
-        onSelect: '',
+        selected:select,
+        onSelect: handleOnSelect,
         onSelectAll: ''
       };
 
@@ -148,13 +145,13 @@ const handleClick = () => {
                 </small> <br/>
                 <SearchBar {...props.searchProps} />
         <br/>
-                <button 
+                {/* <button 
                 className="btn btn-danger btn-sm "
-                onClick={() => handleClick() }> Delect All </button>
+                onClick={() => handleClick() }> Delete All </button> */}
                 <BootstrapTable
                   {...props.baseProps}
                   wrapperClasses="table-responsive"
-                  classes="table table-sm table-head-custom table-vertical-center"
+                  classes="table table-head-custom table-vertical-center "
                   bootstrap4
                   selectRow={ selectRow }
                   // loading={true}
