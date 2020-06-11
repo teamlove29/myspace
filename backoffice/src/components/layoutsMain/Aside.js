@@ -564,9 +564,10 @@ function Aside() {
 
 
 
-              <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="javascript:;" className="menu-link menu-toggle">
-                  <span className="svg-icon menu-icon">
+
+              <li className={`menu-item ${getMenuItemActive("/manager/user")}`} aria-haspopup="true">
+                <NavLink to="/manager/user" className="menu-link">
+                <span className="svg-icon menu-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
                         <polygon points="0 0 24 0 24 24 0 24" />
@@ -575,40 +576,10 @@ function Aside() {
                       </g>
                     </svg>
                   </span>
-                  <span className="menu-text">Users</span>
-                  <i className="menu-arrow" />
-                </a>
-                <div className="menu-submenu">
-                  <i className="menu-arrow" />
-                  <ul className="menu-subnav">
-                    <li className="menu-item menu-item-parent" aria-haspopup="true">
-                      <span className="menu-link">
-                        <span className="menu-text">Users</span>
-                      </span>
-                    </li>
-                    {/* begin All Users */}
-                    <li className={`menu-item ${getMenuItemActive("/manager/user/lists")}`} aria-haspopup="true">
-                      <NavLink to="/manager/user/lists" className="menu-link">
-                        <i className="menu-bullet menu-bullet-line">
-                          <span />
-                        </i>
-                        <span className="menu-text">All Users</span>
-                      </NavLink>
-                    </li>
-                    {/* end All Users */}
-                    {/* begin Add Users */}
-                    <li className={`menu-item ${getMenuItemActive("/manager/user/add")}`} aria-haspopup="true">
-                      <NavLink to="/manager/user/add" className="menu-link">
-                        <i className="menu-bullet menu-bullet-line">
-                          <span />
-                        </i>
-                        <span className="menu-text">Add Users</span>
-                      </NavLink>
-                    </li>
-                    {/* end All Users */}
-                  </ul>
-                </div>
+                  <span className="menu-text">User</span>
+                </NavLink>
               </li>
+
 
               <li className={`menu-item ${getMenuItemActive("/manager/genre")}`} aria-haspopup="true">
                 <NavLink to="/manager/genre" className="menu-link">

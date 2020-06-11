@@ -7,9 +7,6 @@ import NotFound from "../pages/NotFound";
 import BasePage from "../pages/main/BasePage";
 import firebase from "../config/config";
 import { StoreContext } from '../store/StoreContextProvider';
-import ModalDel from '../components/modal/ModalDel'
-import ModalSuccess from '../components/modal/ModalSuccess'
-import ModalFailed from '../components/modal/ModalFailed'
 
 // It checks if the user is authenticated, if they are,
 // it renders the "component" prop. If not, it redirects
@@ -55,7 +52,6 @@ const Routes = () => {
     <Router history={history}>
       <Switch>
         <Route path="/logout" component={Logout} />
-        <Route path="/test" component={ModalSuccess} />
         <SecuredRoute />
         <Route component={NotFound} />
       </Switch>

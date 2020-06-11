@@ -14,6 +14,7 @@ const MySwal = withReactContent(Swal);
 
 export const Success = () => {
   MySwal.fire({
+    position:'top',
     icon: "success",
     title: <h1 className="display-3">success</h1>,
     showConfirmButton: false,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Card, Form } from "react-bootstrap";
+import { useHistory, Redirect } from "react-router-dom";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import filterFactory, { selectFilter } from "react-bootstrap-table2-filter";
 import { NavLink } from "react-router-dom";
@@ -10,6 +10,7 @@ import paginationFactory, {
 } from "react-bootstrap-table2-paginator";
 import Axios from "axios";
 import users from "../../data/music/member.json";
+import AddUser from './AddUser'
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import firebase from "../../config/config";
@@ -18,7 +19,7 @@ export default function ManagerUser() {
   const MySwal = withReactContent(Swal);
   const [user, setUser] = useState();
   const [err, setErr] = useState();
-  const [select, setSelect] = useState([1, 2]);
+  const [select, setSelect] = useState([]);
   const history = useHistory();
   const { SearchBar } = Search;
 
@@ -61,6 +62,7 @@ export default function ManagerUser() {
 
   const deluser = () => {
     MySwal.fire({
+      position:'top',
       icon: "warning",
       title: <h1 className="display-5">Are you sure ?</h1>,
       text: "Are you sure you want to delete ?",
@@ -72,6 +74,7 @@ export default function ManagerUser() {
       // Result.value after click yes
       if (result.value) {
         Swal.fire({
+          position:'top',
           icon: "success",
           title: "Deleted",
           text: "Your file has been deleted.",
@@ -84,12 +87,14 @@ export default function ManagerUser() {
   const actionButton = (row) => {
     return (
       <>
-        <NavLink
-          to={`/manager/user/edit/${row}`}
+      
+
+      <button
+          onClick={() => history.push(`/manager/user/edit/${row}`)  }
           className="btn btn-sm btn-clean btn-icon "
         >
           <i class="flaticon-edit text-warning"></i>
-        </NavLink>
+        </button>
         <button
           onClick={() => deluser()}
           className="btn btn-sm btn-clean btn-icon "
@@ -134,10 +139,10 @@ export default function ManagerUser() {
 
   const selectRow = {
     mode: "checkbox",
-    clickToSelect: true,
-    selected: select,
-    onSelect: handleOnSelect,
-    onSelectAll: handleOnSelectAll,
+    // clickToSelect: true,
+    // selected: select,
+    // onSelect: handleOnSelect,
+    // onSelectAll: handleOnSelectAll,
   };
 
   const handleClick = () => {
@@ -157,25 +162,67 @@ export default function ManagerUser() {
               {(props) => (
                 <>
                   <Card.Title>
-                    <h3 className="card-label">
-                      Users List
-                      <span className="d-block text-muted pt-2 font-size-sm">
-                        row selection and group actions
-                      </span>
-                    </h3>
+                    <div className="row">
+                      <div className="col-6">
+                        <h3 className="card-label">
+                          Users List
+                          <span className="d-block text-muted pt-2 font-size-sm">
+                            row selection and group actions
+                          </span>
+                        </h3>
+                      </div>
+                      <div className="col-6 text-right">
+                        <button 
+                        onClick={() => history.push('/manager/user/add')}
+                        className="btn btn-primary">
+                          <span className="svg-icon svg-icon-white">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlnsXlink="http://www.w3.org/1999/xlink"
+                              width="24px"
+                              height="24px"
+                              viewBox="0 0 24 24"
+                              version="1.1"
+                            >
+                              <g
+                                stroke="none"
+                                strokeWidth={1}
+                                fill="none"
+                                fillRule="evenodd"
+                              >
+                                <polygon points="0 0 24 0 24 24 0 24" />
+                                <path
+                                  d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
+                                  fill="#000000"
+                                  fillRule="nonzero"
+                                  opacity="0.3"
+                                />
+                                <path
+                                  d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
+                                  fill="#000000"
+                                  fillRule="nonzero"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                          New User
+                        </button>
+                      </div>
+                    </div>
                   </Card.Title>
                   <hr />
+                  <br />
+                  <SearchBar {...props.searchProps} />
+                  <br />
                   <small className="text-muted">
                     {" "}
                     <b>Search</b> in all fields
                   </small>{" "}
                   <br />
-                  <SearchBar {...props.searchProps} />
-                  <br />
                   {select.length > 1 ? (
                     <button
                       onClick={() => deluser()}
-                      className="btn btn-sm btn-danger mt-2 mb-2"
+                      className="btn btn-sm btn-danger mt-5 mb-5"
                     >
                       Delete All Select
                     </button>
@@ -189,7 +236,7 @@ export default function ManagerUser() {
                     wrapperClasses="table-responsive"
                     classes="table table-head-custom table-vertical-center "
                     bootstrap4
-                    selectRow={selectRow}
+                    // selectRow={selectRow}
                     // loading={true}
                     // overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
                     keyField="id"
