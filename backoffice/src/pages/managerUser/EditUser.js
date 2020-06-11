@@ -14,7 +14,9 @@ export default function AddUser(props) {
   const [show, setShow] = useState(true);
   const handleClose = () => {
     setShow(false)
-    history.push('/manager/user')
+    setTimeout(() => {
+      history.goBack()
+    }, 100)
 };
   const handleShow = () => setShow(true);
 

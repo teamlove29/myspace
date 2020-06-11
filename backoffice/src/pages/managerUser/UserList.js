@@ -110,10 +110,11 @@ export default function ManagerUser() {
   };
 
   const showType = () => {
-    return <>Administrator</>;
+    return <p>Administrator</p>;
   };
 
   const columns = [
+    
     // { dataField: 'id', text: 'ID', classes: 'text-center align-middle', headerClasses: 'text-center' },
     { dataField: "name", text: "Name", classes: "align-middle", sort: true },
     { dataField: "email", text: "Email", classes: "align-middle ", sort: true },
@@ -140,9 +141,9 @@ export default function ManagerUser() {
   const selectRow = {
     mode: "checkbox",
     // clickToSelect: true,
-    // selected: select,
-    // onSelect: handleOnSelect,
-    // onSelectAll: handleOnSelectAll,
+    selected: select,
+    onSelect: handleOnSelect,
+    onSelectAll: handleOnSelectAll,
   };
 
   const handleClick = () => {
@@ -236,7 +237,7 @@ export default function ManagerUser() {
                     wrapperClasses="table-responsive"
                     classes="table table-head-custom table-vertical-center "
                     bootstrap4
-                    // selectRow={selectRow}
+                    selectRow={selectRow}
                     // loading={true}
                     // overlay={ overlayFactory({ spinner: true, background: 'rgba(192,192,192,0.3)' }) }
                     keyField="id"

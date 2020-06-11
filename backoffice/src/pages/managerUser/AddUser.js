@@ -17,7 +17,9 @@ export default function AddUser(props) {
   const [show, setShow] = useState(true);
   const handleClose = () => {
     setShow(false)
-    history.push('/manager/user')
+    setTimeout(() => {
+      history.goBack()
+    }, 100)
 };
   const handleShow = () => setShow(true);
 
@@ -335,12 +337,11 @@ useEffect(() => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            type="reset"
-            onClick={formik.handleReset}
+            onClick={() => handleClose() }
             variant="secondary"
             className="btn btn-secondary font-weight-bold px-9 py-4 mr-3"
           >
-            reset
+            cancel
           </Button>
 
           <Button
