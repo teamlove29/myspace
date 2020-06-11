@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import firebase from '../../config/config'
 
 export default function AddUser() {
 
-
+  const MySwal = withReactContent(Swal);
   const [loading, setLoading] = useState(false);
   const initialValues = {
     firstName: "Marutthep",
@@ -32,14 +34,16 @@ export default function AddUser() {
   };
 
 const handleEdit = (value) => {
-    var auth = firebase.auth();
-    const emailAddress ='test@test.com'
-    auth.sendPasswordResetEmail(emailAddress)
-    .then(() => {
-      console.log('good')
-    }).catch(function(error) {
-     console.log(error)
-    });
+  console.log(value)
+  formik.handleReset()
+    // var auth = firebase.auth();
+    // const emailAddress ='test@test.com'
+    // auth.sendPasswordResetEmail(emailAddress)
+    // .then(() => {
+    //   console.log('good')
+    // }).catch(function(error) {
+    //  console.log(error)
+    // });
   // firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
   // .then((reslut) => {
   //   console.log(reslut)
@@ -49,6 +53,27 @@ const handleEdit = (value) => {
   //   var errorMessage = error.message;
   //   console.log(errorMessage)
   // });
+
+
+  MySwal.fire({
+    icon: "question",
+    title: <h1 className="display-5">Are you sure ?</h1>,
+    text: "Are you sure you want to edit data ?",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, edit it!",
+  }).then((result) => {
+    // Result.value after click yes
+    if (result.value) {
+      Swal.fire({
+        icon: "success",
+        title: "Edited",
+        text: "Your file has been edited.",
+        showConfirmButton: false,
+      });
+    }
+  });
 }
 
 
@@ -82,6 +107,7 @@ const handleEdit = (value) => {
         handleEdit(value)
         disableLoading();
         setSubmitting(false);
+        formik.handleReset()
         //  setStatus(errorMessage);
       }, 1000)
     }
@@ -223,7 +249,7 @@ const handleEdit = (value) => {
                       disabled={formik.isSubmitting}
                       className={`btn btn-success font-weight-bold px-9 py-4 my-3`}
                     >
-                      <span>submit</span>
+                      <span>edit</span>
                       {loading && <span className="ml-3 spinner spinner-white"></span>}
                     </button>
                   </div>

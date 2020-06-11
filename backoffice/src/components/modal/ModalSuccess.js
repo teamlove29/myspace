@@ -8,7 +8,17 @@ import {
   Row,
   Form,
 } from "react-bootstrap";
-import './style.css'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
+export const Success = () => {
+  MySwal.fire({
+    icon: "success",
+    title: <h1 className="display-3">success</h1>,
+    showConfirmButton: false,
+  });
+}
 
 export default function ModalSuccess(props) {
   const [modalShow, setModalShow] = useState(false);
@@ -16,21 +26,7 @@ export default function ModalSuccess(props) {
 
   return (
     <>
-      <Modal
-        show={show}
-        onHide={() => setShow(false)}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Body>
-          <img src="" alt="" />
-          <h1 className="display-2 text-center">Success</h1>
-  
-          <div class="checkmark draw"></div>
 
-        </Modal.Body>
-      </Modal>
     </>
   );
 }
