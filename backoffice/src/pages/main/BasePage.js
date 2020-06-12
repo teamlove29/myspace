@@ -11,9 +11,6 @@ import ManagerUser from "../managerUser";
 import Genre from "../genres";
 import firebase from "../../config/config";
 
-
-
-
 export default function BasePage(props) {
   return (
     <div className="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
