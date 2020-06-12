@@ -32,7 +32,7 @@ export default function BasePage(props) {
           <Route path="/manager/user" component={ManagerUser} />
           <Route path="/manager/genre" component={Genre} />
           <Route path="/testPage" component={TestPage} />
-          {/* <Redirect to="/dashboard" /> */}
+          <Redirect to="/dashboard" />
         </Switch>
       </div>
       <Footer />

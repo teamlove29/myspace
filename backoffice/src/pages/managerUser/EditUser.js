@@ -285,11 +285,10 @@ export default function AddUser(props) {
       </Modal.Body>
         <Modal.Footer>
           <Button
-            type="reset"
-            onClick={formik.handleReset}
+            onClick={() => handleClose()}
             variant="secondary"
             className="btn font-weight-bold px-9 py-4 mr-3">
-            reset
+            cancel
           </Button>
 
           <Button
