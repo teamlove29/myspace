@@ -10,7 +10,7 @@ import filterFactory, { selectFilter } from "react-bootstrap-table2-filter";
 import axios from "axios";
 import { Card } from "react-bootstrap";
 import { Pagination } from "../../../_metronic/_partials/controls";
-import members from "../../../data/music/member.json";
+import members from "../../../data/member/member.json";
 
 export default function MemberList() {
   const [member, setMember] = useState([]);

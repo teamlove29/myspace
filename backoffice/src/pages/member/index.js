@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MemberOverView from "./member-overview";
-import membersData from "../../data/music/member.json";
+import membersData from "../../data/member/member.json";
 export default function Index(props) {
   const id = parseInt(props.match.params.id);
   const member = membersData.find((member) => member.id === id);

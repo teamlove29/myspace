@@ -7,85 +7,168 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import filterFactory, { selectFilter } from "react-bootstrap-table2-filter";
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory, {
+  PaginationProvider,
+} from "react-bootstrap-table2-paginator";
 import genresData from "../../data/music/genres.json";
-import { set } from "object-path";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 export default function Index() {
   //   const genres = genresData.genres;
+  const { SearchBar } = Search;
+  const MySwal = withReactContent(Swal);
+  const [genres, setGenres] = useState([]);
+  const [state, setState] = useState({ name: "" });
 
-  const [genres, setGenres] = useState(["Rock", "Pop", "EDM"]);
-  const [state, setState] = useState("");
-
-  const listItems = genres.map((value,index) => {
-    return (
-      <>
-        <ListGroup.Item key={index}>
-          {value}
-          <a
-            onClick={() => {
-              handleDel(value);
-            }}
-            className="btn-sm float-right"
-          >
-             <i class="flaticon2-cancel text-danger"></i>
-          </a>
-         
-          
-        </ListGroup.Item>
-      </>
-    );
-  });
+  useEffect(() => {
+    setGenres(genresData);
+  }, []);
+  // const listItems = currentPost.map((value, index) => {
+  //   return (
+  //     <>
+  //       <ListGroup.Item key={index}>
+  //         {value}
+  //         <a
+  //           onClick={() => {
+  //             handleDel(value);
+  //           }}
+  //           className="btn-sm float-right"
+  //         >
+  //           <i class="flaticon2-cancel text-danger"></i>
+  //         </a>
+  //       </ListGroup.Item>
+  //     </>
+  //   );
+  // });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (state != "") setGenres([ state, ...genres]);
-    setState("");
+    if (state != "") setGenres([{ name: state.name }, ...genres]);
+    setState({ name: "" });
   };
   const handleChange = (e) => {
     const inputGenre = e.target.value;
-    setState(inputGenre);
+    setState({ name: inputGenre });
   };
   const handleDel = (value) => {
-    setGenres(genres.filter((v) => v != value));
+    MySwal.fire({
+      position: "top",
+      icon: "question",
+      title: <h1 className="display-5">Are you sure ?</h1>,
+      text: "Are you sure you want to delete data ?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, edit it!",
+    }).then((result) => {
+      if (result.value) {
+        setGenres(genres.filter((v) => v.name != value));
+      }
+    });
+  };
+  const dataEmpty = () => {
+    return (
+      <>
+        <button
+          type="button"
+          class="btn btn-outline-secondary spinner spinner-darker-dark spinner-right mt-5"
+        >
+          Loading ...
+        </button>
+      </>
+    );
   };
 
+  const Listname = (value) => {
+    return (
+      <>
+        {value}
+        <a onClick={() => handleDel(value)} className="btn-sm float-right">
+          <i class="flaticon2-cancel text-danger"></i>
+        </a>
+      </>
+    );
+  };
+
+  const defaultSorted = [
+    {
+      dataField: "id",
+      order: "desc",
+    },
+  ];
+
+  const columns = [
+    {
+      dataField: "name",
+      text: "Name",
+      classes: "align-middle",
+      sort: true,
+      formatter: Listname,
+    },
+  ];
+
   return (
-    <div className="container">
-      <Card style={{ width: "35rem" }}>
-      <Card.Body>
-      <h1>Genre list </h1>
-      <Form onSubmit={handleSubmit}>
-      <InputGroup
-        onChange={(e) => {
-          handleChange(e);
-        }}
-        style={{ width: "30rem" }}
-        className="mb-3"
-      >
-        <FormControl
-          value={state}
-          placeholder="Add genre..."
-          aria-label="Add genre"
-          aria-describedby="basic-addon2"
-        />
-        <InputGroup.Append>
-          <Button
-          type="submit"
-            variant="outline-secondary"
-          >
-            Button
-          </Button>
-        </InputGroup.Append>
-      </InputGroup>
-      </Form>
-
-
-      <Card style={{ width: "30rem" }}>
-        {genres != ''
-        ? <ListGroup variant="flush">{listItems}</ListGroup>
-        : <h1 className="text-center mt-5 mb-5">no data .... </h1>
-        }
-      </Card>
-      </Card.Body>
+    <div className="container" >
+      <Card>
+        <Card.Body>
+          <ToolkitProvider keyField="id" data={genres} columns={columns} search>
+            {(props) => (
+              <>
+                <Card.Title>
+                  <h3>Genre list </h3>
+                  <span className="d-block text-muted pt-2 font-size-sm">
+                    Add row and group actions
+                  </span>
+                </Card.Title>
+                <Form className="mt-5" onSubmit={handleSubmit}>
+                  <InputGroup
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    className="mb-5"
+                  >
+                    <FormControl
+                      value={state.name}
+                      placeholder="Add genre..."
+                      aria-label="Add genre"
+                      aria-describedby="basic-addon2"
+                    />
+                    <InputGroup.Append>
+                      <Button type="submit" variant="outline-secondary">
+                        Button
+                      </Button>
+                    </InputGroup.Append>
+                  </InputGroup>
+                </Form>
+                <br />
+                <SearchBar {...props.searchProps} />
+                <br />
+                <small className="text-muted">
+                  <b>Search</b> in all fields
+                </small>
+                <br />
+                <BootstrapTable
+                  {...props.baseProps}
+                  wrapperClasses="table-responsive"
+                  classes="table table-head-custom table-vertical-center mt-5"
+                  bootstrap4
+                  keyField="id"
+                  data={genres === null ? [] : genres}
+                  columns={columns}
+                  noDataIndication={dataEmpty}
+                  filter={filterFactory()}
+                  pagination={paginationFactory()}
+                  defaultSorted={defaultSorted}
+                  // bordered={false}
+                />
+              </>
+            )}
+          </ToolkitProvider>
+        </Card.Body>
       </Card>
     </div>
   );

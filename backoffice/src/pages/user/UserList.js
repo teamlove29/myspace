@@ -9,7 +9,7 @@ import paginationFactory, {
   PaginationProvider,
 } from "react-bootstrap-table2-paginator";
 import Axios from "axios";
-import users from "../../data/music/member.json";
+import users from "../../data/member/member.json";
 import AddUser from './AddUser'
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -28,7 +28,6 @@ export default function ManagerUser() {
     //   headers: { Authorization: token }
     //  })
   }, []);
-
   const handleOnSelect = (row, isSelect) => {
     if (isSelect) {
       setSelect([...select, row.id]);
