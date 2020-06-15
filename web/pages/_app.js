@@ -1,15 +1,12 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './font.css'
-import Style from './style'
-import {ModalProvider} from '../hook/ModalProvider'
+import React from 'react';
+import './font.css';
 
-export default function MyApp({Component, pageProps}) {
-
+const MyApp = ({ Component, pageProps }) => {
     return (
-        <ModalProvider>
-        <Style>
+        <div>
             <Component {...pageProps} />
-        </Style>
-        </ModalProvider>
-    )
+        </div>
+    );
 }
+
+export default MyApp;
