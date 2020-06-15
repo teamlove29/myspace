@@ -32,7 +32,6 @@ export default function AddUser(props) {
     username: "",
     email: "",
     password: "",
-    passwordConfirmation: "",
     role: "admin"
   };
 
@@ -99,12 +98,13 @@ export default function AddUser(props) {
       .oneOf([Yup.ref("passwordConfirmation"), null], "Passwords must match")
       .min(6, "Minimum 6 symbols")
       .required("Required"),
-    passwordConfirmation: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .min(6, "Minimum 6 symbols")
+      role: Yup.string()
       .required("Required"),
-    role: Yup.string()
-      .required("Required"),
+    // passwordConfirmation: Yup.string()
+    //   .oneOf([Yup.ref("password"), null], "Passwords must match")
+    //   .min(6, "Minimum 6 symbols")
+    //   .required("Required"),
+
   });
 
   const formik = useFormik({
@@ -217,34 +217,6 @@ export default function AddUser(props) {
                             </div>
                           </div>
                         ) : null}
-                        {/* </div> */}
-                      </div>
-                    </div>
-
-                    <div className="form-group row">
-                      <label className="col-xl-3 col-lg-3 col-form-label">
-                        PasswordConfirmation
-                        </label>
-                      <div className="col-lg-9 col-xl-9">
-                        {/* <div className="input-group input-group-lg input-group-solid"> */}
-                        <input
-                          name="passwordConfirmation"
-                          type="password"
-                          className={`form-control  ${getInputClasses(
-                            "passwordConfirmation"
-                          )}`}
-                          name="passwordConfirmation"
-                          placeholder="passwordConfirmation"
-                          {...formik.getFieldProps("passwordConfirmation")}
-                        />
-                        {formik.touched.passwordConfirmation &&
-                          formik.errors.passwordConfirmation ? (
-                            <div className="fv-plugins-message-container">
-                              <div className="fv-help-block">
-                                {formik.errors.passwordConfirmation}
-                              </div>
-                            </div>
-                          ) : null}
                         {/* </div> */}
                       </div>
                     </div>

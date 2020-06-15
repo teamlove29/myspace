@@ -113,18 +113,16 @@ export default function ManagerUser() {
   };
 
   const columns = [
-    
-    // { dataField: 'id', text: 'ID', classes: 'text-center align-middle', headerClasses: 'text-center' },
-    { dataField: "name", text: "Name", classes: "align-middle", sort: true },
+    { dataField: "name", text: "Username", classes: "align-middle ", sort: true },
     { dataField: "email", text: "Email", classes: "align-middle ", sort: true },
-    { dataField: "phone", text: "Phone", classes: "align-middle ", sort: true },
     {
       dataField: "username",
-      text: "Type",
+      text: "Role",
       classes: "align-middle",
       formatter: showType,
       align: "center",
       headerClasses: "text-center",
+      sort: true 
     },
     {
       dataField: "id",
