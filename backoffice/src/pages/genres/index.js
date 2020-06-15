@@ -21,6 +21,7 @@ export default function Index() {
   //   const genres = genresData.genres;
   const { SearchBar } = Search;
   const MySwal = withReactContent(Swal);
+  const [err, setErr] = useState('');
   const [genres, setGenres] = useState([]);
   const [state, setState] = useState({ name: "" });
 
@@ -47,7 +48,13 @@ export default function Index() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (state != "") setGenres([{ name: state.name }, ...genres]);
+    const checkgenre = genres.filter((v) => v.name === state.name )
+    if (state != "" && checkgenre.length === 0) {
+      setGenres([{ name: state.name }, ...genres]);
+      setErr('')
+    }
+    else setErr('Duplicates')
+
     setState({ name: "" });
   };
   const handleChange = (e) => {
@@ -124,6 +131,11 @@ export default function Index() {
                     Add row and group actions
                   </span>
                 </Card.Title>
+                {err != '' ?
+                  <div class="alert alert-danger" role="alert">
+                    {err}
+                  </div>
+                  : null}
                 <Form className="mt-5" onSubmit={handleSubmit}>
                   <InputGroup
                     onChange={(e) => {
@@ -139,12 +151,12 @@ export default function Index() {
                     />
                     <InputGroup.Append>
                       <Button type="submit" variant="outline-secondary">
-                        Button
+                        Add
                       </Button>
                     </InputGroup.Append>
                   </InputGroup>
                 </Form>
-                <br />
+                <hr />
                 <SearchBar {...props.searchProps} />
                 <br />
                 <small className="text-muted">
@@ -163,7 +175,7 @@ export default function Index() {
                   filter={filterFactory()}
                   pagination={paginationFactory()}
                   defaultSorted={defaultSorted}
-                  // bordered={false}
+                // bordered={false}
                 />
               </>
             )}

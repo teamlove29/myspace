@@ -26,10 +26,9 @@ export default function AddUser(props) {
   
 
   const initialValues = {
-    firstName: "Marutthep",
-    lastName: "Rompho",
+    username: "Marutthep",
     email: "TeemMarutthep@gmail.com",
-    phone: "0965913095",
+    role:'admin'
   };
 
   const enableLoading = () => {
@@ -104,21 +103,12 @@ export default function AddUser(props) {
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const Userchema = Yup.object().shape({
-    firstName: Yup.string()
-      .min(3, "Minimum 3 symbols")
-      .max(50, "Maximum 50 symbols")
-      .required("Required"),
-    lastName: Yup.string()
-      .min(3, "Minimum 3 symbols")
+    username: Yup.string()
+      .min(6, "Minimum 6 symbols")
       .max(50, "Maximum 50 symbols")
       .required("Required"),
     email: Yup.string()
       .email("Invalid email")
-      .required("Required"),
-    phone: Yup.string()
-      .matches(phoneRegExp, "Phone number is not valid")
-      .min(10, "min 10 symbols")
-      .max(10, "Maximum 10 symbols")
       .required("Required"),
   });
 
@@ -156,90 +146,28 @@ export default function AddUser(props) {
                   {/*begin::Step 1*/}
                     <div className="row">
                       <div className="col-xl-12">
-                        <div className="form-group row mt-3">
+                        <div className="form-group row">
                           <label className="col-xl-3 col-lg-3 col-form-label">
-                            Fist Name
+                            Username
                           </label>
                           <div className="col-lg-9 col-xl-9">
                             <input
-                              className={`form-control form-control-lg ${getInputClasses(
-                                "firstName"
+                              className={`form-control  ${getInputClasses(
+                                "username"
                               )}`}
-                              name="firstName"
+                              name="username"
                               type="text"
-                              placeholder="FirstName"
-                              {...formik.getFieldProps("firstName")}
+                              placeholder="username"
+                              {...formik.getFieldProps("username")}
                             />
-                            {formik.touched.firstName &&
-                            formik.errors.firstName ? (
+                            {formik.touched.username &&
+                            formik.errors.username ? (
                               <div className="fv-plugins-message-container">
                                 <div className="fv-help-block">
-                                  {formik.errors.firstName}
+                                  {formik.errors.username}
                                 </div>
                               </div>
                             ) : null}
-                          </div>
-                        </div>
-                        <div className="form-group row">
-                          <label className="col-xl-3 col-lg-3 col-form-label">
-                            Last Name
-                          </label>
-                          <div className="col-lg-9 col-xl-9">
-                            <input
-                              className={`form-control form-control-lg  ${getInputClasses(
-                                "lastName"
-                              )}`}
-                              name="lastName"
-                              type="text"
-                              placeholder="LastName"
-                              {...formik.getFieldProps("lastName")}
-                            />
-                            {formik.touched.lastName &&
-                            formik.errors.lastName ? (
-                              <div className="fv-plugins-message-container">
-                                <div className="fv-help-block">
-                                  {formik.errors.lastName}
-                                </div>
-                              </div>
-                            ) : null}
-                            <span className="form-text text-muted">
-                              If you want your invoices addressed to a company.
-                              Leave blank to use your full name.
-                            </span>
-                          </div>
-                        </div>
-                        <div className="form-group row">
-                          <label className="col-xl-3 col-lg-3 col-form-label">
-                            Contact Phone
-                          </label>
-                          <div className="col-lg-9 col-xl-9">
-                            <div className="input-group input-group-lg ">
-                              <div className="input-group-prepend">
-                                <span className="input-group-text">
-                                  <i className="la la-phone" />
-                                </span>
-                              </div>
-                              <input
-                                name="tel"
-                                type="tel"
-                                className={`form-control form-control-lg  ${getInputClasses(
-                                  "phone"
-                                )}`}
-                                name="phone"
-                                placeholder="Phone"
-                                {...formik.getFieldProps("phone")}
-                              />
-                              {formik.touched.phone && formik.errors.phone ? (
-                                <div className="fv-plugins-message-container">
-                                  <div className="fv-help-block">
-                                    {formik.errors.phone}
-                                  </div>
-                                </div>
-                              ) : null}
-                            </div>
-                            <span className="form-text text-muted">
-                              We'll never share your email with anyone else.
-                            </span>
                           </div>
                         </div>
                         <div className="form-group row">
@@ -247,19 +175,12 @@ export default function AddUser(props) {
                             Email Address
                           </label>
                           <div className="col-lg-9 col-xl-9">
-                            <div className="input-group input-group-lg ">
-                              <div className="input-group-prepend">
-                                <span className="input-group-text">
-                                  <i className="la la-at" />
-                                </span>
-                              </div>
                               <input
                                 name="email"
                                 type="email"
-                                className={`form-control form-control-lg  ${getInputClasses(
+                                className={`form-control  ${getInputClasses(
                                   "email"
                                 )}`}
-                                name="email"
                                 readOnly="true"
                                 placeholder="Email"
                                 {...formik.getFieldProps("email")}
@@ -271,9 +192,40 @@ export default function AddUser(props) {
                                   </div>
                                 </div>
                               ) : null}
-                            </div>
                           </div>
                         </div>
+
+                        <div className="form-group row">
+                          <label className="col-xl-3 col-lg-3 col-form-label">
+                            Reset Password
+                          </label>
+                          <div className="col-lg-9 col-xl-9">
+                              <button className="btn btn-sm btn-primary">Reset Password</button>
+                          </div>
+                        </div>
+                        <div className="form-group row">
+                      <label className="col-xl-3 col-lg-3 col-form-label">
+                        Role
+                          </label>
+                      <div className="col-lg-9 col-xl-9">
+                        <select
+                          name="role"
+                          class={`form-control  ${getInputClasses(
+                            "role"
+                          )}`}
+                          {...formik.getFieldProps("role")} >
+                          <option value="admin">Admin</option>
+                          <option value="editor">Editor</option>
+                        </select>
+                        {formik.touched.role && formik.errors.role ? (
+                          <div className="fv-plugins-message-container">
+                            <div className="fv-help-block">
+                              {formik.errors.role}
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
                       </div>
                     </div>
                   {/*end::Step 1*/}

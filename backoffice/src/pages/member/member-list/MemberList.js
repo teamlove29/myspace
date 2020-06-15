@@ -166,8 +166,13 @@ export default function MemberList() {
           >
             {(props) => (
               <>
-                <h3>Member List</h3>
-                <hr />
+                <Card.Title>
+                  <h3>Member List</h3>
+                  <span className="d-block text-muted pt-2 font-size-sm">
+                    Add row and group actions
+                  </span>
+                  <hr />
+                </Card.Title>
                 <SearchBar {...props.searchProps} />
                 <br />
                 <small className="text-muted">

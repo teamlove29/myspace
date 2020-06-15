@@ -20,21 +20,20 @@ export default function AddUser(props) {
     setTimeout(() => {
       history.goBack()
     }, 100)
-};
+  };
   const handleShow = () => setShow(true);
 
 
-useEffect(() => {
-  handleShow()
-}, [props.show])
+  useEffect(() => {
+    handleShow()
+  }, [props.show])
 
   const initialValues = {
-    firstName: "",
-    lastName: "",
+    username: "",
     email: "",
     password: "",
     passwordConfirmation: "",
-    phone: "",
+    role: "admin"
   };
 
   const enableLoading = () => {
@@ -55,11 +54,9 @@ useEffect(() => {
   };
 
   const handleedit = (value, { setStatus, setSubmitting }) => {
+    const username = value.username;
     const email = value.email;
     const password = value.password;
-    const phone = value.phone;
-    const firstName = value.firstName;
-    const lastName = value.lastName;
     // Axios.post('http://localhost:5001/myspace-dev-1ae9e/us-central1/backoffice-user/newUser'
     // ,{email,password,phone,firstName,lastName})
     // .then((res) => {
@@ -90,14 +87,8 @@ useEffect(() => {
     // })
   };
 
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
   const Userchema = Yup.object().shape({
-    firstName: Yup.string()
-      .min(3, "Minimum 3 symbols")
-      .max(50, "Maximum 50 symbols")
-      .required("Required"),
-    lastName: Yup.string()
+    username: Yup.string()
       .min(3, "Minimum 3 symbols")
       .max(50, "Maximum 50 symbols")
       .required("Required"),
@@ -112,10 +103,7 @@ useEffect(() => {
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .min(6, "Minimum 6 symbols")
       .required("Required"),
-    phone: Yup.string()
-      .matches(phoneRegExp, "Phone number is not valid")
-      .min(10, "min 10 symbols")
-      .max(10, "Maximum 10 symbols")
+    role: Yup.string()
       .required("Required"),
   });
 
@@ -154,169 +142,102 @@ useEffect(() => {
               ) : null}
               <form onSubmit={formik.handleSubmit} className="form">
                 {/*begin::Step 1*/}
-                  <div className="row">
-                    <div className="col-xl-12">
-                      <div className="form-group row mt-3">
-                        <label className="col-xl-3 col-lg-3 col-form-label">
-                          Fist Name
-                        </label>
-                        <div className="col-lg-9 col-xl-9">
-                          <input
-                            className={`form-control form-control-lg  ${getInputClasses(
-                              "firstName"
-                            )}`}
-                            name="firstName"
-                            type="text"
-                            placeholder="FirstName"
-                            {...formik.getFieldProps("firstName")}
-                          />
-                          {formik.touched.firstName &&
-                          formik.errors.firstName ? (
-                            <div className="fv-plugins-message-container">
-                              <div className="fv-help-block">
-                                {formik.errors.firstName}
-                              </div>
-                            </div>
-                          ) : null}
-                        </div>
-                      </div>
-                      <div className="form-group row">
-                        <label className="col-xl-3 col-lg-3 col-form-label">
-                          Last Name
-                        </label>
-                        <div className="col-lg-9 col-xl-9">
-                          <input
-                            className={`form-control form-control-lg  ${getInputClasses(
-                              "lastName"
-                            )}`}
-                            name="lastName"
-                            type="text"
-                            placeholder="LastName"
-                            {...formik.getFieldProps("lastName")}
-                          />
-                          {formik.touched.lastName && formik.errors.lastName ? (
-                            <div className="fv-plugins-message-container">
-                              <div className="fv-help-block">
-                                {formik.errors.lastName}
-                              </div>
-                            </div>
-                          ) : null}
-                          <span className="form-text text-muted">
-                            If you want your invoices addressed to a company.
-                            Leave blank to use your full name.
-                          </span>
-                        </div>
-                      </div>
-                      <div className="form-group row">
-                        <label className="col-xl-3 col-lg-3 col-form-label">
-                          Contact Phone
-                        </label>
-                        <div className="col-lg-9 col-xl-9">
-                          <div className="input-group input-group-lg ">
-                            <div className="input-group-prepend">
-                              <span className="input-group-text">
-                                <i className="la la-phone" />
-                              </span>
-                            </div>
-                            <input
-                              name="tel"
-                              type="tel"
-                              className={`form-control form-control-lg  ${getInputClasses(
-                                "phone"
-                              )}`}
-                              name="phone"
-                              placeholder="Phone"
-                              {...formik.getFieldProps("phone")}
-                            />
-                          </div>
-                          {formik.touched.phone && formik.errors.phone ? (
-                            <div className="fv-plugins-message-container">
-                              <div className="fv-help-block">
-                                {formik.errors.phone}
-                              </div>
-                            </div>
-                          ) : null}
-                          <span className="form-text text-muted">
-                            We'll never share your email with anyone else.
-                          </span>
-                        </div>
-                      </div>
-                      <div className="form-group row">
-                        <label className="col-xl-3 col-lg-3 col-form-label">
-                          Email Address
-                        </label>
-                        <div className="col-lg-9 col-xl-9">
-                          <div className="input-group input-group-lg ">
-                            <div className="input-group-prepend">
-                              <span className="input-group-text">
-                                <i className="la la-at" />
-                              </span>
-                            </div>
-                            <input
-                              name="email"
-                              type="email"
-                              className={`form-control form-control-lg  ${getInputClasses(
-                                "email"
-                              )}`}
-                              name="email"
-                              placeholder="Email"
-                              {...formik.getFieldProps("email")}
-                            />
-                          </div>
-                          {formik.touched.email && formik.errors.email ? (
-                            <div className="fv-plugins-message-container">
-                              <div className="fv-help-block">
-                                {formik.errors.email}
-                              </div>
-                            </div>
-                          ) : null}
-                        </div>
-                      </div>
+                <div className="row">
+                  <div className="col-xl-12">
 
-                      <div className="form-group row">
-                        <label className="col-xl-3 col-lg-3 col-form-label">
-                          Password
+                    <div className="form-group row">
+                      <label className="col-xl-3 col-lg-3 col-form-label">
+                        Username
                         </label>
-                        <div className="col-lg-9 col-xl-9">
-                          {/* <div className="input-group input-group-lg input-group-solid"> */}
-                          <input
-                            name="password"
-                            type="password"
-                            className={`form-control form-control-lg  ${getInputClasses(
-                              "password"
-                            )}`}
-                            name="password"
-                            placeholder="password"
-                            {...formik.getFieldProps("password")}
-                          />
-                          {formik.touched.password && formik.errors.password ? (
-                            <div className="fv-plugins-message-container">
-                              <div className="fv-help-block">
-                                {formik.errors.password}
-                              </div>
+                      <div className="col-lg-9 col-xl-9">
+                        <input
+                          className={`form-control  ${getInputClasses(
+                            "username"
+                          )}`}
+                          name="username"
+                          type="text"
+                          placeholder="username"
+                          {...formik.getFieldProps("username")}
+                        />
+                        {formik.touched.username && formik.errors.username ? (
+                          <div className="fv-plugins-message-container">
+                            <div className="fv-help-block">
+                              {formik.errors.username}
                             </div>
-                          ) : null}
-                          {/* </div> */}
-                        </div>
+                          </div>
+                        ) : null}
                       </div>
+                    </div>
 
-                      <div className="form-group row">
-                        <label className="col-xl-3 col-lg-3 col-form-label">
-                          passwordConfirmation
+                    <div className="form-group row">
+                      <label className="col-xl-3 col-lg-3 col-form-label">
+                        Email Address
                         </label>
-                        <div className="col-lg-9 col-xl-9">
-                          {/* <div className="input-group input-group-lg input-group-solid"> */}
-                          <input
-                            name="passwordConfirmation"
-                            type="password"
-                            className={`form-control form-control-lg  ${getInputClasses(
-                              "passwordConfirmation"
-                            )}`}
-                            name="passwordConfirmation"
-                            placeholder="passwordConfirmation"
-                            {...formik.getFieldProps("passwordConfirmation")}
-                          />
-                          {formik.touched.passwordConfirmation &&
+                      <div className="col-lg-9 col-xl-9">
+                        <input
+                          name="email"
+                          type="email"
+                          className={`form-control  ${getInputClasses(
+                            "email"
+                          )}`}
+                          name="email"
+                          placeholder="Email"
+                          {...formik.getFieldProps("email")}
+                        />
+                        {formik.touched.email && formik.errors.email ? (
+                          <div className="fv-plugins-message-container">
+                            <div className="fv-help-block">
+                              {formik.errors.email}
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    <div className="form-group row">
+                      <label className="col-xl-3 col-lg-3 col-form-label">
+                        Password
+                        </label>
+                      <div className="col-lg-9 col-xl-9">
+                        {/* <div className="input-group input-group-lg input-group-solid"> */}
+                        <input
+                          name="password"
+                          type="password"
+                          className={`form-control  ${getInputClasses(
+                            "password"
+                          )}`}
+                          name="password"
+                          placeholder="password"
+                          {...formik.getFieldProps("password")}
+                        />
+                        {formik.touched.password && formik.errors.password ? (
+                          <div className="fv-plugins-message-container">
+                            <div className="fv-help-block">
+                              {formik.errors.password}
+                            </div>
+                          </div>
+                        ) : null}
+                        {/* </div> */}
+                      </div>
+                    </div>
+
+                    <div className="form-group row">
+                      <label className="col-xl-3 col-lg-3 col-form-label">
+                        PasswordConfirmation
+                        </label>
+                      <div className="col-lg-9 col-xl-9">
+                        {/* <div className="input-group input-group-lg input-group-solid"> */}
+                        <input
+                          name="passwordConfirmation"
+                          type="password"
+                          className={`form-control  ${getInputClasses(
+                            "passwordConfirmation"
+                          )}`}
+                          name="passwordConfirmation"
+                          placeholder="passwordConfirmation"
+                          {...formik.getFieldProps("passwordConfirmation")}
+                        />
+                        {formik.touched.passwordConfirmation &&
                           formik.errors.passwordConfirmation ? (
                             <div className="fv-plugins-message-container">
                               <div className="fv-help-block">
@@ -324,11 +245,35 @@ useEffect(() => {
                               </div>
                             </div>
                           ) : null}
-                          {/* </div> */}
-                        </div>
+                        {/* </div> */}
+                      </div>
+                    </div>
+
+                    <div className="form-group row">
+                      <label className="col-xl-3 col-lg-3 col-form-label">
+                        Role
+                          </label>
+                      <div className="col-lg-9 col-xl-9">
+                        <select
+                          name="role"
+                          class={`form-control  ${getInputClasses(
+                            "role"
+                          )}`}
+                          {...formik.getFieldProps("role")} >
+                          <option value="admin">Admin</option>
+                          <option value="editor">Editor</option>
+                        </select>
+                        {formik.touched.role && formik.errors.role ? (
+                          <div className="fv-plugins-message-container">
+                            <div className="fv-help-block">
+                              {formik.errors.role}
+                            </div>
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                   </div>
+                </div>
                 {/*end::Step 1*/}
               </form>
               {/*end::Form Wizard*/}
@@ -337,7 +282,7 @@ useEffect(() => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={() => handleClose() }
+            onClick={() => handleClose()}
             variant="secondary"
             className="btn btn-secondary font-weight-bold px-9 py-4 mr-3"
           >
