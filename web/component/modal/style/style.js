@@ -16,4 +16,20 @@ color : white;
 margin-top: 3rem;
 padding-left: 2rem;
 padding-right: 2rem;
+transition: 0.5s;
+&:hover {
+    background: red;
+  }
+  &:disabled {
+    background: #F5F5F5;
+  }
+
 `
+export default function StyleJSX({children}) {
+    return(
+        <>
+        {children}
+        
+        </>
+    )
+}
