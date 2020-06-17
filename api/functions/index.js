@@ -8,3 +8,4 @@ app.use(cors({ origin: true }));
 app.use(bodyparser.urlencoded({ extended: false }));
 
 exports.Add = require("./auth/AddDb");
+exports.backoffice = require("./apibackoffice/user");

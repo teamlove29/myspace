@@ -7,11 +7,10 @@ import paginationFactory, {
 import { useHistory } from "react-router-dom";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import filterFactory, { selectFilter } from "react-bootstrap-table2-filter";
-import overlayFactory from "react-bootstrap-table2-overlay";
 import axios from "axios";
-import { Table, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Pagination } from "../../../_metronic/_partials/controls";
-import members from "../../../member.json";
+import members from "../../../data/member/member.json";
 
 export default function MemberList() {
   const [member, setMember] = useState([]);
@@ -23,10 +22,12 @@ export default function MemberList() {
   //   axios
   //     .get("https://jsonplaceholder.typicode.com/users")
   //     .then((response) => {
-  //       setMember(response.data);
+  //       console.log(response)
+  //       // setMember(response.data);
   //     })
   //     .catch((err) => {
-  //       setErr({ err: err });
+  //       console.log(err)
+  //       setErr(err);
   //     });
   // }, []);
 
@@ -165,8 +166,13 @@ export default function MemberList() {
           >
             {(props) => (
               <>
-                <h3>Member List</h3>
-                <hr />
+                <Card.Title>
+                  <h3>Member List</h3>
+                  <span className="d-block text-muted pt-2 font-size-sm">
+                    Add row and group actions
+                  </span>
+                  <hr />
+                </Card.Title>
                 <SearchBar {...props.searchProps} />
                 <br />
                 <small className="text-muted">

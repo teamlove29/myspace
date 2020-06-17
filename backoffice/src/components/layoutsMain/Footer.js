@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div>
+    <>
 
       {/*begin::Footer*/}
       <div className="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
@@ -26,7 +26,7 @@ function Footer() {
       </div>
       {/*end::Footer*/}
 
-    </div>
+    </>
   )
 }
 

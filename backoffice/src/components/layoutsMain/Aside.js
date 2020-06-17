@@ -4,7 +4,6 @@ import { useLocation } from "react-router";
 import { toAbsoluteUrl, checkIsActive } from "../../_helpers";
 
 function Aside() {
-  console.log(toAbsoluteUrl('/assets/media/logos/logo-light.png'))
   const location = useLocation();
   const getMenuItemActive = (url) => {
     return checkIsActive(location, url)
@@ -19,7 +18,7 @@ function Aside() {
         <div className="brand flex-column-auto" id="kt_brand">
           {/*begin::Logo*/}
           <a href="/" className="brand-logo">
-          
+
             <img alt="Logo" src={toAbsoluteUrl("/assets/media/logos/logo-light.png")} />
           </a>
           {/*end::Logo*/}
@@ -67,41 +66,40 @@ function Aside() {
               <li className={`menu-item ${getMenuItemActive("/member")}`} aria-haspopup="true">
                 <NavLink to="/member" className="menu-link">
                   <span className="svg-icon menu-icon">
-                    {/*begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg*/}
                     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                        <polygon points="0 0 24 0 24 24 0 24" />
-                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
-                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fillRule="nonzero" />
+                        <rect x={0} y={0} width={24} height={24} />
+                        <path d="M3.5,21 L20.5,21 C21.3284271,21 22,20.3284271 22,19.5 L22,8.5 C22,7.67157288 21.3284271,7 20.5,7 L10,7 L7.43933983,4.43933983 C7.15803526,4.15803526 6.77650439,4 6.37867966,4 L3.5,4 C2.67157288,4 2,4.67157288 2,5.5 L2,19.5 C2,20.3284271 2.67157288,21 3.5,21 Z" fill="#000000" opacity="0.3" />
+                        <path d="M12,13 C10.8954305,13 10,12.1045695 10,11 C10,9.8954305 10.8954305,9 12,9 C13.1045695,9 14,9.8954305 14,11 C14,12.1045695 13.1045695,13 12,13 Z" fill="#000000" opacity="0.3" />
+                        <path d="M7.00036205,18.4995035 C7.21569918,15.5165724 9.36772908,14 11.9907452,14 C14.6506758,14 16.8360465,15.4332455 16.9988413,18.5 C17.0053266,18.6221713 16.9988413,19 16.5815,19 C14.5228466,19 11.463736,19 7.4041679,19 C7.26484009,19 6.98863236,18.6619875 7.00036205,18.4995035 Z" fill="#000000" opacity="0.3" />
                       </g>
                     </svg>
-                    {/*end::Svg Icon*/}
                   </span>
+
+
 
                   <span className="menu-text">Members</span>
                 </NavLink>
               </li>
 
-
-              {/* <li className="menu-section">
-                <h4 className="menu-text">Custom</h4>
+              {/* 
+              <li className="menu-section">
+                <h4 className="menu-text">Settings</h4>
                 <i className="menu-icon ki ki-bold-more-hor icon-md" />
               </li> */}
-              
-              {/* <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+              {/*               
+              <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" className="menu-link menu-toggle">
-                  <span className="svg-icon menu-icon"> */}
-                    {/*begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg*/}
-                    {/* <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
                         <rect x={0} y={0} width={24} height={24} />
                         <rect fill="#000000" x={4} y={4} width={7} height={7} rx="1.5" />
                         <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3" />
                       </g>
-                    </svg> */}
-                    {/*end::Svg Icon*/}
-                  {/* </span>
-                  <span className="menu-text">Applications</span>
+                    </svg>
+                  </span>
+                  <span className="menu-text">Settings</span>
                   <i className="menu-arrow" />
                 </a>
                 <div className="menu-submenu">
@@ -109,10 +107,10 @@ function Aside() {
                   <ul className="menu-subnav">
                     <li className="menu-item menu-item-parent" aria-haspopup="true">
                       <span className="menu-link">
-                        <span className="menu-text">Applications</span>
+                        <span className="menu-text">Settings</span>
                       </span>
-                    </li>
-                    <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    </li> */}
+              {/* <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                       <a href="javascript:;" className="menu-link menu-toggle">
                         <i className="menu-bullet menu-bullet-line">
                           <span />
@@ -546,21 +544,77 @@ function Aside() {
                           </li>
                         </ul>
                       </div>
-                    </li>
-                    <li className="menu-item" aria-haspopup="true">
+                    </li> */}
+              {/* <li className="menu-item" aria-haspopup="true">
                       <a href="custom/apps/inbox.html" className="menu-link">
                         <i className="menu-bullet menu-bullet-line">
                           <span />
                         </i>
-                        <span className="menu-text">Inbox</span>
-                        <span className="menu-label">
-                          <span className="label label-danger label-inline">new</span>
-                        </span>
+                        <span className="menu-text">ManagerUser</span>
                       </a>
                     </li>
                   </ul>
                 </div>
               </li> */}
+
+              <li className="menu-section">
+                <h4 className="menu-text">System</h4>
+                <i className="menu-icon ki ki-bold-more-hor icon-md" />
+              </li>
+
+
+
+
+              <li className={`menu-item ${getMenuItemActive("/manager/user")}`} aria-haspopup="true">
+                <NavLink to="/manager/user" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
+                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fillRule="nonzero" />
+                      </g>
+                    </svg>
+                  </span>
+                  <span className="menu-text">User</span>
+                </NavLink>
+              </li>
+
+
+              <li className={`menu-item ${getMenuItemActive("/manager/genre")}`} aria-haspopup="true">
+                <NavLink to="/manager/genre" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
+                        <path d="M9.83333333,17 C8.82081129,17 8,16.3159906 8,15.4722222 C8,14.6284539 8.82081129,13.9444444 9.83333333,13.9444444 C10.0476105,13.9444444 10.2533018,13.9750785 10.4444444,14.0313779 L10.4444444,9.79160113 C10.4444444,9.47824076 10.6398662,9.20124044 10.9268804,9.10777287 L14.4407693,8.0331119 C14.8834716,7.88894376 15.3333333,8.23360047 15.3333333,8.71694016 L15.3333333,9.79160113 C15.3333333,10.1498215 14.9979332,10.3786009 14.7222222,10.4444444 C14.3255297,10.53918 13.3070112,10.7428837 11.6666667,11.0555556 L11.6666667,15.5035214 C11.6666667,15.5583862 11.6622174,15.6091837 11.6535404,15.6559869 C11.5446237,16.4131089 10.771224,17 9.83333333,17 Z" fill="#000000" />
+                      </g>
+                    </svg>
+                  </span>
+                  <span className="menu-text">Genre</span>
+                </NavLink>
+              </li>
+
+
+
+              <li className={`menu-item ${getMenuItemActive("/manager/song")}`} aria-haspopup="true">
+                <NavLink to="/manager/song" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <rect x={0} y={0} width={24} height={24} />
+                        <rect fill="#000000" opacity="0.3" x={2} y={9} width={20} height={13} rx={2} />
+                        <rect fill="#000000" opacity="0.3" x={5} y={5} width={14} height={2} rx="0.5" />
+                        <rect fill="#000000" opacity="0.3" x={7} y={1} width={10} height={2} rx="0.5" />
+                        <path d="M10.8333333,20 C9.82081129,20 9,19.3159906 9,18.4722222 C9,17.6284539 9.82081129,16.9444444 10.8333333,16.9444444 C11.0476105,16.9444444 11.2533018,16.9750785 11.4444444,17.0313779 L11.4444444,12.7916011 C11.4444444,12.4782408 11.6398662,12.2012404 11.9268804,12.1077729 L15.4407693,11.0331119 C15.8834716,10.8889438 16.3333333,11.2336005 16.3333333,11.7169402 L16.3333333,12.7916011 C16.3333333,13.1498215 15.9979332,13.3786009 15.7222222,13.4444444 C15.3255297,13.53918 14.3070112,13.7428837 12.6666667,14.0555556 L12.6666667,18.5035214 C12.6666667,18.5583862 12.6622174,18.6091837 12.6535404,18.6559869 C12.5446237,19.4131089 11.771224,20 10.8333333,20 Z" fill="#000000" />
+                      </g>
+                    </svg>
+                  </span>
+
+                  <span className="menu-text">Song</span>
+                </NavLink>
+              </li>
 
               <li className="menu-section">
                 <h4 className="menu-text">Example</h4>
@@ -607,8 +661,7 @@ function Aside() {
       <div id="kt_quick_user" className="offcanvas offcanvas-right p-10">
         {/*begin::Header*/}
         <div className="offcanvas-header d-flex align-items-center justify-content-between pb-5">
-          <h3 className="font-weight-bold m-0">User Profile
-        <small className="text-muted font-size-sm ml-2">12 messages</small></h3>
+          <h3 className="font-weight-bold m-0">User Profile</h3>
           <a href="#" className="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
             <i className="ki ki-close icon-xs text-muted" />
           </a>
@@ -619,7 +672,7 @@ function Aside() {
           {/*begin::Header*/}
           <div className="d-flex align-items-center mt-5">
             <div className="symbol symbol-100 mr-5">
-              <div className="symbol-label" style={{ backgroundImage: 'url("assets/media/users/300_21.jpg")' }} />
+              <div className="symbol-label" style={{ backgroundImage: 'url("/assets/media/users/300_21.jpg")' }} />
               <i className="symbol-badge bg-success" />
             </div>
             <div className="d-flex flex-column">
@@ -674,85 +727,7 @@ function Aside() {
                 </div>
                 <div className="navi-text">
                   <div className="font-weight-bold">My Profile</div>
-                  <div className="text-muted">Account settings and more
-                <span className="label label-light-danger label-inline font-weight-bold">update</span></div>
-                </div>
-              </div>
-            </a>
-            {/*end:Item*/}
-            {/*begin::Item*/}
-            <a href="custom/apps/user/profile-3.html" className="navi-item">
-              <div className="navi-link">
-                <div className="symbol symbol-40 bg-light mr-3">
-                  <div className="symbol-label">
-                    <span className="svg-icon svg-icon-md svg-icon-warning">
-                      {/*begin::Svg Icon | path:assets/media/svg/icons/Shopping/Chart-bar1.svg*/}
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                          <rect x={0} y={0} width={24} height={24} />
-                          <rect fill="#000000" opacity="0.3" x={12} y={4} width={3} height={13} rx="1.5" />
-                          <rect fill="#000000" opacity="0.3" x={7} y={9} width={3} height={8} rx="1.5" />
-                          <path d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z" fill="#000000" fillRule="nonzero" />
-                          <rect fill="#000000" opacity="0.3" x={17} y={11} width={3} height={6} rx="1.5" />
-                        </g>
-                      </svg>
-                      {/*end::Svg Icon*/}
-                    </span>
-                  </div>
-                </div>
-                <div className="navi-text">
-                  <div className="font-weight-bold">My Messages</div>
-                  <div className="text-muted">Inbox and tasks</div>
-                </div>
-              </div>
-            </a>
-            {/*end:Item*/}
-            {/*begin::Item*/}
-            <a href="custom/apps/user/profile-2.html" className="navi-item">
-              <div className="navi-link">
-                <div className="symbol symbol-40 bg-light mr-3">
-                  <div className="symbol-label">
-                    <span className="svg-icon svg-icon-md svg-icon-danger">
-                      {/*begin::Svg Icon | path:assets/media/svg/icons/Files/Selected-file.svg*/}
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                          <polygon points="0 0 24 0 24 24 0 24" />
-                          <path d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
-                          <path d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z" fill="#000000" fillRule="nonzero" />
-                        </g>
-                      </svg>
-                      {/*end::Svg Icon*/}
-                    </span>
-                  </div>
-                </div>
-                <div className="navi-text">
-                  <div className="font-weight-bold">My Activities</div>
-                  <div className="text-muted">Logs and notifications</div>
-                </div>
-              </div>
-            </a>
-            {/*end:Item*/}
-            {/*begin::Item*/}
-            <a href="custom/apps/userprofile-1/overview.html" className="navi-item">
-              <div className="navi-link">
-                <div className="symbol symbol-40 bg-light mr-3">
-                  <div className="symbol-label">
-                    <span className="svg-icon svg-icon-md svg-icon-primary">
-                      {/*begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg*/}
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
-                          <rect x={0} y={0} width={24} height={24} />
-                          <path d="M6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,12 C19,12.5522847 18.5522847,13 18,13 L6,13 C5.44771525,13 5,12.5522847 5,12 L5,3 C5,2.44771525 5.44771525,2 6,2 Z M7.5,5 C7.22385763,5 7,5.22385763 7,5.5 C7,5.77614237 7.22385763,6 7.5,6 L13.5,6 C13.7761424,6 14,5.77614237 14,5.5 C14,5.22385763 13.7761424,5 13.5,5 L7.5,5 Z M7.5,7 C7.22385763,7 7,7.22385763 7,7.5 C7,7.77614237 7.22385763,8 7.5,8 L10.5,8 C10.7761424,8 11,7.77614237 11,7.5 C11,7.22385763 10.7761424,7 10.5,7 L7.5,7 Z" fill="#000000" opacity="0.3" />
-                          <path d="M3.79274528,6.57253826 L12,12.5 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 Z" fill="#000000" />
-                        </g>
-                      </svg>
-                      {/*end::Svg Icon*/}
-                    </span>
-                  </div>
-                </div>
-                <div className="navi-text">
-                  <div className="font-weight-bold">My Tasks</div>
-                  <div className="text-muted">latest tasks and projects</div>
+                  <div className="text-muted">Account settings and more</div>
                 </div>
               </div>
             </a>

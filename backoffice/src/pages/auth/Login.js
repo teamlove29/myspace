@@ -1,18 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
+import firebase from "../../config/config";
 function Login() {
-
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const initialValues = {
     // email: "",
     // password: "",
-    email: "admin@demo.com",
-    password: "demo",
+    email: "admin@admin.com",
+    password: "adminadmin",
   };
 
   const enableLoading = () => {
@@ -38,14 +37,12 @@ function Login() {
       .email("Invalid email")
       .min(3, "Minimum 3 symbols")
       .max(50, "Maximum 50 symbols")
-      .required('Required'),
+      .required("Required"),
     password: Yup.string()
       .min(3, "Minimum 3 symbols")
       .max(50, "Maximum 50 symbols")
-      .required('Required'),
+      .required("Required"),
   });
-
-
 
   const formik = useFormik({
     initialValues,
@@ -53,46 +50,38 @@ function Login() {
     onSubmit: (value, { setStatus, setSubmitting }) => {
       enableLoading();
       setTimeout(() => {
-        if (value.email === 'admin@demo.com' && value.password === 'demo') {
-          disableLoading();
-          localStorage.setItem('access-token-test', 'true');
-          window.location.href = "/dashboard";
-        } else {
-          disableLoading()
-          setSubmitting(false);
-          setStatus(
-            'The login detail is incorrect'
-          );
-        }
-        // submit to backend 
-        // login(value.email,value.password)
-        // .then( ({data: { accessToken }}) => {
-        //   disableLoading();
-        //   console.log('Sucess')
-        // }).catch(() => {
-        //   disableLoading();
-        //   setSubmitting(false);
-        //   console.log('Noo')
-        // })
-      }, 1000)
-
-    }
-  })
-
-
-
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(value.email, value.password)
+          .then((values) => {
+            disableLoading();
+            window.location.href = "/dashboard";
+            // history.push('/dashboard')
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            formik.handleReset()
+            disableLoading();
+            setSubmitting(false);
+            setStatus(errorMessage);
+         
+          });
+      }, 1000);
+    },
+  });
 
   return (
-    <div className="login-form login-signin" >
+    <div className="login-form login-signin">
       {/* begin::Head */}
       <div className="text-center mb-10 mb-lg-20">
         <h3 className="font-size-h1">
           {/* <FormattedMessage id="AUTH.LOGIN.TITLE" /> */}
-            Login Account
-          </h3>
+          Login Account
+        </h3>
         <p className="text-muted font-weight-bold">
           Enter your email or username and password
-          </p>
+        </p>
       </div>
       {/* end::Head */}
 
@@ -147,7 +136,7 @@ function Login() {
             id="kt_login_forgot"
           >
             Forgot Password
-              {/* <FormattedMessage id="AUTH.GENERAL.FORGOT_BUTTON" /> */}
+            {/* <FormattedMessage id="AUTH.GENERAL.FORGOT_BUTTON" /> */}
           </Link>
           <button
             id="kt_login_signin_submit"
@@ -161,9 +150,8 @@ function Login() {
         </div>
       </form>
       {/*end::Form*/}
-      
     </div>
-  )
+  );
 }
 
-export default (Login)
+export default Login;

@@ -19,12 +19,12 @@ import {
   MetronicSubheaderProvider,
 } from "./_metronic/layout";
 import { MetronicI18nProvider } from "./_metronic/i18n";
-
+import  {StoreContextProvider}  from './store/StoreContextProvider';
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import "./index.scss"; // Standard version
-
 ReactDOM.render(
+  <StoreContextProvider>
   <MetronicI18nProvider>
     <MetronicLayoutProvider>
       <MetronicSubheaderProvider>
@@ -37,7 +37,8 @@ ReactDOM.render(
         </MetronicSplashScreenProvider>
       </MetronicSubheaderProvider>
     </MetronicLayoutProvider>
-  </MetronicI18nProvider>,
+  </MetronicI18nProvider>
+  </StoreContextProvider>,
   document.getElementById("root")
 );
 
