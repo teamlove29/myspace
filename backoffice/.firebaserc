@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "myspace-dev-1ae9e"
+  },
+  "targets": {
+    "myspace-dev-1ae9e": {
+      "hosting": {
+        "backoffice": [
+          "myspace-back-dev"
+        ]
+      }
+    }
+  }
+}

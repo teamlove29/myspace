@@ -18,8 +18,14 @@
     "firebase": "^7.14.6",
     "firebase-admin": "^8.12.1",
     "firebase-functions": "^3.6.2",
+<<<<<<< HEAD
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1"
+=======
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
+>>>>>>> e27e7e36c332e795a48fb386417fd3a64f8b43e1
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"
