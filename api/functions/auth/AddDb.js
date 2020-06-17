@@ -9,6 +9,7 @@ app.use(cors({ origin: true }));
 
 app.use(bodyparser.urlencoded({ extended: false }));
 
+
 // app.get("/", (req, res) => {
 //     condb.query("SELECT * FROM member", (err, result) => {
 //         if (err) {
@@ -96,5 +97,6 @@ app.post("/addmem", (req, res) => {
 //         }
 //     });
 // });
+
 
 exports.member = functions.https.onRequest(app);
