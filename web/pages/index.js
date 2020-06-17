@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../component/Layout";
 import Auth from "../component/modal/Auth";
 import firebase from "../config/config";
-import Link from "next/link";
+
 
 const Index = () => {
   const [showSignUp, setShowSignUp] = useState(false);

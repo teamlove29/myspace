@@ -31,7 +31,9 @@ const Auth = (props) => {
   const initialValues = {
     email: "",
     password: "",
-    type: "listen",
+    type: "1",
+    // 1 member
+    // 2 artist
   };
 
   const AuthSchema = Yup.object().shape({
@@ -47,6 +49,7 @@ const Auth = (props) => {
     initialValues,
     validationSchema: AuthSchema,
     onSubmit: (value, { setStatus, setSubmitting }) => {
+      setStatus(null);
       setTimeout(() => {
         console.log("formikSignIn", value);
         handleSignIn(value, { setStatus, setSubmitting });
@@ -58,6 +61,7 @@ const Auth = (props) => {
     initialValues,
     validationSchema: AuthSchema,
     onSubmit: (value, { setStatus, setSubmitting }) => {
+      setStatus(null);
       setTimeout(() => {
         handleSignUp(value, { setStatus, setSubmitting });
       }, 1000);
@@ -70,8 +74,7 @@ const Auth = (props) => {
     onSubmit: (value, { setSubmitting }) => {
       setTimeout(() => {
         setMemberType(value.type);
-        setSubmitting(false);
-        handleType(value, { setSubmitting });
+        handleType({ setSubmitting });
       }, 1000);
     },
   });
@@ -96,11 +99,24 @@ const Auth = (props) => {
     return "";
   };
 
+  const getInputChecked = (classname) => {
+    const valueType = formikChoose.values.type;
+    if (classname === "listen" && valueType === "1")
+      return "typeround-active show-text-active";
+    if (classname === "artist" && valueType === "2")
+      return "typeround-active show-text-active";
+    return "";
+  };
+
   const handleSignIn = (value, { setStatus, setSubmitting }) => {
+// const test =  firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+// console.log(test)
+// setSubmitting(false);
     firebase
       .auth()
       .signInWithEmailAndPassword(value.email, value.password)
       .then((values) => {
+        console.log(values);
         setShowSignIn(false);
         setSubmitting(false);
       })
@@ -109,7 +125,9 @@ const Auth = (props) => {
         var errorMessage = error.message;
         formikSignIn.handleReset();
         setSubmitting(false);
-        setStatus(errorMessage);
+        if (errorCode === "auth/user-not-found") setStatus("ไม่พบผู้ใช้");
+        if (errorCode === "auth/wrong-password")
+          setStatus("รหัสผ่านไม่ถูกต้อง");
       });
   };
 
@@ -118,23 +136,30 @@ const Auth = (props) => {
     setPassword(value.password);
     setShowSignUp(false);
     setShowType(true);
-    formikSignUp.handleReset();
     setSubmitting(false);
+    formikSignUp.handleReset();
   };
 
-  const handleType = (value, { setSubmitting }) => {
+  const handleType = ({ setSubmitting }) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((values) => {
+      .then(async(values) => {
+        const uid = await values.user.uid;
+        const names = await values.user.email.substring(0, values.user.email.lastIndexOf("@"));
+        const date = new Date();
+        const timeStamp = await (date.getTime() / 1000).toFixed(0);
         handleCloseChoose();
+        setSubmitting(false);
+        formikChoose.handleReset();
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        formikSignIn.handleReset();
+        formikChoose.handleReset();
         setSubmitting(false);
-        console.log(error);
+        console.log('bad')
+        // if (errorCode === "auth/email-already-in-use") console.log("มีข้อมูลในระบบ");
       });
   };
 
@@ -229,7 +254,10 @@ const Auth = (props) => {
           >
             <Form onSubmit={formikSignIn.handleSubmit} className="mt-5">
               {formikSignIn.status ? (
-                <Alert variant="danger" className="alert-text font-weight-bold">
+                <Alert
+                  variant="danger"
+                  className="alert-text font-weight-bold text-font-13"
+                >
                   {formikSignIn.status}
                 </Alert>
               ) : null}
@@ -244,7 +272,9 @@ const Auth = (props) => {
                   {...formikSignIn.getFieldProps("email")}
                 />
                 {formikSignIn.touched.email && formikSignIn.errors.email ? (
-                  <div className="text-danger">{formikSignIn.errors.email}</div>
+                  <div className="text-danger text-font-13">
+                    {formikSignIn.errors.email}
+                  </div>
                 ) : null}
               </Form.Group>
 
@@ -260,7 +290,7 @@ const Auth = (props) => {
                 />
                 {formikSignIn.touched.password &&
                 formikSignIn.errors.password ? (
-                  <div className="text-danger">
+                  <div className="text-danger text-font-13">
                     {formikSignIn.errors.password}
                   </div>
                 ) : null}
@@ -314,7 +344,10 @@ const Auth = (props) => {
           >
             <Form onSubmit={formikSignUp.handleSubmit} className="mt-5">
               {formikSignUp.status ? (
-                <Alert variant="danger" className="alert-text font-weight-bold">
+                <Alert
+                  variant="danger"
+                  className="alert-text font-weight-bold text-font-13"
+                >
                   {formikSignUp.status}
                 </Alert>
               ) : null}
@@ -329,7 +362,9 @@ const Auth = (props) => {
                   {...formikSignUp.getFieldProps("email")}
                 />
                 {formikSignUp.touched.email && formikSignUp.errors.email ? (
-                  <div className="text-danger">{formikSignUp.errors.email}</div>
+                  <div className="text-danger text-font-13">
+                    {formikSignUp.errors.email}
+                  </div>
                 ) : null}
               </Form.Group>
 
@@ -345,7 +380,7 @@ const Auth = (props) => {
                 />
                 {formikSignUp.touched.password &&
                 formikSignUp.errors.password ? (
-                  <div className="text-danger">
+                  <div className="text-danger text-font-13">
                     {formikSignUp.errors.password}
                   </div>
                 ) : null}
@@ -391,10 +426,15 @@ const Auth = (props) => {
               className="mt-5 text-center"
             >
               <div className="row">
+                {/* begin Listen */}
                 <div className="col-lg-6">
-                  {/* begin Listen */}
                   <Form.Group className="mx-auto">
-                    <label htmlFor="listen" className="typeround showText-13">
+                    <label
+                      htmlFor="listen"
+                      className={`typeround showText-13 lable ${getInputChecked(
+                        "listen"
+                      )}`}
+                    >
                       <img
                         src="/assets/img/option/Listen to music.png"
                         alt=""
@@ -410,21 +450,24 @@ const Auth = (props) => {
                         type="radio"
                         name="type"
                         value="listen"
-                        checked={formikChoose.values.type === "listen"}
-                        onChange={() =>
-                          formikChoose.setFieldValue("type", "listen")
-                        }
+                        checked={formikChoose.values.type === "1"}
+                        onChange={() => formikChoose.setFieldValue("type", "1")}
                       />
                     </label>
-                    {/* end Listen */}
-                    {/* begin artist */}
                   </Form.Group>
                 </div>
+                {/* end Listen */}
+                {/* begin artist */}
                 <div className="col-lg-6 ">
-                  <Form.Group className="mx-auto ">
-                    <label htmlFor="artist" className="typeround showText-13">
+                  <Form.Group className="mx-auto">
+                    <label
+                      htmlFor="artist"
+                      className={`typeround showText-13 ${getInputChecked(
+                        "artist"
+                      )}`}
+                    >
                       <img src="/assets/img/option/Artits.png" alt="" />
-                      <p className="text-dark clearMargin">Artis</p>
+                      <p className="text-dark clearMargin">Artist</p>
                       <p className="text-13 pr-2 pl-2 showText">
                         Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Voluptatibus delectus debitis esse officiis. amet
@@ -435,10 +478,8 @@ const Auth = (props) => {
                         type="radio"
                         name="type"
                         value="artist"
-                        checked={formikChoose.values.type === "artist"}
-                        onChange={() =>
-                          formikChoose.setFieldValue("type", "artist")
-                        }
+                        checked={formikChoose.values.type === "2"}
+                        onChange={() => formikChoose.setFieldValue("type", "2")}
                       />
                     </label>
                   </Form.Group>
@@ -469,7 +510,6 @@ const Auth = (props) => {
         }
 
         .typeround:hover {
-          border: 2px solid red;
           border-radius: 12px;
           padding: 5rem;
           padding: 0.1rem 0.1rem 1rem 0.1rem;
@@ -494,6 +534,11 @@ const Auth = (props) => {
         .showText-13:hover .showText {
           display: block;
         }
+
+        .show-text-active .showText {
+          display: block;
+        }
+
         .text-13 {
           font-size: 11px;
           word-wrap: break-word;
@@ -504,6 +549,26 @@ const Auth = (props) => {
           margin-top: 1rem;
           margin-bottom: 0rem;
         }
+
+        .text-font-13 {
+          margin-top: 0.3rem;
+          font-size: 13px;
+        }
+
+         {/* begin Active */}
+        .typeround-active {
+          border: 2px solid red;
+          border-radius: 12px;
+          padding: 5rem;
+          padding: 0.1rem 0.1rem 1rem 0.1rem;
+        }
+
+        .typeround-active img {
+          margin-top: -1rem;
+        }
+
+         { /* end Active */ }
+         
       `}</style>
     </>
   );
