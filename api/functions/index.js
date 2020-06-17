@@ -7,4 +7,4 @@ const app = express();
 app.use(cors({ origin: true }));
 app.use(bodyparser.urlencoded({ extended: false }));
 
-exports.Add = require("./auth/AddDb");
+exports.auth = require("./auth/addDB");
