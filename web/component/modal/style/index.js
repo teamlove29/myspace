@@ -23,13 +23,13 @@ transition: 0.5s;
   &:disabled {
     background: #F5F5F5;
   }
-
 `
-export default function StyleJSX({children}) {
-    return(
-        <>
-        {children}
-        
-        </>
-    )
-}
+
+
+export const Alert = styled.div`
+background-color: #fff9fa;
+border: 1px solid rgba(255,66,79,.2);
+margin-bottom: 1rem;
+padding:0.8rem;
+font-size:1.1rem
+`

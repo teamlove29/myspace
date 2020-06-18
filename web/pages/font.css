@@ -26,7 +26,7 @@
 * {
 	margin: 0px;
 	padding: 0px;
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins-Bold';
@@ -45,6 +45,9 @@ a {
     color: orange;
 }
 
+.font-default{
+  font-size: 0.875rem;
+}
 
 .text-gray{
   font-size: 14px;

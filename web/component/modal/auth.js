@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Modal, Form, Alert } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
 import { useFormik } from "formik";
-import { Button } from "./style/style";
+import { Button, Alert } from "./style";
 import firebase from "../../config/config";
 import * as Yup from "yup";
+import Axios from "axios";
 
 const Auth = (props) => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showType, setShowType] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [memberType, setMemberType] = useState("");
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [uidSocial, setUidSocial] = useState(null);
 
   const handleCloseChoose = () => setShowType(false);
   const handleCloseSignIn = () => {
@@ -51,7 +52,6 @@ const Auth = (props) => {
     onSubmit: (value, { setStatus, setSubmitting }) => {
       setStatus(null);
       setTimeout(() => {
-        console.log("formikSignIn", value);
         handleSignIn(value, { setStatus, setSubmitting });
       }, 1000);
     },
@@ -71,10 +71,10 @@ const Auth = (props) => {
   const formikChoose = useFormik({
     initialValues,
     validationSchema: ChooseTypeSchema,
-    onSubmit: (value, { setSubmitting }) => {
+    onSubmit: (value, { setStatus, setSubmitting }) => {
+      setStatus(null);
       setTimeout(() => {
-        setMemberType(value.type);
-        handleType({ setSubmitting });
+        handleType(value);
       }, 1000);
     },
   });
@@ -109,14 +109,10 @@ const Auth = (props) => {
   };
 
   const handleSignIn = (value, { setStatus, setSubmitting }) => {
-// const test =  firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-// console.log(test)
-// setSubmitting(false);
     firebase
       .auth()
       .signInWithEmailAndPassword(value.email, value.password)
       .then((values) => {
-        console.log(values);
         setShowSignIn(false);
         setSubmitting(false);
       })
@@ -125,9 +121,11 @@ const Auth = (props) => {
         var errorMessage = error.message;
         formikSignIn.handleReset();
         setSubmitting(false);
-        if (errorCode === "auth/user-not-found") setStatus("ไม่พบผู้ใช้");
-        if (errorCode === "auth/wrong-password")
-          setStatus("รหัสผ่านไม่ถูกต้อง");
+        if (errorCode === "auth/user-not-found")
+          setStatus("User not found. Please sign up.");
+        else if (errorCode === "auth/wrong-password")
+          setStatus("Incorrect password.");
+        else setStatus(errorCode);
       });
   };
 
@@ -137,30 +135,78 @@ const Auth = (props) => {
     setShowSignUp(false);
     setShowType(true);
     setSubmitting(false);
+    setUidSocial(null)
     formikSignUp.handleReset();
   };
 
-  const handleType = ({ setSubmitting }) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(async(values) => {
-        const uid = await values.user.uid;
-        const names = await values.user.email.substring(0, values.user.email.lastIndexOf("@"));
-        const date = new Date();
-        const timeStamp = await (date.getTime() / 1000).toFixed(0);
-        handleCloseChoose();
-        setSubmitting(false);
-        formikChoose.handleReset();
+  const handleType = async (result) => {
+    const checkSiginSocial = uidSocial != null;
+    const names = await email.substring(0, email.lastIndexOf("@"));
+    const date = await new Date();
+    const DateCreate = await (date.getTime() / 1000).toFixed(0);
+    const URL =
+      "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member/addmem";
+    // result มาจาก social ถ้าไม่มีแปลว่ามาจากสมัครด้วย Email
+    if (checkSiginSocial) {
+      await Axios.post(URL, {
+        uid: uidSocial,
+        display_name: names,
+        email: email,
+        type: result.type,
+        create: DateCreate,
       })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        formikChoose.handleReset();
-        setSubmitting(false);
-        console.log('bad')
-        // if (errorCode === "auth/email-already-in-use") console.log("มีข้อมูลในระบบ");
-      });
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err);
+          formikSignUp.setStatus("สมัครสมาชิกไม่สำเร็จ");
+          setShowSignUp(true);
+        });
+      setShowType(false);
+      formikChoose.handleReset();
+      formikChoose.setSubmitting(false);
+    } else {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(async (values) => {
+          const uid = await values.user.uid;
+          await Axios.post(URL, {
+            uid: uid,
+            display_name: names,
+            email: email,
+            type: result.type,
+            create: DateCreate,
+          })
+            .then((res) => {
+              console.log(res)
+            })
+            .catch((err) => {
+              console.log(err);
+              formikSignUp.setStatus("สมัครสมาชิกไม่สำเร็จ");
+              setShowSignUp(true);
+            });
+          setShowType(false);
+          formikChoose.handleReset();
+          formikChoose.setSubmitting(false);
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          formikChoose.handleReset();
+          formikChoose.setSubmitting(false);
+          console.log(errorCode);
+          if (errorCode === "auth/email-already-in-use") {
+            formikSignIn.setStatus("You are already registered. Please login.");
+            setShowSignIn(true);
+          } else {
+            formikSignUp.setStatus(errorCode);
+            setShowSignUp(true);
+          }
+          setShowType(false);
+        });
+    }
   };
 
   var googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -172,17 +218,35 @@ const Auth = (props) => {
       display: "popup",
     });
     const result = await firebase.auth().signInWithPopup(value);
+    setShowSignIn(false);
+    setShowSignUp(false);
     try {
       // นำค่า uid ไปเช็คที่ API ถ้าไม่มี type ให้เลือกก่อนไม่งั้นก็ signoutไป
-      console.log(result.user.uid);
-      setShowSignIn(false);
-      setShowSignUp(false);
+      await Axios.post(
+        "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member",
+        {
+          uid: result.user.uid,
+        }
+      )
+        .then((res) => {
+          // ถ้ามีให้ผิดหน้าต่าง
+          console.log("เคยสมัครแล้ว");
+          
+        })
+        .catch((err) => {
+          // ถ้าไม่มีให้ไปเลือก type แล้วเพิ่มข้อมูลลง DB
+          console.log("ยังไม่เคยสมัคร");
+          setShowType(true);
+          setUidSocial(result.user.uid);
+          setEmail(result.user.email);
+        });
+    
     } catch (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
       var email = error.email;
       var credential = error.credential;
-      console.log(error);
+      console.log(errorCode);
     }
   };
 
@@ -254,11 +318,8 @@ const Auth = (props) => {
           >
             <Form onSubmit={formikSignIn.handleSubmit} className="mt-5">
               {formikSignIn.status ? (
-                <Alert
-                  variant="danger"
-                  className="alert-text font-weight-bold text-font-13"
-                >
-                  {formikSignIn.status}
+                <Alert>
+                  <small> {formikSignIn.status} </small>
                 </Alert>
               ) : null}
               <Form.Group>
@@ -344,12 +405,7 @@ const Auth = (props) => {
           >
             <Form onSubmit={formikSignUp.handleSubmit} className="mt-5">
               {formikSignUp.status ? (
-                <Alert
-                  variant="danger"
-                  className="alert-text font-weight-bold text-font-13"
-                >
-                  {formikSignUp.status}
-                </Alert>
+                <Alert>{formikSignUp.status}</Alert>
               ) : null}
               <Form.Group>
                 <Form.Label>E-mail</Form.Label>
@@ -369,7 +425,7 @@ const Auth = (props) => {
               </Form.Group>
 
               <Form.Group>
-                <Form.Label>Password</Form.Label>
+                <Form.Label c>Password</Form.Label>
                 <Form.Control
                   className={`form-control  ${getInputClassesformikSignUp(
                     "password"
@@ -431,7 +487,7 @@ const Auth = (props) => {
                   <Form.Group className="mx-auto">
                     <label
                       htmlFor="listen"
-                      className={`typeround showText-13 lable ${getInputChecked(
+                      className={`typeround showText-13  ${getInputChecked(
                         "listen"
                       )}`}
                     >
@@ -555,7 +611,9 @@ const Auth = (props) => {
           font-size: 13px;
         }
 
-         {/* begin Active */}
+         {
+          /* begin Active */
+        }
         .typeround-active {
           border: 2px solid red;
           border-radius: 12px;
@@ -567,8 +625,9 @@ const Auth = (props) => {
           margin-top: -1rem;
         }
 
-         { /* end Active */ }
-         
+         {
+          /* end Active */
+        }
       `}</style>
     </>
   );

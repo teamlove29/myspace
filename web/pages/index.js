@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../component/Layout";
 import Auth from "../component/modal/Auth";
 import firebase from "../config/config";
+import Axios from "axios";
 
 
 const Index = () => {
@@ -11,11 +12,22 @@ const Index = () => {
   const [name, setName] = useState();
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
-        setCurrentUser(true);
+        const uid = user.uid
+        await Axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member',{
+          uid:uid
+        }).then(res => {
+          console.log('มีข้อมูลใน Database')
+          setCurrentUser(true);
         setName(names);
+        }).catch(err => {
+          console.log('ไม่มีข้อมูลใน Database')
+          setCurrentUser(true);
+          // setCurrentUser(false);
+          // handleSignOut()
+        })
       } else setCurrentUser(false);
     });
   }, []);
@@ -46,8 +58,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <Auth showSignIn={showSignIn} />
-      <Auth showSignUp={showSignUp} />
+      <Auth showSignIn={showSignIn}  showSignUp={showSignUp}  />
       {currentUser === true ? (
         <div className="container mt-5 text-center">
           <button onClick={handleSignOut} className="btn btn-secondary">
@@ -62,7 +73,7 @@ const Index = () => {
             onClick={handleSignIn}
             className="btn btn-secondary btn-block"
           >
-            Sign In
+            Sign In 
           </button>
 
           <button onClick={handleSignUp} className="btn btn-primary btn-block">
@@ -73,5 +84,8 @@ const Index = () => {
     </Layout>
   );
 };
+
+
+
 
 export default Index;
