@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import { Button, Alert } from "./style";
 import firebase from "../../config/config";
 import * as Yup from "yup";
+import {ModalContext} from '../../config/context/ModalProvider'
 import Axios from "axios";
 
 const Auth = (props) => {
+  const { setUser } = useContext(ModalContext)
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showType, setShowType] = useState(false);
@@ -135,7 +137,6 @@ const Auth = (props) => {
     setShowSignUp(false);
     setShowType(true);
     setSubmitting(false);
-    setUidSocial(null)
     formikSignUp.handleReset();
   };
 
@@ -156,7 +157,7 @@ const Auth = (props) => {
         create: DateCreate,
       })
         .then((res) => {
-          console.log(res)
+          setUser('ok')
         })
         .catch((err) => {
           console.log(err);
@@ -180,7 +181,7 @@ const Auth = (props) => {
             create: DateCreate,
           })
             .then((res) => {
-              console.log(res)
+              setUser('ok')
             })
             .catch((err) => {
               console.log(err);

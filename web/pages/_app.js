@@ -1,11 +1,12 @@
 import React from "react";
 import "./font.css";
 import Axios from "axios";
+import { ModalProvider } from '../config/context/ModalProvider'
 const MyApp = ({ Component, pageProps, stars }) => {
   return (
-    <div>
+    <ModalProvider>
       <Component {...pageProps} />
-    </div>
+    </ModalProvider>
   );
 };
 
