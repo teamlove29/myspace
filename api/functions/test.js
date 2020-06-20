@@ -39,3 +39,4 @@
 //     };
 //     res.send(jwt.encode(payload, SECRET));
 // });
+// app.listen(3000);

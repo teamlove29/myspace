@@ -9,3 +9,5 @@ app.use(cors({ origin: true }));
 app.use(bodyparser.urlencoded({ extended: false }));
 
 exports.login = require("./auth/AddDb");
+
+exports.edit = require("./profile/profile");
