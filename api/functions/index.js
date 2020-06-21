@@ -1,11 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-const bodyparser = require("body-parser");
 const app = express();
+const bodyparser = require("body-parser");
+
 
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));
 app.use(bodyparser.urlencoded({ extended: false }));
 
-exports.Add = require("./auth/AddDb");
-exports.backoffice = require("./apibackoffice/user");
+exports.login = require("./auth/AddDb");
+
+exports.edit = require("./profile/profile");
