@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--begin::Fonts-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+  <!--end::Fonts-->
+
+  <!--begin::Page Custom Styles(used by this page)-->
+  <link href="%PUBLIC_URL%/assets/css/pages/login/classic/login-1.css" rel="stylesheet" type="text/css" />
+  <!--end::Page Custom Styles-->
+  <!--begin::Page Vendors Styles(used by this page)-->
+  <link href="%PUBLIC_URL%/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+    type="text/css" />
+  <!--end::Page Vendors Styles-->
+  <!--begin::Global Theme Styles(used by all pages)-->
+  <link href="%PUBLIC_URL%/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="%PUBLIC_URL%/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="%PUBLIC_URL%/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+  <!--end::Global Theme Styles-->
+  <!--begin::Layout Themes(used by all pages)-->
+  <link href="%PUBLIC_URL%/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
+  <link href="%PUBLIC_URL%/assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
+  <link href="%PUBLIC_URL%/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
+  <link href="%PUBLIC_URL%/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+  <!--end::Layout Themes-->
+  <!-- SPLASH SCREEN-->
+  <!-- <link
+      rel="stylesheet"
+      id="layout-styles-anchor"
+      href="%PUBLIC_URL%/css/splash-screen.css"
+    /> -->
+
+  <script crossorigin="anonymous"
+    src="https://polyfill.io/v3/polyfill.min.js?features=es2017%2Cdefault%2Ces2015%2Ces2016%2CIntl"></script>
+  <!-- SPLASH SCREEN-->
+  <link rel="stylesheet" id="layout-styles-anchor" href="%PUBLIC_URL%/css/splash-screen.css" />
+  <title>BackOffice</title>
+</head>
+
+<body id="kt_body"
+  class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+
+
+  <div id="root"> </div>
+  <!-- <div id="splash-screen" class="kt-splash-screen">
+    <img src="%PUBLIC_URL%/media/logos/logo-dark.png" alt="Metronic logo" />
+    <svg class="splash-spinner" viewBox="0 0 50 50">
+      <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    </svg>
+  </div>
+  <div id="layout-portal"></div> -->
+
+
+  <script>
+    var HOST_URL = "https://keenthemes.com/metronic/tools/preview";
+  </script>
+  <!--begin::Global Config(global config for global JS scripts)-->
+  <script>
+    var KTAppSettings = {
+      "breakpoints": {
+        "sm": 576,
+        "md": 768,
+        "lg": 992,
+        "xl": 1200,
+        "xxl": 1200
+      },
+      "colors": {
+        "theme": {
+          "base": {
+            "white": "#ffffff",
+            "primary": "#3699FF",
+            "secondary": "#E5EAEE",
+            "success": "#1BC5BD",
+            "info": "#8950FC",
+            "warning": "#FFA800",
+            "danger": "#F64E60",
+            "light": "#F3F6F9",
+            "dark": "#212121"
+          },
+          "light": {
+            "white": "#ffffff",
+            "primary": "#E1F0FF",
+            "secondary": "#ECF0F3",
+            "success": "#C9F7F5",
+            "info": "#EEE5FF",
+            "warning": "#FFF4DE",
+            "danger": "#FFE2E5",
+            "light": "#F3F6F9",
+            "dark": "#D6D6E0"
+          },
+          "inverse": {
+            "white": "#ffffff",
+            "primary": "#ffffff",
+            "secondary": "#212121",
+            "success": "#ffffff",
+            "info": "#ffffff",
+            "warning": "#ffffff",
+            "danger": "#ffffff",
+            "light": "#464E5F",
+            "dark": "#ffffff"
+          }
+        },
+        "gray": {
+          "gray-100": "#F3F6F9",
+          "gray-200": "#ECF0F3",
+          "gray-300": "#E5EAEE",
+          "gray-400": "#D6D6E0",
+          "gray-500": "#B5B5C3",
+          "gray-600": "#80808F",
+          "gray-700": "#464E5F",
+          "gray-800": "#1B283F",
+          "gray-900": "#212121"
+        }
+      },
+      "font-family": "Poppins"
+    };
+  </script>
+  <!--end::Global Config-->
+  <!--begin::Global Theme Bundle(used by all pages)-->
+  <script src="%PUBLIC_URL%/assets/plugins/global/plugins.bundle.js"></script>
+  <script src="%PUBLIC_URL%/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+  <script src="%PUBLIC_URL%/assets/js/scripts.bundle.js"></script>
+  <!--end::Global Theme Bundle-->
+  <!--begin::Page Vendors(used by this page)-->
+  <script src="%PUBLIC_URL%/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+  <!--end::Page Vendors-->
+  <!--begin::Page Scripts(used by this page)-->
+  <script src="%PUBLIC_URL%/assets/js/pages/widgets.js"></script>
+  <!--end::Page Scripts-->
+  <!--begin::Page Scripts(used by this page)-->
+  <script src="%PUBLIC_URL%/assets/js/pages/custom/login/login-general.js"></script>
+  <!--end::Page Scripts-->
+  <script src="%PUBLIC_URL%/assets/js/pages/widgets.js"></script>
+  <script src="%PUBLIC_URL%/assets/js/pages/custom/profile/profile.js"></script>
+</body>
+
+</html>

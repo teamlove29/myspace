@@ -1,0 +1,755 @@
+import React from 'react'
+import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router";
+import { toAbsoluteUrl, checkIsActive } from "../../_helpers";
+
+function Aside() {
+  const location = useLocation();
+  const getMenuItemActive = (url) => {
+    return checkIsActive(location, url)
+      ? " menu-item-active menu-item-open "
+      : "";
+  };
+  return (
+    <>
+      {/*begin::Aside*/}
+      <div className="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
+        {/*begin::Brand*/}
+        <div className="brand flex-column-auto" id="kt_brand">
+          {/*begin::Logo*/}
+          <a href="/" className="brand-logo">
+
+            <img alt="Logo" src={toAbsoluteUrl("/assets/media/logos/logo-light.png")} />
+          </a>
+          {/*end::Logo*/}
+          {/*begin::Toggle*/}
+          <button className="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
+            <span className="svg-icon svg-icon svg-icon-xl">
+              {/*begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg*/}
+              <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                  <polygon points="0 0 24 0 24 24 0 24" />
+                  <path d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z" fill="#000000" fillRule="nonzero" transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999)" />
+                  <path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z" fill="#000000" fillRule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999)" />
+                </g>
+              </svg>
+              {/*end::Svg Icon*/}
+            </span>
+          </button>
+          {/*end::Toolbar*/}
+        </div>
+        {/*end::Brand*/}
+        {/*begin::Aside Menu*/}
+        <div className="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+          {/*begin::Menu Container*/}
+          <div id="kt_aside_menu" className="aside-menu my-4" data-menu-vertical={1} data-menu-scroll={1} data-menu-dropdown-timeout={500}>
+            {/*begin::Menu Nav*/}
+            <ul className="menu-nav">
+              <li
+                className={`menu-item ${getMenuItemActive("/dashboard")}`} aria-haspopup="true">
+                <NavLink to="/dashboard" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    {/*begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg*/}
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z" fill="#000000" fillRule="nonzero" />
+                        <path d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z" fill="#000000" opacity="0.3" />
+                      </g>
+                    </svg>
+                    {/*end::Svg Icon*/}
+                  </span>
+                  <span className="menu-text">Dashboard</span>
+                </NavLink>
+              </li>
+
+              <li className={`menu-item ${getMenuItemActive("/member")}`} aria-haspopup="true">
+                <NavLink to="/member" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <rect x={0} y={0} width={24} height={24} />
+                        <path d="M3.5,21 L20.5,21 C21.3284271,21 22,20.3284271 22,19.5 L22,8.5 C22,7.67157288 21.3284271,7 20.5,7 L10,7 L7.43933983,4.43933983 C7.15803526,4.15803526 6.77650439,4 6.37867966,4 L3.5,4 C2.67157288,4 2,4.67157288 2,5.5 L2,19.5 C2,20.3284271 2.67157288,21 3.5,21 Z" fill="#000000" opacity="0.3" />
+                        <path d="M12,13 C10.8954305,13 10,12.1045695 10,11 C10,9.8954305 10.8954305,9 12,9 C13.1045695,9 14,9.8954305 14,11 C14,12.1045695 13.1045695,13 12,13 Z" fill="#000000" opacity="0.3" />
+                        <path d="M7.00036205,18.4995035 C7.21569918,15.5165724 9.36772908,14 11.9907452,14 C14.6506758,14 16.8360465,15.4332455 16.9988413,18.5 C17.0053266,18.6221713 16.9988413,19 16.5815,19 C14.5228466,19 11.463736,19 7.4041679,19 C7.26484009,19 6.98863236,18.6619875 7.00036205,18.4995035 Z" fill="#000000" opacity="0.3" />
+                      </g>
+                    </svg>
+                  </span>
+
+
+
+                  <span className="menu-text">Members</span>
+                </NavLink>
+              </li>
+
+              {/* 
+              <li className="menu-section">
+                <h4 className="menu-text">Settings</h4>
+                <i className="menu-icon ki ki-bold-more-hor icon-md" />
+              </li> */}
+              {/*               
+              <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" className="menu-link menu-toggle">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <rect x={0} y={0} width={24} height={24} />
+                        <rect fill="#000000" x={4} y={4} width={7} height={7} rx="1.5" />
+                        <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3" />
+                      </g>
+                    </svg>
+                  </span>
+                  <span className="menu-text">Settings</span>
+                  <i className="menu-arrow" />
+                </a>
+                <div className="menu-submenu">
+                  <i className="menu-arrow" />
+                  <ul className="menu-subnav">
+                    <li className="menu-item menu-item-parent" aria-haspopup="true">
+                      <span className="menu-link">
+                        <span className="menu-text">Settings</span>
+                      </span>
+                    </li> */}
+              {/* <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                      <a href="javascript:;" className="menu-link menu-toggle">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">Users</span>
+                        <span className="menu-label">
+                          <span className="label label-rounded label-primary">6</span>
+                        </span>
+                        <i className="menu-arrow" />
+                      </a>
+                      <div className="menu-submenu">
+                        <i className="menu-arrow" />
+                        <ul className="menu-subnav">
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/user/list-default.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Default</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/user/list-datatable.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Datatable</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/user/list-columns-1.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Columns 1</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/user/list-columns-2.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Columns 2</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/user/add-user.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Add User</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/user/edit-user.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Edit User</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                      <a href="javascript:;" className="menu-link menu-toggle">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">Profile</span>
+                        <i className="menu-arrow" />
+                      </a>
+                      <div className="menu-submenu">
+                        <i className="menu-arrow" />
+                        <ul className="menu-subnav">
+                          <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="javascript:;" className="menu-link menu-toggle">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Profile 1</span>
+                              <i className="menu-arrow" />
+                            </a>
+                            <div className="menu-submenu">
+                              <i className="menu-arrow" />
+                              <ul className="menu-subnav">
+                                <li className="menu-item" aria-haspopup="true">
+                                  <a href="custom/apps/profile/profile-1/overview.html" className="menu-link">
+                                    <i className="menu-bullet menu-bullet-line">
+                                      <span />
+                                    </i>
+                                    <span className="menu-text">Overview</span>
+                                  </a>
+                                </li>
+                                <li className="menu-item" aria-haspopup="true">
+                                  <a href="custom/apps/profile/profile-1/personal-information.html" className="menu-link">
+                                    <i className="menu-bullet menu-bullet-line">
+                                      <span />
+                                    </i>
+                                    <span className="menu-text">Personal Information</span>
+                                  </a>
+                                </li>
+                                <li className="menu-item" aria-haspopup="true">
+                                  <a href="custom/apps/profile/profile-1/account-information.html" className="menu-link">
+                                    <i className="menu-bullet menu-bullet-line">
+                                      <span />
+                                    </i>
+                                    <span className="menu-text">Account Information</span>
+                                  </a>
+                                </li>
+                                <li className="menu-item" aria-haspopup="true">
+                                  <a href="custom/apps/profile/profile-1/change-password.html" className="menu-link">
+                                    <i className="menu-bullet menu-bullet-line">
+                                      <span />
+                                    </i>
+                                    <span className="menu-text">Change Password</span>
+                                  </a>
+                                </li>
+                                <li className="menu-item" aria-haspopup="true">
+                                  <a href="custom/apps/profile/profile-1/email-settings.html" className="menu-link">
+                                    <i className="menu-bullet menu-bullet-line">
+                                      <span />
+                                    </i>
+                                    <span className="menu-text">Email Settings</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/profile/profile-2.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Profile 2</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/profile/profile-3.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Profile 3</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/profile/profile-4.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Profile 4</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                      <a href="javascript:;" className="menu-link menu-toggle">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">Contacts</span>
+                        <i className="menu-arrow" />
+                      </a>
+                      <div className="menu-submenu">
+                        <i className="menu-arrow" />
+                        <ul className="menu-subnav">
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/contacts/list-columns.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Columns</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/contacts/list-datatable.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Datatable</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/contacts/view-contact.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">View Contact</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/contacts/add-contact.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Add Contact</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/contacts/edit-contact.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Edit Contact</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                      <a href="javascript:;" className="menu-link menu-toggle">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">Projects</span>
+                        <i className="menu-arrow" />
+                      </a>
+                      <div className="menu-submenu">
+                        <i className="menu-arrow" />
+                        <ul className="menu-subnav">
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/projects/list-columns-1.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Columns 1</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/projects/list-columns-2.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Columns 2</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/projects/list-columns-3.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Columns 3</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/projects/list-columns-4.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Columns 4</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/projects/list-datatable.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">List - Datatable</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/projects/view-project.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">View Project</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/projects/add-project.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Add Project</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/projects/edit-project.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Edit Project</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                      <a href="javascript:;" className="menu-link menu-toggle">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">Support Center</span>
+                        <i className="menu-arrow" />
+                      </a>
+                      <div className="menu-submenu">
+                        <i className="menu-arrow" />
+                        <ul className="menu-subnav">
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/support-center/home-1.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Home 1</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/support-center/home-2.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Home 2</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/support-center/faq-1.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">FAQ 1</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/support-center/faq-2.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">FAQ 2</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/support-center/faq-3.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">FAQ 3</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/support-center/feedback.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Feedback</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/support-center/license.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">License</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                      <a href="javascript:;" className="menu-link menu-toggle">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">Chat</span>
+                        <i className="menu-arrow" />
+                      </a>
+                      <div className="menu-submenu">
+                        <i className="menu-arrow" />
+                        <ul className="menu-subnav">
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/chat/private.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Private</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/chat/group.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Group</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/chat/popup.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Popup</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li className="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                      <a href="javascript:;" className="menu-link menu-toggle">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">Todo</span>
+                        <i className="menu-arrow" />
+                      </a>
+                      <div className="menu-submenu">
+                        <i className="menu-arrow" />
+                        <ul className="menu-subnav">
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/todo/tasks.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Tasks</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/todo/docs.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Docs</span>
+                            </a>
+                          </li>
+                          <li className="menu-item" aria-haspopup="true">
+                            <a href="custom/apps/todo/files.html" className="menu-link">
+                              <i className="menu-bullet menu-bullet-dot">
+                                <span />
+                              </i>
+                              <span className="menu-text">Files</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li> */}
+              {/* <li className="menu-item" aria-haspopup="true">
+                      <a href="custom/apps/inbox.html" className="menu-link">
+                        <i className="menu-bullet menu-bullet-line">
+                          <span />
+                        </i>
+                        <span className="menu-text">ManagerUser</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li> */}
+
+              <li className="menu-section">
+                <h4 className="menu-text">System</h4>
+                <i className="menu-icon ki ki-bold-more-hor icon-md" />
+              </li>
+
+
+
+
+              <li className={`menu-item ${getMenuItemActive("/manager/user")}`} aria-haspopup="true">
+                <NavLink to="/manager/user" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
+                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fillRule="nonzero" />
+                      </g>
+                    </svg>
+                  </span>
+                  <span className="menu-text">User</span>
+                </NavLink>
+              </li>
+
+
+              <li className={`menu-item ${getMenuItemActive("/manager/genre")}`} aria-haspopup="true">
+                <NavLink to="/manager/genre" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fillRule="nonzero" opacity="0.3" />
+                        <path d="M9.83333333,17 C8.82081129,17 8,16.3159906 8,15.4722222 C8,14.6284539 8.82081129,13.9444444 9.83333333,13.9444444 C10.0476105,13.9444444 10.2533018,13.9750785 10.4444444,14.0313779 L10.4444444,9.79160113 C10.4444444,9.47824076 10.6398662,9.20124044 10.9268804,9.10777287 L14.4407693,8.0331119 C14.8834716,7.88894376 15.3333333,8.23360047 15.3333333,8.71694016 L15.3333333,9.79160113 C15.3333333,10.1498215 14.9979332,10.3786009 14.7222222,10.4444444 C14.3255297,10.53918 13.3070112,10.7428837 11.6666667,11.0555556 L11.6666667,15.5035214 C11.6666667,15.5583862 11.6622174,15.6091837 11.6535404,15.6559869 C11.5446237,16.4131089 10.771224,17 9.83333333,17 Z" fill="#000000" />
+                      </g>
+                    </svg>
+                  </span>
+                  <span className="menu-text">Genre</span>
+                </NavLink>
+              </li>
+
+
+
+              <li className={`menu-item ${getMenuItemActive("/manager/song")}`} aria-haspopup="true">
+                <NavLink to="/manager/song" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <rect x={0} y={0} width={24} height={24} />
+                        <rect fill="#000000" opacity="0.3" x={2} y={9} width={20} height={13} rx={2} />
+                        <rect fill="#000000" opacity="0.3" x={5} y={5} width={14} height={2} rx="0.5" />
+                        <rect fill="#000000" opacity="0.3" x={7} y={1} width={10} height={2} rx="0.5" />
+                        <path d="M10.8333333,20 C9.82081129,20 9,19.3159906 9,18.4722222 C9,17.6284539 9.82081129,16.9444444 10.8333333,16.9444444 C11.0476105,16.9444444 11.2533018,16.9750785 11.4444444,17.0313779 L11.4444444,12.7916011 C11.4444444,12.4782408 11.6398662,12.2012404 11.9268804,12.1077729 L15.4407693,11.0331119 C15.8834716,10.8889438 16.3333333,11.2336005 16.3333333,11.7169402 L16.3333333,12.7916011 C16.3333333,13.1498215 15.9979332,13.3786009 15.7222222,13.4444444 C15.3255297,13.53918 14.3070112,13.7428837 12.6666667,14.0555556 L12.6666667,18.5035214 C12.6666667,18.5583862 12.6622174,18.6091837 12.6535404,18.6559869 C12.5446237,19.4131089 11.771224,20 10.8333333,20 Z" fill="#000000" />
+                      </g>
+                    </svg>
+                  </span>
+
+                  <span className="menu-text">Song</span>
+                </NavLink>
+              </li>
+
+              <li className="menu-section">
+                <h4 className="menu-text">Example</h4>
+                <i className="menu-icon ki ki-bold-more-hor icon-md" />
+              </li>
+
+              <li className={`menu-item ${getMenuItemActive("/testPage")}`} aria-haspopup="true">
+                <NavLink to="/testPage" className="menu-link">
+                  <span className="svg-icon menu-icon">
+                    {/*begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Code.svg*/}<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                        <rect x={0} y={0} width={24} height={24} />
+                        <path d="M17.2718029,8.68536757 C16.8932864,8.28319382 16.9124644,7.65031935 17.3146382,7.27180288 C17.7168119,6.89328641 18.3496864,6.91246442 18.7282029,7.31463817 L22.7282029,11.5646382 C23.0906029,11.9496882 23.0906029,12.5503176 22.7282029,12.9353676 L18.7282029,17.1853676 C18.3496864,17.5875413 17.7168119,17.6067193 17.3146382,17.2282029 C16.9124644,16.8496864 16.8932864,16.2168119 17.2718029,15.8146382 L20.6267538,12.2500029 L17.2718029,8.68536757 Z M6.72819712,8.6853647 L3.37324625,12.25 L6.72819712,15.8146353 C7.10671359,16.2168091 7.08753558,16.8496835 6.68536183,17.2282 C6.28318808,17.6067165 5.65031361,17.5875384 5.27179713,17.1853647 L1.27179713,12.9353647 C0.909397125,12.5503147 0.909397125,11.9496853 1.27179713,11.5646353 L5.27179713,7.3146353 C5.65031361,6.91246155 6.28318808,6.89328354 6.68536183,7.27180001 C7.08753558,7.65031648 7.10671359,8.28319095 6.72819712,8.6853647 Z" fill="#000000" fillRule="nonzero" />
+                        <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-345.000000) translate(-12.000000, -12.000000) " x={11} y={4} width={2} height={16} rx={1} />
+                      </g>
+                    </svg>
+                    {/*end::Svg Icon*/}
+                  </span>
+
+                  <span className="menu-text">Test Page</span>
+                </NavLink>
+              </li>
+
+            </ul>
+            {/*end::Menu Nav*/}
+          </div>
+          {/*end::Menu Container*/}
+        </div>
+        {/*end::Aside Menu*/}
+      </div>
+
+
+      {/*end::Aside*/}
+      {/*begin::Wrapper*/}
+
+
+
+
+
+      {/*end::Wrapper*/}
+      {/*end::Page*/}
+      {/*end::Main*/}
+      {/* begin::User Panel*/}
+      <div id="kt_quick_user" className="offcanvas offcanvas-right p-10">
+        {/*begin::Header*/}
+        <div className="offcanvas-header d-flex align-items-center justify-content-between pb-5">
+          <h3 className="font-weight-bold m-0">User Profile</h3>
+          <a href="#" className="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+            <i className="ki ki-close icon-xs text-muted" />
+          </a>
+        </div>
+        {/*end::Header*/}
+        {/*begin::Content*/}
+        <div className="offcanvas-content pr-5 mr-n5">
+          {/*begin::Header*/}
+          <div className="d-flex align-items-center mt-5">
+            <div className="symbol symbol-100 mr-5">
+              <div className="symbol-label" style={{ backgroundImage: 'url("/assets/media/users/300_21.jpg")' }} />
+              <i className="symbol-badge bg-success" />
+            </div>
+            <div className="d-flex flex-column">
+              <a href="#" className="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">James Jones</a>
+              <div className="text-muted mt-1">Application Developer</div>
+              <div className="navi mt-2">
+                <a href="#" className="navi-item">
+                  <span className="navi-link p-0 pb-2">
+                    <span className="navi-icon mr-1">
+                      <span className="svg-icon svg-icon-lg svg-icon-primary">
+                        {/*begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-notification.svg*/}
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                          <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                            <rect x={0} y={0} width={24} height={24} />
+                            <path d="M21,12.0829584 C20.6747915,12.0283988 20.3407122,12 20,12 C16.6862915,12 14,14.6862915 14,18 C14,18.3407122 14.0283988,18.6747915 14.0829584,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12.0829584 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z" fill="#000000" />
+                            <circle fill="#000000" opacity="0.3" cx="19.5" cy="17.5" r="2.5" />
+                          </g>
+                        </svg>
+                        {/*end::Svg Icon*/}
+                      </span>
+                    </span>
+                    <span className="navi-text text-muted text-hover-primary">jm@softplus.com</span>
+                  </span>
+                </a>
+                <a href="/Logout" className="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
+              </div>
+            </div>
+          </div>
+          {/*end::Header*/}
+          {/*begin::Separator*/}
+          <div className="separator separator-dashed mt-8 mb-5" />
+          {/*end::Separator*/}
+          {/*begin::Nav*/}
+          <div className="navi navi-spacer-x-0 p-0">
+            {/*begin::Item*/}
+            <a href="custom/apps/user/profile-1/personal-information.html" className="navi-item">
+              <div className="navi-link">
+                <div className="symbol symbol-40 bg-light mr-3">
+                  <div className="symbol-label">
+                    <span className="svg-icon svg-icon-md svg-icon-success">
+                      {/*begin::Svg Icon | path:assets/media/svg/icons/General/Notification2.svg*/}
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                          <rect x={0} y={0} width={24} height={24} />
+                          <path d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z" fill="#000000" />
+                          <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5" r="2.5" />
+                        </g>
+                      </svg>
+                      {/*end::Svg Icon*/}
+                    </span>
+                  </div>
+                </div>
+                <div className="navi-text">
+                  <div className="font-weight-bold">My Profile</div>
+                  <div className="text-muted">Account settings and more</div>
+                </div>
+              </div>
+            </a>
+            {/*end:Item*/}
+          </div>
+          {/*end::Nav*/}
+          {/*begin::Separator*/}
+          <div className="separator separator-dashed my-7" />
+          {/*end::Separator*/}
+
+        </div>
+        {/*end::Content*/}
+      </div>
+
+
+      {/* end::User Panel*/}
+
+
+
+
+    </>
+  )
+}
+
+export default Aside

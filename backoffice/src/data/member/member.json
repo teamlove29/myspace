@@ -1,0 +1,236 @@
+[{
+        "id": 1,
+        "name": "Leanne Graham",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    }, {
+        "id": 2,
+        "name": "Ervin Howell",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 3,
+        "name": "Clementine Bauch",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 4,
+        "name": "Clementina DuBuque",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 5,
+        "name": "Glenna Reichert",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 6,
+        "name": "Nicholas Runolfsdottir V",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 7,
+        "name": "Kurtis Weissna",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 8,
+        "name": "Leanne Graham",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 9,
+        "name": "Leanne Graham",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 10,
+        "name": "Leanne Graham",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    },{
+        "id": 11,
+        "name": "Worawit Jhaicomwang",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "05/05/2020",
+        "type": "member",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        }
+    }, {
+        "id": 12,
+        "name": "Marutthep Rompho",
+        "email": "Sincere@april.biz",
+        "phone": "0814253671",
+        "website": "hildegard.org",
+        "create_date": "hildegard.org",
+        "type": "artist",
+        "status": "active",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        },
+        "artist_detail": {
+            "about": "Hello my name's Teem",
+            "instagram": "Teem29",
+            "facebook": "Teem229"
+        }
+    }
+
+]

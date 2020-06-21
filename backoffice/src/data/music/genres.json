@@ -1,0 +1,70 @@
+[
+	{
+		"id": 1,
+		"name": "Pop"
+	  },
+	  {
+		"id": 2,
+		"name": "Rock"
+	  },
+	  {
+		"id": 3,
+		"name": "EDM"
+	  },
+	  {
+		"id": 4,
+		"name": "Electro"
+	  },
+	  {
+		"id": 5,
+		"name": "Folk"
+	  },
+	  {
+		"id": 6,
+		"name": "Jazz"
+	  },
+	  {
+		"id": 7,
+		"name": "Trap"
+	  },
+	  {
+		"id": 8,
+		"name": "Disco"
+	  },
+	  {
+		"id": 9,
+		"name": "Bitpop"
+	  },
+	  {
+		"id": 10,
+		"name": "Dubstep"
+	  },
+	  {
+		"id": 11,
+		"name": "Hip Hop"
+	  },
+	  {
+		"id": 12,
+		"name": "Metal"
+	  },
+	  {
+		"id": 13,
+		"name": "Punk"
+	  },
+	  {
+		"id": 14,
+		"name": "Pop Rock"
+	  },
+	  {
+		"id": 15,
+		"name": "Bassline"
+	  },
+	  {
+		"id": 16,
+		"name": "Baggy"
+	  },
+	  {
+		"id": 17,
+		"name": "Deep house"
+	  }
+]
