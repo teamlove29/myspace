@@ -1,4 +1,6 @@
 FROM node:10-alpine
-RUN apk add --update curl && \
+RUN apk add --update curl tzdata && \
+    cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime && \
+    apk del tzdata && \
     npm config set unsafe-perm true && \
     npm install -g firebase-tools@8.4.1

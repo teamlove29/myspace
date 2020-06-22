@@ -1,0 +1,61 @@
+.dev_only: &dev_only
+  only:
+    - dev-release-backoffice
+
+variables:
+  BACKOFFICE_PATH: "backoffice"
+
+#
+# Install node_module
+#
+npm-backoffice:
+  stage: npm
+  image: $NODE_IMAGE
+  script:
+    - cd $BACKOFFICE_PATH
+    - "[ -f package-lock.json ] && rm package-lock.json"
+    - npm i
+  cache:
+    paths:
+      - $BACKOFFICE_PATH/node_modules
+  artifacts:
+    paths:
+      - $BACKOFFICE_PATH/node_modules
+    expire_in: 1 hrs
+    when: always
+  only:
+    - dev-release-backoffice
+
+#
+# Dev ENV
+#
+dev-build-backoffice:
+  stage: build
+  image: $NODE_IMAGE
+  dependencies:
+    - npm-backoffice
+  script:
+    - cd $BACKOFFICE_PATH
+    - npm run build
+  cache:
+    paths:
+      - $BACKOFFICE_PATH/build
+  artifacts:
+    paths:
+      - $BACKOFFICE_PATH/build
+    expire_in: 1 hrs
+    when: always
+  <<: *dev_only
+dev-deploy-backoffice:
+  stage: deploy
+  image: registry.gitlab.com/twin-intern/lampang-2020/lampang-myspace:node-firebase
+  dependencies:
+    - dev-build-backoffice
+  script:
+    - cd $BACKOFFICE_PATH
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID"
+      --only functions,hosting:backoffice
+      --non-interactive
+      --token $FIREBASE_TOKEN
+      --project $DEV_FIREBASE_PROJECT
+  <<: *dev_only
