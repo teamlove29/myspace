@@ -59,7 +59,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <Auth showSignIn={showSignIn} showSignUp={showSignUp} />
+      {/* <Auth showSignIn={showSignIn} showSignUp={showSignUp} />
       {user != "" ? (
         <div className="container mt-5 text-center">
           <button onClick={handleSignOut} className="btn btn-secondary">
@@ -81,7 +81,10 @@ const Index = () => {
             Sign Up
           </button>
         </div>
-      )}
+      )} */}
+
+
+
     </Layout>
   );
 };
