@@ -2,6 +2,7 @@ import React,{ useState, useEffect, useContext } from 'react';
 import Auth from "./modal/auth";
 const Navbar = () => {
 
+  
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const handleSignIn = () => {
@@ -24,8 +25,10 @@ const Navbar = () => {
 
     return (
 <>
+
 <Auth showSignIn={showSignIn} showSignUp={showSignUp} />
 {/* Topbar */}
+
 <nav className="navbar navbar-expand navbar-light topbar mb-4 static-top "style={{zIndex: '1'}}>
   {/* Topbar Search */}
   <form className=" d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" >
@@ -84,6 +87,7 @@ className="nav-link " >
   </ul>
   
 </nav>
+
 {/* End of Topbar */}
 
 

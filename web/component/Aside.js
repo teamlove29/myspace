@@ -42,11 +42,13 @@ export default function Aside() {
       `}</style>
       {/* Sidebar */} 
 
-      <ul className="navbar-nav bg-black sidebar sidebar-dark accordion">
+      <ul  style={{zIndex:'1',}}
+      className="navbar-nav bg-black sidebar sidebar-dark accordion">
         {/* Sidebar - Brand */}
 
         <Link href="/" >
-          <a className="sidebar-brand d-flex align-items-center justify-content-center">
+          <a 
+          className="sidebar-brand d-flex align-items-center justify-content-center">
             <div className="sidebar-brand-icon rotate-n-15">
               {/* <i className="fas fa-laugh-wink" /> */}
             </div>

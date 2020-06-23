@@ -15,16 +15,18 @@ const MyApp = ({ Component, pageProps, stars }) => {
             <Aside />
             <div id="content-wrapper" className="d-flex flex-column">
               <div id="content">
-                <CoverMember >
+
                 <Navbar />
               <Component {...pageProps} />
-              <Footer />
-              </CoverMember>
+
               </div>
+
+
+              <Footer />
             </div>
           </div>
-        
       </ModalProvider>
+    
     </body>
     </>
   );

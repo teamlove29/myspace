@@ -1,31 +1,58 @@
 import React from "react";
 import { Button } from "../component/modal/style";
+import COVERMEMBERIMAGE from '../component/coverMain'
 export default function test() {
   return (
-    <>
-      <div className="container-fluid" style={{marginBottom:'150px'}}>
-        <h1 style={{ marginTop: "100px" }} className="text-light">
-          What is hot this
+    <div className="container-fluid" >
+      <img
+        style={{
+          top: '0',
+          right:'0',
+          position: 'absolute',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          height: '650px ',
+          padding: '0 0'
+        }}
+        className="container-fluid"
+        src="/assets/img/cover/mainCover.png" alt="" />
+      <div
+
+        style={{
+
+          marginBottom: '150px',
+        }}>
+
+          
+        <div style={{
+          position: 'relative',
+        }}>
+          <h1 style={{ marginTop: "100px" }} className="text-light">
+            What is hot this
         </h1>
-        <h1 className="text-light">weekend?</h1>
-        <p className="small" style={{ width: "400px" , color: '#b6b6b6'}}>
-          Lorem ipsum is placeholder text commonly used in the graphic, print,
-          and publishing industries for previewing layouts and visual mockups.
+          <h1 className="text-light">weekend?</h1>
+          <p className="small" style={{ width: "400px", color: '#b6b6b6' }}>
+            Lorem ipsum is placeholder text commonly used in the graphic, print,
+            and publishing industries for previewing layouts and visual mockups.
         </p>
 
-        <Button
-          className="btn mb-5"
-          style={{
-            marginTop: "20px",
-            letterSpacing: "3px",
-            padding: "10px 60px 10px 60px",
-          }}
-        >
-          Play
+          <Button
+            className="btn mb-5"
+            style={{
+              marginTop: "20px",
+              letterSpacing: "3px",
+              padding: "10px 60px 10px 60px",
+            }}
+          >
+            Play
         </Button>
+        </div>
+
 
         {/* Content Row */}
-        <div className="row container-fulid mt-5">
+        <div 
+        className="row container-fulid mt-5">
           <div className="col-auto col-sm-4 col-xl-2">
             <div className="card shadow mb-4 cardHeight ">
               <div className="card-body row">
@@ -106,7 +133,7 @@ export default function test() {
                   </div>
                   <div className="col-8">
                     <span className="text-light">
-                    Varsity
+                      Varsity
                     </span>
                     <br />
                     <small className="text-muted ">Cinematic,Pop,Rock</small>
@@ -127,7 +154,7 @@ export default function test() {
                   </div>
                   <div className="col-8">
                     <span className="text-light">
-                    Journey Towards Home
+                      Journey Towards Home
                     </span>
                     <br />
                     <small className="text-muted ">Electronic,Pop,Soul</small>
@@ -148,7 +175,7 @@ export default function test() {
                   </div>
                   <div className="col-8">
                     <span className="text-light">
-                    Rococo (Call Waiting)
+                      Rococo (Call Waiting)
                     </span>
                     <br />
                     <small className="text-muted ">Cinematic,Classical</small>
@@ -169,7 +196,7 @@ export default function test() {
                   </div>
                   <div className="col-8">
                     <span className="text-light">
-                    Feel Like This Forever
+                      Feel Like This Forever
                     </span>
                     <br />
                     <small className="text-muted ">Indie,Pop</small>
@@ -206,98 +233,98 @@ export default function test() {
         </div>
 
         {/* Popular Artist */}
-   <div className="container-fluid text-light mt-5 text-center">
-   <p className="font-20 text-left">Popular Artist</p>
-<div className="row mt-5">
-  <div className="col-md-2">
-    <img 
-    className="rounded-circle"
-    src="https://source.unsplash.com/aZ3qiq1eTRk/150x150" alt=""/>
-<p className=" mt-2 ">  Moods Mixes</p>
-  </div>
+        <div className="container-fluid text-light mt-5 text-center">
+          <p className="font-20 text-left">Popular Artist</p>
+          <div className="row mt-5">
+            <div className="col-md-2">
+              <img
+                className="rounded-circle"
+                src="https://source.unsplash.com/aZ3qiq1eTRk/150x150" alt="" />
+              <p className=" mt-2 ">  Moods Mixes</p>
+            </div>
 
-  <div className="col-md-2">
-    <img 
-    className="rounded-circle"
-    src="https://source.unsplash.com/lfiFXS9oaeU/150x150" alt=""/>
-<p className=" mt-2 ">  Moods Mixes</p>
-  </div>  <div className="col-md-2">
-    <img 
-    className="rounded-circle"
-    src="https://source.unsplash.com/hTEqivuXpiY/150x150" alt=""/>
-<p className=" mt-2 ">  Moods Mixes</p>
-  </div>  <div className="col-md-2">
-    <img 
-    className="rounded-circle"
-    src="https://source.unsplash.com/1nqlINxFPOc/150x150" alt=""/>
-<p className=" mt-2 ">  Moods Mixes</p>
-  </div>  <div className="col-md-2">
-    <img 
-    className="rounded-circle"
-    src="https://source.unsplash.com/iTOq8vZkVEY/150x150" alt=""/>
-<p className=" mt-2 ">  Moods Mixes</p>
-  </div>  <div className="col-md-2">
-    <img 
-    className="rounded-circle"
-    src="https://source.unsplash.com/IT5-0oM0YH0/150x150" alt=""/>
-<p className=" mt-2 ">  Moods Mixes</p>
-  </div>
+            <div className="col-md-2">
+              <img
+                className="rounded-circle"
+                src="https://source.unsplash.com/lfiFXS9oaeU/150x150" alt="" />
+              <p className=" mt-2 ">  Moods Mixes</p>
+            </div>  <div className="col-md-2">
+              <img
+                className="rounded-circle"
+                src="https://source.unsplash.com/hTEqivuXpiY/150x150" alt="" />
+              <p className=" mt-2 ">  Moods Mixes</p>
+            </div>  <div className="col-md-2">
+              <img
+                className="rounded-circle"
+                src="https://source.unsplash.com/1nqlINxFPOc/150x150" alt="" />
+              <p className=" mt-2 ">  Moods Mixes</p>
+            </div>  <div className="col-md-2">
+              <img
+                className="rounded-circle"
+                src="https://source.unsplash.com/iTOq8vZkVEY/150x150" alt="" />
+              <p className=" mt-2 ">  Moods Mixes</p>
+            </div>  <div className="col-md-2">
+              <img
+                className="rounded-circle"
+                src="https://source.unsplash.com/IT5-0oM0YH0/150x150" alt="" />
+              <p className=" mt-2 ">  Moods Mixes</p>
+            </div>
 
-</div>
-   </div>
+          </div>
+        </div>
 
 
         {/* Popular Moods Mixes */}
         <div className="container-fluid text-light  mt-5">
-   <span className="font-20">Moods Mixes</span>
-<div className="row mt-5">
-  <div className="col-sm-6 col-md-6 col-xl-3 ol-xl-3">
-<div className="card border-0" style={{backgroundColor:'#222531'}}>
-  <img 
-  src="https://source.unsplash.com/MD3rdOB5pxk/300x300" alt="" />
-  <div className="card-body">
-    <div classname="card-title"> Worm Fuzzy Feeling</div>
-    <small className="card-text text-muted ">Lorem ipsum is placeholder text commonly used in the graphic,</small>
-  </div>
-</div>
-  </div>
+          <span className="font-20">Moods Mixes</span>
+          <div className="row mt-5 ">
+            <div className="col-sm-6 col-md-6 col-xl-3 col-xl-3">
+              <div className="card border-0" style={{ backgroundColor: '#222531' }}>
+                <img
+                  src="https://source.unsplash.com/MD3rdOB5pxk/300x300" alt="" />
+                <div className="card-body">
+                  <div classname="card-title"> Worm Fuzzy Feeling</div>
+                  <small className="card-text text-muted ">Lorem ipsum is placeholder text commonly used in the graphic,</small>
+                </div>
+              </div>
+            </div>
 
-  <div className="col-sm-6 col-md-6 col-xl-3 col-xl-3">
-<div className="card border-0" style={{backgroundColor:'#222531'}}>
-  <img 
- src="https://source.unsplash.com/szmET3Kja8s/300x300" alt=""/>
-  <div className="card-body">
-    <div classname="card-title"> Acoustic Love</div>
-    <small className="card-text text-muted ">Lorem ipsum is placeholder text commonly used in the graphic,</small>
-  </div>
-</div>
-  </div>
+            <div className="col-sm-6 col-md-6 col-xl-3 col-xl-3">
+              <div className="card border-0" style={{ backgroundColor: '#222531' }}>
+                <img
+                  src="https://source.unsplash.com/szmET3Kja8s/300x300" alt="" />
+                <div className="card-body">
+                  <div classname="card-title"> Acoustic Love</div>
+                  <small className="card-text text-muted ">Lorem ipsum is placeholder text commonly used in the graphic,</small>
+                </div>
+              </div>
+            </div>
 
-  <div className="col-sm-6 col-md-6 col-xl-3 ol-xl-3">
-<div className="card border-0" style={{backgroundColor:'#222531'}}>
-  <img 
- src="https://source.unsplash.com/vipa5LR89mU/300x300" alt=""/>
-  <div className="card-body">
-    <div classname="card-title"> Late Night Love</div>
-    <small className="card-text text-muted ">Lorem ipsum is placeholder text commonly used in the graphic,</small>
-  </div>
-</div>
-  </div>
+            <div className="col-sm-6 col-md-6 col-xl-3 ol-xl-3">
+              <div className="card border-0" style={{ backgroundColor: '#222531' }}>
+                <img
+                  src="https://source.unsplash.com/vipa5LR89mU/300x300" alt="" />
+                <div className="card-body">
+                  <div classname="card-title"> Late Night Love</div>
+                  <small className="card-text text-muted ">Lorem ipsum is placeholder text commonly used in the graphic,</small>
+                </div>
+              </div>
+            </div>
 
-  <div className="col-sm-6 col-md-6 col-xl-3 ol-xl-3">
-<div className="card border-0" style={{backgroundColor:'#222531'}}>
-  <img 
-  src="https://source.unsplash.com/QA-qQfWJM0E/300x300" alt=""/>
-  <div className="card-body">
-    <div classname="card-title"> Romance & Ballads</div>
-    <small className="card-text text-muted ">Lorem ipsum is placeholder text commonly used in the graphic,</small>
-  </div>
-</div>
-  </div>
-</div>
+            <div className="col-sm-6 col-md-6 col-xl-3 ol-xl-3">
+              <div className="card border-0" style={{ backgroundColor: '#222531' }}>
+                <img
+                  src="https://source.unsplash.com/QA-qQfWJM0E/300x300" alt="" />
+                <div className="card-body">
+                  <div classname="card-title"> Romance & Ballads</div>
+                  <small className="card-text text-muted ">Lorem ipsum is placeholder text commonly used in the graphic,</small>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-   </div>
+        </div>
 
 
       </div>
@@ -309,6 +336,10 @@ export default function test() {
           }
         `}
       </style>
-    </>
+
+
+
+
+    </div>
   );
 }
