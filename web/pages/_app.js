@@ -4,7 +4,7 @@ import Navbar from "../component/navbar";
 import Aside from "../component/Aside";
 import Footer from "../component/Footer";
 import Header from '../component/Header';
-import CoverMember from '../component/coverMember';
+import CoverMember from '../component/coverMain';
 const MyApp = ({ Component, pageProps, stars }) => {
   return (
     <>
@@ -15,14 +15,15 @@ const MyApp = ({ Component, pageProps, stars }) => {
             <Aside />
             <div id="content-wrapper" className="d-flex flex-column">
               <div id="content">
-                <CoverMember>
+                <CoverMember >
                 <Navbar />
               <Component {...pageProps} />
+              <Footer />
               </CoverMember>
               </div>
             </div>
           </div>
-          <Footer />
+        
       </ModalProvider>
     </body>
     </>

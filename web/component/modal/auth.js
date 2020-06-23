@@ -4,11 +4,12 @@ import { useFormik } from "formik";
 import { Button, Alert } from "./style";
 import firebase from "../../config/config";
 import * as Yup from "yup";
-import {ModalContext} from '../../config/context/ModalProvider'
+import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
 
 const Auth = (props) => {
-  const { setUser } = useContext(ModalContext)
+  console.log(props);
+  const { setUser } = useContext(ModalContext);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showType, setShowType] = useState(false);
@@ -157,7 +158,7 @@ const Auth = (props) => {
         create: DateCreate,
       })
         .then((res) => {
-          setUser('ok')
+          setUser("ok");
         })
         .catch((err) => {
           console.log(err);
@@ -181,7 +182,7 @@ const Auth = (props) => {
             create: DateCreate,
           })
             .then((res) => {
-              setUser('ok')
+              setUser("ok");
             })
             .catch((err) => {
               console.log(err);
@@ -232,7 +233,6 @@ const Auth = (props) => {
         .then((res) => {
           // ถ้ามีให้ผิดหน้าต่าง
           console.log("เคยสมัครแล้ว");
-          
         })
         .catch((err) => {
           // ถ้าไม่มีให้ไปเลือก type แล้วเพิ่มข้อมูลลง DB
@@ -241,7 +241,6 @@ const Auth = (props) => {
           setUidSocial(result.user.uid);
           setEmail(result.user.email);
         });
-    
     } catch (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -364,7 +363,7 @@ const Auth = (props) => {
               </a>
               <div className="text-center">
                 <Button
-                  className="pl-5 pr-5"
+                  className="pl-5 pr-5 btn"
                   type="submit"
                   disabled={formikSignIn.isSubmitting}
                 >
@@ -448,7 +447,11 @@ const Auth = (props) => {
                 Forgot password
               </a>
               <div className="text-center">
-                <Button type="submit" disabled={formikSignUp.isSubmitting}>
+                <Button
+                  className="btn"
+                  type="submit"
+                  disabled={formikSignUp.isSubmitting}
+                >
                   Create Account
                 </Button>
               </div>
@@ -547,7 +550,7 @@ const Auth = (props) => {
               <div className="text-center">
                 <Button
                   disabled={formikChoose.isSubmitting}
-                  className="pl-5 pr-5"
+                  className="pl-5 pr-5 btn"
                   type="submit"
                 >
                   Finish
@@ -625,9 +628,17 @@ const Auth = (props) => {
         .typeround-active img {
           margin-top: -1rem;
         }
-
+        p {
+          font-size: 14px;
+          color: #b6b6b6;
+        }
          {
           /* end Active */
+        }
+        a {
+          font-size: 13px;
+          color: orange;
+          text-decoration: none;
         }
       `}</style>
     </>

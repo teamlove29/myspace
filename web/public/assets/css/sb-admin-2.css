@@ -64,7 +64,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #858796;
+  /* color: #858796; */
   text-align: left;
   background-color: #fff;
 }
@@ -9776,7 +9776,7 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-  background-color: #f8f9fc;
+  background-color: #0F0F0F;
   width: 100%;
   overflow-x: hidden;
 }

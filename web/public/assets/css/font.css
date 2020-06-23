@@ -38,7 +38,6 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
     font-size: 14px;
-    color: #b6b6b6;
 }
 a {
     font-size: 13px;
@@ -58,8 +57,17 @@ body, html {
 	font-family: 'Poppins-Regular', sans-serif;
 }
 
-li{
+/* li{
   font-family: 'Poppins-Medium', sans-serif;
+} */
+
+.font-Medium{
+  font-family: 'Poppins-Medium', sans-serif;
+}
+
+.font-20{
+  font-family: 'Poppins-Light', sans-serif;
+  font-size: 20px;
 }
 
 .modal-content {
@@ -68,3 +76,5 @@ li{
   width: 100%;
   margin-top: 10%;
 }
+
+.pointer {cursor: pointer;}
