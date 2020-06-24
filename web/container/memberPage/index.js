@@ -32,7 +32,7 @@ const {name} = props;
         <div className="ml-5 row justify-content-start">
           <div className="col-12 col-sm-12 col-md-4 col-xl-2">
             <img
-              className="rounded-circle"
+              className="rounded-circle border"
               src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
               alt=""
             />

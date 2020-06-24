@@ -115,8 +115,9 @@ const Auth = (props) => {
       .auth()
       .signInWithEmailAndPassword(value.email, value.password)
       .then((values) => {
-        setShowSignIn(false);
+        formikSignIn.handleReset();
         setSubmitting(false);
+        setShowSignIn(false);
       })
       .catch((error) => {
         var errorCode = error.code;

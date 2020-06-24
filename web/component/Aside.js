@@ -1,57 +1,79 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
-import { useRouter } from 'next/router'
+import firebase from "../config/config";
+import { useRouter } from "next/router";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function Aside() {
-
+  const MySwal = withReactContent(Swal);
   const router = useRouter();
 
   const checkIsActive = (location, url) => {
     const current = getCurrentUrl(location);
     if (!current || !url) {
-        return  false;
+      return false;
     }
 
     if (current === url) {
-        return  true;
+      return true;
     }
 
     if (current.indexOf(url) > -1) {
-        return true;
+      return true;
     }
 
     return false;
-}
+  };
   const getMenuItemActive = (url) => {
     return checkIsActive(router, url)
       ? " menu-item-active menu-item-open "
       : "";
   };
+
+  const handleSignOut = () => {
+    MySwal.fire({
+      position: "top",
+      icon: "question",
+      title: <h1 className="display-5">Are you sure ?</h1>,
+      text: "Are you sure to sign out ?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sign out",
+    }).then((result) => {
+      if (result.isConfirmed === true) {
+        firebase.auth().signOut();
+      }
+    });
+    
+  };
+
   return (
     <>
       <style jsx>{`
         .bg-black {
           background-color: black;
         }
-        ul li{
-          font-family: 'Poppins-Medium', sans-serif;
-          line-height: 15pt ;
-
+        ul li {
+          font-family: "Poppins-Medium", sans-serif;
+          line-height: 15pt;
         }
       `}</style>
-      {/* Sidebar */} 
+      {/* Sidebar */}
 
-      <ul  style={{zIndex:'1',}}
-      className="navbar-nav bg-black sidebar sidebar-dark accordion">
+      <ul
+        style={{ zIndex: "1" }}
+        className="navbar-nav bg-black sidebar sidebar-dark accordion"
+      >
         {/* Sidebar - Brand */}
 
-        <Link href="/" >
-          <a 
-          className="sidebar-brand d-flex align-items-center justify-content-center">
+        <Link href="/">
+          <a className="sidebar-brand d-flex align-items-center justify-content-center">
             <div className="sidebar-brand-icon rotate-n-15">
               {/* <i className="fas fa-laugh-wink" /> */}
             </div>
-            <img width="30px" src="/assets/img/icon/myspace.png" alt=""/>
+            <img width="30px" src="/assets/img/icon/myspace.png" alt="" />
             <div className="sidebar-brand-text mx-3">My Space</div>
           </a>
         </Link>
@@ -67,7 +89,7 @@ export default function Aside() {
         </li>
         {/* Nav Item - Utilities Collapse Menu */}
         <li className="nav-item ">
-        <Link href="/live" as="/" >
+          <Link href="/live" as="/">
             <a className="nav-link collapsed">
               <span>LIVE</span>
             </a>
@@ -105,7 +127,7 @@ export default function Aside() {
         <div className="sidebar-heading mt-2">YOU</div>
         {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item mt-2 ">
-          <Link href="/[username]"  as="/teamlove29" >
+          <Link href="/[username]" as="/teamlove29">
             <a className="nav-link collapsed">
               <span>MY PROFILE</span>
             </a>
@@ -113,7 +135,7 @@ export default function Aside() {
         </li>
         {/* Nav Item - Charts */}
         <li className="nav-item ">
-        <Link href="/[username]/setting"  as="/teamlove29/setting" >
+          <Link href="/[username]/setting" as="/teamlove29/setting">
             <a className="nav-link">
               <i className="fas fa-fw fa-chart-area" />
               <span>SETTING</span>
@@ -122,18 +144,12 @@ export default function Aside() {
         </li>
         {/* Nav Item - Tables */}
         <li className="nav-item ">
-          <Link href="/signout">
-            <a className="nav-link">
-              <i className="fas fa-fw fa-table" />
-              <span>LOG OUT</span>
-            </a>
-          </Link>
+          <a onClick={handleSignOut} className="nav-link btn">
+            <i className="fas fa-fw fa-table" />
+            <span>LOG OUT</span>
+          </a>
         </li>
       </ul>
-
-
-
-
 
       {/* End of Sidebar */}
     </>

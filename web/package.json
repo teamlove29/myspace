@@ -33,6 +33,8 @@
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1",
     "styled-jsx": "^3.3.0",
+    "sweetalert2": "^9.15.2",
+    "sweetalert2-react-content": "^3.0.1",
     "yup": "^0.29.1"
   },
   "devDependencies": {
