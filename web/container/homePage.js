@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "../component/modal/style";
-import COVERMEMBERIMAGE from '../component/coverMain'
-export default function test() {
+export default function HomePage() {
   return (
     <div className="container-fluid" >
       <img
@@ -12,27 +11,23 @@ export default function test() {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
-          height: '650px ',
+          height: '800px ',
           padding: '0 0'
         }}
         className="container-fluid"
         src="/assets/img/cover/mainCover.png" alt="" />
       <div
-
         style={{
-
           marginBottom: '150px',
         }}>
-
-          
         <div style={{
           position: 'relative',
         }}>
-          <h1 style={{ marginTop: "100px" }} className="text-light">
+          <h1 style={{ marginTop: "250px" }} className="text-light">
             What is hot this
         </h1>
           <h1 className="text-light">weekend?</h1>
-          <p className="small" style={{ width: "400px", color: '#b6b6b6' }}>
+          <p className="small" style={{ width: "500px", color: '#b6b6b6' }}>
             Lorem ipsum is placeholder text commonly used in the graphic, print,
             and publishing industries for previewing layouts and visual mockups.
         </p>
@@ -52,7 +47,7 @@ export default function test() {
 
         {/* Content Row */}
         <div 
-        className="row container-fulid mt-5">
+        className="row container-fulid mt-5 justify-content-center">
           <div className="col-auto col-sm-4 col-xl-2">
             <div className="card shadow mb-4 cardHeight ">
               <div className="card-body row">
@@ -215,18 +210,46 @@ export default function test() {
           <div className="col-md-6 ">
             <p className="mb-5 text-light">Most Recommended</p>
             <ol className="text-light">
-              <li>
-                <span className="text-light">
-                  Where It All Begins - Instrumental
-                </span>
-                <h6 className="float-right mr-4 ">03:18</h6> <br />
-                <small>Cinematic,Folk,Indie</small>
+            <li>
+                <div className="row ml-3 mr-2">
+                  <div className="col-2">
+                    <img
+                      src="https://source.unsplash.com/cCvnG-937HE/50x50"
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-8">
+                    <span className="text-light">
+                      Where It All Begins - Instrumental
+                    </span>
+                    <br />
+                    <small className="text-muted ">Cinematic,Folk,Indie </small>
+                  </div>
+                  <div className="col-2">
+                    <h6 className="float-right mr-4 ">03:18</h6>
+                  </div>
+                </div>
               </li>
-
+              <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
-                <span className="text-light">Varsity</span>
-                <h6 className="float-right mr-4 ">04:38</h6> <br />
-                <small>Cinematic,Pop,Rock</small>
+                <div className="row ml-3 mr-2">
+                  <div className="col-2">
+                    <img
+                      src="https://source.unsplash.com/cCvnG-937HE/50x50"
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-8">
+                    <span className="text-light">
+                      Where It All Begins - Instrumental
+                    </span>
+                    <br />
+                    <small className="text-muted ">Cinematic,Folk,Indie </small>
+                  </div>
+                  <div className="col-2">
+                    <h6 className="float-right mr-4 ">03:18</h6>
+                  </div>
+                </div>
               </li>
             </ol>
           </div>

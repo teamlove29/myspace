@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import Link from "next/link";
 import { useRouter } from 'next/router'
 
@@ -22,7 +22,6 @@ export default function Aside() {
 
     return false;
 }
-
   const getMenuItemActive = (url) => {
     return checkIsActive(router, url)
       ? " menu-item-active menu-item-open "
@@ -60,7 +59,7 @@ export default function Aside() {
         <div className="sidebar-heading mt-4">DISCOVER</div>
         {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item mt-2">
-          <Link href="/test" >
+          <Link href="/">
             <a className="nav-link collapsed">
               <span>HOME</span>
             </a>
@@ -68,35 +67,35 @@ export default function Aside() {
         </li>
         {/* Nav Item - Utilities Collapse Menu */}
         <li className="nav-item ">
-        <Link href="/home/home" as="/" >
+        <Link href="/live" as="/" >
             <a className="nav-link collapsed">
               <span>LIVE</span>
             </a>
           </Link>
         </li>
         <li className="nav-item ">
-          <Link href="/">
+          <Link href="/music">
             <a className="nav-link collapsed">
               <span>MUSIC</span>
             </a>
           </Link>
         </li>
         <li className="nav-item ">
-          <Link href="/">
+          <Link href="/charts">
             <a className="nav-link collapsed">
               <span>CHARTS</span>
             </a>
           </Link>
         </li>
         <li className="nav-item ">
-          <Link href="/">
+          <Link href="/event">
             <a className="nav-link collapsed">
               <span>EVENT</span>
             </a>
           </Link>
         </li>
         <li className="nav-item ">
-          <Link href="/">
+          <Link href="/features">
             <a className="nav-link collapsed">
               <span>FEATURES</span>
             </a>
@@ -106,7 +105,7 @@ export default function Aside() {
         <div className="sidebar-heading mt-2">YOU</div>
         {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item mt-2 ">
-          <Link href="/">
+          <Link href="/[username]"  as="/teamlove29" >
             <a className="nav-link collapsed">
               <span>MY PROFILE</span>
             </a>
@@ -114,7 +113,7 @@ export default function Aside() {
         </li>
         {/* Nav Item - Charts */}
         <li className="nav-item ">
-          <Link href="/">
+        <Link href="/[username]/setting"  as="/teamlove29/setting" >
             <a className="nav-link">
               <i className="fas fa-fw fa-chart-area" />
               <span>SETTING</span>
@@ -123,7 +122,7 @@ export default function Aside() {
         </li>
         {/* Nav Item - Tables */}
         <li className="nav-item ">
-          <Link href="/">
+          <Link href="/signout">
             <a className="nav-link">
               <i className="fas fa-fw fa-table" />
               <span>LOG OUT</span>

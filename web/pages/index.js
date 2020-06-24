@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-
+import HomePage from '../container/homePage'
 import firebase from "../config/config";
 import Axios from "axios";
 import { ModalContext } from "../config/context/ModalProvider";
 
 const Index = () => {
-
-  const [name, setName] = useState();
   const { user, setUser } = useContext(ModalContext);
   // const [currentUser, setCurrentUser] =  useState()
 
@@ -37,10 +35,9 @@ const Index = () => {
     return () => unsubscribe();
   }, [user]);
 
-
   return (
     <>
-
+<HomePage />
     </>
   );
 };

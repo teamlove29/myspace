@@ -3,31 +3,26 @@ import { ModalProvider } from "../config/context/ModalProvider";
 import Navbar from "../component/navbar";
 import Aside from "../component/Aside";
 import Footer from "../component/Footer";
-import Header from '../component/Header';
-import CoverMember from '../component/coverMain';
+import Header from "../component/Header";
+import CoverMember from "../component/cover/coverMain";
 const MyApp = ({ Component, pageProps, stars }) => {
   return (
     <>
-    <Header />
-    <body id="page-top">
-      <ModalProvider>
+      <Header />
+      <body id="page-top">
+        <ModalProvider>
           <div id="wrapper">
             <Aside />
             <div id="content-wrapper" className="d-flex flex-column">
               <div id="content">
-
                 <Navbar />
-              <Component {...pageProps} />
-
+                <Component {...pageProps} />
               </div>
-
-
               <Footer />
             </div>
           </div>
-      </ModalProvider>
-    
-    </body>
+        </ModalProvider>
+      </body>
     </>
   );
 };
