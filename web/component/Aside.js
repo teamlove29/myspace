@@ -4,17 +4,18 @@ import firebase from "../config/config";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
+import { ModalContext } from "../config/context/ModalProvider";
 export default function Aside() {
   const MySwal = withReactContent(Swal);
   const router = useRouter();
-
+  const { user, setUser ,nameMember,setNameMember} = useContext(ModalContext);
   const checkIsActive = (location, url) => {
+
     const current = getCurrentUrl(location);
     if (!current || !url) {
       return false;
     }
-
+    console.log(user)
     if (current === url) {
       return true;
     }
@@ -46,7 +47,6 @@ export default function Aside() {
         firebase.auth().signOut();
       }
     });
-    
   };
 
   return (
@@ -123,32 +123,36 @@ export default function Aside() {
             </a>
           </Link>
         </li>
-        {/* Heading */}
-        <div className="sidebar-heading mt-2">YOU</div>
-        {/* Nav Item - Pages Collapse Menu */}
-        <li className="nav-item mt-2 ">
-          <Link href="/[username]" as="/teamlove29">
-            <a className="nav-link collapsed">
-              <span>MY PROFILE</span>
-            </a>
-          </Link>
-        </li>
-        {/* Nav Item - Charts */}
-        <li className="nav-item ">
-          <Link href="/[username]/setting" as="/teamlove29/setting">
-            <a className="nav-link">
-              <i className="fas fa-fw fa-chart-area" />
-              <span>SETTING</span>
-            </a>
-          </Link>
-        </li>
-        {/* Nav Item - Tables */}
-        <li className="nav-item ">
-          <a onClick={handleSignOut} className="nav-link btn">
-            <i className="fas fa-fw fa-table" />
-            <span>LOG OUT</span>
-          </a>
-        </li>
+        {user === true ? (
+          <>
+            {/* Heading */}
+            <div className="sidebar-heading mt-2">YOU</div>
+            {/* Nav Item - Pages Collapse Menu */}
+            <li className="nav-item mt-2 ">
+              <Link href="/[username]" as={`/${nameMember}`}>
+                <a className="nav-link collapsed">
+                  <span>MY PROFILE</span>
+                </a>
+              </Link>
+            </li>
+            {/* Nav Item - Charts */}
+            <li className="nav-item ">
+              <Link href="/[username]/setting" as= {`/${nameMember}/setting`}>
+                <a className="nav-link">
+                  <i className="fas fa-fw fa-chart-area" />
+                  <span>SETTING</span>
+                </a>
+              </Link>
+            </li>
+            {/* Nav Item - Tables */}
+            <li className="nav-item ">
+              <a onClick={handleSignOut} className="nav-link btn">
+                <i className="fas fa-fw fa-table" />
+                <span>LOG OUT</span>
+              </a>
+            </li>
+          </>
+        ) : null}
       </ul>
 
       {/* End of Sidebar */}

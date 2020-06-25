@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 import { Button, Alert } from "./style";
 import firebase from "../../config/config";
-import * as Yup from "yup";
 import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
 

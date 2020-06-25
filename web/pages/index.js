@@ -1,13 +1,10 @@
 import React from "react";
-import HomePage from '../container/homePage'
-
+import HomePage from "../container/homePage";
 
 const Index = () => {
-
-
   return (
     <>
-<HomePage />
+      <HomePage />
     </>
   );
 };
