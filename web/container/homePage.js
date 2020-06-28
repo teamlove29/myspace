@@ -48,42 +48,42 @@ export default function HomePage() {
         {/* Content Row */}
         <div 
         className="row container-fulid mt-5 justify-content-center">
-          <div className="col-auto col-sm-4 col-xl-2">
+          <div className="col-4 col-xs-4 col-sm-4 col-xl-2">
             <div className="card shadow mb-4 cardHeight ">
               <div className="card-body row">
                 <p className="text-center mx-auto my-auto">comming soon</p>
               </div>
             </div>
           </div>
-          <div className="col-auto col-sm-4 col-xl-2">
+          <div className="col-4 col-xs-4  col-sm-4 col-xl-2">
             <div className="card shadow mb-4 cardHeight">
               <div className="card-body row">
                 <p className="text-center mx-auto my-auto">comming soon</p>
               </div>
             </div>
           </div>
-          <div className="col-auto col-sm-4 col-xl-2">
+          <div className="col-4 col-xs-4  col-sm-4 col-xl-2">
             <div className="card shadow mb-4 cardHeight">
               <div className="card-body row">
                 <p className="text-center mx-auto my-auto">comming soon</p>
               </div>
             </div>
           </div>
-          <div className="col-auto col-sm-4 col-xl-2">
+          <div className="col-auto col-xl-2 d-none  d-xl-block">
             <div className="card shadow mb-4 cardHeight">
               <div className="card-body row">
                 <p className="text-center mx-auto my-auto">comming soon</p>
               </div>
             </div>
           </div>
-          <div className="col-auto col-sm-4 col-xl-2">
+          <div className="col-auto col-xl-2 d-none d-xl-block">
             <div className="card shadow mb-4 cardHeight">
               <div className="card-body row">
                 <p className="text-center mx-auto my-auto">comming soon</p>
               </div>
             </div>
           </div>
-          <div className="col-auto col-sm-4 col-xl-2">
+          <div className="col-auto col-xl-2 d-none d-xl-block">
             <div className="card shadow mb-4 cardHeight">
               <div className="card-body row">
                 <p className="text-center mx-auto my-auto">comming soon</p>
@@ -92,7 +92,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="row mt-5 container-fluid">
+        <div className="row mt-5 container-fluid ">
           {/* Most Popular This Week */}
           <div className="col-md-6 ">
             <p className="mb-5 text-light">Most Popular This Week</p>
@@ -259,34 +259,34 @@ export default function HomePage() {
         <div className="container-fluid text-light mt-5 text-center">
           <p className="font-20 text-left">Popular Artist</p>
           <div className="row mt-5">
-            <div className="col-md-2">
+            <div className="col-6 col-md-2">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/aZ3qiq1eTRk/150x150" alt="" />
               <p className=" mt-2 ">  Moods Mixes</p>
             </div>
 
-            <div className="col-md-2">
+            <div className="col-6 col-md-2">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/lfiFXS9oaeU/150x150" alt="" />
               <p className=" mt-2 ">  Moods Mixes</p>
-            </div>  <div className="col-md-2">
+            </div>  <div className="col-6 col-md-2">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/hTEqivuXpiY/150x150" alt="" />
               <p className=" mt-2 ">  Moods Mixes</p>
-            </div>  <div className="col-md-2">
+            </div>  <div className="col-6 col-md-2">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/1nqlINxFPOc/150x150" alt="" />
               <p className=" mt-2 ">  Moods Mixes</p>
-            </div>  <div className="col-md-2">
+            </div>  <div className="col-6 col-md-2">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/iTOq8vZkVEY/150x150" alt="" />
               <p className=" mt-2 ">  Moods Mixes</p>
-            </div>  <div className="col-md-2">
+            </div>  <div className="col-6 col-md-2">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/IT5-0oM0YH0/150x150" alt="" />
@@ -301,9 +301,10 @@ export default function HomePage() {
         <div className="container-fluid text-light  mt-5">
           <span className="font-20">Moods Mixes</span>
           <div className="row mt-5 ">
-            <div className="col-sm-6 col-md-6 col-xl-3 col-xl-3">
+            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
               <div className="card border-0" style={{ backgroundColor: '#222531' }}>
                 <img
+                className="img-fluid "
                   src="https://source.unsplash.com/MD3rdOB5pxk/300x300" alt="" />
                 <div className="card-body">
                   <div classname="card-title"> Worm Fuzzy Feeling</div>
@@ -312,9 +313,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="col-sm-6 col-md-6 col-xl-3 col-xl-3">
+            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
               <div className="card border-0" style={{ backgroundColor: '#222531' }}>
                 <img
+                className="img-fluid"
                   src="https://source.unsplash.com/szmET3Kja8s/300x300" alt="" />
                 <div className="card-body">
                   <div classname="card-title"> Acoustic Love</div>
@@ -323,9 +325,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="col-sm-6 col-md-6 col-xl-3 ol-xl-3">
+            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
               <div className="card border-0" style={{ backgroundColor: '#222531' }}>
                 <img
+                className="img-fluid"
                   src="https://source.unsplash.com/vipa5LR89mU/300x300" alt="" />
                 <div className="card-body">
                   <div classname="card-title"> Late Night Love</div>
@@ -334,9 +337,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="col-sm-6 col-md-6 col-xl-3 ol-xl-3">
+            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
               <div className="card border-0" style={{ backgroundColor: '#222531' }}>
                 <img
+                className="img-fluid"
                   src="https://source.unsplash.com/QA-qQfWJM0E/300x300" alt="" />
                 <div className="card-body">
                   <div classname="card-title"> Romance & Ballads</div>

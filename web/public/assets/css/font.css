@@ -42,7 +42,11 @@ p {
 a {
     font-size: 13px;
     color: orange;
+    text-decoration:none
 }
+
+
+
 
 .font-default{
   font-size: 0.875rem;
@@ -92,3 +96,7 @@ body, html {
 }
 
 .pointer {cursor: pointer;}
+
+#nprogress .bar {
+  background: #29d !important;
+  }

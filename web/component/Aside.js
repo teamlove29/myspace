@@ -8,7 +8,7 @@ import { ModalContext } from "../config/context/ModalProvider";
 export default function Aside() {
   const MySwal = withReactContent(Swal);
   const router = useRouter();
-  const { user, setUser ,nameMember,setNameMember} = useContext(ModalContext);
+  const { currentUser, setCurrentUser ,nameMember,setNameMember} = useContext(ModalContext);
   const checkIsActive = (location, url) => {
 
     const current = getCurrentUrl(location);
@@ -123,7 +123,7 @@ export default function Aside() {
             </a>
           </Link>
         </li>
-        {user === true ? (
+        {currentUser === true ? (
           <>
             {/* Heading */}
             <div className="sidebar-heading mt-2">YOU</div>

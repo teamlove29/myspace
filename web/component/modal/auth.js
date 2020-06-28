@@ -8,7 +8,7 @@ import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
 
 const Auth = (props) => {
-  const { setUser } = useContext(ModalContext);
+  const { setCurrentUser } = useContext(ModalContext);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showType, setShowType] = useState(false);
@@ -158,7 +158,7 @@ const Auth = (props) => {
         create: DateCreate,
       })
         .then((res) => {
-          setUser("ok");
+          setCurrentUser("ok");
         })
         .catch((err) => {
           console.log(err);
@@ -182,7 +182,7 @@ const Auth = (props) => {
             create: DateCreate,
           })
             .then((res) => {
-              setUser("ok");
+              setCurrentUser("ok");
             })
             .catch((err) => {
               console.log(err);

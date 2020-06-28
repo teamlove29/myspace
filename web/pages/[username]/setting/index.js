@@ -1,13 +1,19 @@
-import React from "react";
+import React,{useContext} from "react";
+import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button2525 } from "../../../component/button/addbutton";
 import { Button } from "../../../component/modal/style";
 import { useRouter } from "next/router";
+import { ModalContext } from "../../../config/context/ModalProvider";
 const index = () => {
+
   const router = useRouter();
   const { username } = router.query;
-
+  const { nameMember, dataMember, header } = useContext(
+    ModalContext
+  );
+  const verifyMember = username != nameMember ? false : true;
   const getInputClasses = (fieldname) => {
     if (formik.touched[fieldname] && formik.errors[fieldname]) {
       return "is-invalid";
@@ -19,27 +25,27 @@ const index = () => {
   };
 
   const initialValues = {
-    displayname: "",
+    displayname: '',
     country: "",
     website: "",
     aboutyou: "",
   };
 
-  const SettingSchema = Yup.object().shape({
-    displayname: Yup.string().email("Invalid email").required("Required"),
-    // country: Yup.string().min(6, "Minimum 6 symbols").required("Required"),
+  const Schema = Yup.object().shape({
+    displayname: Yup.string().required("Required").min(6, "Min length is 6"),
   });
 
   const formik = useFormik({
     initialValues,
-    validationSchema: SettingSchema,
+    validationSchema: Schema,
     onSubmit: (value, { setStatus, setSubmitting }) => {
       setTimeout(() => {}, 1000);
     },
   });
 
   return (
-    <div>
+    <>
+    {verifyMember && <>
       <img
         style={{
           top: "0",
@@ -72,15 +78,26 @@ const index = () => {
               paddingBottom: "5px",
             }}
           >
-            <a href="#">Overview</a>
+            <Link href="/profile"> 
+            <a>Profile</a>
+            </Link>
+
           </li>
           <li>
-            <a href="#">Playlist</a>
+          <Link href="/Account"> 
+            <a>Account</a>
+            </Link>
           </li>
-          <li>Following</li>
-          <li>Follower</li>
-          <li>Loved Tracks</li>
-          <li>Shouts</li>
+          <li>
+          <Link href="/Social"> 
+            <a>Social</a>
+            </Link>
+          </li>
+          <li>
+          <Link href="/Shop"> 
+            <a>Shop</a>
+            </Link>
+          </li>
         </ul>
         <form onSubmit={formik.handleSubmit}>
           <h5 className="font-Regular mt-5">Your Picture</h5>
@@ -102,7 +119,11 @@ const index = () => {
                 In most places, your image will be displayed in a circle, like
                 the example.
               </p>
-              <Button2525 className="btn mt-3">Choose file</Button2525>
+
+              <label htmlFor="upload">
+                Choose file
+                <input type="file" id="upload" />
+              </label>
             </div>
           </div>
           <h5 className="font-Regular mt-5">It's All About You, Baby!</h5>
@@ -120,6 +141,12 @@ const index = () => {
                 placeholder="Jone Doe"
                 {...formik.getFieldProps("displayname")}
               />
+              {formik.touched.displayname &&
+              formik.errors.displayname ? (
+                <div className="text-danger font-13">
+                  {formik.errors.displayname}
+                </div>
+              ) : null}
             </div>
           </div>
           {/* End nameDisplay */}
@@ -135,6 +162,11 @@ const index = () => {
                 name="Country"
                 {...formik.getFieldProps("country")}
               >
+                {formik.touched.country && formik.errors.country ? (
+                  <div className="text-danger font-13">
+                    {formik.errors.country}
+                  </div>
+                ) : null}
                 <option value="" label="None" />
                 <option value="thailand" label="Thailand" />
                 <option value="chaina" label="Chaina" />
@@ -156,6 +188,11 @@ const index = () => {
                 name="Website"
                 {...formik.getFieldProps("website")}
               />
+              {formik.touched.website && formik.errors.website ? (
+                <div className="text-danger font-13">
+                  {formik.errors.website}
+                </div>
+              ) : null}
             </div>
           </div>
           {/* End Website */}
@@ -174,11 +211,18 @@ const index = () => {
                 name="AboutYou"
                 {...formik.getFieldProps("aboutyou")}
               />
-               <small className="text-muted">200 character limit, plain text only.</small>
+              {formik.touched.aboutyou && formik.errors.aboutyou ? (
+                <div className="text-danger font-13">
+                  {formik.errors.aboutyou}
+                </div>
+              ) : null}
+              <small className="text-muted">
+                200 character limit, plain text only.
+              </small>
             </div>
-            <br/>
-          </div>    
-   
+            <br />
+          </div>
+
           {/* End AboutYou */}
 
           <div className="d-flex offset-md-3">
@@ -188,6 +232,31 @@ const index = () => {
       </div>
 
       <style jsx>{`
+        label[for="upload"] {
+          background-color: #252525;
+          font-size: 13px;
+          border: 0.1px solid #272727;
+          border-radius: 30px;
+          padding: 10px 25px 10px 25px;
+          color: white;
+          display: inline-block;
+          cursor: pointer;
+        }
+        label[for="upload"]:hover {
+          background: #ddd;
+        }
+        label[for="upload"] input {
+          display: none;
+        }
+        .thumb {
+          position: relative;
+          height: 300px;
+          width: 300px;
+          overflow: hidden;
+          margin: 40px 0;
+          cursor: move;
+        }
+
         hr {
           margin-bottom: 50px;
           margin-top: 50px;
@@ -197,6 +266,7 @@ const index = () => {
         a {
           font-size: 14px;
           color: white;
+          text-decoration: none;
         }
         #list li {
           display: inline;
@@ -211,7 +281,8 @@ const index = () => {
           height: 150px;
         }
       `}</style>
-    </div>
+      </>  }
+    </>
   );
 };
 

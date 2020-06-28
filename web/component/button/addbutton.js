@@ -23,15 +23,18 @@ export default function AddButton() {
   );
 }
 
-export const Button2525 = styled.button`
+export const Button2525 = styled.label`
   background-color: #252525;
   font-size: 13px;
   border: 0.1px solid #272727;
   border-radius: 30px;
   padding: 10px 25px 10px 25px;
   color: white;
+  display:inline-block;
+  cursor:pointer
 
-  &:hover {
+
+  &label[for=upload]:hover {
     background-color: #646464;
     color:white;
   }
