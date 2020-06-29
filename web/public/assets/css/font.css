@@ -1,34 +1,40 @@
 @font-face {
-    font-family: 'Poppins-Regular';
-    src: url('/assets/font/Poppins-Regular.otf') format("opentype");
-  }
+  font-family: 'Poppins-Regular';
+  src: url('/assets/font/Poppins-Regular.otf') format("opentype");
+}
 
-  @font-face {
-    font-family: 'Poppins-Light';
-    src: url('/assets/font/Poppins-Light.otf') format("opentype");
-  }
+@font-face {
+  font-family: 'Poppins-Light';
+  src: url('/assets/font/Poppins-Light.otf') format("opentype");
+}
 
-  @font-face {
-    font-family: 'Poppins-Medium';
-    src: url('/assets/font/Poppins-Medium.otf') format("opentype");
-  }
+@font-face {
+  font-family: 'Poppins-Medium';
+  src: url('/assets/font/Poppins-Medium.otf') format("opentype");
+}
 
-  @font-face {
-    font-family: 'Poppins-Bold';
-    src: url('/assets/font/Poppins-Bold.otf') format("opentype");
-  }
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url('/assets/font/Poppins-Bold.otf') format("opentype");
+}
 
-  @font-face {
-    font-family: 'Poppins-SemiBold';
-    src: url('/assets/font/Poppins-SemiBold.otf') format("opentype");
-  }
+@font-face {
+  font-family: 'Poppins-SemiBold';
+  src: url('/assets/font/Poppins-SemiBold.otf') format("opentype");
+}
 
 * {
-	margin: 0px;
-	padding: 0px;
-  box-sizing: border-box;  
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Poppins-Bold';
 }
 
@@ -37,53 +43,54 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-    font-size: 14px;
+  font-size: 14px;
 }
+
 a {
-    font-size: 13px;
-    color: orange;
-    text-decoration:none
+  font-size: 13px;
+  color: orange;
+  text-decoration: none
 }
 
-
-
-
-.font-default{
+.font-default {
   font-size: 0.875rem;
 }
 
-.text-gray{
+.text-gray {
   font-size: 14px;
   color: #b6b6b6;
 }
-body, html {
-	height: 100%;
-	font-family: 'Poppins-Regular', sans-serif;
-}
 
-/* li{
-  font-family: 'Poppins-Medium', sans-serif;
-} */
-
-.font-Medium{
-  font-family: 'Poppins-Medium', sans-serif;
-}
-.font-Regular{
+body,
+html {
+  height: 100%;
   font-family: 'Poppins-Regular', sans-serif;
 }
-.font-Light{
+
+
+
+.font-Medium {
+  font-family: 'Poppins-Medium', sans-serif;
+}
+
+.font-Regular {
+  font-family: 'Poppins-Regular', sans-serif;
+}
+
+.font-Light {
   font-family: 'Poppins-Light', sans-serif;
 }
-.font-SemiBold{
+
+.font-SemiBold {
   font-family: 'Poppins-SemiBold', sans-serif;
 }
 
-.font-20{
+.font-20 {
   font-family: 'Poppins-Light', sans-serif;
   font-size: 20px;
 }
 
-.font-13{
+.font-13 {
   font-family: 'Poppins-Light', sans-serif;
   font-size: 13px;
 }
@@ -95,8 +102,10 @@ body, html {
   margin-top: 10%;
 }
 
-.pointer {cursor: pointer;}
+.pointer {
+  cursor: pointer;
+}
 
 #nprogress .bar {
   background: #29d !important;
-  }
+}

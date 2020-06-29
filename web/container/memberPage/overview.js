@@ -5,8 +5,8 @@ export default function Overview() {
   return (
     <MemberPage>
       <hr />
-      <div className="row container text-light">
-        <h6 className="font-Medium">My Playlist</h6> <p className="ml-auto">+ Add playlist</p>
+      <div className="row container-fluid text-light">
+        <h6 className="font-Medium">My Playlist</h6> <p className="ml-auto text-muted">+ Add playlist</p>
       </div>
       <div className="text-center">
         <AddButton />
@@ -31,15 +31,15 @@ export default function Overview() {
       </div>
       <hr />
       <div className="row text-light">
-        <div className="col-6">
+        <div className="col-12 col-md-6">
           <div className="row container ">
-            <h6 className="font-Medium">Shoutbox</h6>{" "}
-            <p className="ml-auto text-muted">Sorted by: Recently Popular</p>
+            <h6 className="font-Medium col-12 col-md-6">Shoutbox</h6>{" "}
+            <p className="ml-auto text-muted col-12 col-md-6">Sorted by: Recently Popular</p>
           </div>
         </div>
 
         {/* You may also like */}
-        <div className="col-6">
+        <div className="col-12 col-md-6">
           <h6 className="font-Medium">You may also like</h6>
           <div className="row container-fluid mt-5">
             {/* Most Popular This Week */}

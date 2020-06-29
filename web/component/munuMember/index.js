@@ -5,7 +5,7 @@ import { ModalContext } from "../../config/context/ModalProvider";
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
-  const hideAbout = router.pathname === "/[username]/playlist";
+  const hideAbout = router.pathname != "/[username]";
   const { nameMember } = useContext(ModalContext);
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
@@ -27,12 +27,12 @@ const Index = () => {
             alt=""
           />
         </div>
-        <div className="col-12  col-sm-12  col-md-3 col-xl-10 text-light">
+        <div className="col-12  col-sm-12  col-md-12 col-xl-10 text-light">
           <h3>{username}</h3>
           <p className="text-muted">
             Banana • Joined since 22 May 2020 | Last Login : 19/05/2020
           </p>
-          <ul id="list">
+          <ul id="list" className="font-Light">
             <li className={`${getMenuItemActive("/[username]")}`}>
               <Link
                 href="/[username]"
@@ -47,7 +47,7 @@ const Index = () => {
                 <a>Playlist</a>
               </Link>
             </li>
-            <li className={` ${getMenuItemActive("/following")}`}>
+            <li className={` ${getMenuItemActive("/[username]/following")}`}>
               <Link
                 href="/[username]/following"
                 as={`/${nameMember}/following`}
@@ -77,7 +77,7 @@ const Index = () => {
           {hideAbout != true ? (
             <>
               <div className="row">
-                <div className="col-6">
+                <div className="col-auto col-xl-6">
                   <p className="mt-4 h6">About me</p>
                   <p className="text-muted">
                     Mraz was engaged to singer/songwriter and long-time close
@@ -88,7 +88,7 @@ const Index = () => {
                     farm in Bonsall in Northern San Diego County.
                   </p>
                 </div>
-                <div className="col-6">
+                <div className="col-auto col-xl-6">
                   <p className="mt-5 h6">Born</p>
                   <p className="text-muted">23 June 1992 (age 28)</p>
                   <p className="mt-5 h6">Born in</p>

@@ -8,28 +8,18 @@ import { ModalContext } from "../config/context/ModalProvider";
 export default function Aside() {
   const MySwal = withReactContent(Swal);
   const router = useRouter();
-  const { currentUser, setCurrentUser ,nameMember,setNameMember} = useContext(ModalContext);
-  const checkIsActive = (location, url) => {
+  const { currentUser, nameMember} = useContext(
+    ModalContext
+  );
 
-    const current = getCurrentUrl(location);
-    if (!current || !url) {
+  const getMenuItemActive = (path) => {
+    const pathname = router.pathname;
+    if (!pathname || !path) {
       return false;
     }
-    console.log(user)
-    if (current === url) {
-      return true;
+    if (pathname === path) {
+      return "font-Medium menuActive";
     }
-
-    if (current.indexOf(url) > -1) {
-      return true;
-    }
-
-    return false;
-  };
-  const getMenuItemActive = (url) => {
-    return checkIsActive(router, url)
-      ? " menu-item-active menu-item-open "
-      : "";
   };
 
   const handleSignOut = () => {
@@ -131,13 +121,13 @@ export default function Aside() {
             <li className="nav-item mt-2 ">
               <Link href="/[username]" as={`/${nameMember}`}>
                 <a className="nav-link collapsed">
-                  <span>MY PROFILE</span>
+                  <span> MY PROFILE</span>
                 </a>
               </Link>
             </li>
             {/* Nav Item - Charts */}
             <li className="nav-item ">
-              <Link href="/[username]/setting" as= {`/${nameMember}/setting`}>
+              <Link href="/[username]/setting" as={`/${nameMember}/setting`}>
                 <a className="nav-link">
                   <i className="fas fa-fw fa-chart-area" />
                   <span>SETTING</span>

@@ -40,7 +40,7 @@ const Navbar = () => {
         setNameMember(names);
         setCurrentUser(true);
         try {
-           Axios.post(
+          Axios.post(
             "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member",
             { uid: uid }
           );
@@ -54,7 +54,7 @@ const Navbar = () => {
           setDataMember(verifyMember.data[0]);
           setCurrentUser(true);
         } catch (error) {
-          console.log(error)
+          console.log(error);
           // setNameMember(null);
           setCurrentUser(false);
         }
@@ -75,9 +75,58 @@ const Navbar = () => {
       {/* Topbar */}
 
       <nav
-        className="navbar navbar-expand navbar-light topbar mb-4 static-top "
+        className="navbar navbar-expand navbar-light topbar mb-4 static-top hidden-md-down"
         style={{ zIndex: "1" }}
       >
+        {/* <button
+          className="navbar-toggler ml-auto navbar-light"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button> */}
+
+
+  
+        {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <a className="navbar-brand" href="#">Navbar</a>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon" />
+  </button>
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav mr-auto">
+      <li className="nav-item active">
+        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" href="#">Link</a>
+      </li>
+      <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="#">Action</a>
+          <a className="dropdown-item" href="#">Another action</a>
+          <div className="dropdown-divider" />
+          <a className="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form className="form-inline my-2 my-lg-0">
+      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav> */}
+
         {/* Topbar Search */}
         <form className=" d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
           <div className="input-group w-50">
@@ -96,13 +145,17 @@ const Navbar = () => {
             <>
               <li className="nav-item no-arrow pointer">
                 <a onClick={handleSignIn} className="nav-link">
-                  <span className="mr-2 d-lg-inline text-white ">Sign in</span>
+                  <span className="d-none d-lg-inline text-white ">
+                    Sign in
+                  </span>
                 </a>
               </li>
               {/* register  */}
               <li className="nav-item no-arrow pointer">
                 <a onClick={handleSignUp} className="nav-link ">
-                  <span className="mr-2 d-lg-inline text-white ">Register</span>
+                  <span className="d-none d-lg-inline text-white ">
+                    Register
+                  </span>
                 </a>
               </li>
               {/* <div className="topbar-divider d-none d-sm-block" /> */}
