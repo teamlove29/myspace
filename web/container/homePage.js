@@ -51,7 +51,6 @@ export default function HomePage() {
                 marginTop: "20px",
                 letterSpacing: "3px",
                 padding: "10px 60px 10px 60px",
-                
               }}
             >
               Play
@@ -408,21 +407,19 @@ export default function HomePage() {
             min-height: 250px;
             max-width:200px;
           }
-          .text-on-home{
-            margin-top:200px;
-            margin-bottom:50px;
+          .text-on-home {
+            margin-top: 200px;
+            margin-bottom: 50px;
           }
           @media screen and (max-width: 1200px) {
-          .text-on-home {
-            margin-top:10px;
-            margin-bottom:0px;
+            .text-on-home {
+              margin-top: 10px;
+              margin-bottom: 0px;
+            }
+            .cardHeight {
+              height: 200px;
+            }
           }
-          .cardHeight {
-            height: 200px;
-          }
-          }
-
-
         `}
       </style>
     </div>
