@@ -51,7 +51,6 @@ export default function HomePage() {
                 marginTop: "20px",
                 letterSpacing: "3px",
                 padding: "10px 60px 10px 60px",
-                
               }}
             >
               Play
@@ -330,7 +329,7 @@ export default function HomePage() {
                   alt=""
                 />
                 <div className="card-body">
-                  <div classname="card-title"> Worm Fuzzy Feeling</div>
+                  <div className="card-title"> Worm Fuzzy Feeling</div>
                   <small className="card-text text-muted ">
                     Lorem ipsum is placeholder text commonly used in the
                     graphic,
@@ -407,21 +406,19 @@ export default function HomePage() {
           .cardHeight {
             height: 250px;
           }
-          .text-on-home{
-            margin-top:200px;
-            margin-bottom:50px;
+          .text-on-home {
+            margin-top: 200px;
+            margin-bottom: 50px;
           }
           @media screen and (max-width: 1200px) {
-          .text-on-home {
-            margin-top:10px;
-            margin-bottom:0px;
+            .text-on-home {
+              margin-top: 10px;
+              margin-bottom: 0px;
+            }
+            .cardHeight {
+              height: 200px;
+            }
           }
-          .cardHeight {
-            height: 200px;
-          }
-          }
-
-
         `}
       </style>
     </div>
