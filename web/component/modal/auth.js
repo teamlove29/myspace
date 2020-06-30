@@ -147,7 +147,7 @@ const Auth = (props) => {
     const date = await new Date();
     const DateCreate = await (date.getTime() / 1000).toFixed(0);
     const URL =
-      "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member/addmem";
+    process.env.url + "/login-member/addmem";
     // result มาจาก social ถ้าไม่มีแปลว่ามาจากสมัครด้วย Email
     if (checkSiginSocial) {
       await Axios.post(URL, {
@@ -225,13 +225,13 @@ const Auth = (props) => {
     try {
       // นำค่า uid ไปเช็คที่ API ถ้าไม่มี type ให้เลือกก่อนไม่งั้นก็ signoutไป
       await Axios.post(
-        "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member",
+        process.env.url +"/login-member",
         {
           uid: result.user.uid,
         }
       )
         .then((res) => {
-          // ถ้ามีให้ผิดหน้าต่าง
+          setCurrentUser("ok");
           console.log("เคยสมัครแล้ว");
         })
         .catch((err) => {

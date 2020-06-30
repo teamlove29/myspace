@@ -60,7 +60,7 @@ export default function HomePage() {
         </div>
 
         {/* Content Row */}
-        <div className="row container-fulid ">
+        <div className="row  justify-content-center">
           <div className="col-4 col-sm-4 col-md-4 col-xl-2">
             <div className="card shadow mb-4 cardHeight ">
               <div className="card-body row">
@@ -330,7 +330,7 @@ export default function HomePage() {
                   alt=""
                 />
                 <div className="card-body">
-                  <div classname="card-title"> Worm Fuzzy Feeling</div>
+                  <div className="card-title"> Worm Fuzzy Feeling</div>
                   <small className="card-text text-muted ">
                     Lorem ipsum is placeholder text commonly used in the
                     graphic,
@@ -350,7 +350,7 @@ export default function HomePage() {
                   alt=""
                 />
                 <div className="card-body">
-                  <div classname="card-title"> Acoustic Love</div>
+                  <div className="card-title"> Acoustic Love</div>
                   <small className="card-text text-muted ">
                     Lorem ipsum is placeholder text commonly used in the
                     graphic,
@@ -370,7 +370,7 @@ export default function HomePage() {
                   alt=""
                 />
                 <div className="card-body">
-                  <div classname="card-title"> Late Night Love</div>
+                  <div className="card-title"> Late Night Love</div>
                   <small className="card-text text-muted ">
                     Lorem ipsum is placeholder text commonly used in the
                     graphic,
@@ -390,7 +390,7 @@ export default function HomePage() {
                   alt=""
                 />
                 <div className="card-body">
-                  <div classname="card-title"> Romance & Ballads</div>
+                  <div className="card-title"> Romance & Ballads</div>
                   <small className="card-text text-muted ">
                     Lorem ipsum is placeholder text commonly used in the
                     graphic,
@@ -405,7 +405,8 @@ export default function HomePage() {
       <style jsx>
         {`
           .cardHeight {
-            height: 250px;
+            min-height: 250px;
+            max-width:200px;
           }
           .text-on-home{
             margin-top:200px;

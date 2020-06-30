@@ -17,6 +17,7 @@ const Navbar = () => {
     header,
     setHeader,
   } = useContext(ModalContext);
+
   const handleSignIn = () => {
     setShowSignIn(true);
     setTimeout(() => {
@@ -29,37 +30,35 @@ const Navbar = () => {
       setShowSignUp(false);
     }, 50);
   };
+
+
   const onAuthStateChange = () => {
     return firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const uid = await user.uid;
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
-
+        setNameMember(names);
         let token = await JWT.sign({ uid: uid }, "O5m01VCHmj3w");
         setHeader({ authorization: token });
-        setNameMember(names);
-        setCurrentUser(true);
+
         try {
-          Axios.post(
-            "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member",
-            { uid: uid }
-          );
+          // await Axios.post(process.env.url + "/login-member", { uid: uid });
           const verifyMember = await Axios.get(
-            "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/edit_font-profile/",
+            process.env.url + "/edit_font-profile/",
             {
               headers: header,
             }
-          );
 
-          setDataMember(verifyMember.data[0]);
+          );
           setCurrentUser(true);
+          setDataMember(verifyMember.data[0]);
         } catch (error) {
-          console.log(error);
-          // setNameMember(null);
+          // console.log(error);
+          setNameMember(null);
           setCurrentUser(false);
         }
       } else {
-        // setNameMember(null);
+        setNameMember(null);
         setCurrentUser(false);
       }
     });
@@ -90,8 +89,6 @@ const Navbar = () => {
           <span className="navbar-toggler-icon" />
         </button> */}
 
-
-  
         {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <a className="navbar-brand" href="#">Navbar</a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
