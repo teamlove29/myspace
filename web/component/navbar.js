@@ -31,29 +31,34 @@ const Navbar = () => {
     }, 50);
   };
 
-
   const onAuthStateChange = () => {
     return firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const uid = await user.uid;
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
         setNameMember(names);
-        let token = await JWT.sign({ uid: uid }, "O5m01VCHmj3w");
+        let token = await JWT.sign({ uid: uid }, process.env.secret_key);
         setHeader({ authorization: token });
+        // const verifyMember = await Axios.get(
+        //   process.env.url + "/edit_font-profile/",
+        //   {
+        //     headers: {authorization: token},
+        //   }
+        // );
 
         try {
           // await Axios.post(process.env.url + "/login-member", { uid: uid });
-          const verifyMember = await Axios.get(
-            process.env.url + "/edit_font-profile/",
-            {
-              headers: header,
-            }
-
-          );
+          // const verifyMember = await Axios.get(
+          //   process.env.url + "/edit_font-profile/",
+          //   {
+          //     headers: {authorization: token},
+          //   }
+          // );
+      
           setCurrentUser(true);
-          setDataMember(verifyMember.data[0]);
+          // setDataMember(verifyMember.data[0]);
         } catch (error) {
-          // console.log(error);
+          console.log(error);
           setNameMember(null);
           setCurrentUser(false);
         }
@@ -77,6 +82,19 @@ const Navbar = () => {
         className="navbar navbar-expand navbar-light topbar mb-4 static-top hidden-md-down"
         style={{ zIndex: "1" }}
       >
+        <img
+          className="d-md-block d-lg-none"
+          width="30px"
+          src="/assets/img/icon/myspace.png"
+          alt=""
+        />
+        <div className="d-md-block d-lg-none sidebar-brand-text mx-3 text-light ">
+          My Space
+        </div>
+
+        <button className="d-md-block d-lg-none ml-auto">das</button>
+        <button className="d-md-block d-lg-none">dasas</button>
+
         {/* <button
           className="navbar-toggler ml-auto navbar-light"
           type="button"
@@ -125,7 +143,7 @@ const Navbar = () => {
 </nav> */}
 
         {/* Topbar Search */}
-        <form className=" d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form className=" form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search d-none d-lg-block">
           <div className="input-group w-50">
             <input
               style={{ borderRadius: "100px" }}
@@ -136,7 +154,7 @@ const Navbar = () => {
           </div>
         </form>
         {/* Topbar Navbar */}
-        <ul className="navbar-nav ml-auto">
+        <ul className="navbar-nav ">
           {/* Sign in  */}
           {currentUser != true ? (
             <>
@@ -170,7 +188,9 @@ const Navbar = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span className="mr-2  text-white">{nameMember}</span>
+                  <span className="mr-2 text-white  d-none d-lg-block">
+                    {nameMember}
+                  </span>
                   <img
                     className="img-profile rounded-circle"
                     src="https://source.unsplash.com/cCvnG-937HE/100x100"

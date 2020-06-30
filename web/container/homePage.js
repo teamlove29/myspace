@@ -260,9 +260,9 @@ export default function HomePage() {
         </div>
 
         {/* Popular Artist */}
-        <div className="container-fluid text-light mt-5 text-center">
+        <div className="text-light mt-5 text-center">
           <p className="font-20 text-left">Popular Artist</p>
-          <div className="row mt-5">
+          <div className="row mt-5 justify-content-center">
             <div className="col-auto col-md-auto col-lg-auto col-xl-2 ">
               <img
                 className="rounded-circle"
@@ -315,10 +315,10 @@ export default function HomePage() {
         </div>
 
         {/* Popular Moods Mixes */}
-        <div className="container-fluid text-light  mt-5">
+        <div className="text-light  mt-5 ">
           <span className="font-20">Moods Mixes</span>
-          <div className="row mt-5 ">
-            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
+          <div className="row mt-5 justify-content-center">
+            <div className="col-auto  col-md-6 col-xl-4 col-xl-3 mb-4">
               <div
                 className="card border-0"
                 style={{ backgroundColor: "#222531" }}
@@ -338,7 +338,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
+            <div className="col-auto  col-md-6 col-xl-4 col-xl-3 mb-4">
               <div
                 className="card border-0"
                 style={{ backgroundColor: "#222531" }}
@@ -358,7 +358,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
+            <div className="col-auto  col-md-6 col-xl-4 col-xl-3 mb-4">
               <div
                 className="card border-0"
                 style={{ backgroundColor: "#222531" }}
@@ -405,7 +405,7 @@ export default function HomePage() {
         {`
           .cardHeight {
             min-height: 250px;
-            max-width:200px;
+            max-width:250px;
           }
           .text-on-home {
             margin-top: 200px;
@@ -414,7 +414,7 @@ export default function HomePage() {
           @media screen and (max-width: 1200px) {
             .text-on-home {
               margin-top: 10px;
-              margin-bottom: 0px;
+              margin-bottom: 15px;
             }
             .cardHeight {
               height: 200px;

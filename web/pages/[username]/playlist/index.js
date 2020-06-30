@@ -10,8 +10,8 @@ export default function Index(props) {
         <h6 className="font-Medium">My Playlist</h6>{" "}
         <p className="ml-auto text-muted">+ Add playlist</p>
       </div>
-<div className="row container col-md-auto">
-    <div className="col col-md-2">
+<div className="row  col-md-auto justify-content-center">
+    <div className="col-auto col-md-3 col-lg-3 col-xl-2">
     <div
         style={{
           backgroundImage:
@@ -30,7 +30,7 @@ export default function Index(props) {
       <span className="small d-block text-muted">21 Apr 2017 · 0 tracks</span>
 
     </div>
-    <div className="col col-md-2">
+    <div className="col-auto col-md-3 col-lg-3 col-xl-2">
     <div
         style={{
           backgroundImage:
@@ -49,7 +49,7 @@ export default function Index(props) {
       <span className="small d-block text-muted">21 Apr 2017 · 0 tracks</span>
 
     </div>
-    <div className="col col-md-2">
+    <div className="col-auto col-md-3 col-lg-3 col-xl-2">
     <div
         style={{
           backgroundImage:
@@ -68,7 +68,7 @@ export default function Index(props) {
       <span className="small d-block text-muted">21 Apr 2017 · 0 tracks</span>
 
     </div>
-    <div className="col col-md-2">
+    <div className="col-auto col-md-3 col-lg-3 col-xl-2">
     <div
         style={{
           backgroundImage:
@@ -87,7 +87,7 @@ export default function Index(props) {
       <span className="small d-block text-muted">21 Apr 2017 · 0 tracks</span>
 
     </div>
-    <div className="col col-md-2">
+    <div className="col-auto col-md-3 col-lg-3 col-xl-2">
     <div
         style={{
           backgroundImage:
@@ -106,7 +106,7 @@ export default function Index(props) {
       <span className="small d-block text-muted">21 Apr 2017 · 0 tracks</span>
 
     </div>
-    <div className="col col-md-2">
+    <div className="col-auto col-md-3 col-lg-3 col-xl-2">
     <div
         style={{
           backgroundImage:

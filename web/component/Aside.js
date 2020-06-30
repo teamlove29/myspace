@@ -54,7 +54,7 @@ export default function Aside() {
 
       <ul
         style={{ zIndex: "1" }}
-        className="navbar-nav bg-black sidebar sidebar-dark accordion"
+        className="navbar-nav bg-black sidebar sidebar-dark accordion d-none d-lg-block"
       >
         {/* Sidebar - Brand */}
 

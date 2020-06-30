@@ -19,7 +19,7 @@ const Index = () => {
 
   return (
     <>
-      <div className="ml-5 row justify-content-start">
+      <div className="ml-5 row justify-content-start  justify-content-center ">
         <div className="col-12 col-sm-12 col-md-4 col-xl-2">
           <img
             className="rounded-circle border"
@@ -27,9 +27,9 @@ const Index = () => {
             alt=""
           />
         </div>
-        <div className="col-12  col-sm-12  col-md-12 col-xl-10 text-light">
-          <h3>{username}</h3>
-          <p className="text-muted">
+        <div className="col-12  col-sm-12  col-md-12 col-xl-10 text-light ">
+          <h3 className="">{username}</h3>
+          <p className="text-muted d-none d-xl-block">
             Banana • Joined since 22 May 2020 | Last Login : 19/05/2020
           </p>
           <ul id="list" className="font-Light">
