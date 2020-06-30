@@ -35,6 +35,7 @@ export default function Aside() {
     }).then((result) => {
       if (result.isConfirmed === true) {
         firebase.auth().signOut();
+        router.push('/')
       }
     });
   };

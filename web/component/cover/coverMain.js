@@ -10,6 +10,18 @@ export default function CoverMember({ children }) {
     height: 650px !important;
     margin: 0 auto 1em auto;
     z-index: -1;
+
+
+    top: 0;
+    right: 0;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    maxHeight: 800px ;
+    padding: 0 0;
+
+    
   `;
   return <COVERMEMBERIMAGE>{children}</COVERMEMBERIMAGE>;
 }

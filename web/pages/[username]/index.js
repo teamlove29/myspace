@@ -10,31 +10,26 @@ export default function Index({ stars }) {
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
-  const { nameMember, dataMember, header, dataFriend } = useContext(
+  const { nameMember, dataMember, dataFriend } = useContext(
     ModalContext
   );
+
   const verifyMember = username != nameMember ? false : true;
+
   if (dataMember != undefined) {
     var type = dataMember.mem_type; // 1 member | 2 artist
   }
   const showPage = () => {
     if (nameMember === undefined || dataMember === undefined)
       return <LoadPage />;
+    if (verifyMember === false && dataFriend === undefined) return <NotFound />;
     else {
-      if (verifyMember === false && dataFriend === undefined)
-        return <NotFound />;
-      else {
-        return (
-          <>
-            {verifyMember && type === 1 && (
-              <Overview editor={statusEditor} />
-            )}
-            {verifyMember && type === 2 && (
-              <ArtistPage editor={statusEditor} />
-            )}
-          </>
-        );
-      }
+      return (
+        <>
+          {verifyMember && type === 1 && <Overview editor={statusEditor} />}
+          {verifyMember && type === 2 && <ArtistPage editor={statusEditor} />}
+        </>
+      );
     }
   };
   // ถ้า nameMember != ชื่อที่กลับมาให้ setStatusEditor(true) คือการเปิดสถานะการแก้ไข

@@ -1,20 +1,12 @@
 import React from "react";
 import { Button } from "../component/modal/style";
+
 export default function HomePage() {
   return (
     <div className="container-fluid">
       <img
-        style={{
-          top: "0",
-          right: "0",
-          position: "absolute",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          maxHeight: "800px ",
-          padding: "0 0",
-        }}
-        className="container-fluid "
+        style={{}}
+        className="container-fluid covermain"
         src="/assets/img/cover/mainCover.png"
         alt=""
       />
@@ -36,10 +28,7 @@ export default function HomePage() {
             <h1 style={{ fontSize: "4vw" }} className="text-light">
               weekend?
             </h1>
-            <p
-              className="small"
-              style={{ maxWidth: "500px", color: "#b6b6b6" }}
-            >
+            <p className="small text-near-cover">
               Lorem ipsum is placeholder text commonly used in the graphic,
               print, and publishing industries for previewing layouts and visual
               mockups.
@@ -318,7 +307,7 @@ export default function HomePage() {
         <div className="text-light  mt-5 ">
           <span className="font-20">Moods Mixes</span>
           <div className="row mt-5 justify-content-center">
-            <div className="col-auto  col-md-6 col-xl-4 col-xl-3 mb-4">
+            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
               <div
                 className="card border-0"
                 style={{ backgroundColor: "#222531" }}
@@ -338,7 +327,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="col-auto  col-md-6 col-xl-4 col-xl-3 mb-4">
+            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
               <div
                 className="card border-0"
                 style={{ backgroundColor: "#222531" }}
@@ -358,7 +347,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="col-auto  col-md-6 col-xl-4 col-xl-3 mb-4">
+            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
               <div
                 className="card border-0"
                 style={{ backgroundColor: "#222531" }}
@@ -405,19 +394,47 @@ export default function HomePage() {
         {`
           .cardHeight {
             min-height: 250px;
-            max-width:250px;
+            max-width: 250px;
           }
           .text-on-home {
             margin-top: 200px;
             margin-bottom: 50px;
           }
-          @media screen and (max-width: 1200px) {
+          .covermain {
+            top: 0;
+            right: 0;
+            position: absolute;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            max-height: 850px;
+            padding: 0 0;
+          }
+          .text-near-cover {
+            max-width: 500px;
+            color: #b6b6b6;
+          }
+          @media screen and (max-width: 1195px) {
             .text-on-home {
               margin-top: 10px;
               margin-bottom: 15px;
             }
             .cardHeight {
               height: 200px;
+            }
+          }
+
+          @media screen and (max-width: 991px) {
+            .cardHeight {
+            min-height: 200px;
+          }
+            .covermain {
+              top: 5%;
+              min-width: 600px;
+            }
+            .text-near-cover {
+              max-width: 250px;
+              color: #b6b6b6;
             }
           }
         `}
