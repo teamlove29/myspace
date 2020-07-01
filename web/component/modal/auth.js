@@ -17,7 +17,6 @@ const Auth = (props) => {
   const [password, setPassword] = useState(null);
   const [uidSocial, setUidSocial] = useState(null);
   const [where, setwhere] = useState("");
-
   const handleCloseforgetpass = () => {
     setShowforgetpass(false);
     formikforgetpass.resetForm();
@@ -169,13 +168,25 @@ const Auth = (props) => {
       });
   };
 
-  const handleSignUp = (value, { setSubmitting }) => {
+  const handleSignUp = async (value, { setSubmitting }) => {
+
+   try{
+    await Axios.post(process.env.url + "/edit_front-profile/checkEmail", { email: value.email });
     setEmail(value.email);
     setPassword(value.password);
     setShowSignUp(false);
     setShowType(true);
     setSubmitting(false);
     formikSignUp.handleReset();
+   }catch(error){
+    setShowSignUp(false);
+    setSubmitting(false);
+    setShowSignIn(true);
+    formikSignUp.handleReset();
+    formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
+   }
+
+
   };
 
   const handleType = async (result) => {
@@ -236,7 +247,7 @@ const Auth = (props) => {
           formikChoose.setSubmitting(false);
           console.log(errorCode);
           if (errorCode === "auth/email-already-in-use") {
-            formikSignIn.setStatus("You are already registered. Please login.");
+            formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
             setShowSignIn(true);
           } else {
             formikSignUp.setStatus(errorCode);

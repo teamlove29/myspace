@@ -66,7 +66,7 @@ const Navbar = () => {
         try { 
           await Axios.post(process.env.url + "/login-member", { uid: uid });
           const verifyMember = await Axios.get(
-            process.env.url + "/edit_font-profile/",
+            process.env.url + "/edit_front-profile/",
             {
               headers: { authorization: token },
             }
@@ -88,6 +88,7 @@ const Navbar = () => {
     const unsubscribe = onAuthStateChange();
     return () => unsubscribe();
   }, [currentUser]);
+
 
   return (
     <>
@@ -185,14 +186,14 @@ const Navbar = () => {
             <>
                  <ul className="navbar-nav  ml-auto">
               <li className="nav-item no-arrow pointer ">
-                <a onClick={handleSignIn} className="nav-link">
+                <a onClick={() => handleSignIn()} className="nav-link" >
                   {/* d-none d-lg-inline  */}
                   <span className="text-white ">Sign in</span>
                 </a>
               </li>
               {/* register  */}
               <li className="nav-item no-arrow pointer">
-                <a onClick={handleSignUp} className="nav-link ">
+                <a onClick={() => handleSignUp()} className="nav-link ">
                   <span className=" text-white ">Register</span>
                 </a>
               </li>

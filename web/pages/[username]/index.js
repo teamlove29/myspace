@@ -14,9 +14,8 @@ export default function Index({ stars }) {
   );
 
   useEffect(() => {
-    console.log(header)
-    Axios.post(process.env.url + "/edit_font-profile/checkDisplay", {
-      headers: {authorization : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJjZFhhY0thZGFUWDlITmRWUGRFeERCeDZIVFYyIiwiaWF0IjoxNTkzNTg1MjM3fQ.wEwvUy6JwIIkjidaqZE_4cISRdqPFOxKsF93n-9f_cs'},
+    Axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/edit_front-profile/checkDisplay', {
+      headers: {authorization : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJtb21UMUI1S2NRZnlkVkJaNGl2aWFkN0xZYU0yIiwiaWF0IjoxNTkzNjE1ODY1fQ.Jasvcu3BYlG_Lo8WSBlDHM_dd19bvBYJfZgYo9NpCKk'},
       display: 'team_happy29',
     })
       .then((res) => {
@@ -45,7 +44,7 @@ export default function Index({ stars }) {
 }
 
 // Index.getInitialProps = async (ctx) => {
-//   const res = await fetch('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/edit_font-profile',{
+//   const res = await fetch('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/edit_front-profile',{
 //     headers: { authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJxcDlmbTY0dWFQT0s1VmcyMmExVU5Gejk3Ym0yIiwiaWF0IjoxNTkzMTkwNjU3fQ.HdP-qlX9JK0JZlcRcsvJl6By4JEPFDCSJ0xVmoV17v4' }
 //   })
 //   const json = await res.json()
