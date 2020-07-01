@@ -3,8 +3,8 @@ require("dotenv").config();
 const withImages = require("next-images");
 module.exports = withImages({
   env: {
-    api_url: process.env.API_URL,
-    secret_key: process.env.SECRET_KEY,
+    API_URL: process.env.API_URL,
+    SECRET_KEY: process.env.SECRET_KEY,
   },
   distDir: "nextjs",
   webpack(config, options) {

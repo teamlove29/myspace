@@ -54,20 +54,19 @@ const Navbar = () => {
     });
   };
 
-
   const onAuthStateChange = () => {
     return firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const uid = await user.uid;
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
         setNameMember(names);
-        let token = await JWT.sign({ uid: uid }, process.env.secret_key);
+        let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
         setHeader({ authorization: token });
 
         try {
           await Axios.post(process.env.API_URL + "/login-member", { uid: uid });
           const verifyMember = await Axios.get(
-            process.env.API_URL + "/edit_font-profile/",
+            process.env.API_URL + "/edit_front-profile/",
             {
               headers: { authorization: token },
             }
