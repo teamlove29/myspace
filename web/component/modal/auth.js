@@ -12,9 +12,29 @@ const Auth = (props) => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showType, setShowType] = useState(false);
+  const [showforgetpass, setShowforgetpass] = useState(false);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [uidSocial, setUidSocial] = useState(null);
+  const [where, setwhere] = useState("");
+
+  const handleCloseforgetpass = () => {
+    setShowforgetpass(false);
+    formikforgetpass.resetForm();
+  };
+
+  const handleShowforget = (value) => {
+    setwhere(value);
+    handleCloseSignIn();
+    handleCloseSignUp();
+    setShowforgetpass(true);
+  };
+
+  const handleSwaModal = () => {
+    where === "signin" ? setShowSignIn(true) : setShowSignUp(true);
+    where === "" ? handleCloseforgetpass() : null;
+    handleCloseforgetpass();
+  };
 
   const handleCloseChoose = () => setShowType(false);
   const handleCloseSignIn = () => {
@@ -31,6 +51,10 @@ const Auth = (props) => {
     if (props.showSignUp === true) setShowSignUp(true);
   }, [props]);
 
+  const forgetpassinitialValues = {
+    email: "",
+  };
+
   const initialValues = {
     email: "",
     password: "",
@@ -38,6 +62,10 @@ const Auth = (props) => {
     // 1 member
     // 2 artist
   };
+
+  const forgetpassSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
 
   const AuthSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -78,6 +106,15 @@ const Auth = (props) => {
       setTimeout(() => {
         handleType(value);
       }, 1000);
+    },
+  });
+
+  const formikforgetpass = useFormik({
+    forgetpassinitialValues,
+    validationSchema: forgetpassSchema,
+    onSubmit: (value, { setStatus, setSubmitting }) => {
+      setStatus(null);
+      setTimeout(() => {}, 1000);
     },
   });
 
@@ -146,8 +183,7 @@ const Auth = (props) => {
     const names = await email.substring(0, email.lastIndexOf("@"));
     const date = await new Date();
     const DateCreate = await (date.getTime() / 1000).toFixed(0);
-    const URL =
-    process.env.url + "/login-member/addmem";
+    const URL = process.env.url + "/login-member/addmem";
     // result มาจาก social ถ้าไม่มีแปลว่ามาจากสมัครด้วย Email
     if (checkSiginSocial) {
       await Axios.post(URL, {
@@ -224,12 +260,9 @@ const Auth = (props) => {
     setShowSignUp(false);
     try {
       // นำค่า uid ไปเช็คที่ API ถ้าไม่มี type ให้เลือกก่อนไม่งั้นก็ signoutไป
-      await Axios.post(
-        process.env.url +"/login-member",
-        {
-          uid: result.user.uid,
-        }
-      )
+      await Axios.post(process.env.url + "/login-member", {
+        uid: result.user.uid,
+      })
         .then((res) => {
           setCurrentUser("ok");
           console.log("เคยสมัครแล้ว");
@@ -358,7 +391,11 @@ const Auth = (props) => {
               </Form.Group>
               <span className="text-gray">or</span>
               <SocialSignIn />
-              <a className="float-right" href="#">
+              <a
+                onClick={() => handleShowforget("signin")}
+                className="float-right"
+                href="#"
+              >
                 Forgot password
               </a>
               <div className="text-center">
@@ -443,7 +480,11 @@ const Auth = (props) => {
               </Form.Group>
               <span className="text-gray">or</span>
               <SocialSignIn />
-              <a className="float-right" href="#">
+              <a
+                onClick={() => handleShowforget("signup")}
+                className="float-right"
+                href="#"
+              >
                 Forgot password
               </a>
               <div className="text-center">
@@ -561,6 +602,80 @@ const Auth = (props) => {
         </Modal.Body>
       </Modal>
       {/* end Type */}
+
+      {/* begin forgetpass  */}
+      <Modal
+        show={showforgetpass}
+        onHide={handleCloseforgetpass}
+        size="lg"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="text-center">
+            <h2 className="text-center mb-3 mt-5">Forgot password</h2>
+            <span className="text-muted font-Light ">
+              ป้อนชื่อผู้ใช้หรืออีเมลของคุณที่ใช้ในการลงทะเบียน
+            </span>{" "}
+            <br />
+            <span className="text-muted font-Light ">
+              เราจะส่งอีเมลแจ้งชื่อผู้ใช้ของคุณพร้อมลิงก์สำหรับรีเซ็ตรหัสผ่าน
+            </span>
+          </div>
+          <div
+            style={{
+              marginLeft: "7rem",
+              marginRight: "7rem",
+              marginBottom: "1rem",
+            }}
+          >
+            <Form onSubmit={formikforgetpass.handleSubmit} className="mt-5">
+              {formikforgetpass.status ? (
+                <Alert>
+                  <small> {formikforgetpass.status} </small>
+                </Alert>
+              ) : null}
+              <Form.Group>
+                <Form.Label>E-mail / Username</Form.Label>
+                <Form.Control
+                  className={`form-control`}
+                  name="email"
+                  type="email"
+                  {...formikforgetpass.getFieldProps("email")}
+                />
+                {formikforgetpass.touched.email &&
+                formikforgetpass.errors.email ? (
+                  <div className="text-danger text-font-13">
+                    {formikforgetpass.errors.email}
+                  </div>
+                ) : null}
+              </Form.Group>
+            </Form>
+
+            <div className="text-center mt-5">
+              <Button
+                onClick={() => handleSwaModal()}
+                type="back"
+                style={{ background: "white" }}
+                className="pl-5 pr-5 my-auto  text-dark mr-3"
+              >
+                Back
+              </Button>
+              <Button
+                onClick={() => {
+                  formikforgetpass.handleSubmit();
+                }}
+                className="pl-5 pr-5 btn my-auto "
+                type="submit"
+                disabled={formikforgetpass.isSubmitting}
+              >
+                Send
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+      {/* end forgetpass  */}
+
       <style jsx>{`
         .typeround {
           cursor: pointer;

@@ -8,10 +8,8 @@ import { ModalContext } from "../config/context/ModalProvider";
 export default function Aside() {
   const MySwal = withReactContent(Swal);
   const router = useRouter();
-  const { currentUser, nameMember} = useContext(
-    ModalContext
-  );
-
+  const { currentUser, nameMember, dataMember } = useContext(ModalContext);
+  const typeMember = !dataMember ? null : dataMember.mem_type;
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
     if (!pathname || !path) {
@@ -35,7 +33,7 @@ export default function Aside() {
     }).then((result) => {
       if (result.isConfirmed === true) {
         firebase.auth().signOut();
-        router.push('/')
+        router.push("/");
       }
     });
   };
@@ -87,28 +85,28 @@ export default function Aside() {
           </Link>
         </li>
         <li className="nav-item ">
-          <Link href="/music">
+          <Link href="/music" as="/">
             <a className="nav-link collapsed">
               <span>MUSIC</span>
             </a>
           </Link>
         </li>
         <li className="nav-item ">
-          <Link href="/charts">
+          <Link href="/charts" as="/">
             <a className="nav-link collapsed">
               <span>CHARTS</span>
             </a>
           </Link>
         </li>
         <li className="nav-item ">
-          <Link href="/event">
+          <Link href="/event" as="/">
             <a className="nav-link collapsed">
               <span>EVENT</span>
             </a>
           </Link>
         </li>
         <li className="nav-item ">
-          <Link href="/features">
+          <Link href="/features" as="/">
             <a className="nav-link collapsed">
               <span>FEATURES</span>
             </a>
@@ -142,6 +140,21 @@ export default function Aside() {
                 <span>LOG OUT</span>
               </a>
             </li>
+
+            {typeMember === 2 && (
+              <>
+                <div className="sidebar-heading mt-2">BRAND</div>
+                <ul>
+                  <li className="nav-item ">
+                    <Link href="/features" as="/">
+                      <a className="nav-link collapsed">
+                        <span>CREATE BRAND</span>
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              </>
+            )}
           </>
         ) : null}
       </ul>

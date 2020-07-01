@@ -54,6 +54,7 @@ const Navbar = () => {
     });
   };
 
+
   const onAuthStateChange = () => {
     return firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
@@ -61,9 +62,8 @@ const Navbar = () => {
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
         setNameMember(names);
         let token = await JWT.sign({ uid: uid }, process.env.secret_key);
-        setHeader({ authorization: token });
-
-        try {
+        setHeader(token);
+        try { 
           await Axios.post(process.env.url + "/login-member", { uid: uid });
           const verifyMember = await Axios.get(
             process.env.url + "/edit_font-profile/",
@@ -71,7 +71,6 @@ const Navbar = () => {
               headers: { authorization: token },
             }
           );
-
           setCurrentUser(true);
           setDataMember(verifyMember.data[0]);
         } catch (error) {

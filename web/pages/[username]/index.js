@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import Overview from "../../container/memberPage/overview";
-import ArtistPage from "../../container/artistPage";
 import NotFound from "../../container/notFound";
 import LoadPage from "../../container/loadPage";
 import { ModalContext } from "../../config/context/ModalProvider";
@@ -10,9 +9,23 @@ export default function Index({ stars }) {
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
-  const { nameMember, dataMember, dataFriend } = useContext(
+  const { nameMember, dataMember, dataFriend, header } = useContext(
     ModalContext
   );
+
+  useEffect(() => {
+    console.log(header)
+    Axios.post(process.env.url + "/edit_font-profile/checkDisplay", {
+      headers: {authorization : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJjZFhhY0thZGFUWDlITmRWUGRFeERCeDZIVFYyIiwiaWF0IjoxNTkzNTg1MjM3fQ.wEwvUy6JwIIkjidaqZE_4cISRdqPFOxKsF93n-9f_cs'},
+      display: 'team_happy29',
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [username]);
 
   const verifyMember = username != nameMember ? false : true;
 
@@ -24,12 +37,7 @@ export default function Index({ stars }) {
       return <LoadPage />;
     if (verifyMember === false && dataFriend === undefined) return <NotFound />;
     else {
-      return (
-        <>
-          {verifyMember && type === 1 && <Overview editor={statusEditor} />}
-          {verifyMember && type === 2 && <ArtistPage editor={statusEditor} />}
-        </>
-      );
+      return <>{verifyMember && <Overview editor={statusEditor} />}</>;
     }
   };
   // ถ้า nameMember != ชื่อที่กลับมาให้ setStatusEditor(true) คือการเปิดสถานะการแก้ไข
