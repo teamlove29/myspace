@@ -171,7 +171,7 @@ const Auth = (props) => {
   const handleSignUp = async (value, { setSubmitting }) => {
 
    try{
-    await Axios.post(process.env.url + "/edit_front-profile/checkEmail", { email: value.email });
+    await Axios.post(process.env.API_URL+ "/edit_front-profile/checkEmail", { email: value.email });
     setEmail(value.email);
     setPassword(value.password);
     setShowSignUp(false);
@@ -194,7 +194,7 @@ const Auth = (props) => {
     const names = await email.substring(0, email.lastIndexOf("@"));
     const date = await new Date();
     const DateCreate = await (date.getTime() / 1000).toFixed(0);
-    const URL = process.env.url + "/login-member/addmem";
+    const URL = process.env.API_URL + "/login-member/addmem";
     // result มาจาก social ถ้าไม่มีแปลว่ามาจากสมัครด้วย Email
     if (checkSiginSocial) {
       await Axios.post(URL, {
@@ -271,7 +271,7 @@ const Auth = (props) => {
     setShowSignUp(false);
     try {
       // นำค่า uid ไปเช็คที่ API ถ้าไม่มี type ให้เลือกก่อนไม่งั้นก็ signoutไป
-      await Axios.post(process.env.url + "/login-member", {
+      await Axios.post(process.env.API_URL + "/login-member", {
         uid: result.user.uid,
       })
         .then((res) => {

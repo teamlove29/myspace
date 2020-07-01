@@ -49,7 +49,7 @@ const Navbar = () => {
     }).then((result) => {
       if (result.isConfirmed === true) {
         firebase.auth().signOut();
-        router.push('/')
+        router.push("/");
       }
     });
   };
@@ -62,11 +62,12 @@ const Navbar = () => {
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
         setNameMember(names);
         let token = await JWT.sign({ uid: uid }, process.env.secret_key);
-        setHeader(token);
-        try { 
-          await Axios.post(process.env.url + "/login-member", { uid: uid });
+        setHeader({ authorization: token });
+
+        try {
+          await Axios.post(process.env.API_URL + "/login-member", { uid: uid });
           const verifyMember = await Axios.get(
-            process.env.url + "/edit_front-profile/",
+            process.env.API_URL + "/edit_font-profile/",
             {
               headers: { authorization: token },
             }
@@ -105,9 +106,7 @@ const Navbar = () => {
           src="/assets/img/icon/myspace.png"
           alt=""
         />
-        <div className="d-md-block d-lg-none  mx-3 text-light ">
-          My Space
-        </div>
+        <div className="d-md-block d-lg-none  mx-3 text-light ">My Space</div>
         {currentUser === true ? (
           <>
             <svg
@@ -143,9 +142,6 @@ const Navbar = () => {
               />
             </svg>
 
-
-           
-
             <svg
               width="2em"
               height="2em"
@@ -180,11 +176,11 @@ const Navbar = () => {
           </div>
         </form>
         {/* Topbar Navbar */}
-   
-          {/* Sign in  */}
-          {currentUser != true ? (
-            <>
-                 <ul className="navbar-nav  ml-auto">
+
+        {/* Sign in  */}
+        {currentUser != true ? (
+          <>
+            <ul className="navbar-nav  ml-auto">
               <li className="nav-item no-arrow pointer ">
                 <a onClick={() => handleSignIn()} className="nav-link" >
                   {/* d-none d-lg-inline  */}
@@ -199,11 +195,11 @@ const Navbar = () => {
               </li>
               {/* <div className="topbar-divider d-none d-sm-block" /> */}
               {/* Nav Item - User Information */}
-              </ul>
-            </>
-          ) : (
-            <>
-                    <ul className="navbar-nav ">
+            </ul>
+          </>
+        ) : (
+          <>
+            <ul className="navbar-nav ">
               <li className="nav-item dropdown no-arrow">
                 <a
                   className="nav-link dropdown-toggle"
@@ -240,7 +236,7 @@ const Navbar = () => {
                   </a>
                   <div className="dropdown-divider" />
                   <a
-                  onClick={handleSignOut}
+                    onClick={handleSignOut}
                     className="dropdown-item"
                     href="#"
                     data-toggle="modal"
@@ -251,10 +247,9 @@ const Navbar = () => {
                   </a>
                 </div>
               </li>
-              </ul>
-            </>
-          )}
-        
+            </ul>
+          </>
+        )}
       </nav>
       <style jsx>
         {`
