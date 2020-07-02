@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import Link from "next/link";
 import Auth from "./modal/auth";
 import firebase from "../config/config";
 import { useRouter } from "next/router";
@@ -22,6 +23,7 @@ const Navbar = () => {
     header,
     setHeader,
   } = useContext(ModalContext);
+
 
   const handleSignIn = () => {
     setShowSignIn(true);
@@ -61,8 +63,7 @@ const Navbar = () => {
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
         setNameMember(names);
         let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
-        setHeader({ authorization: token });
-
+        setHeader(token);
         try {
           await Axios.post(process.env.API_URL + "/login-member", { uid: uid });
           const verifyMember = await Axios.get(
@@ -89,7 +90,6 @@ const Navbar = () => {
     return () => unsubscribe();
   }, [currentUser]);
 
-
   return (
     <>
       <Auth showSignIn={showSignIn} showSignUp={showSignUp} />
@@ -108,6 +108,7 @@ const Navbar = () => {
         <div className="d-md-block d-lg-none  mx-3 text-light ">My Space</div>
         {currentUser === true ? (
           <>
+
             <svg
               width="3em"
               height="35px"
@@ -141,13 +142,23 @@ const Navbar = () => {
               />
             </svg>
 
+
+            <a
+                  // className="nav-link dropdown-toggle "
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
             <svg
               width="2em"
               height="2em"
               viewBox="0 0 16 16"
               className="bi bi-person-fill d-md-block d-lg-none text-light"
               // className="nav-link dropdown-toggle"
-              id="userDropdown"
+              id="ddd"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -160,6 +171,9 @@ const Navbar = () => {
                 d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
               />
             </svg>
+                </a>
+
+
           </>
         ) : null}
 
@@ -173,13 +187,13 @@ const Navbar = () => {
               placeholder="Search"
             />
           </div>
-        </form>
-        {/* Topbar Navbar */}
-
+        </form> 
+        {/* Topbar Navbar */}  
+        <ul className={currentUser != true ? "navbar-nav mobile" : "navbar-nav"}>
+          
         {/* Sign in  */}
         {currentUser != true ? (
           <>
-            <ul className="navbar-nav  ml-auto">
               <li className="nav-item no-arrow pointer ">
                 <a onClick={() => handleSignIn()} className="nav-link" >
                   {/* d-none d-lg-inline  */}
@@ -194,11 +208,11 @@ const Navbar = () => {
               </li>
               {/* <div className="topbar-divider d-none d-sm-block" /> */}
               {/* Nav Item - User Information */}
-            </ul>
+          
           </>
         ) : (
           <>
-            <ul className="navbar-nav ">
+            <ul className="navbar-nav  d-none d-lg-block">
               <li className="nav-item dropdown no-arrow">
                 <a
                   className="nav-link dropdown-toggle"
@@ -221,25 +235,24 @@ const Navbar = () => {
                   className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                   aria-labelledby="userDropdown"
                 >
-                  <a className="dropdown-item" href="#">
+                          <Link href="/[username]" as={`/${nameMember}`}>
+                  <a className="dropdown-item" >
                     <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
                     Profile
                   </a>
-                  <a className="dropdown-item" href="#">
+                  </Link>
+                  <Link href="/[username]/setting" as={`/${nameMember}/setting`}>
+                  <a className="dropdown-item" >
                     <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
                     Settings
                   </a>
-                  <a className="dropdown-item" href="#">
-                    <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
-                    Activity Log
-                  </a>
+                  </Link>
+
                   <div className="dropdown-divider" />
                   <a
-                    onClick={handleSignOut}
+                    onClick={() => handleSignOut()}
                     className="dropdown-item"
                     href="#"
-                    data-toggle="modal"
-                    data-target="#logoutModal"
                   >
                     <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
                     Logout
@@ -249,6 +262,7 @@ const Navbar = () => {
             </ul>
           </>
         )}
+          </ul>
       </nav>
       <style jsx>
         {`
@@ -256,6 +270,10 @@ const Navbar = () => {
             .bg-navbar{
 background-color : #151821;
 
+          }
+          .mobile{
+           
+            margin-left: auto !important;
           }
   `}
       </style>

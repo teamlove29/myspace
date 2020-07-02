@@ -50,9 +50,6 @@ const Auth = (props) => {
     if (props.showSignUp === true) setShowSignUp(true);
   }, [props]);
 
-  const forgetpassinitialValues = {
-    email: "",
-  };
 
   const initialValues = {
     email: "",
@@ -109,11 +106,27 @@ const Auth = (props) => {
   });
 
   const formikforgetpass = useFormik({
-    forgetpassinitialValues,
+    initialValues,
     validationSchema: forgetpassSchema,
     onSubmit: (value, { setStatus, setSubmitting }) => {
-      setStatus(null);
-      setTimeout(() => {}, 1000);
+      var auth = firebase.auth();
+      var emailAddress = value.email;
+      auth.sendPasswordResetEmail(emailAddress).then((res) => {
+        console.log(res)
+        formikforgetpass.resetForm()
+        setStatus('ส่งไปที่อีเมล์เรียบร้อยแล้ว')
+      }).catch((error)=> {
+        formikforgetpass.resetForm()
+        if(error.code === "auth/too-many-requests") setStatus('ส่งคำขอมากเกินไป กรุณาทำรายการใหม่ภายหลัง')
+        if(error.code === "auth/user-not-found") setStatus('ไม่พบอีเมล์นี้ในระบบ')
+        console.log(error.code)
+
+      });
+setTimeout(() => {
+  setSubmitting(false)
+
+}, 1000)
+
     },
   });
 
@@ -153,7 +166,7 @@ const Auth = (props) => {
       .then((values) => {
         formikSignIn.handleReset();
         setSubmitting(false);
-        setShowSignIn(false);
+        handleCloseSignIn();
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -346,7 +359,7 @@ const Auth = (props) => {
                   setShowSignUp(true);
                   handleCloseSignIn();
                 }}
-                href="#"
+                className="pointer"
               >
                 {" "}
                 Sign up
@@ -355,9 +368,9 @@ const Auth = (props) => {
           </div>
           <div
             style={{
-              marginLeft: "7rem",
-              marginRight: "7rem",
-              marginBottom: "1rem",
+              // marginLeft: "7rem",
+              // marginRight: "7rem",
+              // marginBottom: "1rem",
             }}
           >
             <Form onSubmit={formikSignIn.handleSubmit} className="mt-5">
@@ -405,7 +418,8 @@ const Auth = (props) => {
               <a
                 onClick={() => handleShowforget("signin")}
                 className="float-right"
-                href="#"
+
+                className="pointer float-right"
               >
                 Forgot password
               </a>
@@ -438,7 +452,7 @@ const Auth = (props) => {
                 setShowSignIn(true);
                 handleCloseSignUp();
               }}
-              href="#"
+              className="pointer"
             >
               Sign in
             </a>{" "}
@@ -446,9 +460,9 @@ const Auth = (props) => {
 
           <div
             style={{
-              marginLeft: "7rem",
-              marginRight: "7rem",
-              marginBottom: "1rem",
+              // marginLeft: "7rem",
+              // marginRight: "7rem",
+              // marginBottom: "1rem",
             }}
           >
             <Form onSubmit={formikSignUp.handleSubmit} className="mt-5">
@@ -494,7 +508,7 @@ const Auth = (props) => {
               <a
                 onClick={() => handleShowforget("signup")}
                 className="float-right"
-                href="#"
+                className="pointer float-right"
               >
                 Forgot password
               </a>
@@ -641,8 +655,8 @@ const Auth = (props) => {
           >
             <Form onSubmit={formikforgetpass.handleSubmit} className="mt-5">
               {formikforgetpass.status ? (
-                <Alert>
-                  <small> {formikforgetpass.status} </small>
+                <Alert className={formikforgetpass.status === 'ส่งไปที่อีเมล์เรียบร้อยแล้ว' ? "alert alert-secondary" : null}> 
+                  <small > {formikforgetpass.status} </small>
                 </Alert>
               ) : null}
               <Form.Group>

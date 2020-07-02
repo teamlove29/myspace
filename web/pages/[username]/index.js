@@ -13,10 +13,22 @@ export default function Index({ stars }) {
     ModalContext
   );
 
+  // console.log(header.authorization)
+  //   Axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/edit_front-profile/checkDisplay', {
+  //     headers: {authorization : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJEUDJyUnVWSnlaYTBkMnZObUlHT1ozVUZhS0EzIiwiaWF0IjoxNTkzNjcyNzc3fQ.6Fv1zwIlL0HQNwNo6PPiVxZUNxSpLYRUgIxeDVUYATk'},
+  //     // display: 'team_happy29',
+  //   })
+  // .then((res) => {
+  //   console.log(res);
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  // });
+  // console.log(test)
+
   useEffect(() => {
-    Axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/edit_front-profile/checkDisplay', {
-      headers: {authorization : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJtb21UMUI1S2NRZnlkVkJaNGl2aWFkN0xZYU0yIiwiaWF0IjoxNTkzNjE1ODY1fQ.Jasvcu3BYlG_Lo8WSBlDHM_dd19bvBYJfZgYo9NpCKk'},
-      display: 'team_happy29',
+    Axios.post(process.env.API_URL + "/edit_front-profile/checkDisplay", {
+      headers: { authorization: header },
     })
       .then((res) => {
         console.log(res);
