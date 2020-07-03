@@ -1,7 +1,7 @@
 variables:
   PROJECT_ID: "18700019"
   # ENV
-  DEV_ENV: "https://gitlab.com/api/v4/projects/$PROJECT_ID/snippets/1768968/raw"
+  DEV_WEB_ENV: "https://gitlab.com/api/v4/projects/$PROJECT_ID/snippets/1991318/raw"
   # Firebase SDK
   DEV_FIREBASE: "https://gitlab.com/api/v4/projects/$PROJECT_ID/snippets/1983169/raw"
   DEV_FIREBASE_PROJECT: "myspace-dev-1ae9e"

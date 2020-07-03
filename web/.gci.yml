@@ -36,6 +36,8 @@ dev-build-web:
     - npm-web
   script:
     - cd $WEB_PATH
+    - "[ -f .env ] && rm .env"
+    - 'curl --header "PRIVATE-TOKEN: $PRIVATE_TOKEN" "$DEV_WEB_ENV" >> .env'
     - npm run predeploy
   cache:
     paths:
