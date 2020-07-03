@@ -50,7 +50,7 @@ dev-build-web:
   <<: *dev_only
 dev-deploy-web:
   stage: deploy
-  image: registry.gitlab.com/twin-intern/lampang-2020/lampang-myspace:node-firebase
+  image: $NODE_IMAGE
   dependencies:
     - dev-build-web
     - npm-web
