@@ -1,20 +1,39 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 import { Button, Alert } from "./style";
 import firebase from "../../config/config";
-import * as Yup from "yup";
-import {ModalContext} from '../../config/context/ModalProvider'
+import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
 
 const Auth = (props) => {
-  const { setUser } = useContext(ModalContext)
+  const { setCurrentUser } = useContext(ModalContext);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showType, setShowType] = useState(false);
+  const [showforgetpass, setShowforgetpass] = useState(false);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [uidSocial, setUidSocial] = useState(null);
+  const [where, setwhere] = useState("");
+  const handleCloseforgetpass = () => {
+    setShowforgetpass(false);
+    formikforgetpass.resetForm();
+  };
+
+  const handleShowforget = (value) => {
+    setwhere(value);
+    handleCloseSignIn();
+    handleCloseSignUp();
+    setShowforgetpass(true);
+  };
+
+  const handleSwaModal = () => {
+    where === "signin" ? setShowSignIn(true) : setShowSignUp(true);
+    where === "" ? handleCloseforgetpass() : null;
+    handleCloseforgetpass();
+  };
 
   const handleCloseChoose = () => setShowType(false);
   const handleCloseSignIn = () => {
@@ -31,6 +50,7 @@ const Auth = (props) => {
     if (props.showSignUp === true) setShowSignUp(true);
   }, [props]);
 
+
   const initialValues = {
     email: "",
     password: "",
@@ -38,6 +58,10 @@ const Auth = (props) => {
     // 1 member
     // 2 artist
   };
+
+  const forgetpassSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
 
   const AuthSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -81,6 +105,31 @@ const Auth = (props) => {
     },
   });
 
+  const formikforgetpass = useFormik({
+    initialValues,
+    validationSchema: forgetpassSchema,
+    onSubmit: (value, { setStatus, setSubmitting }) => {
+      var auth = firebase.auth();
+      var emailAddress = value.email;
+      auth.sendPasswordResetEmail(emailAddress).then((res) => {
+        console.log(res)
+        formikforgetpass.resetForm()
+        setStatus('ส่งไปที่อีเมล์เรียบร้อยแล้ว')
+      }).catch((error)=> {
+        formikforgetpass.resetForm()
+        if(error.code === "auth/too-many-requests") setStatus('ส่งคำขอมากเกินไป กรุณาทำรายการใหม่ภายหลัง')
+        if(error.code === "auth/user-not-found") setStatus('ไม่พบอีเมล์นี้ในระบบ')
+        console.log(error.code)
+
+      });
+setTimeout(() => {
+  setSubmitting(false)
+
+}, 1000)
+
+    },
+  });
+
   const getInputClassesformikSignIn = (fieldname) => {
     if (formikSignIn.touched[fieldname] && formikSignIn.errors[fieldname]) {
       return "is-invalid";
@@ -115,8 +164,9 @@ const Auth = (props) => {
       .auth()
       .signInWithEmailAndPassword(value.email, value.password)
       .then((values) => {
-        setShowSignIn(false);
+        formikSignIn.handleReset();
         setSubmitting(false);
+        handleCloseSignIn();
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -131,13 +181,25 @@ const Auth = (props) => {
       });
   };
 
-  const handleSignUp = (value, { setSubmitting }) => {
+  const handleSignUp = async (value, { setSubmitting }) => {
+
+   try{
+    await Axios.post(process.env.API_URL+ "/edit_front-profile/checkEmail", { email: value.email });
     setEmail(value.email);
     setPassword(value.password);
     setShowSignUp(false);
     setShowType(true);
     setSubmitting(false);
     formikSignUp.handleReset();
+   }catch(error){
+    setShowSignUp(false);
+    setSubmitting(false);
+    setShowSignIn(true);
+    formikSignUp.handleReset();
+    formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
+   }
+
+
   };
 
   const handleType = async (result) => {
@@ -145,8 +207,7 @@ const Auth = (props) => {
     const names = await email.substring(0, email.lastIndexOf("@"));
     const date = await new Date();
     const DateCreate = await (date.getTime() / 1000).toFixed(0);
-    const URL =
-      "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member/addmem";
+    const URL = process.env.API_URL + "/login-member/addmem";
     // result มาจาก social ถ้าไม่มีแปลว่ามาจากสมัครด้วย Email
     if (checkSiginSocial) {
       await Axios.post(URL, {
@@ -157,7 +218,7 @@ const Auth = (props) => {
         create: DateCreate,
       })
         .then((res) => {
-          setUser('ok')
+          setCurrentUser("ok");
         })
         .catch((err) => {
           console.log(err);
@@ -181,7 +242,7 @@ const Auth = (props) => {
             create: DateCreate,
           })
             .then((res) => {
-              setUser('ok')
+              setCurrentUser("ok");
             })
             .catch((err) => {
               console.log(err);
@@ -199,7 +260,7 @@ const Auth = (props) => {
           formikChoose.setSubmitting(false);
           console.log(errorCode);
           if (errorCode === "auth/email-already-in-use") {
-            formikSignIn.setStatus("You are already registered. Please login.");
+            formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
             setShowSignIn(true);
           } else {
             formikSignUp.setStatus(errorCode);
@@ -223,16 +284,12 @@ const Auth = (props) => {
     setShowSignUp(false);
     try {
       // นำค่า uid ไปเช็คที่ API ถ้าไม่มี type ให้เลือกก่อนไม่งั้นก็ signoutไป
-      await Axios.post(
-        "https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/login-member",
-        {
-          uid: result.user.uid,
-        }
-      )
+      await Axios.post(process.env.API_URL + "/login-member", {
+        uid: result.user.uid,
+      })
         .then((res) => {
-          // ถ้ามีให้ผิดหน้าต่าง
+          setCurrentUser("ok");
           console.log("เคยสมัครแล้ว");
-          
         })
         .catch((err) => {
           // ถ้าไม่มีให้ไปเลือก type แล้วเพิ่มข้อมูลลง DB
@@ -241,7 +298,6 @@ const Auth = (props) => {
           setUidSocial(result.user.uid);
           setEmail(result.user.email);
         });
-    
     } catch (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -303,7 +359,7 @@ const Auth = (props) => {
                   setShowSignUp(true);
                   handleCloseSignIn();
                 }}
-                href="#"
+                className="pointer"
               >
                 {" "}
                 Sign up
@@ -312,9 +368,9 @@ const Auth = (props) => {
           </div>
           <div
             style={{
-              marginLeft: "7rem",
-              marginRight: "7rem",
-              marginBottom: "1rem",
+              // marginLeft: "7rem",
+              // marginRight: "7rem",
+              // marginBottom: "1rem",
             }}
           >
             <Form onSubmit={formikSignIn.handleSubmit} className="mt-5">
@@ -359,12 +415,17 @@ const Auth = (props) => {
               </Form.Group>
               <span className="text-gray">or</span>
               <SocialSignIn />
-              <a className="float-right" href="#">
+              <a
+                onClick={() => handleShowforget("signin")}
+                className="float-right"
+
+                className="pointer float-right"
+              >
                 Forgot password
               </a>
               <div className="text-center">
                 <Button
-                  className="pl-5 pr-5"
+                  className="pl-5 pr-5 btn"
                   type="submit"
                   disabled={formikSignIn.isSubmitting}
                 >
@@ -391,7 +452,7 @@ const Auth = (props) => {
                 setShowSignIn(true);
                 handleCloseSignUp();
               }}
-              href="#"
+              className="pointer"
             >
               Sign in
             </a>{" "}
@@ -399,9 +460,9 @@ const Auth = (props) => {
 
           <div
             style={{
-              marginLeft: "7rem",
-              marginRight: "7rem",
-              marginBottom: "1rem",
+              // marginLeft: "7rem",
+              // marginRight: "7rem",
+              // marginBottom: "1rem",
             }}
           >
             <Form onSubmit={formikSignUp.handleSubmit} className="mt-5">
@@ -444,11 +505,19 @@ const Auth = (props) => {
               </Form.Group>
               <span className="text-gray">or</span>
               <SocialSignIn />
-              <a className="float-right" href="#">
+              <a
+                onClick={() => handleShowforget("signup")}
+                className="float-right"
+                className="pointer float-right"
+              >
                 Forgot password
               </a>
               <div className="text-center">
-                <Button type="submit" disabled={formikSignUp.isSubmitting}>
+                <Button
+                  className="btn"
+                  type="submit"
+                  disabled={formikSignUp.isSubmitting}
+                >
                   Create Account
                 </Button>
               </div>
@@ -547,7 +616,7 @@ const Auth = (props) => {
               <div className="text-center">
                 <Button
                   disabled={formikChoose.isSubmitting}
-                  className="pl-5 pr-5"
+                  className="pl-5 pr-5 btn"
                   type="submit"
                 >
                   Finish
@@ -558,6 +627,80 @@ const Auth = (props) => {
         </Modal.Body>
       </Modal>
       {/* end Type */}
+
+      {/* begin forgetpass  */}
+      <Modal
+        show={showforgetpass}
+        onHide={handleCloseforgetpass}
+        size="lg"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="text-center">
+            <h2 className="text-center mb-3 mt-5">Forgot password</h2>
+            <span className="text-muted font-Light ">
+              ป้อนชื่อผู้ใช้หรืออีเมลของคุณที่ใช้ในการลงทะเบียน
+            </span>{" "}
+            <br />
+            <span className="text-muted font-Light ">
+              เราจะส่งอีเมลแจ้งชื่อผู้ใช้ของคุณพร้อมลิงก์สำหรับรีเซ็ตรหัสผ่าน
+            </span>
+          </div>
+          <div
+            style={{
+              marginLeft: "7rem",
+              marginRight: "7rem",
+              marginBottom: "1rem",
+            }}
+          >
+            <Form onSubmit={formikforgetpass.handleSubmit} className="mt-5">
+              {formikforgetpass.status ? (
+                <Alert className={formikforgetpass.status === 'ส่งไปที่อีเมล์เรียบร้อยแล้ว' ? "alert alert-secondary" : null}> 
+                  <small > {formikforgetpass.status} </small>
+                </Alert>
+              ) : null}
+              <Form.Group>
+                <Form.Label>E-mail / Username</Form.Label>
+                <Form.Control
+                  className={`form-control`}
+                  name="email"
+                  type="email"
+                  {...formikforgetpass.getFieldProps("email")}
+                />
+                {formikforgetpass.touched.email &&
+                formikforgetpass.errors.email ? (
+                  <div className="text-danger text-font-13">
+                    {formikforgetpass.errors.email}
+                  </div>
+                ) : null}
+              </Form.Group>
+            </Form>
+
+            <div className="text-center mt-5">
+              <Button
+                onClick={() => handleSwaModal()}
+                type="back"
+                style={{ background: "white" }}
+                className="pl-5 pr-5 my-auto  text-dark mr-3"
+              >
+                Back
+              </Button>
+              <Button
+                onClick={() => {
+                  formikforgetpass.handleSubmit();
+                }}
+                className="pl-5 pr-5 btn my-auto "
+                type="submit"
+                disabled={formikforgetpass.isSubmitting}
+              >
+                Send
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+      {/* end forgetpass  */}
+
       <style jsx>{`
         .typeround {
           cursor: pointer;
@@ -625,9 +768,17 @@ const Auth = (props) => {
         .typeround-active img {
           margin-top: -1rem;
         }
-
+        p {
+          font-size: 14px;
+          color: #b6b6b6;
+        }
          {
           /* end Active */
+        }
+        a {
+          font-size: 13px;
+          color: orange;
+          text-decoration: none;
         }
       `}</style>
     </>

@@ -1,5 +1,27 @@
 import styled from 'styled-components';
 
+const size = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px'
+}
+
+export const device = {
+  mobileS: `(min-width: ${size.mobileS})`,
+  mobileM: `(min-width: ${size.mobileM})`,
+  mobileL: `(min-width: ${size.mobileL})`,
+  tablet: `(min-width: ${size.tablet})`,
+  laptop: `(min-width: ${size.laptop})`,
+  laptopL: `(min-width: ${size.laptopL})`,
+  desktop: `(min-width: ${size.desktop})`,
+  desktopL: `(min-width: ${size.desktop})`
+};
+
+
 export const Button = styled.button`
 font-weight: 500;
 font-size: 14px;
@@ -12,11 +34,16 @@ border: 0;
 border-radius: 25px;
 padding-top: 10px;
 padding-bottom: 10px;
-color : white;
-margin-top: 3rem;
 padding-left: 2rem;
 padding-right: 2rem;
+color : white;
+margin-top: 3rem;
 transition: 0.5s;
+@media (max-width: 1024px) {
+  padding: 10px 10px 10px 10px
+};
+
+
 &:hover {
     background: red;
   }
