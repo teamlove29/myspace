@@ -50,7 +50,6 @@ const Auth = (props) => {
     if (props.showSignUp === true) setShowSignUp(true);
   }, [props]);
 
-
   const initialValues = {
     email: "",
     password: "",
@@ -111,22 +110,24 @@ const Auth = (props) => {
     onSubmit: (value, { setStatus, setSubmitting }) => {
       var auth = firebase.auth();
       var emailAddress = value.email;
-      auth.sendPasswordResetEmail(emailAddress).then((res) => {
-        console.log(res)
-        formikforgetpass.resetForm()
-        setStatus('ส่งไปที่อีเมล์เรียบร้อยแล้ว')
-      }).catch((error)=> {
-        formikforgetpass.resetForm()
-        if(error.code === "auth/too-many-requests") setStatus('ส่งคำขอมากเกินไป กรุณาทำรายการใหม่ภายหลัง')
-        if(error.code === "auth/user-not-found") setStatus('ไม่พบอีเมล์นี้ในระบบ')
-        console.log(error.code)
-
-      });
-setTimeout(() => {
-  setSubmitting(false)
-
-}, 1000)
-
+      auth
+        .sendPasswordResetEmail(emailAddress)
+        .then((res) => {
+          console.log(res);
+          formikforgetpass.resetForm();
+          setStatus("ส่งไปที่อีเมล์เรียบร้อยแล้ว");
+        })
+        .catch((error) => {
+          formikforgetpass.resetForm();
+          if (error.code === "auth/too-many-requests")
+            setStatus("ส่งคำขอมากเกินไป กรุณาทำรายการใหม่ภายหลัง");
+          if (error.code === "auth/user-not-found")
+            setStatus("ไม่พบอีเมล์นี้ในระบบ");
+          console.log(error.code);
+        });
+      setTimeout(() => {
+        setSubmitting(false);
+      }, 1000);
     },
   });
 
@@ -182,24 +183,23 @@ setTimeout(() => {
   };
 
   const handleSignUp = async (value, { setSubmitting }) => {
-
-   try{
-    await Axios.post(process.env.API_URL+ "/edit_front-profile/checkEmail", { email: value.email });
-    setEmail(value.email);
-    setPassword(value.password);
-    setShowSignUp(false);
-    setShowType(true);
-    setSubmitting(false);
-    formikSignUp.handleReset();
-   }catch(error){
-    setShowSignUp(false);
-    setSubmitting(false);
-    setShowSignIn(true);
-    formikSignUp.handleReset();
-    formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
-   }
-
-
+    try {
+      await Axios.post(process.env.API_URL + "/edit_front-profile/checkEmail", {
+        email: value.email,
+      });
+      setEmail(value.email);
+      setPassword(value.password);
+      setShowSignUp(false);
+      setShowType(true);
+      setSubmitting(false);
+      formikSignUp.handleReset();
+    } catch (error) {
+      setShowSignUp(false);
+      setSubmitting(false);
+      setShowSignIn(true);
+      formikSignUp.handleReset();
+      formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
+    }
   };
 
   const handleType = async (result) => {
@@ -366,14 +366,8 @@ setTimeout(() => {
               </a>
             </p>
           </div>
-          <div
-            style={{
-              // marginLeft: "7rem",
-              // marginRight: "7rem",
-              // marginBottom: "1rem",
-            }}
-          >
-            <Form onSubmit={formikSignIn.handleSubmit} className="mt-5">
+          <div className="margin-auth">
+            <Form onSubmit={formikSignIn.handleSubmit} className="mt-5 ">
               {formikSignIn.status ? (
                 <Alert>
                   <small> {formikSignIn.status} </small>
@@ -418,7 +412,6 @@ setTimeout(() => {
               <a
                 onClick={() => handleShowforget("signin")}
                 className="float-right"
-
                 className="pointer float-right"
               >
                 Forgot password
@@ -441,10 +434,10 @@ setTimeout(() => {
       {/* begin SignUp */}
       <Modal show={showSignUp} onHide={handleCloseSignUp} size="lg">
         <Modal.Body>
-          <h2 className="text-center mb-3 mt-5">
+          <h2 className="mb-3 mt-5 mobile-h2">
             Welcome! Let's create your profile
           </h2>
-          <p style={{ marginLeft: "3rem", marginRight: "3rem" }}>
+          <p className="mobile-p">
             Getting in is easy. Use one of your social networks or start fresh
             with an email address. Already have a Myspace account?{" "}
             <a
@@ -458,13 +451,7 @@ setTimeout(() => {
             </a>{" "}
           </p>
 
-          <div
-            style={{
-              // marginLeft: "7rem",
-              // marginRight: "7rem",
-              // marginBottom: "1rem",
-            }}
-          >
+          <div className="margin-auth">
             <Form onSubmit={formikSignUp.handleSubmit} className="mt-5">
               {formikSignUp.status ? (
                 <Alert>{formikSignUp.status}</Alert>
@@ -540,13 +527,7 @@ setTimeout(() => {
             Select the option the best describe you.
           </p>
 
-          <div
-            style={{
-              marginLeft: "5rem",
-              marginRight: "5rem",
-              marginBottom: "1rem",
-            }}
-          >
+          <div className="margin-auth">
             <Form
               onSubmit={formikChoose.handleSubmit}
               className="mt-5 text-center"
@@ -636,9 +617,9 @@ setTimeout(() => {
         keyboard={false}
       >
         <Modal.Body>
-          <div className="text-center">
+          <div className="mobile-h2">
             <h2 className="text-center mb-3 mt-5">Forgot password</h2>
-            <span className="text-muted font-Light ">
+            <span className="text-muted font-Light  ">
               ป้อนชื่อผู้ใช้หรืออีเมลของคุณที่ใช้ในการลงทะเบียน
             </span>{" "}
             <br />
@@ -646,17 +627,17 @@ setTimeout(() => {
               เราจะส่งอีเมลแจ้งชื่อผู้ใช้ของคุณพร้อมลิงก์สำหรับรีเซ็ตรหัสผ่าน
             </span>
           </div>
-          <div
-            style={{
-              marginLeft: "7rem",
-              marginRight: "7rem",
-              marginBottom: "1rem",
-            }}
-          >
+          <div className="margin-auth">
             <Form onSubmit={formikforgetpass.handleSubmit} className="mt-5">
               {formikforgetpass.status ? (
-                <Alert className={formikforgetpass.status === 'ส่งไปที่อีเมล์เรียบร้อยแล้ว' ? "alert alert-secondary" : null}> 
-                  <small > {formikforgetpass.status} </small>
+                <Alert
+                  className={
+                    formikforgetpass.status === "ส่งไปที่อีเมล์เรียบร้อยแล้ว"
+                      ? "alert alert-secondary"
+                      : null
+                  }
+                >
+                  <small> {formikforgetpass.status} </small>
                 </Alert>
               ) : null}
               <Form.Group>
@@ -702,6 +683,27 @@ setTimeout(() => {
       {/* end forgetpass  */}
 
       <style jsx>{`
+        @media screen and (min-width: 991px) {
+          .margin-auth {
+            margin-left: 7rem;
+            margin-right: 7rem;
+            margin-bottom: 1rem;
+          }
+          .mobile-p {
+            margin-left: 3rem;
+            margin-right: 3rem;
+          }
+          .mobile-h2 {
+            text-align: center;
+          }
+        }
+
+        @media screen and (max-width: 991px) {
+          .mobile-h2 {
+            text-align: left;
+          }
+        }
+
         .typeround {
           cursor: pointer;
           border: 2px solid #f5f5f5;
