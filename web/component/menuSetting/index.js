@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
+import CoverSetting from "../cover/coverSetting";
 export default function Index({ children }) {
   const router = useRouter();
   const { nameMember } = useContext(ModalContext);
@@ -17,23 +18,8 @@ export default function Index({ children }) {
 
   return (
     <div>
-      <img
-        style={{
-          top: "0",
-          right: "0",
-          position: "absolute",
-          backgroundColor: "#252525",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          width: "100%",
-          height: "200px ",
-          padding: "0 0",
-        }}
-        className="container-fluid"
-        src=""
-        alt=""
-      />
+      <CoverSetting />
+
       <div
         className="container text-light"
         style={{
@@ -48,18 +34,35 @@ export default function Index({ children }) {
               <a>Profile</a>
             </Link>
           </li>
-              <li className={`${getMenuItemActive("/[username]/setting/account")}`}>
-              <Link href="/[username]/setting/account" as={`/${nameMember}/setting/account`}>
-              <a>Account</a>
+          <li className={`${getMenuItemActive("/[username]/setting/myaddress")}`}>
+            <Link
+              href="/[username]/setting/myaddress"
+              as={`/${nameMember}/setting/myaddress`}
+            >
+              <a>My Address</a>
             </Link>
           </li>
-              <li className={`${getMenuItemActive("/[username]/setting/social")}`}>
-              <Link href="/[username]/setting/social" as={`/${nameMember}/setting/social`}>
+          <li className={`${getMenuItemActive("/[username]/setting/changepassword")}`}>
+            <Link
+              href="/[username]/setting/changepassword"
+              as={`/${nameMember}/setting/changepassword`}
+            >
+              <a>Change Password</a>
+            </Link>
+          </li>
+          <li className={`${getMenuItemActive("/[username]/setting/social")}`}>
+            <Link
+              href="/[username]/setting/social"
+              as={`/${nameMember}/setting/social`}
+            >
               <a>Social</a>
             </Link>
           </li>
-              <li className={`${getMenuItemActive("/[username]/setting/shop")}`}>
-              <Link href="/[username]/setting/shop" as={`/${nameMember}/setting/shop`}>
+          <li className={`${getMenuItemActive("/[username]/setting/shop")}`}>
+            <Link
+              href="/[username]/setting/shop"
+              as={`/${nameMember}/setting/shop`}
+            >
               <a>Shop</a>
             </Link>
           </li>

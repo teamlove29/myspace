@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button } from "../../../component/modal/style";
 import { ModalContext } from "../../../config/context/ModalProvider";
 import MenuSetting from "../../../component/menuSetting";
-const index = () => {
+import firebase from "../../../config/config";
+const Index = () => {
   const router = useRouter();
   const { username } = router.query;
   const { nameMember } = useContext(ModalContext);
@@ -21,10 +22,14 @@ const index = () => {
     return "";
   };
 
-  const initialValues = {
+  var initialValues = {
+    avatar: "",
     displayname: "",
-    country: "",
-    website: "",
+    firstname: "",
+    lastname: "",
+    email: "",
+    Country: "",
+    Website: "",
     aboutyou: "",
   };
 
@@ -36,7 +41,10 @@ const index = () => {
     initialValues,
     validationSchema: Schema,
     onSubmit: (value, { setStatus, setSubmitting }) => {
-      setTimeout(() => {}, 1000);
+      console.log(value);
+      setTimeout(() => {
+        setSubmitting(false);
+      }, 1000);
     },
   });
   return (
@@ -58,7 +66,7 @@ const index = () => {
                   </div>
                 </div>
                 {/* Choose file */}
-                <div className="col-12  col-sm-12  col-md-3 col-xl-10 ">
+                <div className="col-12  col-sm-12  col-md-8 col-xl-7 ">
                   <p className="text-muted">
                     Uploaded images will be resized and square cropped from the
                     top. In most places, your image will be displayed in a
@@ -67,7 +75,7 @@ const index = () => {
 
                   <label htmlFor="upload">
                     Choose file
-                    <input type="file" id="upload" />
+                    <input type="file" id="upload" name="avatar" />
                   </label>
                 </div>
               </div>
@@ -85,7 +93,7 @@ const index = () => {
                     )}`}
                     type="text"
                     name="displayname"
-                    placeholder="Jone Doe"
+                    value="Jone Doe"
                     {...formik.getFieldProps("displayname")}
                   />
                   {formik.touched.displayname && formik.errors.displayname ? (
@@ -96,6 +104,67 @@ const index = () => {
                 </div>
               </div>
               {/* End nameDisplay */}
+
+              {/* begin firstname */}
+              <div className="form-group row">
+                <label className="col-xl-3 col-lg-3 col-form-label text-right">
+                  Firstname
+                </label>
+                <div className="col-lg-9 col-xl-6">
+                  <input
+                    className={`form-control " ${getInputClasses("firstname")}`}
+                    type="text"
+                    name="firstname"
+                    {...formik.getFieldProps("firstname")}
+                  />
+                  {formik.touched.firstname && formik.errors.firstname ? (
+                    <div className="text-danger font-13">
+                      {formik.errors.firstname}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              {/* End firstname */}
+              {/* begin lastname */}
+              <div className="form-group row">
+                <label className="col-xl-3 col-lg-3 col-form-label text-right">
+                  Lastname
+                </label>
+                <div className="col-lg-9 col-xl-6">
+                  <input
+                    className={`form-control " ${getInputClasses("lastname")}`}
+                    type="text"
+                    name="lastname"
+                    {...formik.getFieldProps("lastname")}
+                  />
+                  {formik.touched.lastname && formik.errors.lastname ? (
+                    <div className="text-danger font-13">
+                      {formik.errors.lastname}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              {/* End lastname */}
+              {/* begin email */}
+              <div className="form-group row">
+                <label className="col-xl-3 col-lg-3 col-form-label text-right">
+                  Email
+                </label>
+                <div className="col-lg-9 col-xl-6">
+                  <input
+                    className={`form-control " ${getInputClasses("email")}`}
+                    type="email"
+                    name="email"
+                    {...formik.getFieldProps("email")}
+                  />
+                  {formik.touched.email && formik.errors.email ? (
+                    <div className="text-danger font-13">
+                      {formik.errors.email}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              {/* End email */}
 
               {/* begin Country */}
               <div className="form-group row">
@@ -172,7 +241,13 @@ const index = () => {
               {/* End AboutYou */}
 
               <div className="d-flex offset-md-3">
-                <Button>Save changes</Button>
+                <Button
+                  className=" btn"
+                  type="submit"
+                  disabled={formik.isSubmitting}
+                >
+                  Save changes
+                </Button>
               </div>
             </form>
           </MenuSetting>
@@ -211,4 +286,11 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
+
+// Index.getInitialProps =  (ctx) => {
+//   var user = firebase.auth().currentUser;
+//   return {
+//     stars: user,
+//   };
+// };

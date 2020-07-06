@@ -2,7 +2,7 @@ import React,{useContext} from 'react'
 import { useRouter } from "next/router";
 import MenuSetting from '../../../component/menuSetting'
 import { ModalContext } from "../../../config/context/ModalProvider";
-export default function Account() {
+export default function myAddress() {
     const router = useRouter();
     const { username } = router.query;
     const { nameMember } = useContext(ModalContext);
@@ -11,7 +11,7 @@ export default function Account() {
         <>
         {verifyMember && 
         <MenuSetting>
-            <h1>Page Account </h1>
+            <h1>Page Account myAddress</h1>
         </MenuSetting>
         }
         </>

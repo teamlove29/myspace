@@ -9,7 +9,7 @@ export default function Index({ stars }) {
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
-  const { nameMember, dataMember, dataFriend, header } = useContext(
+  const { nameMember, dataMember,setDataFriend, dataFriend, header } = useContext(
     ModalContext
   );
 
@@ -28,13 +28,16 @@ export default function Index({ stars }) {
 
   useEffect(() => {
     Axios.post(process.env.API_URL + "/edit_front-profile/checkDisplay", {
-      headers: { authorization: header },
+      headers: { authorization:  header },
+      display:username
     })
       .then((res) => {
-        console.log(res);
+        if(res.data[0].mem_display_name === nameMember)setDataFriend(res.data)
+        else setDataFriend(undefined)
       })
       .catch((err) => {
         console.log(err);
+        setDataFriend(undefined)
       });
   }, [username]);
 

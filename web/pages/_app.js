@@ -25,11 +25,11 @@ const MyApp = ({ Component, pageProps, stars }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const start = () => {
-      console.log("start");
+      // console.log("start");
       setLoading(true);
     };
     const end = () => {
-      console.log("findished");
+      // console.log("findished");
       setLoading(false);
     };
     Router.events.on("routeChangeStart", start);
@@ -55,7 +55,8 @@ const MyApp = ({ Component, pageProps, stars }) => {
             <div id="content-wrapper" className="d-flex flex-column">
               <div id="content">
                 <Navbar />
-                {loading ? <LoadPage /> : <Component {...pageProps} />}
+                {/* {loading ? <LoadPage /> : <Component {...pageProps} />} */}
+               <Component {...pageProps} />
               </div>
               <Footer />
             </div>
