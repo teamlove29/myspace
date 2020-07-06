@@ -6,8 +6,7 @@ variables:
   DEV_FIREBASE: "https://gitlab.com/api/v4/projects/$PROJECT_ID/snippets/1983169/raw"
   DEV_FIREBASE_PROJECT: "myspace-dev-1ae9e"
   # Dockerimage
-  DOCKER_VERSION: "18.09.9"
-  NODE_IMAGE: "node:10-alpine"
+  NODE_IMAGE: "registry.gitlab.com/twin-intern/lampang-2020/lampang-myspace:node-firebase"
   APK_BUILD_PACKETS: "apk add --update-cache python python-dev py-pip alpine-sdk"
 
 stages:
