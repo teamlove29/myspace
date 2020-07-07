@@ -207,12 +207,7 @@ const Navbar = () => {
           </>
         ) : (
           <div className=" form-inline mr-auto ml-md-3 my-2  navbar-search d-none d-lg-block pointer">
-            <div
-              style={{ width: "42px", height: "42px" }}
-              className="border p-2 rounded-circle "
-            >
-              <span className="material-icons text-light">camera_alt</span>
-            </div>
+      
           </div>
         )}
         {/* Topbar Navbar */}

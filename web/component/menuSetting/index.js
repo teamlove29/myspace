@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
 import CoverSetting from "../cover/coverSetting";
-export default function Index({ children }) {
+export default function Index({ children, file}) {
   const router = useRouter();
   const { nameMember } = useContext(ModalContext);
   const getMenuItemActive = (path) => {
@@ -18,7 +18,7 @@ export default function Index({ children }) {
 
   return (
     <div>
-      <CoverSetting />
+      <CoverSetting file={file}/>
 
       <div
         className="container text-light"
@@ -34,7 +34,9 @@ export default function Index({ children }) {
               <a>Profile</a>
             </Link>
           </li>
-          <li className={`${getMenuItemActive("/[username]/setting/myaddress")}`}>
+          <li
+            className={`${getMenuItemActive("/[username]/setting/myaddress")}`}
+          >
             <Link
               href="/[username]/setting/myaddress"
               as={`/${nameMember}/setting/myaddress`}
@@ -42,7 +44,11 @@ export default function Index({ children }) {
               <a>My Address</a>
             </Link>
           </li>
-          <li className={`${getMenuItemActive("/[username]/setting/changepassword")}`}>
+          <li
+            className={`${getMenuItemActive(
+              "/[username]/setting/changepassword"
+            )}`}
+          >
             <Link
               href="/[username]/setting/changepassword"
               as={`/${nameMember}/setting/changepassword`}

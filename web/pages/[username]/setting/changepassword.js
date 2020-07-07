@@ -128,7 +128,7 @@ export default function changpassword() {
               <label className="col-xl-3 col-lg-3 col-form-label text-right">
                 Current Password
               </label>
-              <div className="col-lg-8 col-xl-5">
+              <div className=" col-lg-6 col-xl-5">
                 <input
                   className={`form-control " ${getInputClasses(
                     "currentpassword"
@@ -148,7 +148,7 @@ export default function changpassword() {
               {passwordShown && (
                 <span
                   onClick={togglePasswordVisiblity}
-                  class="material-icons my-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
+                  class="material-icons my-auto col-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
                 >
                   visibility_off
                 </span>
@@ -157,7 +157,7 @@ export default function changpassword() {
               {passwordShown === false && (
                 <span
                   onClick={togglePasswordVisiblity}
-                  class="material-icons my-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
+                  class="material-icons my-auto col-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
                 >
                   visibility
                 </span>
@@ -169,7 +169,7 @@ export default function changpassword() {
               <label className="col-xl-3 col-lg-3 col-form-label text-right">
                 Enter New Password
               </label>
-              <div className="col-lg-9 col-xl-6">
+              <div className="col-lg-6 col-xl-6">
                 <input
                   className={`form-control " ${getInputClasses("newpassword")}`}
                   type={passwordShown ? "text" : "password"}
@@ -189,7 +189,7 @@ export default function changpassword() {
               <label className="col-xl-3 col-lg-3 col-form-label text-right">
                 Confirm Password
               </label>
-              <div className="col-lg-9 col-xl-6">
+              <div className="col-lg-6 col-xl-6">
                 <input
                   className={`form-control " ${getInputClasses(
                     "confirmpassword"
