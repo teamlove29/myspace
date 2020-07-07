@@ -95,7 +95,7 @@ export default function changpassword() {
       //   });
 
       setTimeout(() => {
-        setSubmitting(false)
+        setSubmitting(false);
       }, 1000);
     },
   });
@@ -112,8 +112,8 @@ export default function changpassword() {
             <Alert
               className={
                 formik.status === "เปลี่ยนรหัสผ่านสำเร็จ"
-                  ? "bg-success text-light"
-                  : "text-dark"
+                  ? "bg-success text-light "
+                  : "text-dark "
               }
             >
               {formik.status}
@@ -144,12 +144,24 @@ export default function changpassword() {
                   </div>
                 ) : null}
               </div>
-              <a
-                className="btn btn-sm btn-secondary col-lg-1 col-xl-1 my-auto"
-                onClick={togglePasswordVisiblity}
-              >
-                show
-              </a>
+
+              {passwordShown && (
+                <span
+                  onClick={togglePasswordVisiblity}
+                  class="material-icons my-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
+                >
+                  visibility_off
+                </span>
+              )}
+
+              {passwordShown === false && (
+                <span
+                  onClick={togglePasswordVisiblity}
+                  class="material-icons my-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
+                >
+                  visibility
+                </span>
+              )}
             </div>
             {/* End currentpassword */}
             {/* begin newpassword*/}

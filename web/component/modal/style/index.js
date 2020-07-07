@@ -58,5 +58,5 @@ background-color: #fff9fa;
 border: 1px solid rgba(255,66,79,.2);
 margin-bottom: 1rem;
 padding:0.8rem;
-font-size:1.1rem
+font-size:0.9rem
 `

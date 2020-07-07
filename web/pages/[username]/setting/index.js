@@ -5,7 +5,9 @@ import * as Yup from "yup";
 import { Button } from "../../../component/modal/style";
 import { ModalContext } from "../../../config/context/ModalProvider";
 import MenuSetting from "../../../component/menuSetting";
+import PreviewAvatar from "../../../component/previewimage/previewavatar";
 import firebase from "../../../config/config";
+
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
@@ -23,7 +25,7 @@ const Index = () => {
   };
 
   var initialValues = {
-    avatar: "",
+    file: null,
     displayname: "",
     firstname: "",
     lastname: "",
@@ -37,16 +39,51 @@ const Index = () => {
     displayname: Yup.string().required("Required").min(6, "Min length is 6"),
   });
 
+  // alert(
+  //   JSON.stringify(
+  //     {
+  //       fileName: values.file.name,
+  //       type: values.file.type,
+  //       size: `${values.file.size} bytes`,
+  //     },
+  //     null,
+  //     2
+  //   )
+  // );
+
   const formik = useFormik({
     initialValues,
     validationSchema: Schema,
-    onSubmit: (value, { setStatus, setSubmitting }) => {
-      console.log(value);
+    onSubmit: (values, { setStatus, setSubmitting }) => {
+      uploadToFirebase(values);
       setTimeout(() => {
         setSubmitting(false);
       }, 1000);
     },
   });
+
+  const uploadToFirebase = (values) => {
+    const test = Math.random()* values.file.size
+    console.log(test)
+    const storageRef = firebase.storage().ref();
+    storageRef
+      .child(`avatars/${values.file.name}`)
+      .put(values.file)
+      .then((snapshot) => {
+        console.log("Uploaded a blob or file!");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  };
+
+const test = () => {
+  const storageRef = firebase.storage().ref();
+  storageRef.child('avatars/resizes/toodasddsn.png').getDownloadURL().then((url)=> {
+    console.log(url)
+  }).catch(err => console.log(err.code))
+}
+
   return (
     <>
       {verifyMember && (
@@ -56,14 +93,22 @@ const Index = () => {
               <h5 className="font-Regular mt-5">Your Picture</h5>
               <div className="row mt-4">
                 {/* image */}
-                <div className="col-12 col-sm-12 col-md-4 col-xl-2">
-                  <div className="image-holder rounded-circle border-0 ">
-                    {/* <img
+                <div className="col-12 col-sm-12 col-md-3 col-xl-2">
+                  {formik.values.file != null ? (
+                    <>
+                      <PreviewAvatar file={formik.values.file} />
+                    </>
+                  ) : (
+                    <>
+                      <div className="image-holder rounded-circle border-0 ">
+                        {/* <img
                 className="rounded-circle border"
                 src=""
                 alt=""
               /> */}
-                  </div>
+                      </div>
+                    </>
+                  )}
                 </div>
                 {/* Choose file */}
                 <div className="col-12  col-sm-12  col-md-8 col-xl-7 ">
@@ -72,15 +117,24 @@ const Index = () => {
                     top. In most places, your image will be displayed in a
                     circle, like the example.
                   </p>
-
                   <label htmlFor="upload">
                     Choose file
-                    <input type="file" id="upload" name="avatar" />
+                    <input
+                      accept="image/*"
+                      type="file"
+                      id="upload"
+                      name="file"
+                      onChange={(event) => {
+                        formik.setFieldValue(
+                          "file",
+                          event.currentTarget.files[0]
+                        );
+                      }}
+                    />
                   </label>
                 </div>
               </div>
               <h5 className="font-Regular mt-5">It's All About You, Baby!</h5>
-
               {/* begin displayname */}
               <div className="form-group row mt-5">
                 <label className="col-xl-3 col-lg-3 col-form-label text-right">
@@ -93,7 +147,6 @@ const Index = () => {
                     )}`}
                     type="text"
                     name="displayname"
-                    value="Jone Doe"
                     {...formik.getFieldProps("displayname")}
                   />
                   {formik.touched.displayname && formik.errors.displayname ? (

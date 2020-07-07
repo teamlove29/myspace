@@ -6,7 +6,7 @@ const Index = () => {
   const router = useRouter();
   const { username } = router.query;
   const hideAbout = router.pathname != "/[username]";
-  const { nameMember, dataMember } = useContext(ModalContext);
+  const { nameMember, dataMember,avatar } = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
 
   const getMenuItemActive = (path) => {
@@ -25,8 +25,11 @@ const Index = () => {
         <div className="col-12 col-sm-12 col-md-4 col-xl-2">
           <img
             className="rounded-circle border"
-            src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
+            // src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
+            src={avatar}
             alt=""
+            width={150}
+            height={150}
           />
         </div>
         <div className="col-12  col-sm-12  col-md-12 col-xl-10 text-light mt-2">

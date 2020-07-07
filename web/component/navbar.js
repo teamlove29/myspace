@@ -11,7 +11,7 @@ import { ModalContext } from "../config/context/ModalProvider";
 const Navbar = () => {
   const MySwal = withReactContent(Swal);
   const router = useRouter();
-  const hideSearch = router.pathname != "/[username]/setting" ;
+  const hideSearch = router.pathname != "/[username]/setting";
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const {
@@ -23,6 +23,8 @@ const Navbar = () => {
     setDataMember,
     header,
     setHeader,
+    avatar,
+    setAvatar,
   } = useContext(ModalContext);
 
   const handleSignIn = () => {
@@ -61,6 +63,7 @@ const Navbar = () => {
       if (user) {
         const uid = await user.uid;
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
+        const storageRef = firebase.storage().ref();
         setNameMember(names);
         let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
         setHeader(token);
@@ -77,6 +80,13 @@ const Navbar = () => {
                 headers: { authorization: token },
               }
             );
+            // storageRef
+            // .child("avatars/resizes/toodasddsn.png")
+            // .getDownloadURL()
+            // .then((url) => {
+            //   setAvatar(url);
+            // })
+            // .catch((err) => console.log(err.code));
             setDataMember(verifyMember.data[0]);
           } catch (error) {
             console.log(error);
@@ -196,18 +206,13 @@ const Navbar = () => {
             </form>
           </>
         ) : (
-          <div className=" form-inline mr-auto ml-md-3 my-2  navbar-search d-none d-lg-block ">
+          <div className=" form-inline mr-auto ml-md-3 my-2  navbar-search d-none d-lg-block pointer">
             <div
-            style={{width:'43px'}}
-            className="border p-2 rounded-circle ">
-            <img
-              width="25px"
-              // rounded-circle
-              className="img-profile d-none d-lg-block text-light pointer"
-              src="https://www.festivalclaca.cat/imgfv/b/15-155680_camera-icon-white-small-white-camera-icon-transparent.png"
-            />
+              style={{ width: "42px", height: "42px" }}
+              className="border p-2 rounded-circle "
+            >
+              <span className="material-icons text-light">camera_alt</span>
             </div>
-    
           </div>
         )}
         {/* Topbar Navbar */}
@@ -250,7 +255,8 @@ const Navbar = () => {
                     </span>
                     <img
                       className="img-profile rounded-circle d-none d-lg-block"
-                      src="https://source.unsplash.com/cCvnG-937HE/100x100"
+                      // src="https://source.unsplash.com/cCvnG-937HE/100x100"
+                      src={avatar}
                     />
                   </a>
                   <div
