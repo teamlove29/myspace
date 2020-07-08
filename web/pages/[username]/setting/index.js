@@ -7,14 +7,62 @@ import { ModalContext } from "../../../config/context/ModalProvider";
 import MenuSetting from "../../../component/menuSetting";
 import PreviewAvatar from "../../../component/previewimage/previewavatar";
 import Axios from "axios";
+import AvatarEditor from "react-avatar-editor";
 import firebase from "../../../config/config";
 
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
   const { nameMember, header, dataMember } = useContext(ModalContext);
+  const [editor, setEditor] = useState();
+  const [imageURL, setImageURL] = useState("");
+  const [imageCrop, setImageCrop] = useState();
+  const [editing, setEditing] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [imageBlob, setImageBlob] = useState(1);
+  const [allowZoomOut, setAllowZoomOut] = useState(false);
+  const [position, setposition] = useState({ x: 0.5, y: 0.5 });
+
   const verifyMember = username != nameMember ? false : true;
   const typeMember = dataMember != undefined ? dataMember.mem_type : null;
+
+  const setEditorRef = (editor) => setEditor(editor);
+  const onCrop = () => {
+    if (editor !== null) {
+      if (editor) {
+        const canvasScaled = editor.getImageScaledToCanvas().toDataURL();
+        fetch(canvasScaled)
+          .then((res) => res.blob())
+          .then((blob) => {
+            blob.name = imageURL.name;
+            setImageBlob(blob);
+            setImageCrop(window.URL.createObjectURL(blob));
+            setEditing(false);
+          });
+      }
+    }
+  };
+  const handleNewImage = (e) => {
+    if (e.target.files[0] != undefined) {
+      const fileSize = e.target.files[0].size / 1024 / 1024; // in MB
+      if (fileSize > 10) {
+        alert("File size exceeds 10 MB");
+      } else {
+        setImageURL(e.target.files[0]);
+        setEditing(true);
+      }
+    }
+  };
+
+  const handleScale = (e) => {
+    const scale = parseFloat(e.target.value);
+    setScale(scale);
+  };
+
+  const handlePositionChange = (position) => {
+    setposition(position);
+  };
+
   const getInputClasses = (fieldname) => {
     if (formik.touched[fieldname] && formik.errors[fieldname]) {
       return "";
@@ -46,23 +94,22 @@ const Index = () => {
     displayname: Yup.string().required("Required").min(6, "Min length is 6"),
   });
 
-  // alert(
-  //   JSON.stringify(
-  //     {
-  //       fileName: values.file.name,
-  //       type: values.file.type,
-  //       size: `${values.file.size} bytes`,
-  //     },
-  //     null,
-  //     2
-  //   )
-  // );
+  const reName = (values) => {
+    var cdate = Date.now(); // วันที่สร้าง
+    var ext = values.split(".").slice(-1)[0]; //นามสกุลไฟล์็
+    var ext2 = values.split("." + ext).slice(0)[0]; // ชื่อไฟล์
+    var fileNames = ext2 + cdate + "." + ext;
+    return fileNames;
+  };
 
   const formik = useFormik({
     initialValues,
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
-      console.log(values);
+      //  values.avatar.name != '' ?  fileAvatar = reName(values.avatar.name) : ''
+      //   if(values.cover.name != '') values.cover.name = reName(values.cover.name)
+
+      console.log(imageBlob);
 
       // try {
       //   Axios.post(process.env.API_URL + "/edit", {
@@ -93,8 +140,7 @@ const Index = () => {
   });
 
   const uploadToFirebase = (values) => {
-    const test = Math.random() * values.file.size;
-    console.log(test);
+    // อัพรูป
     const storageRef = firebase.storage().ref();
     storageRef
       .child(`avatars/${values.file.name}`)
@@ -108,6 +154,7 @@ const Index = () => {
   };
 
   const test = () => {
+    // ดึงรูป
     const storageRef = firebase.storage().ref();
     storageRef
       .child("avatars/resizes/toodasddsn.png")
@@ -122,7 +169,7 @@ const Index = () => {
     <>
       {verifyMember && (
         <>
-          <MenuSetting file={formik.values.cover} >
+          <MenuSetting file={formik.values.cover}>
             <form onSubmit={formik.handleSubmit}>
               <div
                 style={{
@@ -131,7 +178,7 @@ const Index = () => {
                   position: "absolute",
                   top: "-10%",
                 }}
-                className="border p-2 rounded-circle  d-none d-lg-block"
+                className="border mt-2 p-2 rounded-circle  d-none d-lg-block"
               >
                 <label htmlFor="cover">
                   <span className="material-icons text-light">camera_alt</span>
@@ -154,20 +201,62 @@ const Index = () => {
               <div className="row mt-4">
                 {/* image */}
                 <div className="col-12 col-sm-12 col-md-3 col-xl-2">
-                  {formik.values.avatar != null ? (
-                    <>
-                      <PreviewAvatar file={formik.values.avatar} />
-                    </>
-                  ) : (
-                    <>
-                      <div className="image-holder rounded-circle border-0 ">
-                        {/* <img
-                className="rounded-circle border"
-                src=""
-                alt=""
-              /> */}
+                  {imageURL != "" && editing ? (
+                    <div>
+                      <AvatarEditor
+                        ref={setEditorRef}
+                        image={imageURL}
+                        width={150}
+                        height={150}
+                        position={position}
+                        onPositionChange={handlePositionChange}
+                        color={[120, 120, 120, 0.9]} // RGBA
+                        borderRadius={150}
+                        border={10}
+                        scale={scale}
+                        rotate={0}
+                        className="editor-canvas "
+                      />
+                      <div class="form-row mt-3">
+                        <span>Zoom : </span>
+                        <input
+                          name="scale"
+                          type="range"
+                          onChange={handleScale}
+                          min={allowZoomOut ? "0.1" : "1"}
+                          max="3"
+                          step="0.01"
+                          defaultValue="1"
+                        />
                       </div>
-                    </>
+
+                      <a
+                        className="btn-block btn btn-primary mt-3"
+                        onClick={onCrop}
+                      >
+                        Save
+                      </a>
+                      <a
+                        className="btn-block btn btn-danger mt-2"
+                        onClick={() => setEditing(false)}
+                      >
+                        Cancel
+                      </a>
+                    </div>
+                  ) : null}
+                  {/* <PreviewAvatar file={formik.values.avatar} />
+                   */}
+
+                  {editing === false && (
+                    <img
+                      width={150}
+                      height={150}
+                      className="rounded-circle"
+                      src={
+                        imageCrop ||
+                        "https://firebasestorage.googleapis.com/v0/b/myspace-dev-1ae9e.appspot.com/o/avatars%2Fresizes%2Fplaceholder-human-300x300_300x300.jpg?alt=media&token=13dcd961-f22c-4523-9bd1-9bd54b25a3fa"
+                      }
+                    />
                   )}
                 </div>
                 {/* Choose file */}
@@ -189,6 +278,7 @@ const Index = () => {
                           "avatar",
                           event.currentTarget.files[0]
                         );
+                        handleNewImage(event);
                       }}
                     />
                   </label>
