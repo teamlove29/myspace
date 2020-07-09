@@ -7,8 +7,9 @@ export const ModalProvider = ({ children }) => {
   const [nameMember, setNameMember] = useState(); //ชื่อ display ของเจ้าของ
   const [dataMember, setDataMember] = useState(); //ข้อมูลของตนเอง
   const [dataFriend, setDataFriend] = useState(); // ข้อมูลค้นหาบน HTTP หรือ ไว้หาเพื่อน
-  const [avatar, setAvatar] = useState('https://firebasestorage.googleapis.com/v0/b/myspace-dev-1ae9e.appspot.com/o/avatars%2Fresizes%2Fplaceholder-human-300x300_300x300.jpg?alt=media&token=13dcd961-f22c-4523-9bd1-9bd54b25a3fa'); // รูป avatar
-
+  const [imageBlobCover, setImageBlobCover] = useState(null); // ข้อมูลค้นหาบน HTTP หรือ ไว้หาเพื่อน
+  const [avatarMember, setavatarMember] = useState(process.env.AVATARHOLDER);
+  const [coverMember, setcoverMember] = useState();
   const [header, setHeader] = useState();
   return (
     <ModalContext.Provider
@@ -23,8 +24,12 @@ export const ModalProvider = ({ children }) => {
         setHeader,
         dataFriend,
         setDataFriend,
-        avatar,
-        setAvatar,
+        imageBlobCover,
+        setImageBlobCover,
+        avatarMember,
+        setavatarMember,
+        coverMember,
+        setcoverMember,
       }}
     >
       {children}

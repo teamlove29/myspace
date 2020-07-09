@@ -1,4 +1,4 @@
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
@@ -18,17 +18,17 @@ export default function Index({ children, file }) {
     }
   };
 
-useEffect(() => {
-  setcancel(false)
-  setsaveCover(false)
-}, [file])
+  useEffect(() => {
+    setcancel(false);
+    setsaveCover(false);
+  }, [file]);
 
-const hendleCancel = () =>{ 
-  setcancel(true)
-}
-const hendleSave = () =>{ 
-  setsaveCover(true)
-}
+  const hendleCancel = () => {
+    setcancel(true);
+  };
+  const hendleSave = () => {
+    setsaveCover(true);
+  };
 
   return (
     <div>
@@ -41,25 +41,24 @@ const hendleSave = () =>{
           marginBottom: "150px",
         }}
       >
-        {file != null && cancel != true && saveCover === false ? 
-        <div className="text-center">
-                  {/* zIndex:"0" */}
-                  <h3
-                  style={{}} className="btn btn-sm btn-secondary">ลากเพื่อย้ายรูปหน้าปก</h3>
-                  <br/>
-                  <button 
-                  onClick={hendleSave}
-                  className="btn pr-3 pl-3 btn-sm btn-primary mr-3">
-                  Save
-                  </button>
-                  <button 
-                  onClick={hendleCancel}
-                  className="btn btn-sm btn-danger">
-                  Cancel
-                  </button>
-
-        </div>
-        : (
+        {file != null && cancel != true && saveCover != true ? (
+          <div className="text-center">
+            {/* zIndex:"0" */}
+            <h3 style={{}} className="btn btn-sm btn-secondary">
+              ลากเพื่อย้ายรูปหน้าปก
+            </h3>
+            <br />
+            <button
+              onClick={hendleSave}
+              className="btn pr-3 pl-3 btn-sm btn-primary mr-3"
+            >
+              Save
+            </button>
+            <button onClick={hendleCancel} className="btn btn-sm btn-danger">
+              Cancel
+            </button>
+          </div>
+        ) : (
           <>
             <h3 className="font-Regular mt-5">Settings</h3>
             <ul id="list" className="mt-4">

@@ -8,7 +8,7 @@ import { ModalContext } from "../config/context/ModalProvider";
 export default function Aside() {
   const MySwal = withReactContent(Swal);
   const router = useRouter();
-  const { currentUser, nameMember, dataMember } = useContext(ModalContext);
+  const { currentUser, nameMember, dataMember,setavatarMember,setcoverMember } = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
@@ -33,6 +33,8 @@ export default function Aside() {
     }).then((result) => {
       if (result.isConfirmed === true) {
         firebase.auth().signOut();
+        setavatarMember(process.env.AVATARHOLDER)
+        setcoverMember("");
         router.push("/");
       }
     });

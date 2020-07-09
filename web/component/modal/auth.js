@@ -184,7 +184,7 @@ const Auth = (props) => {
 
   const handleSignUp = async (value, { setSubmitting }) => {
     try {
-      await Axios.post(process.env.API_URL + "/edit_front-profile/checkEmail", {
+      await Axios.post(process.env.API_URL_EDITFRONT , {
         email: value.email,
       });
       setEmail(value.email);

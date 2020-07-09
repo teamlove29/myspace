@@ -6,7 +6,7 @@ const Index = () => {
   const router = useRouter();
   const { username } = router.query;
   const hideAbout = router.pathname != "/[username]";
-  const { nameMember, dataMember,avatar } = useContext(ModalContext);
+  const { nameMember, dataMember,avatarMember } = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
 
   const getMenuItemActive = (path) => {
@@ -26,7 +26,7 @@ const Index = () => {
           <img
             className="rounded-circle border"
             // src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
-            src={avatar}
+            src={avatarMember}
             alt=""
             width={150}
             height={150}

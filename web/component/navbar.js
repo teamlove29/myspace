@@ -23,8 +23,10 @@ const Navbar = () => {
     setDataMember,
     header,
     setHeader,
-    avatar,
-    setAvatar,
+    avatarMember,
+    setavatarMember,
+    coverMember,
+    setcoverMember,
   } = useContext(ModalContext);
 
   const handleSignIn = () => {
@@ -53,9 +55,42 @@ const Navbar = () => {
     }).then((result) => {
       if (result.isConfirmed === true) {
         firebase.auth().signOut();
+        setavatarMember(process.env.AVATARHOLDER);
+        setcoverMember("");
         router.push("/");
       }
     });
+  };
+
+  const getImageAvatar = (data) => {
+    // ดึงรูป
+    if (data != "" || data != undefined) {
+      const storageRef = firebase.storage().ref();
+      storageRef
+        .child("avatars/" + data)
+        .getDownloadURL()
+        .then((url) => {
+          setavatarMember(url);
+        })
+        .catch((err) => {
+          console.log(err.code);
+        });
+    }
+  };
+  const getImageCover = (data) => {
+    // ดึงรูป
+    if (data != "" || data != undefined) {
+      const storageRef = firebase.storage().ref();
+      storageRef
+        .child("avatars/" + data)
+        .getDownloadURL()
+        .then((url) => {
+          setcoverMember(url);
+        })
+        .catch((err) => {
+          console.log(err.code);
+        });
+    }
   };
 
   const onAuthStateChange = () => {
@@ -64,7 +99,7 @@ const Navbar = () => {
         const uid = await user.uid;
         const names = user.email.substring(0, user.email.lastIndexOf("@"));
         const storageRef = firebase.storage().ref();
-        setNameMember(names);
+
         let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
         setHeader(token);
         const checksocialLogin = await Axios.post(
@@ -75,18 +110,14 @@ const Navbar = () => {
         if (checksocialLogin.status === 200) {
           try {
             const verifyMember = await Axios.get(
-              process.env.API_URL + "/edit_front-profile/",
+              process.env.API_URL_EDITFRONT,
               {
                 headers: { authorization: token },
               }
             );
-            // storageRef
-            // .child("avatars/resizes/toodasddsn.png")
-            // .getDownloadURL()
-            // .then((url) => {
-            //   setAvatar(url);
-            // })
-            // .catch((err) => console.log(err.code));
+            getImageAvatar(verifyMember.data[0].mem_avatar);
+            getImageCover(verifyMember.data[0].mem_cover);
+            setNameMember(verifyMember.data[0].mem_display_name);
             setDataMember(verifyMember.data[0]);
           } catch (error) {
             console.log(error);
@@ -206,9 +237,7 @@ const Navbar = () => {
             </form>
           </>
         ) : (
-          <div className=" form-inline mr-auto ml-md-3 my-2  navbar-search d-none d-lg-block pointer">
-      
-          </div>
+          <div className=" form-inline mr-auto ml-md-3 my-2  navbar-search d-none d-lg-block pointer"></div>
         )}
         {/* Topbar Navbar */}
         <ul
@@ -251,7 +280,7 @@ const Navbar = () => {
                     <img
                       className="img-profile rounded-circle d-none d-lg-block"
                       // src="https://source.unsplash.com/cCvnG-937HE/100x100"
-                      src={avatar}
+                      src={avatarMember}
                     />
                   </a>
                   <div

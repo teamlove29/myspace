@@ -9,9 +9,13 @@ export default function Index({ stars }) {
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
-  const { nameMember, dataMember,setDataFriend, dataFriend, header } = useContext(
-    ModalContext
-  );
+  const {
+    nameMember,
+    dataMember,
+    setDataFriend,
+    dataFriend,
+    header,
+  } = useContext(ModalContext);
 
   // console.log(header.authorization)
   //   Axios.post('https://us-central1-myspace-dev-1ae9e.cloudfunctions.net/edit_front-profile/checkDisplay', {
@@ -27,17 +31,21 @@ export default function Index({ stars }) {
   // console.log(test)
 
   useEffect(() => {
-    Axios.post(process.env.API_URL + "/edit_front-profile/checkDisplay", {
-      headers: { authorization:  header },
-      display:username
-    })
+    Axios.post(
+      process.env.API_URL_CHECKDISPLAY,
+      {
+        display: username,
+      },
+      { headers: { authorization: header } }
+    )
       .then((res) => {
-        if(res.data[0].mem_display_name === nameMember)setDataFriend(res.data)
-        else setDataFriend(undefined)
+        if (res.data[0].mem_display_name === nameMember)
+          setDataFriend(res.data);
+        else setDataFriend(undefined);
       })
       .catch((err) => {
         console.log(err);
-        setDataFriend(undefined)
+        setDataFriend(undefined);
       });
   }, [username]);
 

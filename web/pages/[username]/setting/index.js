@@ -13,20 +13,29 @@ import firebase from "../../../config/config";
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
-  const { nameMember, header, dataMember } = useContext(ModalContext);
+  const {
+    nameMember,
+    header,
+    dataMember,
+    imageBlobCover,
+    setImageBlobCover,
+    setCurrentUser,
+    avatarMember,
+    coverMember,
+  } = useContext(ModalContext);
+
   const [editor, setEditor] = useState();
   const [imageURL, setImageURL] = useState("");
   const [imageCrop, setImageCrop] = useState();
   const [editing, setEditing] = useState(false);
   const [scale, setScale] = useState(1);
-  const [imageBlob, setImageBlob] = useState(1);
+  const [imageBlob, setImageBlob] = useState(null);
   const [allowZoomOut, setAllowZoomOut] = useState(false);
   const [position, setposition] = useState({ x: 0.5, y: 0.5 });
-
   const verifyMember = username != nameMember ? false : true;
   const typeMember = dataMember != undefined ? dataMember.mem_type : null;
-
   const setEditorRef = (editor) => setEditor(editor);
+
   const onCrop = () => {
     if (editor !== null) {
       if (editor) {
@@ -34,14 +43,20 @@ const Index = () => {
         fetch(canvasScaled)
           .then((res) => res.blob())
           .then((blob) => {
-            blob.name = imageURL.name;
+            var cdate = Date.now(); // วันที่สร้าง
+            var ext = imageURL.name.split(".").slice(-1)[0]; //นามสกุลไฟล์็
+            var ext2 = imageURL.name.split("." + ext).slice(0)[0]; // ชื่อไฟล์
+            var fileNames = ext2 + cdate + "." + ext;
+            blob.name = fileNames;
             setImageBlob(blob);
             setImageCrop(window.URL.createObjectURL(blob));
             setEditing(false);
           });
       }
     }
+    setScale(1);
   };
+
   const handleNewImage = (e) => {
     if (e.target.files[0] != undefined) {
       const fileSize = e.target.files[0].size / 1024 / 1024; // in MB
@@ -75,13 +90,16 @@ const Index = () => {
     return "";
   };
 
+  const mem_avatar = dataMember != undefined ? dataMember.mem_avatar : "";
+  const mem_cover = dataMember != undefined ? dataMember.mem_cover : "";
+
   var initialValues = {
     avatar: null,
     cover: null,
-    displayname: "",
+    displayname: nameMember,
     firstname: "",
     lastname: "",
-    email: "",
+    email: dataMember != undefined ? dataMember.mem_email : "",
     Country: "",
     website: "",
     aboutyou: "",
@@ -94,44 +112,59 @@ const Index = () => {
     displayname: Yup.string().required("Required").min(6, "Min length is 6"),
   });
 
-  const reName = (values) => {
-    var cdate = Date.now(); // วันที่สร้าง
-    var ext = values.split(".").slice(-1)[0]; //นามสกุลไฟล์็
-    var ext2 = values.split("." + ext).slice(0)[0]; // ชื่อไฟล์
-    var fileNames = ext2 + cdate + "." + ext;
-    return fileNames;
-  };
-
   const formik = useFormik({
     initialValues,
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
-      //  values.avatar.name != '' ?  fileAvatar = reName(values.avatar.name) : ''
-      //   if(values.cover.name != '') values.cover.name = reName(values.cover.name)
+      const data = {
+        first_name: values.firstname,
+        last_name: values.lastname,
+        email: values.email,
+        display_name: values.displayname,
+        about_you: values.aboutyou,
+        country: values.Country,
+        website: values.website,
+        avatar:
+          imageBlob != null
+            ? imageBlob.name
+            : avatarMember != undefined
+            ? mem_avatar
+            : null,
+        cover:
+          imageBlobCover != null
+            ? imageBlobCover.name
+            : coverMember != undefined
+            ? mem_cover
+            : null,
+      };
 
-      console.log(imageBlob);
+      try {
+        Axios.post(
+          process.env.API_URL + "/edit_front-profile/edit",
+          data,
 
-      // try {
-      //   Axios.post(process.env.API_URL + "/edit", {
-      //     headers: { authorization: header },
-      //     first_name : "",
-      //     last_name : "",
-      //     // display_name : "",
-      //     about_you : "",
-      //     country : "",
-      //     website : "",
-      //     avatar : "",
-      //     cover : "",
-      //   })
-      //     .then((res) => {
-      //       uploadToFirebase(values);
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
-      // } catch (error) {
-      //   console.log(error);
-      // }
+          {
+            headers: {
+              authorization: header,
+            },
+          }
+        )
+          .then((res) => {
+            if (imageBlob != null) uploadToFirebase(imageBlob);
+            if (imageBlobCover != null) uploadToFirebase(imageBlobCover);
+            setCurrentUser("ok");
+            router.push(
+              "/[username]/setting",
+              "/" + values.displayname + "/setting"
+            );
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.log(error);
+      }
 
       setTimeout(() => {
         setSubmitting(false);
@@ -143,26 +176,14 @@ const Index = () => {
     // อัพรูป
     const storageRef = firebase.storage().ref();
     storageRef
-      .child(`avatars/${values.file.name}`)
-      .put(values.file)
+      .child(`avatars/${values.name}`)
+      .put(values)
       .then((snapshot) => {
         console.log("Uploaded a blob or file!");
       })
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const test = () => {
-    // ดึงรูป
-    const storageRef = firebase.storage().ref();
-    storageRef
-      .child("avatars/resizes/toodasddsn.png")
-      .getDownloadURL()
-      .then((url) => {
-        console.log(url);
-      })
-      .catch((err) => console.log(err.code));
   };
 
   return (
@@ -238,7 +259,12 @@ const Index = () => {
                       </a>
                       <a
                         className="btn-block btn btn-danger mt-2"
-                        onClick={() => setEditing(false)}
+                        onClick={() => {
+                          setEditing(false);
+                          setImageCrop("");
+                          setImageBlob(null);
+                          setScale(1);
+                        }}
                       >
                         Cancel
                       </a>
@@ -253,8 +279,11 @@ const Index = () => {
                       height={150}
                       className="rounded-circle"
                       src={
-                        imageCrop ||
-                        "https://firebasestorage.googleapis.com/v0/b/myspace-dev-1ae9e.appspot.com/o/avatars%2Fresizes%2Fplaceholder-human-300x300_300x300.jpg?alt=media&token=13dcd961-f22c-4523-9bd1-9bd54b25a3fa"
+                        imageCrop != undefined
+                          ? imageCrop
+                          : avatarMember != process.env.AVATARHOLDER
+                          ? avatarMember
+                          : process.env.AVATARHOLDER
                       }
                     />
                   )}
@@ -355,6 +384,7 @@ const Index = () => {
                 </label>
                 <div className="col-lg-6 col-xl-6">
                   <input
+                    readOnly={true}
                     className={`form-control " ${getInputClasses("email")}`}
                     type="email"
                     name="email"
@@ -554,14 +584,16 @@ const Index = () => {
 
             label[for="cover"]:hover {
               background: #ddd;
+              transition: width 2s;
             }
 
             label[for="cover"] {
               border: 0 solid #272727;
-
+              transition:' 2s'
               border-radius: 30px;
               cursor: pointer;
               position: absolute;
+              transition: width 2s;
               z-index: 2;
             }
 
