@@ -34,7 +34,7 @@ export default function Aside() {
       if (result.isConfirmed === true) {
         firebase.auth().signOut();
         setavatarMember(process.env.AVATARHOLDER)
-        setcoverMember("");
+        setcoverMember(undefined);
         router.push("/");
       }
     });
@@ -114,7 +114,7 @@ export default function Aside() {
             </a>
           </Link>
         </li>
-        {currentUser === true ? (
+        {currentUser === true && dataMember != undefined ? (
           <>
             {/* Heading */}
             <div className="sidebar-heading mt-2">YOU</div>

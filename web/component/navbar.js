@@ -29,6 +29,20 @@ const Navbar = () => {
     setcoverMember,
   } = useContext(ModalContext);
 
+
+  const ToastSuccess = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+
   const handleSignIn = () => {
     setShowSignIn(true);
     setTimeout(() => {
@@ -41,6 +55,8 @@ const Navbar = () => {
       setShowSignUp(false);
     }, 50);
   };
+
+
 
   const handleSignOut = () => {
     MySwal.fire({
@@ -56,7 +72,7 @@ const Navbar = () => {
       if (result.isConfirmed === true) {
         firebase.auth().signOut();
         setavatarMember(process.env.AVATARHOLDER);
-        setcoverMember("");
+        setcoverMember(undefined);
         router.push("/");
       }
     });
@@ -64,7 +80,7 @@ const Navbar = () => {
 
   const getImageAvatar = (data) => {
     // ดึงรูป
-    if (data != "" || data != undefined) {
+    if (data != "" && data != undefined) {
       const storageRef = firebase.storage().ref();
       storageRef
         .child("avatars/" + data)
@@ -78,8 +94,9 @@ const Navbar = () => {
     }
   };
   const getImageCover = (data) => {
+
     // ดึงรูป
-    if (data != "" || data != undefined) {
+    if (data != "" && data != undefined) {
       const storageRef = firebase.storage().ref();
       storageRef
         .child("avatars/" + data)
@@ -119,6 +136,12 @@ const Navbar = () => {
             getImageCover(verifyMember.data[0].mem_cover);
             setNameMember(verifyMember.data[0].mem_display_name);
             setDataMember(verifyMember.data[0]);
+          if(currentUser != true){
+            ToastSuccess.fire({
+              icon: 'success',
+              title: 'Signed in successfully'
+            })
+          }
           } catch (error) {
             console.log(error);
             setNameMember(null);

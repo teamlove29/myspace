@@ -3,8 +3,10 @@ import MunuMember from "../../component/munuMember";
 import CoverMember from "../../component/cover/coverMember";
 export default function index({ children }) {
   return (
+    <>
+    <CoverMember />
     <div className="container-fluid">
-      <CoverMember />
+  
       <div
         style={{
           position: "relative",
@@ -15,5 +17,6 @@ export default function index({ children }) {
         {children}
       </div>
     </div>
+    </>
   );
 }

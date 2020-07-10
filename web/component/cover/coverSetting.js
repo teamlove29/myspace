@@ -1,26 +1,26 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AvatarEditor from "react-avatar-editor";
 import { ModalContext } from "../../config/context/ModalProvider";
 
 const CoverSetting = ({ file, hendleCancel, saveCover }) => {
   const [editor, setEditor] = useState();
   const [imageURL, setImageURL] = useState("");
-  const [imageCrop, setImageCrop] = useState('');
+  const [imageCrop, setImageCrop] = useState("");
   const [scale, setScale] = useState(1);
   const [position, setposition] = useState({ x: 0.5, y: 0.5 });
-
-  const { setImageBlobCover,coverMember } = useContext(ModalContext);
+  const { height, width } = useWindowDimensions();
+  const { setImageBlobCover, coverMember } = useContext(ModalContext);
 
   useEffect(() => {
     handleNewImage(file);
-    if(saveCover === true) {
-      onCrop() 
+    if (saveCover === true) {
+      onCrop();
     }
-    if(hendleCancel === true){
-      setImageCrop('')
-      setImageBlobCover(null)
+    if (hendleCancel === true) {
+      setImageCrop("");
+      setImageBlobCover(null);
     }
-  }, [saveCover,file,hendleCancel]);
+  }, [saveCover, file, hendleCancel]);
 
   const setEditorRef = (editors) => setEditor(editors);
   const onCrop = () => {
@@ -56,59 +56,61 @@ const CoverSetting = ({ file, hendleCancel, saveCover }) => {
       }
     }
   };
-
   return (
     <>
       {file != null && hendleCancel != true && saveCover != true ? (
-        <AvatarEditor
-          ref={setEditorRef}
-          image={imageURL}
-          height={200}
-          width={1200}
-          position={position}
-          onPositionChange={handlePositionChange}
-          color={[120, 120, 120, 0.9]} // RGBA
-          border={0}
-          scale={scale}
-          rotate={0}
-          className="coverSetting"
-          style={{
-            position: "absolute",
-            top: "0.2%",
-            right: "0",
-            left: '10%'
-          }}
-        />
+        <>
+          <AvatarEditor
+            ref={setEditorRef}
+            image={imageURL}
+            height={200}
+            width={width < 991 ? width : width - 240}
+            position={position}
+            onPositionChange={handlePositionChange}
+            color={[120, 120, 120, 0.9]} // RGBA
+            border={0}
+            scale={scale}
+            rotate={0}
+            className=""
+            style={{
+              position: "absolute",
+              top: "0%",
+            }}
+          />
+        </>
       ) : (
         // coverMember
-        
-        <img src={
-          imageCrop != ''
-          ? imageCrop
-          : coverMember != undefined
-          ? coverMember
-          : ''} alt="" className="img-thumbnail border-0 coverSetting" />
+
+        <img
+          width={width - 240}
+          src={
+            imageCrop != ""
+              ? imageCrop
+              : coverMember != undefined
+              ? coverMember
+              : ""
+          }
+          alt=""
+          className="border-0 coverSetting"
+        />
       )}
 
       <style jsx>
         {`
           .coverSetting {
             top: 0;
-            right: 0;
-
             position: absolute;
             background-color: #252525;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 100% 100%;
-            width: 100%;
             height: 205px;
-            padding: 0 0;
+            top: 0%;
+            min-width: 991px;
           }
 
           @media screen and (max-width: 991px) {
             .coverSetting {
-              left: 0;
+              min-width: 991px;
               top: 5%;
             }
           }
@@ -119,3 +121,29 @@ const CoverSetting = ({ file, hendleCancel, saveCover }) => {
 };
 
 export default CoverSetting;
+
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+
+  return {
+    width,
+    height,
+  };
+}
+
+function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowDimensions;
+}

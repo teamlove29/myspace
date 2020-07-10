@@ -6,8 +6,12 @@ import { Button } from "../../../component/modal/style";
 import { ModalContext } from "../../../config/context/ModalProvider";
 import MenuSetting from "../../../component/menuSetting";
 import PreviewAvatar from "../../../component/previewimage/previewavatar";
+import Layout from "../../../component/Layout";
+import LoadPage from "../../../container/loadPage";
 import Axios from "axios";
 import AvatarEditor from "react-avatar-editor";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import firebase from "../../../config/config";
 
 const Index = () => {
@@ -23,7 +27,6 @@ const Index = () => {
     avatarMember,
     coverMember,
   } = useContext(ModalContext);
-
   const [editor, setEditor] = useState();
   const [imageURL, setImageURL] = useState("");
   const [imageCrop, setImageCrop] = useState();
@@ -90,88 +93,6 @@ const Index = () => {
     return "";
   };
 
-  const mem_avatar = dataMember != undefined ? dataMember.mem_avatar : "";
-  const mem_cover = dataMember != undefined ? dataMember.mem_cover : "";
-
-  var initialValues = {
-    avatar: null,
-    cover: null,
-    displayname: nameMember,
-    firstname: "",
-    lastname: "",
-    email: dataMember != undefined ? dataMember.mem_email : "",
-    Country: "",
-    website: "",
-    aboutyou: "",
-    instagram: "",
-    twitter: "",
-    facebook: "",
-  };
-
-  const Schema = Yup.object().shape({
-    displayname: Yup.string().required("Required").min(6, "Min length is 6"),
-  });
-
-  const formik = useFormik({
-    initialValues,
-    validationSchema: Schema,
-    onSubmit: (values, { setStatus, setSubmitting }) => {
-      const data = {
-        first_name: values.firstname,
-        last_name: values.lastname,
-        email: values.email,
-        display_name: values.displayname,
-        about_you: values.aboutyou,
-        country: values.Country,
-        website: values.website,
-        avatar:
-          imageBlob != null
-            ? imageBlob.name
-            : avatarMember != undefined
-            ? mem_avatar
-            : null,
-        cover:
-          imageBlobCover != null
-            ? imageBlobCover.name
-            : coverMember != undefined
-            ? mem_cover
-            : null,
-      };
-
-      try {
-        Axios.post(
-          process.env.API_URL + "/edit_front-profile/edit",
-          data,
-
-          {
-            headers: {
-              authorization: header,
-            },
-          }
-        )
-          .then((res) => {
-            if (imageBlob != null) uploadToFirebase(imageBlob);
-            if (imageBlobCover != null) uploadToFirebase(imageBlobCover);
-            setCurrentUser("ok");
-            router.push(
-              "/[username]/setting",
-              "/" + values.displayname + "/setting"
-            );
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-
-      setTimeout(() => {
-        setSubmitting(false);
-      }, 1000);
-    },
-  });
-
   const uploadToFirebase = (values) => {
     // อัพรูป
     const storageRef = firebase.storage().ref();
@@ -186,6 +107,100 @@ const Index = () => {
       });
   };
 
+  var initialValues = {
+    avatar: null,
+    cover: null,
+    displayname: nameMember,
+    firstname: dataMember != undefined ? dataMember.mem_first_name : "",
+    lastname: dataMember != undefined ? dataMember.mem_last_name : "",
+    email: dataMember != undefined ? dataMember.mem_email : "",
+    country: dataMember != undefined ? dataMember.mem_country : "",
+    website: dataMember != undefined ? dataMember.mem_website : "",
+    aboutyou: dataMember != undefined ? dataMember.mem_about_you : "",
+    instagram: dataMember != undefined ? dataMember.artists_instagram : "",
+    twitter: dataMember != undefined ? dataMember.artists_twitter : "",
+    facebook: dataMember != undefined ? dataMember.artists_facebook : "",
+  };
+
+  const Schema = Yup.object().shape({
+    displayname: Yup.string().required("Required").min(6, "Min length is 6"),
+    aboutyou: Yup.string().max(200, "200 character limit"),
+  });
+
+  const mem_avatar = dataMember != undefined ? dataMember.mem_avatar : "";
+  const mem_cover = dataMember != undefined ? dataMember.mem_cover : "";
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues,
+    validationSchema: Schema,
+    onSubmit: (values, { setStatus, setSubmitting }) => {
+      const data = {
+        first_name: values.firstname,
+        last_name: values.lastname,
+        email: values.email,
+        display_name: values.displayname,
+        about_you: values.aboutyou,
+        country: values.country,
+        website: values.website,
+        avatar:
+          imageBlob != null
+            ? imageBlob.name
+            : avatarMember != undefined
+            ? mem_avatar
+            : null,
+        cover:
+          imageBlobCover != null
+            ? imageBlobCover.name
+            : coverMember != undefined
+            ? mem_cover
+            : null,
+        instagram: values.instagram,
+        twitter: values.twitter,
+        facebook: values.facebook,
+      };
+
+      try {
+        Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
+          headers: {
+            authorization: header,
+          },
+        })
+          .then(async (res) => {
+            if (imageBlob != null) await uploadToFirebase(imageBlob);
+            if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
+            if (nameMember != values.displayname)
+              router.push(
+                "/[username]/setting",
+                "/" + values.displayname + "/setting"
+              );
+              setCurrentUser(true);
+              Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            setSubmitting(false);
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+
+      setTimeout(() => {
+        // setSubmitting(false);
+      }, 1000);
+    },
+  });
+
+  if (dataMember === undefined) {
+    return <LoadPage />;
+  }
+
   return (
     <>
       {verifyMember && (
@@ -197,9 +212,9 @@ const Index = () => {
                   width: "42px",
                   height: "42px",
                   position: "absolute",
-                  top: "-10%",
+                  top: "-7%",
                 }}
-                className="border mt-2 p-2 rounded-circle  d-none d-lg-block"
+                className="border p-2 rounded-circle  d-none d-lg-block"
               >
                 <label htmlFor="cover">
                   <span className="material-icons text-light">camera_alt</span>
@@ -326,6 +341,7 @@ const Index = () => {
                     )}`}
                     type="text"
                     name="displayname"
+                    disabled={formik.isSubmitting}
                     {...formik.getFieldProps("displayname")}
                   />
                   {formik.touched.displayname && formik.errors.displayname ? (
@@ -347,6 +363,7 @@ const Index = () => {
                     className={`form-control " ${getInputClasses("firstname")}`}
                     type="text"
                     name="firstname"
+                    disabled={formik.isSubmitting}
                     {...formik.getFieldProps("firstname")}
                   />
                   {formik.touched.firstname && formik.errors.firstname ? (
@@ -367,6 +384,7 @@ const Index = () => {
                     className={`form-control " ${getInputClasses("lastname")}`}
                     type="text"
                     name="lastname"
+                    disabled={formik.isSubmitting}
                     {...formik.getFieldProps("lastname")}
                   />
                   {formik.touched.lastname && formik.errors.lastname ? (
@@ -408,6 +426,7 @@ const Index = () => {
                   <select
                     className={`form-control " ${getInputClasses("country")}`}
                     name="Country"
+                    disabled={formik.isSubmitting}
                     {...formik.getFieldProps("country")}
                   >
                     {formik.touched.country && formik.errors.country ? (
@@ -433,7 +452,7 @@ const Index = () => {
                     className={`form-control " ${getInputClasses("website")}`}
                     type="text"
                     name="website"
-                    name="website"
+                    disabled={formik.isSubmitting}
                     {...formik.getFieldProps("website")}
                   />
                   {formik.touched.website && formik.errors.website ? (
@@ -451,10 +470,11 @@ const Index = () => {
                 </label>
                 <div className="col-lg-6 col-xl-6">
                   <textarea
-                    rows="3"
+                    rows="8"
                     className={`form-control  " ${getInputClasses("aboutyou")}`}
                     type="text"
                     name="AboutYou"
+                    disabled={formik.isSubmitting}
                     {...formik.getFieldProps("aboutyou")}
                   />
                   {formik.touched.aboutyou && formik.errors.aboutyou ? (
@@ -488,6 +508,7 @@ const Index = () => {
                         )}`}
                         type="text"
                         name="instagram"
+                        disabled={formik.isSubmitting}
                         {...formik.getFieldProps("instagram")}
                       />
                       {formik.touched.instagram && formik.errors.instagram ? (
@@ -513,6 +534,7 @@ const Index = () => {
                         )}`}
                         type="text"
                         name="twitter"
+                        disabled={formik.isSubmitting}
                         {...formik.getFieldProps("twitter")}
                       />
                       {formik.touched.twitter && formik.errors.twitter ? (
@@ -538,6 +560,7 @@ const Index = () => {
                         )}`}
                         type="text"
                         name="facebook"
+                        disabled={formik.isSubmitting}
                         {...formik.getFieldProps("facebook")}
                       />
                       {formik.touched.facebook && formik.errors.facebook ? (
@@ -619,10 +642,3 @@ const Index = () => {
 };
 
 export default Index;
-
-// Index.getInitialProps =  (ctx) => {
-//   var user = firebase.auth().currentUser;
-//   return {
-//     stars: user,
-//   };
-// };

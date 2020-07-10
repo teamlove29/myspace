@@ -19,6 +19,8 @@ const Index = () => {
     }
   };
 
+
+
   return (
     <>
       <div className="ml-5 row justify-content-start  justify-content-center ">
@@ -111,12 +113,7 @@ const Index = () => {
                 <div className="col-auto col-xl-6">
                   <p className="mt-4 h6">About me</p>
                   <p className="text-muted">
-                    Mraz was engaged to singer/songwriter and long-time close
-                    friend Tristan Prettyman. On June 7, 2011, Mraz said in an
-                    interview with the Daily Beast that he and Prettyman were no
-                    longer engaged. Mraz lives a health-conscious lifestyle and
-                    enjoys eating mostly raw vegan foods. He owns an avocado
-                    farm in Bonsall in Northern San Diego County.
+                  {dataMember.mem_about_you}
                   </p>
                 </div>
                 <div className="col-auto col-xl-6">
@@ -124,7 +121,7 @@ const Index = () => {
                   <p className="text-muted">23 June 1992 (age 28)</p>
                   <p className="mt-5 h6">Born in</p>
                   <p className="text-muted">
-                    Mechanicsville, Hanover County, Virginia, United States
+                  Lampang, {dataMember.mem_country }
                   </p>
                 </div>
               </div>
