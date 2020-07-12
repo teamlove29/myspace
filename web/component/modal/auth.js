@@ -194,6 +194,7 @@ const Auth = (props) => {
       setSubmitting(false);
       formikSignUp.handleReset();
     } catch (error) {
+      console.log(error)
       setShowSignUp(false);
       setSubmitting(false);
       setShowSignIn(true);

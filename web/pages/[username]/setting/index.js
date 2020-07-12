@@ -134,96 +134,94 @@ const Index = () => {
     initialValues,
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
-
-
-
       Swal.fire({
         position: "top",
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be edit this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, edit it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, edit it!",
       }).then((result) => {
         if (result.value) {
-// ok for someting
-const data = {
-  first_name: values.firstname,
-  last_name: values.lastname,
-  email: values.email,
-  display_name: values.displayname,
-  about_you: values.aboutyou,
-  country: values.country,
-  website: values.website,
-  avatar:
-    imageBlob != null
-      ? imageBlob.name
-      : avatarMember != undefined
-      ? mem_avatar
-      : null,
-  cover:
-    imageBlobCover != null
-      ? imageBlobCover.name
-      : coverMember != undefined
-      ? mem_cover
-      : null,
-  instagram: values.instagram,
-  twitter: values.twitter,
-  facebook: values.facebook,
-};
+          // ok for someting
+          const data = {
+            first_name: values.firstname,
+            last_name: values.lastname,
+            email: values.email,
+            display_name: values.displayname,
+            about_you: values.aboutyou,
+            country: values.country,
+            website: values.website,
+            avatar:
+              imageBlob != null
+                ? imageBlob.name
+                : avatarMember != undefined
+                ? mem_avatar
+                : null,
+            cover:
+              imageBlobCover != null
+                ? imageBlobCover.name
+                : coverMember != undefined
+                ? mem_cover
+                : null,
+            instagram: values.instagram,
+            twitter: values.twitter,
+            facebook: values.facebook,
+          };
 
-try {
-  Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
-    headers: {
-      authorization: header,
-    },
-  })
-    .then(async (res) => {
-      if (imageBlob != null) await uploadToFirebase(imageBlob);
-      if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
-      if (nameMember != values.displayname)
-      setCurrentUser(true);
+          try {
+            Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
+              headers: {
+                authorization: header,
+              },
+            })
+              .then(async (res) => {
+                if (imageBlob != null) await uploadToFirebase(imageBlob);
+                if (imageBlobCover != null)
+                  await uploadToFirebase(imageBlobCover);
+                if (nameMember != values.displayname) setCurrentUser(true);
 
-      Swal.fire({
-        onClose: false,
-        position: "top",
-        icon: "success",
-        title: "Your work has been saved",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setSubmitting(false);
-      console.log(res);
+                Swal.fire({
+                  allowOutsideClick: false,
+                  onClose: false,
+                  position: "top",
+                  icon: "success",
+                  title: "Your work has been saved",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                setSubmitting(false);
+                console.log(res);
 
 
-     setTimeout(() => {
-      router.reload(
-        "/[username]/setting",
-        "/" + values.displayname + "/setting"
-      );
-     }, 1500)
-     
-        
-     
-    })
-    .catch((err) => {
-      setSubmitting(false);
-      console.log(err);
-    });
-} catch (error) {
-  setSubmitting(false);
-  console.log(error);
-}
+                console.log(nameMember != values.displayname);
+                setTimeout(() => {
+                  if (nameMember != values.displayname) {
+                    router.push(
+                      "/[username]/setting" ,
+                      "/" + values.displayname + "/setting"
+                    ).then(()=>{
+                      router.reload();
+                    })
+                   
+                  } 
 
-        }else{
+                }, 1500);
+              })
+              .catch((err) => {
+                setSubmitting(false);
+                console.log(err);
+              });
+          } catch (error) {
+            setSubmitting(false);
+            console.log(error);
+          }
+        } else {
           setSubmitting(false);
         }
-      })
-
-
-
+      });
     },
   });
 

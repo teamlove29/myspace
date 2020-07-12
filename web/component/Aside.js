@@ -8,7 +8,13 @@ import { ModalContext } from "../config/context/ModalProvider";
 export default function Aside() {
   const MySwal = withReactContent(Swal);
   const router = useRouter();
-  const { currentUser, nameMember, dataMember,setavatarMember,setcoverMember } = useContext(ModalContext);
+  const {
+    currentUser,
+    nameMember,
+    dataMember,
+    setavatarMember,
+    setcoverMember,
+  } = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
@@ -18,26 +24,17 @@ export default function Aside() {
     if (pathname === path) {
       return "font-Medium menuActive";
     }
+    if (pathname.indexOf(path) > -1) {
+      return "font-Medium menuActive";
+    }
+    return false;
   };
 
   const handleSignOut = () => {
-    MySwal.fire({
-      position: "top",
-      icon: "question",
-      title: <h1 className="display-5">Are you sure ?</h1>,
-      text: "Are you sure to sign out ?",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sign out",
-    }).then((result) => {
-      if (result.isConfirmed === true) {
-        firebase.auth().signOut();
-        setavatarMember(process.env.AVATARHOLDER)
-        setcoverMember(undefined);
-        router.push("/");
-      }
-    });
+    firebase.auth().signOut();
+    setavatarMember(process.env.AVATARHOLDER);
+    setcoverMember(undefined);
+    router.push("/");
   };
 
   return (
@@ -79,13 +76,6 @@ export default function Aside() {
           </Link>
         </li>
         {/* Nav Item - Utilities Collapse Menu */}
-        <li className="nav-item ">
-          <Link href="/live" as="/">
-            <a className="nav-link collapsed">
-              <span>LIVE</span>
-            </a>
-          </Link>
-        </li>
         <li className="nav-item ">
           <Link href="/music" as="/">
             <a className="nav-link collapsed">

@@ -59,23 +59,10 @@ const Navbar = () => {
 
 
   const handleSignOut = () => {
-    MySwal.fire({
-      position: "top",
-      icon: "question",
-      title: <h1 className="display-5">Are you sure ?</h1>,
-      text: "Are you sure to sign out ?",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sign out",
-    }).then((result) => {
-      if (result.isConfirmed === true) {
-        firebase.auth().signOut();
-        setavatarMember(process.env.AVATARHOLDER);
-        setcoverMember(undefined);
-        router.push("/");
-      }
-    });
+    firebase.auth().signOut();
+    setavatarMember(process.env.AVATARHOLDER);
+    setcoverMember(undefined);
+    router.push("/");
   };
 
   const getImageAvatar = (data) => {
