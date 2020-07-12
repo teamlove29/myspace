@@ -6,11 +6,11 @@ import MenuSetting from "../../../component/menuSetting";
 import { ModalContext } from "../../../config/context/ModalProvider";
 import firebase from "../../../config/config";
 import { Alert, Button } from "../../../component/modal/style";
-
+import LoadPage from "../../../container/loadPage";
 export default function changpassword() {
   const router = useRouter();
   const { username } = router.query;
-  const { nameMember } = useContext(ModalContext);
+  const { nameMember,dataMember } = useContext(ModalContext);
   const verifyMember = username != nameMember ? false : true;
   const [passwordShown, setPasswordShown] = useState(false);
   var user = firebase.auth().currentUser;
@@ -32,7 +32,7 @@ export default function changpassword() {
   };
 
   const Schema = Yup.object().shape({
-    currentpassword: Yup.string().required("request"),
+    currentpassword: Yup.string().required(""),
     newpassword: Yup.string()
       .required("No password provided.")
       .min(8, "Password is too short - should be 8 chars minimum."),
@@ -49,40 +49,46 @@ export default function changpassword() {
     initialValues,
     validationSchema: Schema,
     onSubmit: (value, { setStatus, setSubmitting }) => {
+      setStatus("")
       var user = firebase.auth().currentUser;
       var cred = firebase.auth.EmailAuthProvider.credential(
         user.email,
         value.currentpassword
       );
-      try {
-        user
-          .reauthenticateWithCredential(cred)
-          .then((res) => {
-            user
-              .updatePassword(value.newpassword)
-              .then((res) => {
-                formik.resetForm();
-                setStatus("เปลี่ยนรหัสผ่านสำเร็จ");
-              })
-              .catch((error) => {
-                formik.resetForm();
-                if (err.code === "auth/wrong-password")
-                  setStatus("รหัสผ่านปัจุบันไม่ถูกต้อง");
-                console.log("An error happened.", error.code);
-              });
-          })
-          .catch((err) => {
-            formik.resetForm();
-            if (err.code === "auth/wrong-password")
-              setStatus("รหัสผ่านปัจุบันไม่ถูกต้อง");
-            console.log(err.code);
-          });
-      } catch (error) {
-        formik.resetForm();
-        if (err.code === "auth/wrong-password")
-          setStatus("รหัสผ่านปัจุบันไม่ถูกต้อง");
-        console.log(error.code);
-      }
+   
+   setTimeout(() => {
+    try {
+      user
+        .reauthenticateWithCredential(cred)
+        .then((res) => {
+          user
+            .updatePassword(value.newpassword)
+            .then((res) => {
+              formik.resetForm();
+              setStatus("เปลี่ยนรหัสผ่านสำเร็จ");
+            })
+            .catch((error) => {
+              formik.resetForm();
+              if (err.code === "auth/wrong-password")
+                setStatus("รหัสผ่านปัจุบันไม่ถูกต้อง");
+              console.log("An error happened.", error.code);
+            });
+            
+        })
+        .catch((err) => {
+          formik.resetForm();
+          if (err.code === "auth/wrong-password")
+            setStatus("รหัสผ่านปัจุบันไม่ถูกต้อง");
+          console.log(err.code);
+        });
+    } catch (error) {
+      formik.resetForm();
+      if (err.code === "auth/wrong-password")
+        setStatus("รหัสผ่านปัจุบันไม่ถูกต้อง");
+      console.log(error.code);
+    }
+   }, 500)
+   
 
       // Prompt the user to re-provide their sign-in credentials
       // user
@@ -103,6 +109,11 @@ export default function changpassword() {
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
+
+
+  if (dataMember === undefined) {
+    return <LoadPage />;
+  }
 
   return (
     <>
@@ -135,6 +146,7 @@ export default function changpassword() {
                   )}`}
                   type={passwordShown ? "text" : "password"}
                   name="currentpassword"
+                  disabled={formik.isSubmitting}
                   {...formik.getFieldProps("currentpassword")}
                 />
                 {formik.touched.currentpassword &&
@@ -174,6 +186,7 @@ export default function changpassword() {
                   className={`form-control " ${getInputClasses("newpassword")}`}
                   type={passwordShown ? "text" : "password"}
                   name="newpassword"
+                  disabled={formik.isSubmitting}
                   {...formik.getFieldProps("newpassword")}
                 />
                 {formik.touched.newpassword && formik.errors.newpassword ? (
@@ -196,6 +209,7 @@ export default function changpassword() {
                   )}`}
                   type={passwordShown ? "text" : "password"}
                   name="confirmpassword"
+                  disabled={formik.isSubmitting}
                   {...formik.getFieldProps("confirmpassword")}
                 />
                 {formik.touched.confirmpassword &&

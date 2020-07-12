@@ -134,66 +134,96 @@ const Index = () => {
     initialValues,
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
-      const data = {
-        first_name: values.firstname,
-        last_name: values.lastname,
-        email: values.email,
-        display_name: values.displayname,
-        about_you: values.aboutyou,
-        country: values.country,
-        website: values.website,
-        avatar:
-          imageBlob != null
-            ? imageBlob.name
-            : avatarMember != undefined
-            ? mem_avatar
-            : null,
-        cover:
-          imageBlobCover != null
-            ? imageBlobCover.name
-            : coverMember != undefined
-            ? mem_cover
-            : null,
-        instagram: values.instagram,
-        twitter: values.twitter,
-        facebook: values.facebook,
-      };
 
-      try {
-        Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
-          headers: {
-            authorization: header,
-          },
-        })
-          .then(async (res) => {
-            if (imageBlob != null) await uploadToFirebase(imageBlob);
-            if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
-            if (nameMember != values.displayname)
-              router.push(
-                "/[username]/setting",
-                "/" + values.displayname + "/setting"
-              );
-              setCurrentUser(true);
-              Swal.fire({
-                position: 'top',
-                icon: 'success',
-                title: 'Your work has been saved',
-                showConfirmButton: false,
-                timer: 1500
-              })
-            setSubmitting(false);
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } catch (error) {
-        console.log(error);
-      }
 
-      setTimeout(() => {
-        // setSubmitting(false);
-      }, 1000);
+
+      Swal.fire({
+        position: "top",
+        title: 'Are you sure?',
+        text: "You won't be edit this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, edit it!'
+      }).then((result) => {
+        if (result.value) {
+// ok for someting
+const data = {
+  first_name: values.firstname,
+  last_name: values.lastname,
+  email: values.email,
+  display_name: values.displayname,
+  about_you: values.aboutyou,
+  country: values.country,
+  website: values.website,
+  avatar:
+    imageBlob != null
+      ? imageBlob.name
+      : avatarMember != undefined
+      ? mem_avatar
+      : null,
+  cover:
+    imageBlobCover != null
+      ? imageBlobCover.name
+      : coverMember != undefined
+      ? mem_cover
+      : null,
+  instagram: values.instagram,
+  twitter: values.twitter,
+  facebook: values.facebook,
+};
+
+try {
+  Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
+    headers: {
+      authorization: header,
+    },
+  })
+    .then(async (res) => {
+      if (imageBlob != null) await uploadToFirebase(imageBlob);
+      if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
+      if (nameMember != values.displayname)
+      setCurrentUser(true);
+
+      Swal.fire({
+        onClose: false,
+        position: "top",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setSubmitting(false);
+      console.log(res);
+
+
+     setTimeout(() => {
+      router.reload(
+        "/[username]/setting",
+        "/" + values.displayname + "/setting"
+      );
+     }, 1500)
+     
+        
+     
+    })
+    .catch((err) => {
+      setSubmitting(false);
+      console.log(err);
+    });
+} catch (error) {
+  setSubmitting(false);
+  console.log(error);
+}
+
+        }else{
+          setSubmitting(false);
+        }
+      })
+
+
+
     },
   });
 
@@ -207,17 +237,9 @@ const Index = () => {
         <>
           <MenuSetting file={formik.values.cover}>
             <form onSubmit={formik.handleSubmit}>
-              <div
-                style={{
-                  width: "42px",
-                  height: "42px",
-                  position: "absolute",
-                  top: "-7%",
-                }}
-                className="border p-2 rounded-circle  d-none d-lg-block"
-              >
+              <div className="camera_circle  d-none d-lg-block">
                 <label htmlFor="cover">
-                  <span className="material-icons text-light">camera_alt</span>
+                  <span className="material-icons camera_alt">camera_alt</span>
                   <input
                     accept="image/*"
                     type="file"
@@ -605,19 +627,36 @@ const Index = () => {
               display: none;
             }
 
-            label[for="cover"]:hover {
-              background: #ddd;
-              transition: width 2s;
+            .camera_alt {
+              padding: 8px;
+              color: white;
+              transition: 0.3s;
+            }
+
+            .camera_alt:hover {
+              font-size: 1.5rem;
             }
 
             label[for="cover"] {
               border: 0 solid #272727;
-              transition:' 2s'
               border-radius: 30px;
               cursor: pointer;
               position: absolute;
-              transition: width 2s;
               z-index: 2;
+            }
+
+            .camera_circle {
+              border: 1px solid white;
+
+              border-radius: 30px;
+              width: 42px;
+              height: 42px;
+              position: absolute;
+              top: -7%;
+              transition: 0.4s;
+            }
+            .camera_circle:hover {
+              border-radius: 0px;
             }
 
             label[for="cover"] input {

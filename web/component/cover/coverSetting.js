@@ -122,8 +122,9 @@ const CoverSetting = ({ file, hendleCancel, saveCover }) => {
 
 export default CoverSetting;
 
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
+ function getWindowDimensions () {
+  
+  const { innerWidth: width, innerHeight: height } =  window;
 
   return {
     width,
