@@ -20,13 +20,15 @@ export default function CoverMember() {
             background-repeat: no-repeat;
             height: 205px;
             min-width: 991px;
-            top: 0%
+            top: 0%;
+           
           }
 
           @media screen and (max-width: 991px) {
             .coverMember {
               min-width: 991px;
               top: 5%;
+              left: 0%;
             }
           }
         `}

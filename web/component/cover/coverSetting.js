@@ -56,6 +56,10 @@ const CoverSetting = ({ file, hendleCancel, saveCover }) => {
       }
     }
   };
+
+       
+      
+  
   return (
     <>
       {file != null && hendleCancel != true && saveCover != true ? (
@@ -64,18 +68,18 @@ const CoverSetting = ({ file, hendleCancel, saveCover }) => {
             ref={setEditorRef}
             image={imageURL}
             height={200}
-            width={width < 991 ? width : width - 240}
+            width={width < 991 ? 991 : width - 240}
             position={position}
             onPositionChange={handlePositionChange}
             color={[120, 120, 120, 0.9]} // RGBA
             border={0}
             scale={scale}
             rotate={0}
-            className=""
+            className="border-0 coverSetting "
             style={{
-              position: "absolute",
-              top: "0%",
+              zIndex:"0",
             }}
+      
           />
         </>
       ) : (
@@ -94,28 +98,6 @@ const CoverSetting = ({ file, hendleCancel, saveCover }) => {
           className="border-0 coverSetting"
         />
       )}
-
-      <style jsx>
-        {`
-          .coverSetting {
-            top: 0;
-            position: absolute;
-            background-color: #252525;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 205px;
-            top: 0%;
-            min-width: 991px;
-          }
-
-          @media screen and (max-width: 991px) {
-            .coverSetting {
-              min-width: 991px;
-              top: 5%;
-            }
-          }
-        `}
-      </style>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
 import * as Yup from "yup";
 import { Button, Alert } from "./style";
 import firebase from "../../config/config";
@@ -8,6 +9,7 @@ import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
 
 const Auth = (props) => {
+  const router = useRouter();
   const { setCurrentUser } = useContext(ModalContext);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -168,6 +170,10 @@ const Auth = (props) => {
         formikSignIn.handleReset();
         setSubmitting(false);
         handleCloseSignIn();
+
+  // router.push("/[username]", "/" + values.displayname);
+
+
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -184,22 +190,25 @@ const Auth = (props) => {
 
   const handleSignUp = async (value, { setSubmitting }) => {
     try {
-      await Axios.post(process.env.API_URL_EDITFRONT , {
+      await Axios.post(process.env.API_URL_CHECKUSER, {
         email: value.email,
       });
+
+      setShowSignUp(false);
+      setSubmitting(false);
+      setShowSignIn(true);
+      formikSignUp.handleReset();
+      formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
+
+
+    } catch (error) {
+      console.log(error);
       setEmail(value.email);
       setPassword(value.password);
       setShowSignUp(false);
       setShowType(true);
       setSubmitting(false);
       formikSignUp.handleReset();
-    } catch (error) {
-      console.log(error)
-      setShowSignUp(false);
-      setSubmitting(false);
-      setShowSignIn(true);
-      formikSignUp.handleReset();
-      formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
     }
   };
 
@@ -253,6 +262,10 @@ const Auth = (props) => {
           setShowType(false);
           formikChoose.handleReset();
           formikChoose.setSubmitting(false);
+          // router.push(
+          //   "/[username]/setting",
+          //   "/" + values.displayname + "/setting"
+          // );
         })
         .catch((error) => {
           var errorCode = error.code;

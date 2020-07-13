@@ -5,8 +5,6 @@ import * as Yup from "yup";
 import { Button } from "../../../component/modal/style";
 import { ModalContext } from "../../../config/context/ModalProvider";
 import MenuSetting from "../../../component/menuSetting";
-import PreviewAvatar from "../../../component/previewimage/previewavatar";
-import Layout from "../../../component/Layout";
 import LoadPage from "../../../container/loadPage";
 import Axios from "axios";
 import AvatarEditor from "react-avatar-editor";
@@ -197,8 +195,7 @@ const Index = () => {
 
 
                 console.log(nameMember != values.displayname);
-                setTimeout(() => {
-                  if (nameMember != values.displayname) {
+                setTimeout(() => {       
                     router.push(
                       "/[username]/setting" ,
                       "/" + values.displayname + "/setting"
@@ -206,7 +203,7 @@ const Index = () => {
                       router.reload();
                     })
                    
-                  } 
+                  
 
                 }, 1500);
               })
@@ -235,7 +232,10 @@ const Index = () => {
         <>
           <MenuSetting file={formik.values.cover}>
             <form onSubmit={formik.handleSubmit}>
-              <div className="camera_circle  d-none d-lg-block">
+              <div
+              style={{zIndex:"2"}}
+              className="camera_circle  d-none d-lg-block mt-2">
+                
                 <label htmlFor="cover">
                   <span className="material-icons camera_alt">camera_alt</span>
                   <input
@@ -296,7 +296,6 @@ const Index = () => {
                         className="btn-block btn btn-danger mt-2"
                         onClick={() => {
                           setEditing(false);
-                          setImageCrop("");
                           setImageBlob(null);
                           setScale(1);
                         }}
@@ -493,7 +492,7 @@ const Index = () => {
                     rows="8"
                     className={`form-control  " ${getInputClasses("aboutyou")}`}
                     type="text"
-                    name="AboutYou"
+                    name="aboutyou"
                     disabled={formik.isSubmitting}
                     {...formik.getFieldProps("aboutyou")}
                   />
@@ -505,6 +504,16 @@ const Index = () => {
                   <small className="text-muted">
                     200 character limit, plain text only.
                   </small>
+               
+                  {formik.values.aboutyou.length > 0 &&
+                  <>
+                     <br/>
+                    <small className="text-muted">
+                    {formik.values.aboutyou.length} character now.
+                  </small>
+                  </>
+                  }
+                
                 </div>
                 <br />
               </div>
@@ -650,7 +659,7 @@ const Index = () => {
               width: 42px;
               height: 42px;
               position: absolute;
-              top: -7%;
+              top: -9%;
               transition: 0.4s;
             }
             .camera_circle:hover {

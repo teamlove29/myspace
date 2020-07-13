@@ -35,28 +35,43 @@ export default function Index({ children, file }) {
       <CoverSetting file={file} hendleCancel={cancel} saveCover={saveCover} />
 
       <div
-        className="container text-light"
+        className="container text-light mt-5"
         style={{
           position: "relative",
           marginBottom: "150px",
         }}
       >
         {file != null && cancel != true && saveCover != true ? (
-          <div className="text-center">
-            {/* zIndex:"0" */}
-            <h3 style={{}} className="btn btn-sm btn-secondary">
-              ลากเพื่อย้ายรูปหน้าปก
-            </h3>
-            <br />
-            <button
-              onClick={hendleSave}
-              className="btn pr-3 pl-3 btn-sm btn-primary mr-3"
-            >
-              Save
-            </button>
-            <button onClick={hendleCancel} className="btn btn-sm btn-danger">
-              Cancel
-            </button>
+          <div 
+      
+          
+          className="text-center">
+            <div 
+
+            className="mt-5">
+              <h6
+                style={{
+                  display: "block",
+                  lineHeight: "26px",
+                  position: "relative",
+                  textAlign: "center",
+                  width: "100%",
+                  
+                }}
+              >
+                ลากเพื่อย้ายรูปหน้าปก
+              </h6>
+              <button
+
+                onClick={hendleSave}
+                className="btn pr-3 pl-3 btn-sm btn-primary mr-3"
+              >
+                Save
+              </button>
+              <button onClick={hendleCancel} className="btn btn-sm btn-danger">
+                Cancel
+              </button>
+            </div>
           </div>
         ) : (
           <>
