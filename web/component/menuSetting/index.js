@@ -4,10 +4,12 @@ import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
 import CoverSetting from "../cover/coverSetting";
 export default function Index({ children, file }) {
+
   const router = useRouter();
-  const { nameMember } = useContext(ModalContext);
+  const { nameMember,setActiveMenu } = useContext(ModalContext);
   const [cancel, setcancel] = useState(false);
   const [saveCover, setsaveCover] = useState(false);
+  setActiveMenu('/[username]/setting')
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
     if (!pathname || !path) {

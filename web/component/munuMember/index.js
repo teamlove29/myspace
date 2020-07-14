@@ -6,9 +6,9 @@ const Index = () => {
   const router = useRouter();
   const { username } = router.query;
   const hideAbout = router.pathname != "/[username]";
-  const { nameMember, dataMember,avatarMember } = useContext(ModalContext);
+  const { nameMember, dataMember,avatarMember,setActiveMenu } = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
-
+  setActiveMenu('/[username]')
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
     if (!pathname || !path) {

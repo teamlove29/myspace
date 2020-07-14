@@ -11,6 +11,7 @@ export const ModalProvider = ({ children }) => {
   const [avatarMember, setavatarMember] = useState(process.env.AVATARHOLDER);
   const [coverMember, setcoverMember] = useState();
   const [header, setHeader] = useState();
+  const [activeMenu, setActiveMenu] = useState();
   return (
     <ModalContext.Provider
       value={{
@@ -30,6 +31,8 @@ export const ModalProvider = ({ children }) => {
         setavatarMember,
         coverMember,
         setcoverMember,
+        activeMenu,
+        setActiveMenu,
       }}
     >
       {children}

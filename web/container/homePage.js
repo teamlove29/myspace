@@ -1,7 +1,9 @@
-import React from "react";
+import React ,{useContext} from "react";
 import { Button } from "../component/modal/style";
-
+import { ModalContext } from "../config/context/ModalProvider";
 export default function HomePage() {
+  const { setActiveMenu } = useContext(ModalContext);
+  setActiveMenu('/')
   return (
     <div className="container-fluid">
       <img
@@ -429,7 +431,7 @@ export default function HomePage() {
             min-height: 200px;
           }
             .covermain {
-              top: 5%;
+              top: 1.5%;
               min-width: 600px;
             }
             .text-near-cover {

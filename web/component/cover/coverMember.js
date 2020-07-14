@@ -27,7 +27,7 @@ export default function CoverMember() {
           @media screen and (max-width: 991px) {
             .coverMember {
               min-width: 991px;
-              top: 5%;
+              top: 2.4%;
               left: 0%;
             }
           }

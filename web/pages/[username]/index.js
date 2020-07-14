@@ -31,22 +31,22 @@ export default function Index({ stars }) {
   // console.log(test)
 
   useEffect(() => {
-    Axios.post(
-      process.env.API_URL_CHECKDISPLAY,
-      {
-        display: username,
-      },
-      { headers: { authorization: header } }
-    )
-      .then((res) => {
-        if (res.data[0].mem_display_name === nameMember)
-          setDataFriend(res.data);
-        else setDataFriend(undefined);
-      })
-      .catch((err) => {
-        console.log(err);
-        setDataFriend(undefined);
-      });
+    // Axios.post(
+    //   process.env.API_URL_CHECKDISPLAY,
+    //   {
+    //     display: username,
+    //   },
+    //   { headers: { authorization: header } }
+    // )
+    //   .then((res) => {
+    //     if (res.data[0].mem_display_name === nameMember)
+    //       setDataFriend(res.data);
+    //     else setDataFriend(undefined);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setDataFriend(undefined);
+    //   });
   }, [username]);
 
   const verifyMember = username != nameMember ? false : true;
