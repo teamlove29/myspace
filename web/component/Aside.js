@@ -35,8 +35,10 @@ export default function Aside() {
   const handleSignOut = () => {
     firebase.auth().signOut();
     setavatarMember(process.env.AVATARHOLDER);
-    router.push("/");
+    localStorage.removeItem('myspace');
     setcoverMember(undefined);
+    router.push("/");
+
   };
 
   return (
@@ -56,8 +58,8 @@ export default function Aside() {
           margin-left: 3.3em;
         }
 
-        .nav-link:hover{
-          color:  rgba(255, 255, 255, 0.3);
+        .nav-link:hover {
+          color: rgba(255, 255, 255, 0.3);
         }
       `}</style>
       {/* Sidebar */}
@@ -83,7 +85,7 @@ export default function Aside() {
         <li className={`nav-item mt-2  ${getMenuItemActive("/")}`}>
           <Link href="/">
             <a className="nav-link collapsed">
-              <span> HOME</span>
+              <span>HOME</span>
             </a>
           </Link>
         </li>
@@ -124,15 +126,18 @@ export default function Aside() {
             <li className={`nav-item mt-2 ${getMenuItemActive("/[username]")}`}>
               <Link href="/[username]" as={`/${nameMember}`}>
                 <a className="nav-link collapsed">
-                  <span> MY PROFILE</span>
+                  <span>MY PROFILE</span>
                 </a>
               </Link>
             </li>
             {/* Nav Item - Charts */}
-            <li className={`nav-item  ${getMenuItemActive("/[username]/setting")}`}>
+            <li
+              className={`nav-item  ${getMenuItemActive(
+                "/[username]/setting"
+              )}`}
+            >
               <Link href="/[username]/setting" as={`/${nameMember}/setting`}>
                 <a className="nav-link">
-                  <i className="fas fa-fw fa-chart-area" />
                   <span>SETTING</span>
                 </a>
               </Link>
@@ -140,7 +145,6 @@ export default function Aside() {
             {/* Nav Item - Tables */}
             <li className={`nav-item `}>
               <a onClick={handleSignOut} className="nav-link btn">
-                <i className="fas fa-fw fa-table" />
                 <span>LOG OUT</span>
               </a>
             </li>
@@ -148,7 +152,7 @@ export default function Aside() {
             {typeMember === 2 && (
               <>
                 <div className="sidebar-heading mt-2">BRAND</div>
-                <ul>
+                <ul   className="navbar-nav bg-black sidebar sidebar-dark accordion d-none d-lg-block ">
                   <li className={`nav-item  ${getMenuItemActive("/brand")}`}>
                     <Link href="/brand" as="/">
                       <a className="nav-link collapsed">

@@ -132,43 +132,42 @@ const Index = () => {
     initialValues,
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
+
+      const data = {
+        first_name: values.firstname,
+        last_name: values.lastname,
+        email: values.email,
+        display_name: values.displayname,
+        about_you: values.aboutyou,
+        country: values.country,
+        website: values.website,
+        avatar:
+          imageBlob != null
+            ? imageBlob.name
+            : avatarMember != undefined
+            ? mem_avatar
+            : "",
+        cover:
+          imageBlobCover != null
+            ? imageBlobCover.name
+            : coverMember != undefined
+            ? mem_cover
+            : "",
+        instagram: values.instagram,
+        twitter: values.twitter,
+        facebook: values.facebook,
+      };
+
+// console.log(header)
+// console.log(data)
+
       Swal.fire({
         position: "top",
-        title: "Are you sure?",
-        text: "You won't be edit this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, edit it!",
-      }).then((result) => {
-        if (result.value) {
-          // ok for someting
-          const data = {
-            first_name: values.firstname,
-            last_name: values.lastname,
-            email: values.email,
-            display_name: values.displayname,
-            about_you: values.aboutyou,
-            country: values.country,
-            website: values.website,
-            avatar:
-              imageBlob != null
-                ? imageBlob.name
-                : avatarMember != undefined
-                ? mem_avatar
-                : null,
-            cover:
-              imageBlobCover != null
-                ? imageBlobCover.name
-                : coverMember != undefined
-                ? mem_cover
-                : null,
-            instagram: values.instagram,
-            twitter: values.twitter,
-            facebook: values.facebook,
-          };
-
+        allowOutsideClick: false,
+        title: "Updating...",
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
           try {
             Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
               headers: {
@@ -177,8 +176,7 @@ const Index = () => {
             })
               .then(async (res) => {
                 if (imageBlob != null) await uploadToFirebase(imageBlob);
-                if (imageBlobCover != null)
-                  await uploadToFirebase(imageBlobCover);
+                if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
                 if (nameMember != values.displayname) setCurrentUser(true);
 
                 Swal.fire({
@@ -190,35 +188,69 @@ const Index = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                setSubmitting(false);
-                console.log(res);
-
-
-                console.log(nameMember != values.displayname);
-                setTimeout(() => {       
-                    router.push(
-                      "/[username]/setting" ,
+        
+                setTimeout(() => {
+                  router
+                    .push(
+                      "/[username]/setting",
                       "/" + values.displayname + "/setting"
-                    ).then(()=>{
+                    )
+                    .then(() => {
+                      setSubmitting(false);
                       router.reload();
-                    })
-                   
-                  
-
+                    });
                 }, 1500);
               })
               .catch((err) => {
+                console.log(err)
+                Swal.fire({
+                  allowOutsideClick: false,
+                  onClose: false,
+                  position: "top",
+                  icon: "error",
+                  title: "Update failed",
+                  text:err,
+                  showConfirmButton: false,
+                  timer: 1500,
+                })
                 setSubmitting(false);
-                console.log(err);
               });
           } catch (error) {
+            Swal.fire({
+              allowOutsideClick: false,
+              onClose: false,
+              position: "top",
+              icon: "error",
+              title: "Update failed",
+              text:error,
+              showConfirmButton: false,
+              timer: 1500,
+            })
             setSubmitting(false);
-            console.log(error);
           }
-        } else {
-          setSubmitting(false);
-        }
-      });
+        },
+      })
+        // .then((result) => {
+        //   Swal.fire({
+        //     position: "top",
+        //     icon: "success",
+        //     title: "Your work has been saved",
+        //     showConfirmButton: false,
+        //     timer: 1500,
+        //   });
+        // })
+        // .catch(() => {
+        //   Swal.fire({
+        //     position: "top",
+        //     icon: "error",
+        //     title: "Update failed",
+        //     showConfirmButton: false,
+        //     timer: 1500,
+        //   });
+        // });
+
+      // ok for someting
+
     },
   });
 
@@ -233,9 +265,9 @@ const Index = () => {
           <MenuSetting file={formik.values.cover}>
             <form onSubmit={formik.handleSubmit}>
               <div
-              style={{zIndex:"2"}}
-              className="camera_circle  d-none d-lg-block mt-2">
-                
+                style={{ zIndex: "2" }}
+                className="camera_circle  d-none d-lg-block mt-2"
+              >
                 <label htmlFor="cover">
                   <span className="material-icons camera_alt">camera_alt</span>
                   <input
@@ -504,16 +536,15 @@ const Index = () => {
                   <small className="text-muted">
                     200 character limit, plain text only.
                   </small>
-               
-                  {formik.values.aboutyou.length > 0 &&
-                  <>
-                     <br/>
-                    <small className="text-muted">
-                    {formik.values.aboutyou.length} character now.
-                  </small>
-                  </>
-                  }
-                
+
+                  {formik.values.aboutyou.length > 0 && (
+                    <>
+                      <br />
+                      <small className="text-muted">
+                        {formik.values.aboutyou.length} character now.
+                      </small>
+                    </>
+                  )}
                 </div>
                 <br />
               </div>

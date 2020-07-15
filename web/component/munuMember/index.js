@@ -23,8 +23,8 @@ const Index = () => {
 
   return (
     <>
-      <div className="ml-5 row justify-content-start  justify-content-center ">
-        <div className="col-12 col-sm-12 col-md-4 col-xl-2">
+      <div className="ml-5 row  justify-content-center avatar-resposive">
+        <div className="col-7 col-sm-4 col-md-4 col-xl-2">
           <img
             className="rounded-circle border"
             // src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
@@ -36,7 +36,7 @@ const Index = () => {
         </div>
         <div className="col-12  col-sm-12  col-md-12 col-xl-10 text-light mt-2">
           <div className="form-inline">
-            <h3 className="my-auto mt-5">{username}</h3>
+            <h3 className="my-auto mt-5 ">{username}</h3>
             {typeMember === 2 && (
               <img
                 className="my-auto ml-3"
@@ -132,6 +132,17 @@ const Index = () => {
 
       <style jsx>
         {`
+
+        @media screen and (max-width: 991px) {
+            .avatar-resposive{
+margin-top:6rem;
+
+
+
+  }
+
+        }
+
           .menuActive {
             border-bottom: 3px solid transparent;
             padding-bottom: 5px;

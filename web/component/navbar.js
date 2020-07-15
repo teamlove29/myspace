@@ -9,7 +9,6 @@ import Axios from "axios";
 import JWT from "jsonwebtoken";
 import { ModalContext } from "../config/context/ModalProvider";
 const Navbar = () => {
-  const MySwal = withReactContent(Swal);
   const router = useRouter();
   const hideSearch = router.pathname != "/[username]/setting";
   const [showSignUp, setShowSignUp] = useState(false);
@@ -29,17 +28,6 @@ const Navbar = () => {
     setcoverMember,
   } = useContext(ModalContext);
 
-  const ToastSuccess = Swal.mixin({
-    toast: true,
-    position: "top",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    onOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   const handleSignIn = () => {
     setShowSignIn(true);
@@ -58,6 +46,7 @@ const Navbar = () => {
     firebase.auth().signOut();
     setavatarMember(process.env.AVATARHOLDER);
     setcoverMember(undefined);
+    localStorage.removeItem('myspace');
     router.push("/");
   };
 
@@ -93,19 +82,16 @@ const Navbar = () => {
   };
 
   const onAuthStateChange = () => {
+    
     return firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const uid = await user.uid;
-        const names = user.email.substring(0, user.email.lastIndexOf("@"));
-        const storageRef = firebase.storage().ref();
-
         let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
         setHeader(token);
         const checksocialLogin = await Axios.post(
           process.env.API_URL + "/login-member",
           { uid: uid }
         );
-        setCurrentUser(true);
         if (checksocialLogin.status === 200) {
           try {
             const verifyMember = await Axios.get(
@@ -118,22 +104,21 @@ const Navbar = () => {
             getImageCover(verifyMember.data[0].mem_cover);
             setNameMember(verifyMember.data[0].mem_display_name);
             setDataMember(verifyMember.data[0]);
-            if (currentUser != true) {
-              ToastSuccess.fire({
-                icon: "success",
-                title: "Signed in successfully",
-              });
-            }
+            setCurrentUser(true);
+            const tokenJWT =  JWT.sign(verifyMember.data[0], process.env.SECRET_KEY);
+            localStorage.setItem('myspace',tokenJWT)
           } catch (error) {
-            console.log(error);
+            console.log(error)
             setNameMember(null);
             setCurrentUser(false);
           }
         } else {
+          console.log('2')
           setNameMember(null);
           setCurrentUser(false);
         }
       } else {
+        console.log('1')
         setNameMember(null);
         setCurrentUser(false);
       }

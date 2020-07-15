@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import NProgress from "nprogress"; //nprogress module
 import "nprogress/nprogress.css"; //styles of nprogress
 import Router from "next/router";
+import JWT from "jsonwebtoken";
 import { ModalProvider } from "../config/context/ModalProvider";
 import Navbar from "../component/navbar";
 import Aside from "../component/Aside";
@@ -24,6 +25,14 @@ Router.events.on("routeChangeError", () => NProgress.done());
 const MyApp = ({ Component, pageProps, stars }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
+    const token = localStorage.getItem('myspace')
+    try {
+      var decoded = JWT.verify(token, process.env.SECRET_KEY);
+    } catch(err) {
+      //Error
+      console.log(err)
+    }
+
     const start = () => {
       // console.log("start");
       setLoading(true);
