@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
 import * as Yup from "yup";
 import { Button, Alert } from "./style";
 import firebase from "../../config/config";
@@ -8,6 +9,7 @@ import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
 
 const Auth = (props) => {
+  const router = useRouter();
   const { setCurrentUser } = useContext(ModalContext);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -168,6 +170,10 @@ const Auth = (props) => {
         formikSignIn.handleReset();
         setSubmitting(false);
         handleCloseSignIn();
+
+  // router.push("/[username]", "/" + values.displayname);
+
+
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -184,21 +190,25 @@ const Auth = (props) => {
 
   const handleSignUp = async (value, { setSubmitting }) => {
     try {
-      await Axios.post(process.env.API_URL + "/edit_front-profile/checkEmail", {
+      await Axios.post(process.env.API_URL_CHECKUSER, {
         email: value.email,
       });
+
+      setShowSignUp(false);
+      setSubmitting(false);
+      setShowSignIn(true);
+      formikSignUp.handleReset();
+      formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
+
+
+    } catch (error) {
+      console.log(error);
       setEmail(value.email);
       setPassword(value.password);
       setShowSignUp(false);
       setShowType(true);
       setSubmitting(false);
       formikSignUp.handleReset();
-    } catch (error) {
-      setShowSignUp(false);
-      setSubmitting(false);
-      setShowSignIn(true);
-      formikSignUp.handleReset();
-      formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
     }
   };
 
@@ -252,6 +262,10 @@ const Auth = (props) => {
           setShowType(false);
           formikChoose.handleReset();
           formikChoose.setSubmitting(false);
+          // router.push(
+          //   "/[username]/setting",
+          //   "/" + values.displayname + "/setting"
+          // );
         })
         .catch((error) => {
           var errorCode = error.code;
@@ -517,12 +531,12 @@ const Auth = (props) => {
       {/* begin Type */}
       <Modal show={showType} onHide={handleCloseChoose} size="lg">
         <Modal.Body>
-          <h2 className="text-center mb-3 mt-5">
+          <h2 className="mb-3 mt-5 mobile-h2">
             Select the option the best describe you.
           </h2>
           <p
-            className="text-center"
-            style={{ marginLeft: "3rem", marginRight: "3rem" }}
+            className="mobile-h2"
+           
           >
             Select the option the best describe you.
           </p>
@@ -534,7 +548,7 @@ const Auth = (props) => {
             >
               <div className="row">
                 {/* begin Listen */}
-                <div className="col-lg-6">
+                <div className="col-lg-6 ">
                   <Form.Group className="mx-auto">
                     <label
                       htmlFor="listen"
@@ -696,25 +710,32 @@ const Auth = (props) => {
           .mobile-h2 {
             text-align: center;
           }
+          .typeround {
+          cursor: pointer;
+          border: 2px solid #f5f5f5;
+          border-radius: 12px;
+          padding: 4rem 3rem 1rem 3rem;
+        }
         }
 
         @media screen and (max-width: 991px) {
           .mobile-h2 {
             text-align: left;
           }
-        }
-
-        .typeround {
+          .typeround {
           cursor: pointer;
           border: 2px solid #f5f5f5;
           border-radius: 12px;
-          padding: 3rem 4rem 1rem 4rem;
+          padding: 1.6rem 8.5rem 1.5rem 8.5rem;
         }
+        }
+
+  
 
         .typeround:hover {
           border-radius: 12px;
           padding: 5rem;
-          padding: 0.1rem 0.1rem 1rem 0.1rem;
+          padding: 0.1rem 0rem 1rem 0rem;
         }
 
         input[type="radio"]:checked {
@@ -735,6 +756,7 @@ const Auth = (props) => {
         }
         .showText-13:hover .showText {
           display: block;
+         
         }
 
         .show-text-active .showText {

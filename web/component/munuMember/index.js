@@ -6,9 +6,9 @@ const Index = () => {
   const router = useRouter();
   const { username } = router.query;
   const hideAbout = router.pathname != "/[username]";
-  const { nameMember, dataMember } = useContext(ModalContext);
+  const { nameMember, dataMember,avatarMember,setActiveMenu } = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
-
+  setActiveMenu('/[username]')
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
     if (!pathname || !path) {
@@ -19,19 +19,24 @@ const Index = () => {
     }
   };
 
+
+
   return (
     <>
-      <div className="ml-5 row justify-content-start  justify-content-center ">
-        <div className="col-12 col-sm-12 col-md-4 col-xl-2">
+      <div className="ml-5 row  justify-content-center avatar-resposive">
+        <div className="col-7 col-sm-4 col-md-4 col-xl-2">
           <img
             className="rounded-circle border"
-            src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
+            // src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
+            src={avatarMember}
             alt=""
+            width={150}
+            height={150}
           />
         </div>
         <div className="col-12  col-sm-12  col-md-12 col-xl-10 text-light mt-2">
           <div className="form-inline">
-            <h3 className="my-auto mt-5">{username}</h3>
+            <h3 className="my-auto mt-5 ">{username}</h3>
             {typeMember === 2 && (
               <img
                 className="my-auto ml-3"
@@ -108,12 +113,7 @@ const Index = () => {
                 <div className="col-auto col-xl-6">
                   <p className="mt-4 h6">About me</p>
                   <p className="text-muted">
-                    Mraz was engaged to singer/songwriter and long-time close
-                    friend Tristan Prettyman. On June 7, 2011, Mraz said in an
-                    interview with the Daily Beast that he and Prettyman were no
-                    longer engaged. Mraz lives a health-conscious lifestyle and
-                    enjoys eating mostly raw vegan foods. He owns an avocado
-                    farm in Bonsall in Northern San Diego County.
+                  {dataMember.mem_about_you}
                   </p>
                 </div>
                 <div className="col-auto col-xl-6">
@@ -121,7 +121,7 @@ const Index = () => {
                   <p className="text-muted">23 June 1992 (age 28)</p>
                   <p className="mt-5 h6">Born in</p>
                   <p className="text-muted">
-                    Mechanicsville, Hanover County, Virginia, United States
+                  Lampang, {dataMember.mem_country }
                   </p>
                 </div>
               </div>
@@ -132,6 +132,17 @@ const Index = () => {
 
       <style jsx>
         {`
+
+        @media screen and (max-width: 991px) {
+            .avatar-resposive{
+margin-top:6rem;
+
+
+
+  }
+
+        }
+
           .menuActive {
             border-bottom: 3px solid transparent;
             padding-bottom: 5px;

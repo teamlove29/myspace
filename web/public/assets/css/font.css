@@ -94,6 +94,10 @@ html {
   font-family: 'Poppins-Light', sans-serif;
   font-size: 13px;
 }
+.swal2-container{
+  font-family: 'Poppins-Light', sans-serif;
+}
+
 
 .modal-content {
   padding: 2rem;

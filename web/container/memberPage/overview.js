@@ -3,9 +3,8 @@ import AddButton from "../../component/button/addbutton";
 import MemberPage from "./index";
 import { ModalContext } from "../../config/context/ModalProvider";
 export default function Overview() {
-  const { dataMember } = useContext(ModalContext);
+  const { dataMember ,setActiveMenu,} = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
-
   return (
     <MemberPage>
       <hr />

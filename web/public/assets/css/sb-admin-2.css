@@ -9779,6 +9779,7 @@ a:focus {
   background-color: #0F0F0F;
   width: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
 #wrapper #content-wrapper #content {
@@ -10488,7 +10489,7 @@ letter-spacing: 1.5px;
     margin-right: 0.25rem;
   }
   .sidebar .nav-item .nav-link span {
-    margin-left: 3.5rem;
+    margin-left: 0.7rem;
     font-size: 0.8rem;
     display: inline;
   }
@@ -10646,7 +10647,7 @@ letter-spacing: 1.5px;
 }
 
 .sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {
-  color:  rgba(255, 255, 255, 0.3);
+
 }
 
 .sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i, .sidebar-dark .nav-item .nav-link:hover i {

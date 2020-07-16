@@ -10485,9 +10485,9 @@ button.bg-dark-75:focus {
   .pt-sm-9,
   .py-sm-9 {
     padding-top: 2.25rem !important; }
-  .pr-sm-9,
+  /* .pr-sm-9,
   .px-sm-9 {
-    padding-right: 2.25rem !important; }
+    padding-right: 2.25rem !important; } */
   .pb-sm-9,
   .py-sm-9 {
     padding-bottom: 2.25rem !important; }
