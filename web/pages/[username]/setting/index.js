@@ -20,10 +20,11 @@ const Index = () => {
     header,
     dataMember,
     imageBlobCover,
-    setImageBlobCover,
     setCurrentUser,
     avatarMember,
     coverMember,
+    Xposition,
+    Yposition,
   } = useContext(ModalContext);
   const [editor, setEditor] = useState();
   const [imageURL, setImageURL] = useState("");
@@ -112,6 +113,8 @@ const Index = () => {
     firstname: dataMember != undefined ? dataMember.mem_first_name : "",
     lastname: dataMember != undefined ? dataMember.mem_last_name : "",
     email: dataMember != undefined ? dataMember.mem_email : "",
+    born: dataMember != undefined ? dataMember.mem_born: "",
+    province: dataMember != undefined ? dataMember.mem_province: "",
     country: dataMember != undefined ? dataMember.mem_country : "",
     website: dataMember != undefined ? dataMember.mem_website : "",
     aboutyou: dataMember != undefined ? dataMember.mem_about_you : "",
@@ -136,6 +139,7 @@ const Index = () => {
       const data = {
         first_name: values.firstname,
         last_name: values.lastname,
+        born: values.born,
         email: values.email,
         display_name: values.displayname,
         about_you: values.aboutyou,
@@ -153,14 +157,13 @@ const Index = () => {
             : coverMember != undefined
             ? mem_cover
             : "",
+            cover_position_x: Xposition != '' ? Xposition : '',
+            cover_position_y: Yposition != '' ? Yposition : '',
         instagram: values.instagram,
         twitter: values.twitter,
         facebook: values.facebook,
       };
-
-// console.log(header)
-// console.log(data)
-
+ // begin process
       Swal.fire({
         position: "top",
         allowOutsideClick: false,
@@ -230,34 +233,13 @@ const Index = () => {
           }
         },
       })
-        // .then((result) => {
-        //   Swal.fire({
-        //     position: "top",
-        //     icon: "success",
-        //     title: "Your work has been saved",
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //   });
-        // })
-        // .catch(() => {
-        //   Swal.fire({
-        //     position: "top",
-        //     icon: "error",
-        //     title: "Update failed",
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //   });
-        // });
-
-      // ok for someting
-
+      // end process
     },
   });
 
   if (dataMember === undefined) {
     return <LoadPage />;
   }
-
   return (
     <>
       {verifyMember && (
@@ -266,7 +248,7 @@ const Index = () => {
             <form onSubmit={formik.handleSubmit}>
               <div
                 style={{ zIndex: "2" }}
-                className="camera_circle  d-none d-lg-block mt-2"
+                className="camera_circle  d-none d-lg-block"
               >
                 <label htmlFor="cover">
                   <span className="material-icons camera_alt">camera_alt</span>
@@ -446,6 +428,29 @@ const Index = () => {
                 </div>
               </div>
               {/* End lastname */}
+
+              {/* begin born */}
+              <div className="form-group row">
+                <label className="col-xl-3 col-lg-3 col-form-label text-right">
+                  Born
+                </label>
+                <div className="col-lg-6 col-xl-6">
+                  <input
+                    className={`form-control " ${getInputClasses("born")}`}
+                    type="date"
+                    name="born"
+                    disabled={formik.isSubmitting}
+                    {...formik.getFieldProps("born")}
+                  />
+                  {formik.touched.born && formik.errors.born ? (
+                    <div className="text-danger font-13">
+                      {formik.errors.born}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              {/* End born */}
+
               {/* begin email */}
               <div className="form-group row">
                 <label className="col-xl-3 col-lg-3 col-form-label text-right">
@@ -486,13 +491,40 @@ const Index = () => {
                       </div>
                     ) : null}
                     <option value="" label="None" />
-                    <option value="thailand" label="Thailand" />
-                    <option value="chaina" label="Chaina" />
-                    <option value="usa" label="USA" />
+                    <option value="Thailand" label="Thailand" />
+                    <option value="Chaina" label="Chaina" />
+                    <option value="USA" label="USA" />
                   </select>
                 </div>
               </div>
               {/* End Country */}
+
+            {/* begin province */}
+            <div className="form-group row">
+                <label className="col-xl-3 col-lg-3 col-form-label text-right">
+                  Province
+                </label>
+                <div className="col-lg-6 col-xl-6">
+                  <select
+                  readOnly={formik.values.country != '' ? false : true}
+                    className={`form-control " ${getInputClasses("province")}`}
+                    name="province"
+                    disabled={formik.isSubmitting}
+                    {...formik.getFieldProps("province")}
+                  >
+                    {formik.touched.province && formik.errors.province ? (
+                      <div className="text-danger font-13">
+                        {formik.errors.province}
+                      </div>
+                    ) : null}
+                    <option value="" label="None" />
+                    <option value="Lampang" label="Lampang" />
+                    <option value="Bangkok" label="Bangkok" />
+                  </select>
+                </div>
+              </div>
+              {/* End province */}
+
               {/* begin Website */}
               <div className="form-group row">
                 <label className="col-xl-3 col-lg-3 col-form-label text-right">
@@ -685,7 +717,6 @@ const Index = () => {
 
             .camera_circle {
               border: 1px solid white;
-
               border-radius: 30px;
               width: 42px;
               height: 42px;

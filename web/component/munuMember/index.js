@@ -146,8 +146,10 @@ margin-top:6rem;
           .menuActive {
             border-bottom: 3px solid transparent;
             padding-bottom: 5px;
+            border-image: -webkit-linear-gradient(to left, #f3145e, yellow);
+            border-image:  -o-linear-gradient(to left, #f3145e, yellow);
+            border-image: -moz-linear-gradient(to left, #f3145e, yellow);
             border-image: linear-gradient(to left, #f3145e, yellow);
-
             border-image-slice: 1;
           }
           a {

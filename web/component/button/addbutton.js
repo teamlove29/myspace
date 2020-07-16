@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 const Button = styled.button`
   background: #151515;
   border: 0.1px solid #272727;
@@ -42,4 +41,6 @@ export const Button2525 = styled.label`
     background: #f5f5f5;
   }
 `;
+
+
 
