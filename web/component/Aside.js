@@ -65,7 +65,7 @@ export default function Aside() {
       {/* Sidebar */}
 
       <ul
-        style={{ zIndex: "1" }}
+        style={{ zIndex: "0" }}
         className="navbar-nav bg-black sidebar sidebar-dark accordion d-none d-lg-block "
       >
         {/* Sidebar - Brand */}

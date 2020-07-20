@@ -83,6 +83,8 @@ const Navbar = () => {
 
   const onAuthStateChange = () => {
     
+
+    
     return firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const uid = await user.uid;
@@ -125,6 +127,15 @@ const Navbar = () => {
     });
   };
   useEffect(() => {
+    // if(!localStorage.getItem('myspace',process.env.SECRET_KEY)){
+      // const token = localStorage.getItem("myspace");
+      // try {
+      //   var decoded = JWT.verify(token, process.env.SECRET_KEY);
+      // } catch (err) {
+      //   //Error
+      //   console.log(err);
+      // }
+    // }
     const unsubscribe = onAuthStateChange();
     return () => unsubscribe();
   }, [currentUser]);
@@ -148,44 +159,8 @@ const Navbar = () => {
         {currentUser === true ? (
           <>
             <ul className="navbar-nav  ml-auto  d-lg-none text-light">
-              <li className="nav-item dropdown no-arrow my-auto">
-                <svg
-                  width="3em"
-                  height="35px"
-                  viewBox="0 0 16 16"
-                  className="btn btn-outline-light bi bi-list d-md-block d-lg-none text-light "
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                  />
-                </svg>
-              </li>
 
-              <li className="nav-item dropdown no-arrow my-auto">
-                <svg
-                  width="3em"
-                  height="25px"
-                  viewBox="0 0 16 16"
-                  className="bi bi-search d-md-block d-lg-none text-light"
-                  role="button"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-                  />
-                </svg>
-              </li>
-
-              <li 
+            <li 
               style={{
                 marginRight:"-10px",
                 marginLeft:"-10px",
@@ -200,8 +175,8 @@ const Navbar = () => {
                   aria-expanded="false"
                 >
                   <svg
-                    width="2.5em"
-                    height="2.5em"
+                    width="2em"
+                    height="2em"
                     viewBox="0 0 16 16"
                     className="bi bi-person-fill d-md-block d-lg-none text-light"
                     fill="currentColor"
@@ -244,6 +219,47 @@ const Navbar = () => {
                   </a>
                 </div>
               </li>
+
+              <li className="nav-item  no-arrow my-auto ">
+                <svg
+                  width="3em"
+                  height="20px"
+                  viewBox="0 0 16 16"
+                  className="bi bi-search d-md-block d-lg-none text-light"
+                  role="button"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                  />
+                </svg>
+              </li>
+
+
+
+
+              <li className="nav-item dropdown no-arrow my-auto">
+                <svg
+                  width="2em"
+                  height="30px"
+                  viewBox="0 0 16 16"
+                  className="bi bi-list d-md-block d-lg-none text-light "
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                  />
+                </svg>
+              </li>
+
             </ul>
           </>
         ) : null}

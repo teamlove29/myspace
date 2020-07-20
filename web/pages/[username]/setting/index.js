@@ -5,11 +5,9 @@ import * as Yup from "yup";
 import { Button } from "../../../component/modal/style";
 import { ModalContext } from "../../../config/context/ModalProvider";
 import MenuSetting from "../../../component/menuSetting";
-import LoadPage from "../../../container/loadPage";
 import Axios from "axios";
 import AvatarEditor from "react-avatar-editor";
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import firebase from "../../../config/config";
 
 const Index = () => {
@@ -36,8 +34,9 @@ const Index = () => {
   const [position, setposition] = useState({ x: 0.5, y: 0.5 });
   const verifyMember = username != nameMember ? false : true;
   const typeMember = dataMember != undefined ? dataMember.mem_type : null;
-  const setEditorRef = (editor) => setEditor(editor);
 
+
+  const setEditorRef = (editor) => setEditor(editor);
   const onCrop = () => {
     if (editor !== null) {
       if (editor) {
@@ -139,11 +138,9 @@ const Index = () => {
       const data = {
         first_name: values.firstname,
         last_name: values.lastname,
-        born: values.born,
         email: values.email,
         display_name: values.displayname,
         about_you: values.aboutyou,
-        country: values.country,
         website: values.website,
         avatar:
           imageBlob != null
@@ -237,15 +234,12 @@ const Index = () => {
     },
   });
 
-  if (dataMember === undefined) {
-    return <LoadPage />;
-  }
+
   return (
     <>
-      {verifyMember && (
-        <>
+
           <MenuSetting file={formik.values.cover}>
-            <form onSubmit={formik.handleSubmit}>
+            <form>
               <div
                 style={{ zIndex: "2" }}
                 className="camera_circle  d-none d-lg-block"
@@ -429,27 +423,7 @@ const Index = () => {
               </div>
               {/* End lastname */}
 
-              {/* begin born */}
-              <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Born
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <input
-                    className={`form-control " ${getInputClasses("born")}`}
-                    type="date"
-                    name="born"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("born")}
-                  />
-                  {formik.touched.born && formik.errors.born ? (
-                    <div className="text-danger font-13">
-                      {formik.errors.born}
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-              {/* End born */}
+
 
               {/* begin email */}
               <div className="form-group row">
@@ -473,57 +447,6 @@ const Index = () => {
               </div>
               {/* End email */}
 
-              {/* begin Country */}
-              <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Country
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <select
-                    className={`form-control " ${getInputClasses("country")}`}
-                    name="Country"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("country")}
-                  >
-                    {formik.touched.country && formik.errors.country ? (
-                      <div className="text-danger font-13">
-                        {formik.errors.country}
-                      </div>
-                    ) : null}
-                    <option value="" label="None" />
-                    <option value="Thailand" label="Thailand" />
-                    <option value="Chaina" label="Chaina" />
-                    <option value="USA" label="USA" />
-                  </select>
-                </div>
-              </div>
-              {/* End Country */}
-
-            {/* begin province */}
-            <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Province
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <select
-                  readOnly={formik.values.country != '' ? false : true}
-                    className={`form-control " ${getInputClasses("province")}`}
-                    name="province"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("province")}
-                  >
-                    {formik.touched.province && formik.errors.province ? (
-                      <div className="text-danger font-13">
-                        {formik.errors.province}
-                      </div>
-                    ) : null}
-                    <option value="" label="None" />
-                    <option value="Lampang" label="Lampang" />
-                    <option value="Bangkok" label="Bangkok" />
-                  </select>
-                </div>
-              </div>
-              {/* End province */}
 
               {/* begin Website */}
               <div className="form-group row">
@@ -743,8 +666,7 @@ const Index = () => {
               height: 150px;
             }
           `}</style>
-        </>
-      )}
+
     </>
   );
 };

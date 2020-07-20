@@ -1,14 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import LoadPage from '../../container/loadPage'
+import NotFound from "../../container/notFound";
 import { ModalContext } from "../../config/context/ModalProvider";
 import CoverSetting from "../cover/coverSetting";
 export default function Index({ children, file }) {
 
   const router = useRouter();
-  const { nameMember,setActiveMenu } = useContext(ModalContext);
+  const { username } = router.query;
+  const { nameMember,setActiveMenu,dataMember } = useContext(ModalContext);
   const [cancel, setcancel] = useState(false);
   const [saveCover, setsaveCover] = useState(false);
+  const verifyMember = username != nameMember ? false : true;
   setActiveMenu('/[username]/setting')
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
@@ -31,6 +35,16 @@ export default function Index({ children, file }) {
   const hendleSave = () => {
     setsaveCover(true);
   };
+
+
+  if (dataMember === undefined) {
+    return <LoadPage />;
+  }
+
+if(verifyMember === false){
+  setActiveMenu('')
+  return <NotFound /> 
+}
 
   return (
     <div>
@@ -78,9 +92,20 @@ export default function Index({ children, file }) {
         ) : (
           <>
             <h3 className="font-Regular mt-5">Settings</h3>
-            <ul id="list" className="mt-4">
-              <li className={`${getMenuItemActive("/[username]/setting")}`}>
-                <Link href="/[username]/setting" as={`/${nameMember}/setting`}>
+            <ul 
+            style={{
+              zIndex:"2"
+            }}
+            id="list" className="mt-4">
+              <li
+                className={`${getMenuItemActive(
+                  "/[username]/setting"
+                )}`}
+              >
+                <Link
+                  href="/[username]/setting"
+                  as={`/${nameMember}/setting`}
+                >
                   <a>Profile</a>
                 </Link>
               </li>

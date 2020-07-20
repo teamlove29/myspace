@@ -8,13 +8,12 @@ const Index = () => {
   const hideAbout = router.pathname != "/[username]";
   const {
     nameMember,
-    dataMember,
     dataFriend,
     avatarMember,
     setActiveMenu,
   } = useContext(ModalContext);
-  const typeMember = !dataMember ? null : dataMember.mem_type;
-  setActiveMenu("/[username]");
+  const typeMember = !dataFriend ? null : dataFriend.mem_type;
+  setActiveMenu("");
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
     if (!pathname || !path) {
@@ -31,8 +30,8 @@ const Index = () => {
         <div className="col-7 col-sm-4 col-md-4 col-xl-2">
           <img
             className="rounded-circle border"
-            // src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
-            src={avatarMember}
+            src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
+            // src={avatarMember}
             alt=""
             width={150}
             height={150}
@@ -116,14 +115,14 @@ const Index = () => {
               <div className="row">
                 <div className="col-auto col-xl-6">
                   <p className="mt-4 h6">About me</p>
-                  <p className="text-muted">{dataMember.mem_about_you}</p>
+                  <p className="text-muted">{dataFriend.mem_about_you}</p>
                 </div>
                 <div className="col-auto col-xl-6">
                   <p className="mt-5 h6">Born</p>
                   <p className="text-muted">23 June 1992 (age 28)</p>
                   <p className="mt-5 h6">Born in</p>
                   <p className="text-muted">
-                    Lampang, {dataMember.mem_country}
+                    Lampang, {dataFriend.mem_country}
                   </p>
                 </div>
               </div>

@@ -2,38 +2,14 @@ import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import MenuSetting from "../../../component/menuSetting";
 import { ModalContext } from "../../../config/context/ModalProvider";
-import AvatarEditor from "react-avatar-editor";
-import firebase from "../../../config/config";
+import NewAddress from '../../../component/modal/newAddress'
+import { Button } from "../../../component/modal/style";
+
 export default function MyAddress() {
   const router = useRouter();
   const { username } = router.query;
   const { nameMember } = useContext(ModalContext);
-  const [editor, setEditor] = useState();
-  const [imageURL, setImageURL] = useState("");
-  const [imageCrop, setImageCrop] = useState();
-  const [editing, setEditing] = useState(false);
-  const [scale, setScale] = useState(1);
-  const [allowZoomOut, setAllowZoomOut] = useState(false);
-  const [position, setposition] = useState({ x: 0.5, y: 0.5 });
-  const verifyMember = username != nameMember ? false : true;
-
-  const setEditorRef = (editor) => setEditor(editor);
-  const onCrop = () => {
-    if (editor !== null) {
-      if (editor) {
-        const canvasScaled = editor.getImageScaledToCanvas().toDataURL();
-        fetch(canvasScaled)
-          .then((res) => res.blob())
-          .then((blob) => {
-            blob.name = imageURL.name;
-            uploadToFirebase(blob); //อัพขึ้น firebase
-            setImageCrop(window.URL.createObjectURL(blob));
-            setEditing(false);
-          });
-        //   setImageCrop(window.URL.createObjectURL(blob)
-      }
-    }
-  };
+  const [showNewAddress, setShowNewAddress] = useState(false);
 
   const handleNewImage = (e) => {
     if (e.target.files[0] != "") {
@@ -47,87 +23,67 @@ export default function MyAddress() {
     }
   };
 
-  const handleScale = (e) => {
-    const scale = parseFloat(e.target.value);
-    setScale(scale);
+
+  const handleNewAddress = () => {
+    setShowNewAddress(true);
+    setTimeout(() => {
+      setShowNewAddress(false);
+    }, 50);
   };
 
-  const handlePositionChange = (position) => {
-    setposition(position);
-  };
-
-  const uploadToFirebase = (values) => {
-    // อัพรูป
-    const storageRef = firebase.storage().ref();
-    storageRef
-      .child(`avatars/${values.name}`)
-      .put(values)
-      .then((snapshot) => {
-        console.log("Uploaded a blob or file!");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   return (
     <>
-      {verifyMember && (
-        <MenuSetting>
-          <h1>Page Account myAddress</h1>
-          {imageURL != "" && editing ? (
-            <>
-              <AvatarEditor
-                ref={setEditorRef}
-                image={imageURL}
-                width={300}
-                height={300}
-                position={position}
-                onPositionChange={handlePositionChange}
-                color={[255, 255, 255, 0.6]}  // RGBA
-                borderRadius={150}
-                border={10}
-                scale={scale}
-                rotate={0}
-                className="editor-canvas "
-              />
-              <br />
-              <p>Zoom:</p>
-              <input
-                name="scale"
-                type="range"
-                onChange={handleScale}
-                min={allowZoomOut ? "0.1" : "1"}
-                max="2"
-                step="0.01"
-                defaultValue="1"
-              />
-              <button classNam="btn-block btn" onClick={onCrop}>
-                save
-              </button>
-            </>
-          ) : null}
+    <NewAddress show={showNewAddress} />
+      <MenuSetting>
+        <div className="row container col-md-auto text-light mt-5">
+          <h5 className="font-Medium">My Addresses</h5>{" "}
+          <div 
+          onClick={handleNewAddress}
+          className="ml-auto  btn btn-sm btn-warning text-light">
+            + Add New Address
+          </div>
+        </div>
+        <hr />
+        <div className="row container text-light mt-5">
+          <div className="col-10 ">
+            <div className="form-group row">
+              <div className="col-sm-2">Fullname</div>
+              <div className="col-sm-10">Marutthep Rompho</div>
+            </div>
 
-          {editing === false && (
-            <img
-              width={150}
-              height={150}
-              className="rounded-circle mt-5 mb-5"
-              src={
-                imageCrop ||
-                "https://firebasestorage.googleapis.com/v0/b/myspace-dev-1ae9e.appspot.com/o/avatars%2Fresizes%2Fplaceholder-human-300x300_300x300.jpg?alt=media&token=13dcd961-f22c-4523-9bd1-9bd54b25a3fa"
-              }
-            />
-          )}
+            <div className="form-group row">
+              <div className="col-sm-2">Phone</div>
+              <div className="col-sm-10">00000000000</div>
+            </div>
 
-          <br />
-          <input
-            name="newImage"
-            type="file"
-            onChange={handleNewImage}
-            accept="image/jpeg, image/png,image/jpg"
-          />
-        </MenuSetting>
-      )}
+            <div className="form-group row">
+              <div className="col-sm-2">Address</div>
+              <div className="col-sm-10">
+                309/78 ม.2 ต.พระบาท อำเภอเมืองลำปาง จังหวัดลำปาง 52000
+              </div>
+            </div>
+          </div>
+          <div className="col-2 row">
+            <div className="  ml-auto">
+              <a className="mr-2 text-light " href="#">
+                Edit
+              </a>
+              <a className="mr-2 text-light" href="#">
+                Delete
+              </a>
+            </div>
+          </div>
+        </div>
+      </MenuSetting>
+      <style jsx>
+        {`
+          hr {
+            margin-bottom: 50px;
+            margin-top: 20px;
+            background-color: #282828;
+          }
+        `}
+      </style>
     </>
   );
 }

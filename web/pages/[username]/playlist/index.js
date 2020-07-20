@@ -5,7 +5,7 @@ export default function Index(props) {
   const router = useRouter();
   const { username } = router.query;
   return (
-    <MemberPage test="true">
+    <MemberPage >
       <div className="row container col-md-auto text-light mt-4">
         <h6 className="font-Medium">My Playlist</h6>{" "}
         <p className="ml-auto text-muted">+ Add playlist</p>
