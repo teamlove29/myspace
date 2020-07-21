@@ -207,13 +207,12 @@ const NewAddress = (props) => {
               {/* end etc */}
 
               <div className="text-center">
-                <button
-                  onClick={formik.resetForm}
+                <a
+                  onClick={handleClose}
                   className="pl-5 pr-5 btn mt-5 mr-3 "
-                  type="reset"
                 >
                   CANCEL
-                </button>
+                </a>
                 <Button
                   className="pl-5 pr-5 btn "
                   type="submit"
