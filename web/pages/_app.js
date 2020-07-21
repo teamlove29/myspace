@@ -9,6 +9,7 @@ import Aside from "../component/Aside";
 import Footer from "../component/Footer";
 import Header from "../component/Header";
 import LoadPage from "../container/loadPage";
+import firebase from "../config/config";
 
 NProgress.configure({
   showSpinner: false,
@@ -25,12 +26,20 @@ Router.events.on("routeChangeError", () => NProgress.done());
 const MyApp = ({ Component, pageProps, stars }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem('myspace')
+    // firebase.auth().onAuthStateChanged(async (user) => {
+    //   if (user) {
+    //     setLoading(false);
+    //   } else {
+    //     setLoading(true);
+    //   }
+    // });
+
+    const token = localStorage.getItem("myspace");
     try {
       var decoded = JWT.verify(token, process.env.SECRET_KEY);
-    } catch(err) {
+    } catch (err) {
       //Error
-      console.log(err)
+      console.log(err);
     }
 
     const start = () => {
@@ -54,6 +63,10 @@ const MyApp = ({ Component, pageProps, stars }) => {
     };
   }, []);
 
+  // if (loading === true) {
+  //   return <LoadPage />;
+  // }
+
   return (
     <>
       <Header />
@@ -62,10 +75,15 @@ const MyApp = ({ Component, pageProps, stars }) => {
           <div id="wrapper">
             <Aside />
             <div id="content-wrapper" className="d-flex flex-column">
-              <div id="content">
+              <div
+                style={{
+                  minHeight: "100vh",
+                }}
+                id="content"
+              >
                 <Navbar />
                 {/* {loading ? <LoadPage /> : <Component {...pageProps} />} */}
-               <Component {...pageProps} />
+                <Component {...pageProps} />
               </div>
               <Footer />
             </div>
@@ -76,11 +94,5 @@ const MyApp = ({ Component, pageProps, stars }) => {
   );
 };
 
-// MyApp.getInitialProps = async () => {
-//   const res = await fetch("https://api.github.com/repos/vercel/next.js");
-//   const json = await res.json();
-//   const test = json;
-//   return { stars: test };
-// };
 
 export default MyApp;

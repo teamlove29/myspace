@@ -12,6 +12,8 @@ export const ModalProvider = ({ children }) => {
   const [coverMember, setcoverMember] = useState();
   const [header, setHeader] = useState();
   const [activeMenu, setActiveMenu] = useState();
+  const [Xposition, setXposition] = useState();
+  const [Yposition, setYposition] = useState();
   return (
     <ModalContext.Provider
       value={{
@@ -33,6 +35,10 @@ export const ModalProvider = ({ children }) => {
         setcoverMember,
         activeMenu,
         setActiveMenu,
+        Xposition,
+        setXposition,
+        Yposition,
+        setYposition,
       }}
     >
       {children}

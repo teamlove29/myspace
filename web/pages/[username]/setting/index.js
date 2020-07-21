@@ -5,11 +5,9 @@ import * as Yup from "yup";
 import { Button } from "../../../component/modal/style";
 import { ModalContext } from "../../../config/context/ModalProvider";
 import MenuSetting from "../../../component/menuSetting";
-import LoadPage from "../../../container/loadPage";
 import Axios from "axios";
 import AvatarEditor from "react-avatar-editor";
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import firebase from "../../../config/config";
 
 const Index = () => {
@@ -20,10 +18,11 @@ const Index = () => {
     header,
     dataMember,
     imageBlobCover,
-    setImageBlobCover,
     setCurrentUser,
     avatarMember,
     coverMember,
+    Xposition,
+    Yposition,
   } = useContext(ModalContext);
   const [editor, setEditor] = useState();
   const [imageURL, setImageURL] = useState("");
@@ -35,8 +34,9 @@ const Index = () => {
   const [position, setposition] = useState({ x: 0.5, y: 0.5 });
   const verifyMember = username != nameMember ? false : true;
   const typeMember = dataMember != undefined ? dataMember.mem_type : null;
-  const setEditorRef = (editor) => setEditor(editor);
 
+
+  const setEditorRef = (editor) => setEditor(editor);
   const onCrop = () => {
     if (editor !== null) {
       if (editor) {
@@ -112,6 +112,8 @@ const Index = () => {
     firstname: dataMember != undefined ? dataMember.mem_first_name : "",
     lastname: dataMember != undefined ? dataMember.mem_last_name : "",
     email: dataMember != undefined ? dataMember.mem_email : "",
+    born: dataMember != undefined ? dataMember.mem_born: "",
+    province: dataMember != undefined ? dataMember.mem_province: "",
     country: dataMember != undefined ? dataMember.mem_country : "",
     website: dataMember != undefined ? dataMember.mem_website : "",
     aboutyou: dataMember != undefined ? dataMember.mem_about_you : "",
@@ -139,7 +141,6 @@ const Index = () => {
         email: values.email,
         display_name: values.displayname,
         about_you: values.aboutyou,
-        country: values.country,
         website: values.website,
         avatar:
           imageBlob != null
@@ -153,14 +154,13 @@ const Index = () => {
             : coverMember != undefined
             ? mem_cover
             : "",
+            cover_position_x: Xposition != '' ? Xposition : '',
+            cover_position_y: Yposition != '' ? Yposition : '',
         instagram: values.instagram,
         twitter: values.twitter,
         facebook: values.facebook,
       };
-
-// console.log(header)
-// console.log(data)
-
+ // begin process
       Swal.fire({
         position: "top",
         allowOutsideClick: false,
@@ -230,43 +230,19 @@ const Index = () => {
           }
         },
       })
-        // .then((result) => {
-        //   Swal.fire({
-        //     position: "top",
-        //     icon: "success",
-        //     title: "Your work has been saved",
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //   });
-        // })
-        // .catch(() => {
-        //   Swal.fire({
-        //     position: "top",
-        //     icon: "error",
-        //     title: "Update failed",
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //   });
-        // });
-
-      // ok for someting
-
+      // end process
     },
   });
 
-  if (dataMember === undefined) {
-    return <LoadPage />;
-  }
 
   return (
     <>
-      {verifyMember && (
-        <>
+
           <MenuSetting file={formik.values.cover}>
-            <form onSubmit={formik.handleSubmit}>
+            <form>
               <div
                 style={{ zIndex: "2" }}
-                className="camera_circle  d-none d-lg-block mt-2"
+                className="camera_circle  d-none d-lg-block"
               >
                 <label htmlFor="cover">
                   <span className="material-icons camera_alt">camera_alt</span>
@@ -446,6 +422,9 @@ const Index = () => {
                 </div>
               </div>
               {/* End lastname */}
+
+
+
               {/* begin email */}
               <div className="form-group row">
                 <label className="col-xl-3 col-lg-3 col-form-label text-right">
@@ -468,31 +447,7 @@ const Index = () => {
               </div>
               {/* End email */}
 
-              {/* begin Country */}
-              <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Country
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <select
-                    className={`form-control " ${getInputClasses("country")}`}
-                    name="Country"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("country")}
-                  >
-                    {formik.touched.country && formik.errors.country ? (
-                      <div className="text-danger font-13">
-                        {formik.errors.country}
-                      </div>
-                    ) : null}
-                    <option value="" label="None" />
-                    <option value="thailand" label="Thailand" />
-                    <option value="chaina" label="Chaina" />
-                    <option value="usa" label="USA" />
-                  </select>
-                </div>
-              </div>
-              {/* End Country */}
+
               {/* begin Website */}
               <div className="form-group row">
                 <label className="col-xl-3 col-lg-3 col-form-label text-right">
@@ -685,7 +640,6 @@ const Index = () => {
 
             .camera_circle {
               border: 1px solid white;
-
               border-radius: 30px;
               width: 42px;
               height: 42px;
@@ -712,8 +666,7 @@ const Index = () => {
               height: 150px;
             }
           `}</style>
-        </>
-      )}
+
     </>
   );
 };
