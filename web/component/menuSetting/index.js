@@ -91,7 +91,7 @@ if(verifyMember === false){
           </div>
         ) : (
           <>
-            <h3 className="font-Regular mt-5">Settings</h3>
+            <h3 className="font-Regular mt-5 resposive_setting_menu">Settings</h3>
             <ul 
             style={{
               zIndex:"2"
@@ -194,6 +194,12 @@ if(verifyMember === false){
 
           border-image-slice: 1;
         }
+
+        @media screen and (max-width: 991px) {
+            .resposive_setting_menu {
+              padding-top: 3rem !important;
+            }
+
       `}</style>
     </div>
   );
