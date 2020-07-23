@@ -135,102 +135,105 @@ const Index = () => {
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
 
-      const data = {
-        first_name: values.firstname,
-        last_name: values.lastname,
-        email: values.email,
-        display_name: values.displayname,
-        about_you: values.aboutyou,
-        website: values.website,
-        avatar:
-          imageBlob != null
-            ? imageBlob.name
-            : avatarMember != undefined
-            ? mem_avatar
-            : "",
-        cover:
-          imageBlobCover != null
-            ? imageBlobCover.name
-            : coverMember != undefined
-            ? mem_cover
-            : "",
-            cover_position_x: Xposition != '' ? Xposition : '',
-            cover_position_y: Yposition != '' ? Yposition : '',
-        instagram: values.instagram,
-        twitter: values.twitter,
-        facebook: values.facebook,
-      };
- // begin process
-      Swal.fire({
-        position: "top",
-        allowOutsideClick: false,
-        title: "Updating...",
-        timerProgressBar: true,
-        onBeforeOpen: () => {
-          Swal.showLoading();
-          try {
-            Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
-              headers: {
-                authorization: header,
-              },
-            })
-              .then(async (res) => {
-                if (imageBlob != null) await uploadToFirebase(imageBlob);
-                if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
-                if (nameMember != values.displayname) setCurrentUser(true);
+      console.log(values.avatar)
+      console.log(imageBlob)
+//       const data = {
+//         first_name: values.firstname,
+//         last_name: values.lastname,
+//         email: values.email,
+//         display_name: values.displayname,
+//         about_you: values.aboutyou,
+//         website: values.website,
+//         avatar:
+//           imageBlob != null
+//             ? imageBlob.name
+//             : avatarMember != undefined
+//             ? mem_avatar
+//             : "",
+//         cover:
+//           imageBlobCover != null
+//             ? imageBlobCover.name
+//             : coverMember != undefined
+//             ? mem_cover
+//             : "",
+//             cover_position_x: Xposition != '' ? Xposition : '',
+//             cover_position_y: Yposition != '' ? Yposition : '',
+//         instagram: values.instagram,
+//         twitter: values.twitter,
+//         facebook: values.facebook,
+//       };
 
-                Swal.fire({
-                  allowOutsideClick: false,
-                  onClose: false,
-                  position: "top",
-                  icon: "success",
-                  title: "Your work has been saved",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
+//  // begin process
+//       Swal.fire({
+//         position: "top",
+//         allowOutsideClick: false,
+//         title: "Updating...",
+//         timerProgressBar: true,
+//         onBeforeOpen: () => {
+//           Swal.showLoading();
+//           try {
+//             Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
+//               headers: {
+//                 authorization: header,
+//               },
+//             })
+//               .then(async (res) => {
+//                 if (imageBlob != null) await uploadToFirebase(imageBlob);
+//                 if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
+//                 if (nameMember != values.displayname) setCurrentUser(true);
+
+//                 Swal.fire({
+//                   allowOutsideClick: false,
+//                   onClose: false,
+//                   position: "top",
+//                   icon: "success",
+//                   title: "Your work has been saved",
+//                   showConfirmButton: false,
+//                   timer: 1500,
+//                 });
         
-                setTimeout(() => {
-                  router
-                    .push(
-                      "/[username]/setting",
-                      "/" + values.displayname + "/setting"
-                    )
-                    .then(() => {
-                      setSubmitting(false);
-                      router.reload();
-                    });
-                }, 1500);
-              })
-              .catch((err) => {
-                console.log(err)
-                Swal.fire({
-                  allowOutsideClick: false,
-                  onClose: false,
-                  position: "top",
-                  icon: "error",
-                  title: "Update failed",
-                  text:err,
-                  showConfirmButton: false,
-                  timer: 1500,
-                })
-                setSubmitting(false);
-              });
-          } catch (error) {
-            Swal.fire({
-              allowOutsideClick: false,
-              onClose: false,
-              position: "top",
-              icon: "error",
-              title: "Update failed",
-              text:error,
-              showConfirmButton: false,
-              timer: 1500,
-            })
-            setSubmitting(false);
-          }
-        },
-      })
-      // end process
+//                 setTimeout(() => {
+//                   router
+//                     .push(
+//                       "/[username]/setting",
+//                       "/" + values.displayname + "/setting"
+//                     )
+//                     .then(() => {
+//                       setSubmitting(false);
+//                       router.reload();
+//                     });
+//                 }, 1500);
+//               })
+//               .catch((err) => {
+//                 console.log(err)
+//                 Swal.fire({
+//                   allowOutsideClick: false,
+//                   onClose: false,
+//                   position: "top",
+//                   icon: "error",
+//                   title: "Update failed",
+//                   text:err,
+//                   showConfirmButton: false,
+//                   timer: 1500,
+//                 })
+//                 setSubmitting(false);
+//               });
+//           } catch (error) {
+//             Swal.fire({
+//               allowOutsideClick: false,
+//               onClose: false,
+//               position: "top",
+//               icon: "error",
+//               title: "Update failed",
+//               text:error,
+//               showConfirmButton: false,
+//               timer: 1500,
+//             })
+//             setSubmitting(false);
+//           }
+//         },
+//       })
+//       // end process
     },
   });
 
@@ -239,7 +242,7 @@ const Index = () => {
     <>
 
           <MenuSetting file={formik.values.cover}>
-            <form>
+            <form onSubmit={formik.handleSubmit} >
               <div
                 style={{ zIndex: "2" }}
                 className="camera_circle  d-none d-lg-block"

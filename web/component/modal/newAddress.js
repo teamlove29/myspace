@@ -146,7 +146,7 @@ const NewAddress = (props) => {
                   as="select"
                   custom
                   name="City"
-                  disabled={formik.values.province != '' ? false : true || formik.isSubmitting}
+                  disabled={formik.isSubmitting === true ? true : formik.values.province != '' ? false : true }
                   className={` font-13 form-control  ${getInputClasses("district")}`}
                   {...formik.getFieldProps("district")}
                 >
@@ -170,7 +170,7 @@ const NewAddress = (props) => {
                   as="select"
                   custom
                   name="postalcode"
-                  disabled={formik.values.district != '' ? false : true || formik.isSubmitting}
+                  disabled={formik.isSubmitting === true ? true : formik.values.district != '' ? false : true}
                   className={`font-13 form-control  ${getInputClasses("postalcode")}`}
                   {...formik.getFieldProps("postalcode")}
                 >

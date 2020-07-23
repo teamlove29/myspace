@@ -94,6 +94,7 @@ if(verifyMember === false){
             <h3 className="font-Regular mt-5 resposive_setting_menu">Settings</h3>
             <ul 
             style={{
+              width: "700px",
               zIndex:"2"
             }}
             id="list" className="mt-4">

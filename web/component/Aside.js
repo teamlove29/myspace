@@ -35,8 +35,8 @@ export default function Aside() {
   const handleSignOut = () => {
     firebase.auth().signOut();
     setavatarMember(process.env.AVATARHOLDER);
-    localStorage.removeItem('myspace');
-    setcoverMember(undefined);
+    localStorage.removeItem('token_myspace');
+    localStorage.removeItem('profile_myspace');
     router.push("/");
 
   };

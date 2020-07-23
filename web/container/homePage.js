@@ -51,11 +51,11 @@ export default function HomePage() {
         </div>
         {/* Content Row */}
         {/* justify-content-center */}
-        <div className="row  ">
-          <div className="col-6 col-sm-auto col-md-3 col-lg-auto">
+        <div className="row ">
+          <div className="col-6 col-sm-auto col-md-3 col-lg-auto col-xl-2">
             <div className=" shadow mb-4 cardHeight ">
               <img
-              className="rounded cardHeight"
+                className="rounded cardHeight"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0t2goMjb6szsr4n0r_Q97a6qekI5hj2rEjQ&usqp=CAU"
                 alt=""
               />
@@ -78,7 +78,7 @@ export default function HomePage() {
               <small className="small col-12">pop,rock</small>
             </div>
           </div>
-          <div className="col-6 col-sm-auto col-md-3 col-lg-auto">
+          <div className="col-6 col-sm-auto col-md-3 col-lg-auto col-xl-2">
             <div className=" shadow mb-4 cardHeight border-0">
               <img
                 className="rounded cardHeight"
@@ -104,7 +104,7 @@ export default function HomePage() {
               <small className="small col-12">pop,rock</small>
             </div>
           </div>
-          <div className="col-6 col-sm-auto col-md-3 col-lg-auto d-none d-sm-block">
+          <div className="col-6 col-sm-auto col-md-3 col-lg-auto col-xl-2 d-none d-sm-block">
             <div className=" shadow mb-4 cardHeight border-0">
               <img
                 className="rounded cardHeight"
@@ -130,7 +130,7 @@ export default function HomePage() {
               <small className="small col-12">pop,rock</small>
             </div>
           </div>
-          <div className="col-6 col-sm-auto col-md-3  col-lg-auto d-none  d-md-block">
+          <div className="col-6 col-sm-auto col-md-3  col-lg-auto col-xl-2 d-none  d-md-block">
             <div className=" shadow mb-4 cardHeight border-0">
               <img
                 className="rounded cardHeight"
@@ -156,7 +156,7 @@ export default function HomePage() {
               <small className="small col-12">pop,rock</small>
             </div>
           </div>
-          <div className="col-6 col-sm-auto  d-none  d-xl-block ">
+          <div className="col-6 col-sm-auto col-lg-auto  col-xl-2 d-none  d-xl-block ">
             <div className=" shadow mb-4 cardHeight border-0">
               <img
                 className="rounded cardHeight"
@@ -182,7 +182,7 @@ export default function HomePage() {
               <small className="small col-12">pop,rock</small>
             </div>
           </div>
-          <div className="col-6 col-sm-auto  d-none  d-xl-block ">
+          <div className="col-6 col-sm-auto col-lg-auto col-xl-2 d-none  d-xl-block ">
             <div className=" shadow mb-4 cardHeight border-0">
               <img
                 className="rounded cardHeight"
@@ -215,9 +215,12 @@ export default function HomePage() {
           <div className="col-md-6 ">
             <p className="mb-5 text-light">Most Popular This Week</p>
             <ol className="text-light">
-            <li>
+              <li>
                 <div className="row ">
-                  <div className="col-2"> <span className="num">1.</span> </div>
+                  <div className="col-2">
+                    {" "}
+                    <span className="num">1.</span>{" "}
+                  </div>
                   <div className="col-2">
                     <img
                       src="https://source.unsplash.com/Me5rtdNmIrU/50x50"
@@ -237,9 +240,11 @@ export default function HomePage() {
               <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row">
-                <div className="col-2"> <span className="num text-light">2.</span> </div>
                   <div className="col-2">
-                
+                    {" "}
+                    <span className="num text-light">2.</span>{" "}
+                  </div>
+                  <div className="col-2">
                     <img
                       src="https://source.unsplash.com/Me5rtdNmIrU/50x50"
                       alt=""
@@ -258,7 +263,10 @@ export default function HomePage() {
               <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row ">
-                <div className="col-2"> <span className="num text-light">3.</span> </div>
+                  <div className="col-2">
+                    {" "}
+                    <span className="num text-light">3.</span>{" "}
+                  </div>
                   <div className="col-2">
                     <img
                       src="https://source.unsplash.com/bJ2Dm9ZyeIY/50x50"
@@ -278,7 +286,10 @@ export default function HomePage() {
               <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row">
-                <div className="col-2"> <span className="num text-light">4.</span> </div>
+                  <div className="col-2">
+                    {" "}
+                    <span className="num text-light">4.</span>{" "}
+                  </div>
                   <div className="col-2">
                     <img
                       src="https://source.unsplash.com/kWnLO5B-X2s/50x50"
@@ -298,7 +309,10 @@ export default function HomePage() {
               <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row">
-                <div className="col-2"> <span className="num text-light">5.</span> </div>
+                  <div className="col-2">
+                    {" "}
+                    <span className="num text-light">5.</span>{" "}
+                  </div>
                   <div className="col-2">
                     <img
                       src="https://source.unsplash.com/_DWe0OW4pFg/50x50"
@@ -326,7 +340,10 @@ export default function HomePage() {
             <ol className="text-light">
               <li>
                 <div className="row">
-                <div className="col-2"> <span className="num">1.</span> </div>
+                  <div className="col-2">
+                    {" "}
+                    <span className="num">1.</span>{" "}
+                  </div>
                   <div className="col-2">
                     <img
                       src="https://source.unsplash.com/cCvnG-937HE/50x50"
@@ -348,7 +365,10 @@ export default function HomePage() {
               <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row ">
-                <div className="col-2"> <span className="num text-light">2.</span> </div>
+                  <div className="col-2">
+                    {" "}
+                    <span className="num text-light">2.</span>{" "}
+                  </div>
                   <div className="col-2">
                     <img
                       src="https://source.unsplash.com/cCvnG-937HE/50x50"
@@ -373,13 +393,13 @@ export default function HomePage() {
 
         {/* Popular Artist */}
         <div className="text-light mt-5 text-center">
-          <div className="row container col-md-auto text-light mt-4">
+          <div className="row col-md-auto text-light mt-4 mb-2">
             <h6 className="font-Medium font-20">Popular Artist</h6>{" "}
-            <p className="ml-auto text-warning">View All</p>
+            <p className="ml-auto text-warning">View All </p>
           </div>
 
           <div className="row mt-5 justify-content-center">
-            <div className="col-auto  col-md-auto col-lg-auto col-xl-2 ">
+            <div className="col-4 col-md-auto col-lg-auto col-xl-2 ">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/aZ3qiq1eTRk/150x150"
@@ -387,7 +407,7 @@ export default function HomePage() {
               />
               <p className=" mt-2 "> Moods Mixes</p>
             </div>
-            <div className="col-auto  col-md-auto col-xl-2 col-lg-auto">
+            <div className="col-4  col-md-auto col-xl-2 col-lg-auto">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/lfiFXS9oaeU/150x150"
@@ -395,7 +415,7 @@ export default function HomePage() {
               />
               <p className=" mt-2 "> Moods Mixes</p>
             </div>{" "}
-            <div className="col-auto col-md-auto col-xl-2 col-lg-auto">
+            <div className="col-4  col-md-auto col-xl-2 col-lg-auto">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/hTEqivuXpiY/150x150"
@@ -403,7 +423,7 @@ export default function HomePage() {
               />
               <p className=" mt-2 "> Moods Mixes</p>
             </div>{" "}
-            <div className="col-auto col-md-auto col-xl-2 col-lg-auto">
+            <div className="col-auto col-md-3 col-xl-2 col-lg-auto d-none d-md-block">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/1nqlINxFPOc/150x150"
@@ -411,7 +431,7 @@ export default function HomePage() {
               />
               <p className=" mt-2 "> Moods Mixes</p>
             </div>{" "}
-            <div className="col-auto col-md-auto col-xl-2 col-lg-auto">
+            <div className="col-auto col-md-auto col-xl-2 col-lg-auto d-none d-xl-block">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/iTOq8vZkVEY/150x150"
@@ -419,7 +439,7 @@ export default function HomePage() {
               />
               <p className=" mt-2 "> Moods Mixes</p>
             </div>{" "}
-            <div className="col-auto col-md-auto col-xl-2 col-lg-auto">
+            <div className="col-auto col-md-auto col-xl-2 col-lg-auto d-none d-xl-block">
               <img
                 className="rounded-circle"
                 src="https://source.unsplash.com/IT5-0oM0YH0/150x150"
@@ -432,86 +452,50 @@ export default function HomePage() {
 
         {/* Popular Moods Mixes */}
         <div className="text-light  mt-5 ">
-          <span className="font-20">Moods Mixes</span>
+          <div className="row col-md-auto text-light mt-4 mb-2">
+            <h6 className="font-Medium font-20">Moods Mixes</h6>{" "}
+            <p className="ml-auto text-warning">
+              View All <span className="text-light">{" <  > "}</span>{" "}
+            </p>
+          </div>
           <div className="row mt-5 justify-content-center">
-            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
-              <div
-                className="card border-0"
-                style={{ backgroundColor: "#222531" }}
-              >
-                <img
-                  className="img-fluid "
-                  src="https://source.unsplash.com/MD3rdOB5pxk/300x300"
-                  alt=""
-                />
-                <div className="card-body">
-                  <div className="card-title"> Worm Fuzzy Feeling</div>
-                  <small className="card-text text-muted ">
-                    Lorem ipsum is placeholder text commonly used in the
-                    graphic,
-                  </small>
-                </div>
-              </div>
+            <div className="col-6 col-xs-6 col-sm-6 col-md-3 col-xl-3 mb-4">
+              <img
+                className="img-fluid rounded "
+                src="https://source.unsplash.com/MD3rdOB5pxk/300x300"
+                alt=""
+              />
+
+              <p className="text-center mt-3"> Worm Fuzzy Feeling</p>
             </div>
 
-            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
-              <div
-                className="card border-0"
-                style={{ backgroundColor: "#222531" }}
-              >
-                <img
-                  className="img-fluid"
-                  src="https://source.unsplash.com/szmET3Kja8s/300x300"
-                  alt=""
-                />
-                <div className="card-body">
-                  <div className="card-title"> Acoustic Love</div>
-                  <small className="card-text text-muted ">
-                    Lorem ipsum is placeholder text commonly used in the
-                    graphic,
-                  </small>
-                </div>
-              </div>
+            <div className="col-6 col-xs-6 col-sm-6  col-md-3 col-xl-3  mb-4 ">
+              <img
+                className="img-fluid rounded "
+                src="https://source.unsplash.com/szmET3Kja8s/300x300"
+                alt=""
+              />
+              <p className="text-center mt-3"> Worm Fuzzy Feeling</p>
             </div>
 
-            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
-              <div
-                className="card border-0"
-                style={{ backgroundColor: "#222531" }}
-              >
-                <img
-                  className="img-fluid"
-                  src="https://source.unsplash.com/vipa5LR89mU/300x300"
-                  alt=""
-                />
-                <div className="card-body">
-                  <div className="card-title"> Late Night Love</div>
-                  <small className="card-text text-muted ">
-                    Lorem ipsum is placeholder text commonly used in the
-                    graphic,
-                  </small>
-                </div>
-              </div>
+            <div className="col-6 col-xs-6 col-sm-6 col-md-3 col-xl-3 mb-4 d-none d-md-block">
+              <img
+                className="img-fluid rounded "
+                src="https://source.unsplash.com/vipa5LR89mU/300x300"
+                alt=""
+              />
+
+              <p className="text-center mt-3"> Late Night Love</p>
             </div>
 
-            <div className="col-auto  col-md-6 col-xl-3 col-xl-3 mb-4">
-              <div
-                className="card border-0"
-                style={{ backgroundColor: "#222531" }}
-              >
-                <img
-                  className="img-fluid"
-                  src="https://source.unsplash.com/QA-qQfWJM0E/300x300"
-                  alt=""
-                />
-                <div className="card-body">
-                  <div className="card-title"> Romance & Ballads</div>
-                  <small className="card-text text-muted ">
-                    Lorem ipsum is placeholder text commonly used in the
-                    graphic,
-                  </small>
-                </div>
-              </div>
+            <div className="col-6 col-xs-6 col-sm-6   col-md-3 col-xl-3 mb-4 d-none d-md-block">
+              <img
+                className="img-fluid rounded "
+                src="https://source.unsplash.com/QA-qQfWJM0E/300x300"
+                alt=""
+              />
+
+              <p className="text-center mt-3"> Romance & Ballads</p>
             </div>
           </div>
         </div>
@@ -520,11 +504,11 @@ export default function HomePage() {
       <style jsx>
         {`
           .detail-recommended {
-            max-width: 200px;
+            max-width: 190px;
           }
           .cardHeight {
             height: 250px;
-            max-width: 200px;
+            max-width: 190px;
           }
           .text-on-home {
             margin-top: 200px;
@@ -537,7 +521,7 @@ export default function HomePage() {
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            max-height: 850px;
+            max-height: 800px;
             padding: 0 0;
           }
           .text-near-cover {
@@ -545,27 +529,29 @@ export default function HomePage() {
             color: #b6b6b6;
           }
 
+          li {
+            list-style: none;
+          }
+          .num {
+            font-family: "Poppins-SemiBold", sans-serif;
+            color: #dcff00;
+            display: inline-block;
+            text-align: left;
+            margin: 5px 10px;
+            line-height: 40px;
+            font-size: 36px;
+          }
 
-          li{
-list-style: none;
-}
-.num{
-  font-family: 'Poppins-SemiBold', sans-serif;
-color: #DCFF00;
-display: inline-block;
-text-align: left;
-margin: 5px 10px;
-line-height: 40px;
-font-size:36px;
-}
-
-          @media screen and (max-width: 1140px) {
+          @media screen and (max-width: 1450px) {
             .text-on-home {
               margin-top: 10px;
               margin-bottom: 15px;
             }
             .cardHeight {
               min-height: 200px;
+            }
+            .covermain {
+              min-height: 600px;
             }
           }
 
@@ -577,7 +563,8 @@ font-size:36px;
             .covermain {
               left: 0;
               top: 1.5%;
-              min-width: 630px;
+              min-width: 700px;
+              min-height: 550px;
             }
             .text-near-cover {
               font-size: 14px;
