@@ -545,10 +545,12 @@ const Auth = (props) => {
               onSubmit={formikChoose.handleSubmit}
               className="mt-5 text-center"
             >
-              <div className="row">
+              <div className="row justify-content-md-center">
                 {/* begin Listen */}
-                <div className="col-lg-6 ">
-                  <Form.Group className="mx-auto">
+                <div
+                style={{width:"270px"}}
+                className="  col-lg-6 mx-auto">
+                  <Form.Group>
                     <label
                       htmlFor="listen"
                       className={`typeround showText-13  ${getInputChecked(
@@ -578,8 +580,10 @@ const Auth = (props) => {
                 </div>
                 {/* end Listen */}
                 {/* begin artist */}
-                <div className="col-lg-6 ">
-                  <Form.Group className="mx-auto">
+                <div 
+                 style={{width:"270px"}}
+                className=" col-lg-6 mx-auto">
+                  <Form.Group >
                     <label
                       htmlFor="artist"
                       className={`typeround showText-13 ${getInputChecked(
@@ -712,7 +716,7 @@ const Auth = (props) => {
           .typeround {
           cursor: pointer;
           border: 2px solid #f5f5f5;
-          border-radius: 12px;
+          border-radius: 30px;
           padding: 4rem 3rem 1rem 3rem;
         }
         }
@@ -730,15 +734,15 @@ const Auth = (props) => {
           .typeround {
           cursor: pointer;
           border: 2px solid #f5f5f5;
-          border-radius: 12px;
-          padding: 1.6rem 8.5rem 1.5rem 8.5rem;
+          border-radius: 30px;
+          padding: 1.6rem 4.5rem 1.5rem 4.5rem;
         }
         }
 
   
 
         .typeround:hover {
-          border-radius: 12px;
+          border-radius: 30px;
           padding: 5rem;
           padding: 0.1rem 0rem 1rem 0rem;
         }
@@ -789,7 +793,7 @@ const Auth = (props) => {
         }
         .typeround-active {
           border: 2px solid red;
-          border-radius: 12px;
+          border-radius: 30px;
           padding: 5rem;
           padding: 0.1rem 0.1rem 1rem 0.1rem;
         }

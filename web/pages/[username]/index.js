@@ -10,6 +10,7 @@ export default function Index({ stars }) {
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
+
   const {
     nameMember,
     dataMember,
@@ -17,37 +18,38 @@ export default function Index({ stars }) {
     dataFriend,
     header,
   } = useContext(ModalContext);
-
+  const verifyMember = username != nameMember ? false : true;
   useEffect(() => {
     Axios.post(
       process.env.API_URL_CHECKDISPLAY,
       {
         display_name: username,
-      },
-      {
-        headers: {
-          authorization:
-          header
-        },
       }
+      // {
+      //   headers: {
+      //     authorization:
+      //     header
+      //   },
+      // }
     )
       .then((res) => {
-        if (res.data[0].mem_display_name != nameMember) setDataFriend(res.data[0])
+        if (res.data[0].mem_display_name != nameMember)
+          setDataFriend(res.data[0]);
         else setDataFriend(undefined);
       })
       .catch((err) => {
         console.log(err);
-   
       });
-  }, [username,header]);
+  }, [username, header]);
 
-  const verifyMember = username != nameMember ? false : true;
   const showPage = () => {
-    if (nameMember === undefined || dataMember === undefined)
+    if (nameMember === undefined || dataMember === undefined) {
+      if (verifyMember === false && dataFriend === undefined) return <NotFound />;
+      // if (dataFriend != undefined) return <OverviewFriend />;
       return <LoadPage />;
-    if (verifyMember === false && dataFriend === undefined) return <NotFound />;
-    if (dataFriend != undefined && verifyMember === false) {
-      return <OverviewFriend/>
+    }
+    if (dataFriend != undefined) {
+      // return <OverviewFriend />;
     } else {
       return <>{verifyMember && <Overview editor={statusEditor} />}</>;
     }

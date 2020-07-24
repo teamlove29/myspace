@@ -104,23 +104,26 @@ export default function Overview() {
             <p className="ml-auto text-muted col-12 col-md-6">
               Sorted by: Recently Popular
             </p>
+            <p className="col-12 p-5 text-center "> You don't have any message.</p>
           </div>
         </div>
+
         {/* begin Upcoming Events */}
         {typeMember === 2 && (
           <>
-            <div className="col-5 ml-5">
-              <h6 className="font-Regular">Upcoming Events</h6>
-              <small>
+             <hr className="col-12 d-md-none "/>
+            <div className="col-12 col-md-5 ">
+              <h6 className="font-Regular mb-4">Upcoming Events</h6>
+              <small className="text-muted /">
                 We don’t have any upcoming events for this artist right now.
               </small>
-              <p>+ Add event | View all events </p>
-              <h6 className="font-Regular mt-5">Photos</h6>
-              <small>
+              <p className="mt-3">+ Add event | View all events </p>
+              <h6 className="font-Regular mt-5 mb-4">Photos</h6>
+              <small className="text-muted">
                 We don’t have any upcoming events for this artist right now.
               </small>
-              <p>+ Add event | 655 more photos </p>
-              <h6 className="font-Regular mt-5">Social Links</h6>
+              <p className="mt-3">+ Add event | 655 more photos </p>
+              <h6 className="font-Regular mt-5 mb-4">Social Links</h6>
               <p>nanthawuth.com</p>
               <p>Twitter ( @ninetez )</p>
               <p>Facebook ( tessser )</p>
@@ -131,8 +134,9 @@ export default function Overview() {
         {/* end Upcoming Events */}
         {typeMember === 1 && (
           <>
+                       <hr className="col-12 d-md-none "/>
             {/* begin You may also like */}
-            <div className="col-12 col-md-12 col-lg-6 container ">
+            <div className="col-12 col-md-6 col-lg-6 container ">
               <h6 className="font-Medium">You may also like</h6>
               <div className="row mt-5">
                 {/* Most Popular This Week */}

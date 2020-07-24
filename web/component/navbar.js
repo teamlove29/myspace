@@ -130,6 +130,7 @@ const Navbar = () => {
               setLoading(false);
               setCurrentUser(true);
             } catch (error) {
+              setLoading(false);
               setNameMember(null);
               setCurrentUser(false);
             }
