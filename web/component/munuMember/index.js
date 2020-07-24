@@ -27,9 +27,14 @@ const Index = () => {
 
   return (
     <>
-      <div className="ml-5 row  justify-content-center avatar-resposive">
-        <div className="col-7 col-sm-4 col-md-4 col-xl-2">
+      <div className=" row mx-auto avatar-resposive">
+        <div className="col-12 col-sm-12 col-md-12 col-xl-2">
           <img
+            style={{
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
             className="rounded-circle border"
             // src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
             src={avatarMember}
@@ -39,20 +44,22 @@ const Index = () => {
           />
         </div>
         <div className="col-12  col-sm-12  col-md-12 col-xl-10 text-light mt-2">
-          <div className="form-inline">
-            <h3 className="my-auto mt-5 ">{username}</h3>
-            {typeMember === 2 && (
-              <img
-                className="my-auto ml-3"
-                src="/assets/img/icon/crow.png"
-                alt=""
-              />
-            )}
+          <div className="form-inline ">
+            <h3 className="my-auto mt-5 name ">
+              {username}
+              {typeMember === 2 && (
+                <img
+                  className=" ml-3 "
+                  src="/assets/img/icon/crow.png"
+                  alt=""
+                />
+              )}
+            </h3>
           </div>
           <p className="text-muted d-none d-xl-block">
             Banana • Joined since 22 May 2020 | Last Login : 19/05/2020
           </p>
-          <ul id="list" className="font-Light mb-5">
+          <ul style={{ width: "700px" }} id="list" className="font-Light ">
             <li className={`${getMenuItemActive("/[username]")}`}>
               <Link href="/[username]" as={`/${nameMember}`}>
                 <a>Overview</a>
@@ -113,12 +120,12 @@ const Index = () => {
           </ul>
           {hideAbout != true ? (
             <>
-              <div className="row">
-                <div className="col-auto col-xl-6">
+              <div className="row ">
+                <div className="col-auto col-md-8  col-lg-8 col-xl-6 ">
                   <p className="mt-4 h6">About me</p>
                   <p className="text-muted">{dataMember.mem_about_you}</p>
                 </div>
-                <div className="col-auto col-xl-6">
+                <div className="col-auto col-md-4  col-lg-4 col-xl-6">
                   <p className="mt-5 h6">Born</p>
                   <p className="text-muted">23 June 1992 (age 28)</p>
                   <p className="mt-5 h6">Born in</p>
@@ -134,6 +141,18 @@ const Index = () => {
 
       <style jsx>
         {`
+          @media screen and (max-width: 1200px) {
+            .form-inline {
+              display: block;
+            }
+            .name {
+              padding-top: 15px;
+              padding-bottom: 20px;
+              display: block;
+              text-align: center;
+            }
+          }
+
           @media screen and (max-width: 991px) {
             .avatar-resposive {
               margin-top: 6rem;

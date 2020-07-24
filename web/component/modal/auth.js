@@ -61,12 +61,12 @@ const Auth = (props) => {
   };
 
   const forgetpassSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
+    email: Yup.string().email("Invalid email"),
   });
 
   const AuthSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string().min(6, "Minimum 6 symbols").required("Required"),
+    email: Yup.string().email("Invalid email"),
+    // password: Yup.string().min(6, "Minimum 6 symbols"),
   });
 
   const ChooseTypeSchema = Yup.object().shape({
@@ -343,7 +343,7 @@ const Auth = (props) => {
           img {
             cursor: pointer;
             margin-left: 0.5rem;
-            width: 2rem;
+            width: 1.7rem;
             transition: 0.2s;
           }
           img:hover {
@@ -364,9 +364,9 @@ const Auth = (props) => {
         keyboard={false}
       >
         <Modal.Body>
-          <div className="text-center">
-            <h2 className="text-center mb-3 mt-5">Sign in</h2>
-            <p style={{ marginLeft: "75px", marginRight: "75px" }}>
+          <div>
+            <h2 className="mb-3 mt-5 mobile-h2">Sign in</h2>
+            <p className="mobile-p-signin">
               start listening with myspace.
               <a
                 onClick={() => {
@@ -425,8 +425,7 @@ const Auth = (props) => {
               <SocialSignIn />
               <a
                 onClick={() => handleShowforget("signin")}
-                className="float-right"
-                className="pointer float-right"
+                className="pointer float-right my-auto"
               >
                 Forgot password
               </a>
@@ -546,10 +545,12 @@ const Auth = (props) => {
               onSubmit={formikChoose.handleSubmit}
               className="mt-5 text-center"
             >
-              <div className="row">
+              <div className="row justify-content-md-center">
                 {/* begin Listen */}
-                <div className="col-lg-6 ">
-                  <Form.Group className="mx-auto">
+                <div
+                style={{width:"270px"}}
+                className="  col-lg-6 mx-auto">
+                  <Form.Group>
                     <label
                       htmlFor="listen"
                       className={`typeround showText-13  ${getInputChecked(
@@ -579,8 +580,10 @@ const Auth = (props) => {
                 </div>
                 {/* end Listen */}
                 {/* begin artist */}
-                <div className="col-lg-6 ">
-                  <Form.Group className="mx-auto">
+                <div 
+                 style={{width:"270px"}}
+                className=" col-lg-6 mx-auto">
+                  <Form.Group >
                     <label
                       htmlFor="artist"
                       className={`typeround showText-13 ${getInputChecked(
@@ -713,27 +716,33 @@ const Auth = (props) => {
           .typeround {
           cursor: pointer;
           border: 2px solid #f5f5f5;
-          border-radius: 12px;
+          border-radius: 30px;
           padding: 4rem 3rem 1rem 3rem;
         }
         }
 
+.mobile-p-signin{
+  text-align: center;
+}
         @media screen and (max-width: 991px) {
           .mobile-h2 {
             text-align: left;
           }
+          .mobile-p-signin{
+            text-align: left;
+}
           .typeround {
           cursor: pointer;
           border: 2px solid #f5f5f5;
-          border-radius: 12px;
-          padding: 1.6rem 8.5rem 1.5rem 8.5rem;
+          border-radius: 30px;
+          padding: 1.6rem 4.5rem 1.5rem 4.5rem;
         }
         }
 
   
 
         .typeround:hover {
-          border-radius: 12px;
+          border-radius: 30px;
           padding: 5rem;
           padding: 0.1rem 0rem 1rem 0rem;
         }
@@ -784,7 +793,7 @@ const Auth = (props) => {
         }
         .typeround-active {
           border: 2px solid red;
-          border-radius: 12px;
+          border-radius: 30px;
           padding: 5rem;
           padding: 0.1rem 0.1rem 1rem 0.1rem;
         }

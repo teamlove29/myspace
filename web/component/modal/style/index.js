@@ -40,7 +40,7 @@ color : white;
 margin-top: 3rem;
 transition: 0.5s;
 @media (max-width: 1024px) {
-  padding: 10px 10px 10px 10px
+  padding: 10px 20px 10px 20px
 };
 
 

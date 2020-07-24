@@ -91,9 +91,10 @@ if(verifyMember === false){
           </div>
         ) : (
           <>
-            <h3 className="font-Regular mt-5">Settings</h3>
+            <h3 className="font-Regular mt-5 resposive_setting_menu">Settings</h3>
             <ul 
             style={{
+              width: "700px",
               zIndex:"2"
             }}
             id="list" className="mt-4">
@@ -194,6 +195,12 @@ if(verifyMember === false){
 
           border-image-slice: 1;
         }
+
+        @media screen and (max-width: 991px) {
+            .resposive_setting_menu {
+              padding-top: 3rem !important;
+            }
+
       `}</style>
     </div>
   );

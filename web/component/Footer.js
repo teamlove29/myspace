@@ -5,17 +5,17 @@ export default function Footer() {
     <footer className="sticky-footer bg-black container">
       <div className="container-fluid my-auto">
 
-<div className="row mb-5">
-  <div className="col">
-    <p>COMPANY</p>
+<div className="row mb-5 justify-content-md-center">
+  <div className="col-6 col-md-2">
+    <p className="font-SemiBold">COMPANY</p>
     <ul className="text-light">
       <li>About Jetdooo</li>
       <li>Contact Us</li>
       <li>Jobs</li>
     </ul>
   </div>
-  <div className="col">
-    <p>HELP</p>
+  <div className="col-6 col-md-2">
+    <p className="font-SemiBold">HELP</p>
     <ul className="text-light">
       <li>Track My Music</li>
       <li>Community Support</li>
@@ -23,8 +23,8 @@ export default function Footer() {
       <li>Help</li>
     </ul>
   </div>
-  <div className="col">
-    <p>GOODIES</p>
+  <div className="col-6 col-md-2">
+    <p className="font-SemiBold">GOODIES</p>
     <ul className="text-light">
       <li>Download Scrobbler</li>
       <li>Developer API</li>
@@ -32,8 +32,8 @@ export default function Footer() {
       <li>Merchandise</li>
     </ul>
   </div>
-  <div className="col">
-    <p>ACCOUNT</p>
+  <div className="col-6 col-md-2">
+    <p className="font-SemiBold">ACCOUNT</p>
     <ul className="text-light">
       <li>Inbox</li>
       <li>Settings</li>
@@ -41,8 +41,8 @@ export default function Footer() {
       <li>Logout</li>
     </ul>
   </div>
-  <div className="col">
-    <p>FOLLOW US</p>
+  <div className="col-6 col-md-2">
+    <p className="font-SemiBold">FOLLOW US</p>
     <ul className="text-light">
       <li>Facebook</li>
       <li>Twitter</li>
@@ -54,17 +54,21 @@ export default function Footer() {
 </div>
 <hr style={{backgroundColor:'#2F2F2F'}} />
         <div className="copyright mt-5">
-          <div className="row justify-content-start">
-            <div className="col-8">
-            <span className="text-muted font-13">
+          <div className="row justify-content-start justify-content-md-center">
+            <div className="col-12 col-md-8  mb-4">
+            <span
+            style={{
+              lineHeight: '18pt' 
+            }}
+            className="text-muted font-13">
             Jetdooo © 2020 Jetdooo Ltd. All rights reserved | Terms of Use •
             Privacy Policy • Legal Policies • California Privacy/Info We Collect
             California Do Not Sell My Info Jobs at Jetdooo Music
           </span>
             </div>
-  <div className="col-1">
+  <div className="col-12 col-md-1">
   <img 
-  className="ml-5"
+  className="mx-auto d-block"
   width="30px"  src="/assets/img/icon/myspace.png" alt=""/>
   </div>
          
@@ -82,7 +86,8 @@ export default function Footer() {
             list-style-type: none;
           }
           ul li{
-            font-size:13px
+            font-size:13px;
+            line-height: 18pt ;
           }
         `}
       </style>

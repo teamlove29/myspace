@@ -15,12 +15,7 @@ export default function CoverMember({ children }) {
     top: 0;
     right: 0;
     position: absolute;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    maxHeight: 800px ;
     padding: 0 0;
-
     @media (max-width: 911px) {
       min-width: 911px;
     };

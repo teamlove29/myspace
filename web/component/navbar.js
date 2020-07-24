@@ -3,16 +3,16 @@ import Link from "next/link";
 import Auth from "./modal/auth";
 import firebase from "../config/config";
 import { useRouter } from "next/router";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import Axios from "axios";
 import JWT from "jsonwebtoken";
 import { ModalContext } from "../config/context/ModalProvider";
+import { WaveLoading } from "react-loadingg";
 const Navbar = () => {
   const router = useRouter();
   const hideSearch = router.pathname != "/[username]/setting";
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
+  const [loading, setLoading] = useState(false);
   const {
     currentUser,
     setCurrentUser,
@@ -27,7 +27,6 @@ const Navbar = () => {
     coverMember,
     setcoverMember,
   } = useContext(ModalContext);
-
 
   const handleSignIn = () => {
     setShowSignIn(true);
@@ -45,8 +44,8 @@ const Navbar = () => {
   const handleSignOut = () => {
     firebase.auth().signOut();
     setavatarMember(process.env.AVATARHOLDER);
-    setcoverMember(undefined);
-    localStorage.removeItem('myspace');
+    localStorage.removeItem("token_myspace");
+    localStorage.removeItem("profile_myspace");
     router.push("/");
   };
 
@@ -82,66 +81,94 @@ const Navbar = () => {
   };
 
   const onAuthStateChange = () => {
-    
-
-    
     return firebase.auth().onAuthStateChanged(async (user) => {
-      if (user) {
-        const uid = await user.uid;
-        let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
-        setHeader(token);
-        const checksocialLogin = await Axios.post(
-          process.env.API_URL + "/login-member",
-          { uid: uid }
-        );
-        if (checksocialLogin.status === 200) {
-          try {
-            const verifyMember = await Axios.get(
-              process.env.API_URL_EDITFRONT,
-              {
-                headers: { authorization: token },
-              }
-            );
-            getImageAvatar(verifyMember.data[0].mem_avatar);
-            getImageCover(verifyMember.data[0].mem_cover);
-            setNameMember(verifyMember.data[0].mem_display_name);
-            setDataMember(verifyMember.data[0]);
-            setCurrentUser(true);
-            const tokenJWT =  JWT.sign(verifyMember.data[0], process.env.SECRET_KEY);
-            localStorage.setItem('myspace',tokenJWT)
-          } catch (error) {
-            console.log(error)
-            setNameMember(null);
-            setCurrentUser(false);
+      const tokenverify = await localStorage.getItem("token_myspace");
+      const profile_myspace_verify = await localStorage.getItem(
+        "profile_myspace"
+      );
+
+      if (tokenverify && profile_myspace_verify) {
+        try {
+          // var decoded_token = JWT.verify(tokenverify, process.env.SECRET_KEY);
+          var decoded_profile = JWT.verify(
+            profile_myspace_verify,
+            process.env.SECRET_KEY
+          );
+          setHeader(tokenverify);
+          getImageAvatar(decoded_profile.mem_avatar);
+          getImageCover(decoded_profile.mem_cover);
+          setNameMember(decoded_profile.mem_display_name);
+          setDataMember(decoded_profile);
+          setCurrentUser(true);
+        } catch (err) {
+          handleSignOut();
+        }
+      } else {
+        if (user) {
+          setLoading(true);
+          const uid = await user.uid;
+          let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
+          const checksocialLogin = await Axios.post(
+            process.env.API_URL + "/login-member",
+            { uid: uid }
+          );
+          if (checksocialLogin.status === 200) {
+            try {
+              const verifyMember = await Axios.get(
+                process.env.API_URL_EDITFRONT,
+                {
+                  headers: { authorization: token },
+                }
+              );
+              // { expiresIn: '1d' }
+              const tokenJWT = JWT.sign(
+                verifyMember.data[0],
+                process.env.SECRET_KEY
+              );
+              localStorage.setItem("token_myspace", token);
+              localStorage.setItem("profile_myspace", tokenJWT);
+              setLoading(false);
+              setCurrentUser(true);
+            } catch (error) {
+              setLoading(false);
+              setNameMember(null);
+              setCurrentUser(false);
+            }
           }
         } else {
-          console.log('2')
           setNameMember(null);
           setCurrentUser(false);
         }
-      } else {
-        console.log('1')
-        setNameMember(null);
-        setCurrentUser(false);
       }
     });
   };
   useEffect(() => {
-    // if(!localStorage.getItem('myspace',process.env.SECRET_KEY)){
-      // const token = localStorage.getItem("myspace");
-      // try {
-      //   var decoded = JWT.verify(token, process.env.SECRET_KEY);
-      // } catch (err) {
-      //   //Error
-      //   console.log(err);
-      // }
-    // }
     const unsubscribe = onAuthStateChange();
     return () => unsubscribe();
   }, [currentUser]);
 
   return (
     <>
+      {loading && (
+        <div
+          style={{
+            top: "0",
+            right: "0",
+            bottom: "0",
+            left: "0",
+            width: "100%",
+            height: "100vh",
+            background: "black",
+            position: "fixed",
+            opacity: "0.8",
+            zIndex: "2",
+            overflow: "hidden",
+          }}
+        >
+          <WaveLoading color="orange" size="large" />
+        </div>
+      )}
+
       <Auth showSignIn={showSignIn} showSignUp={showSignUp} />
       {/* Topbar */}
 
@@ -159,13 +186,13 @@ const Navbar = () => {
         {currentUser === true ? (
           <>
             <ul className="navbar-nav  ml-auto  d-lg-none text-light">
-
-            <li 
-              style={{
-                marginRight:"-10px",
-                marginLeft:"-10px",
-              }}
-              className="nav-item dropdown no-arrow">
+              <li
+                style={{
+                  marginRight: "-10px",
+                  marginLeft: "-10px",
+                }}
+                className="nav-item dropdown no-arrow"
+              >
                 <a
                   className="nav-link dropdown-toggle"
                   id="userDropdown"
@@ -241,25 +268,75 @@ const Navbar = () => {
                 </svg>
               </li>
 
-
-
-
-              <li className="nav-item dropdown no-arrow my-auto">
-                <svg
-                  width="2em"
-                  height="30px"
-                  viewBox="0 0 16 16"
-                  className="bi bi-list d-md-block d-lg-none text-light "
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
+              <li
+                style={{
+                  marginRight: "-10px",
+                  marginLeft: "-10px",
+                }}
+                className="nav-item dropdown no-arrow"
+              >
+                <a
+                  className="nav-link dropdown-toggle"
+                  id="menuDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                  />
-                </svg>
+                  <svg
+                    width="2em"
+                    height="30px"
+                    viewBox="0 0 16 16"
+                    className="bi bi-list d-md-block d-lg-none text-light pointer"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                    />
+                  </svg>
+                </a>
+                <div
+                  className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="menuDropdown"
+                >
+                  <Link href="/">
+                    <a className="dropdown-item">
+                      <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
+                      Home
+                    </a>
+                  </Link>
+                  <div className="dropdown-divider" />
+                  <Link href="/music">
+                    <a className="dropdown-item">
+                      <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
+                      Music
+                    </a>
+                  </Link>
+                  <div className="dropdown-divider" />
+                  <Link href="/charts">
+                    <a className="dropdown-item">
+                      <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
+                      Charts
+                    </a>
+                  </Link>
+                  <div className="dropdown-divider" />
+                  <Link href="/event">
+                    <a className="dropdown-item">
+                      <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
+                      Event
+                    </a>
+                  </Link>
+                  <div className="dropdown-divider" />
+                  <Link href="/features">
+                    <a className="dropdown-item">
+                      <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
+                      Features
+                    </a>
+                  </Link>
+                </div>
               </li>
-
             </ul>
           </>
         ) : null}

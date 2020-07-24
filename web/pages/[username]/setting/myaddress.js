@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import MenuSetting from "../../../component/menuSetting";
 import { ModalContext } from "../../../config/context/ModalProvider";
-import NewAddress from '../../../component/modal/newAddress'
+import NewAddress from "../../../component/modal/newAddress";
 import { Button } from "../../../component/modal/style";
 
 export default function MyAddress() {
@@ -10,6 +10,7 @@ export default function MyAddress() {
   const { username } = router.query;
   const { nameMember } = useContext(ModalContext);
   const [showNewAddress, setShowNewAddress] = useState(false);
+  const [editor, setEditor] = useState(false);
 
   const handleNewImage = (e) => {
     if (e.target.files[0] != "") {
@@ -23,9 +24,14 @@ export default function MyAddress() {
     }
   };
 
-
-  const handleNewAddress = () => {
-    setShowNewAddress(true);
+  const handleNewAddress = (value) => {
+    if (value != 'edit') {
+      setShowNewAddress(true);
+      setEditor(false);
+    } else {
+      setShowNewAddress(true);
+      setEditor(true);
+    }
     setTimeout(() => {
       setShowNewAddress(false);
     }, 50);
@@ -33,13 +39,14 @@ export default function MyAddress() {
 
   return (
     <>
-    <NewAddress show={showNewAddress} />
+      <NewAddress show={showNewAddress} editor={editor} />
       <MenuSetting>
         <div className="row container col-md-auto text-light mt-5">
           <h5 className="font-Medium">My Addresses</h5>{" "}
-          <div 
-          onClick={handleNewAddress}
-          className="ml-auto  btn btn-sm btn-warning text-light">
+          <div
+            onClick={handleNewAddress}
+            className="ml-auto  btn btn-sm btn-warning text-light"
+          >
             + Add New Address
           </div>
         </div>
@@ -47,25 +54,28 @@ export default function MyAddress() {
         <div className="row container text-light mt-5">
           <div className="col-10 ">
             <div className="form-group row">
-              <div className="col-sm-2">Fullname</div>
-              <div className="col-sm-10">Marutthep Rompho</div>
+              <div className="col-sm-2 text-muted">Fullname</div>
+              <div className="col-sm-10">Eva Mendes</div>
             </div>
 
             <div className="form-group row">
-              <div className="col-sm-2">Phone</div>
-              <div className="col-sm-10">00000000000</div>
+              <div className="col-sm-2 text-muted">Phone</div>
+              <div className="col-sm-10">317-781-8654</div>
             </div>
 
             <div className="form-group row">
-              <div className="col-sm-2">Address</div>
+              <div className="col-sm-2 text-muted">Address</div>
               <div className="col-sm-10">
-                309/78 ม.2 ต.พระบาท อำเภอเมืองลำปาง จังหวัดลำปาง 52000
+              4915  West Fork Street Pendroy Montana 59467
               </div>
             </div>
           </div>
           <div className="col-2 row">
             <div className="  ml-auto">
-              <a className="mr-2 text-light " href="#">
+              <a
+                onClick={() => handleNewAddress("edit")}
+                className="mr-2 text-light pointer"
+              >
                 Edit
               </a>
               <a className="mr-2 text-light" href="#">
