@@ -40,13 +40,14 @@ export default function Index({ stars }) {
       .catch((err) => {
         console.log(err);
       });
-  }, [username, header]);
+  }, [username]);
 
+console.log(nameMember === undefined || dataMember === undefined)
   const showPage = () => {
-    if (nameMember === undefined || dataMember === undefined) {
-      if (verifyMember === false && dataFriend === undefined) return <NotFound />;
-      // if (dataFriend != undefined) return <OverviewFriend />;
-      return <LoadPage />;
+
+      if (verifyMember === false && dataFriend === undefined) {
+        if (nameMember === undefined || dataMember === undefined)      return <LoadPage />;
+        return <NotFound />;
     }
     if (dataFriend != undefined) {
       // return <OverviewFriend />;

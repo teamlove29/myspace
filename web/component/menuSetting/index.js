@@ -13,7 +13,7 @@ export default function Index({ children, file }) {
   const [cancel, setcancel] = useState(false);
   const [saveCover, setsaveCover] = useState(false);
   const verifyMember = username != nameMember ? false : true;
-  setActiveMenu('/[username]/setting')
+
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
     if (!pathname || !path) {
@@ -27,6 +27,7 @@ export default function Index({ children, file }) {
   useEffect(() => {
     setcancel(false);
     setsaveCover(false);
+    setActiveMenu('/[username]/setting')
   }, [file]);
 
   const hendleCancel = () => {

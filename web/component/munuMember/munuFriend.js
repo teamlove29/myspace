@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
@@ -13,7 +13,11 @@ const Index = () => {
     setActiveMenu,
   } = useContext(ModalContext);
   const typeMember = !dataFriend ? null : dataFriend.mem_type;
-  setActiveMenu("");
+  useEffect(() => {
+    setActiveMenu("");
+  }, [])
+  
+
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
     if (!pathname || !path) {
