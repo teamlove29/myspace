@@ -42,7 +42,6 @@ export default function Index({ stars }) {
       });
   }, [username]);
 
-console.log(nameMember === undefined || dataMember === undefined)
   const showPage = () => {
 
       if (verifyMember === false && dataFriend === undefined) {

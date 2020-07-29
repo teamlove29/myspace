@@ -94,6 +94,10 @@ html {
   font-family: 'Poppins-Light', sans-serif;
   font-size: 13px;
 }
+.font-12-Regular {
+  font-family: 'Poppins-Regular', sans-serif;
+  font-size: 12px;
+}
 .swal2-container{
   font-family: 'Poppins-Light', sans-serif;
 }
