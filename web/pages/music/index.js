@@ -38,7 +38,7 @@ export default function Music() {
           color: "white",
         }}
       >
-        <ul className="row justify-content-center pb-5 text-center font-12-Regular">
+        <ul className="row justify-content-center menu-hight text-center font-12-Regular">
           <li className="col-2">
             <Link href="/music">
               <a className={` ${getMenuItemActive("/music")}`}>
@@ -71,7 +71,7 @@ export default function Music() {
               </a>
             </Link>
           </li>
-          <li className="col-2 ">
+          <li className="col-2 d-none d-sm-block">
             <Link href="/rock">
               <a className={` ${getMenuItemActive("/rock")}`}>
                 <span className="material-icons mb-3">bar_chart</span> <br />
@@ -79,7 +79,7 @@ export default function Music() {
               </a>
             </Link>
           </li>
-          <li className="col-2 ">
+          <li className="col-2 d-none d-sm-block">
             <Link href="/folk">
               <a className={` ${getMenuItemActive("/folk")}`}>
                 <span className="material-icons mb-3">bar_chart</span> <br />
@@ -89,7 +89,7 @@ export default function Music() {
           </li>
         </ul>
 
-        <div className="row  col-md-auto  pt-5 text-center mx-auto">
+        <div className="row  col-md-auto  music-hight text-center mx-auto">
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
               className="rounded"
@@ -283,6 +283,26 @@ export default function Music() {
           a {
             text-decoration: none;
           }
+          .music-hight {
+            padding-top:100px;
+          }
+          .menu-hight {
+
+          }
+          @media (max-width: 991px) {
+            .music-hight {
+            padding-top:50px;
+          }
+      
+          }
+          @media (max-width: 575px) {
+            .music-hight {
+            padding-top:20px;
+          }  
+          .menu-hight {
+            padding-top:120px;
+}
+    }
         `}
       </style>
     </div>

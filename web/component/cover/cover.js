@@ -8,9 +8,14 @@ export function Cover({ height, img, text }) {
     background-color: #252525;
     background-size: cover;
     background-repeat: no-repeat;
+    height:250px;
     @media (max-width: 991px) {
       top: 2%;
     }
+    @media (max-width: 575px) {
+        top: 2%;
+        height:400px;
+      }
   `;
 
   const Centered = styled.div`
@@ -20,7 +25,8 @@ export function Cover({ height, img, text }) {
     left: 50%;
     text-align: center;
     transform: translate(-50%, -50%);
-    @media (max-width: 991px) {
+    @media (max-width: 575px) {
+        top: 8%;
     }
   `;
 
@@ -43,7 +49,7 @@ export function Cover({ height, img, text }) {
         style={{
           backgroundImage: "url(" + img + ")",
           // backgroundImage: `url("https://i.stack.imgur.com/vhoa0.jpg")`,
-          height: height,
+        //   height: height,
           width: "100%",
           minWidth: "991px",
           backgroundPosition: "100% 50%",
