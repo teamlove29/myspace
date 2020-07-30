@@ -3,7 +3,7 @@ import styled from "styled-components";
 export function Cover({ height, img, text }) {
   const CoverShow = styled.div`
     top: 0%;
-    opacity:0.5;
+    // opacity:0.5;
     position: absolute;
     background-color: #252525;
     background-size: cover;
@@ -49,7 +49,7 @@ export function Cover({ height, img, text }) {
         style={{
           backgroundImage: "url(" + img + ")",
           // backgroundImage: `url("https://i.stack.imgur.com/vhoa0.jpg")`,
-        //   height: height,
+          height: height,
           width: "100%",
           minWidth: "991px",
           backgroundPosition: "100% 50%",
