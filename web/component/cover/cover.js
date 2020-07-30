@@ -3,7 +3,7 @@ import styled from "styled-components";
 export function Cover({ height, img, text }) {
   const CoverShow = styled.div`
     top: 0%;
-    // opacity:0.5;
+    opacity:0.5;
     position: absolute;
     background-color: #252525;
     background-size: cover;
@@ -20,7 +20,7 @@ export function Cover({ height, img, text }) {
 
   const Centered = styled.div`
     position: absolute;
-    font-size: 25px;
+    font-size: 20px;
     top: 6%;
     left: 50%;
     text-align: center;

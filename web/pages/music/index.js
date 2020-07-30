@@ -39,7 +39,7 @@ export default function Music() {
         }}
       >
         <ul className="row justify-content-center menu-hight text-center font-12-Regular">
-          <li className="col-2">
+          <li className="col-3 col-sm-2">
             <Link href="/music">
               <a className={` ${getMenuItemActive("/music")}`}>
                 <span className="material-icons mb-3">bubble_chart</span> <br />
@@ -47,7 +47,7 @@ export default function Music() {
               </a>
             </Link>
           </li>
-          <li className="col-2  ">
+          <li className="col-3 col-sm-2  ">
             <Link href="/music/pop">
               <a className={` ${getMenuItemActive("/music/pop")}`}>
                 <span className="material-icons mb-3">music_note</span> <br />
@@ -55,7 +55,7 @@ export default function Music() {
               </a>
             </Link>
           </li>
-          <li className="col-2  ">
+          <li className="col-3 col-sm-2  ">
             <Link href="/jazz">
               <a className={` ${getMenuItemActive("/jazz")}`}>
                 <span className="material-icons mb-3">album</span> <br />
@@ -63,7 +63,7 @@ export default function Music() {
               </a>
             </Link>
           </li>
-          <li className="col-2  ">
+          <li className="col-3 col-sm-2  ">
             <Link href="/hiphop">
               <a className={` ${getMenuItemActive("/hiphop")}`}>
                 <span className="material-icons mb-3">headset</span> <br />
@@ -71,7 +71,7 @@ export default function Music() {
               </a>
             </Link>
           </li>
-          <li className="col-2 d-none d-sm-block">
+          <li className="col-3 col-sm-2 d-none d-sm-block">
             <Link href="/rock">
               <a className={` ${getMenuItemActive("/rock")}`}>
                 <span className="material-icons mb-3">bar_chart</span> <br />
@@ -79,7 +79,7 @@ export default function Music() {
               </a>
             </Link>
           </li>
-          <li className="col-2 d-none d-sm-block">
+          <li className="col-3 col-sm-2 d-none d-sm-block">
             <Link href="/folk">
               <a className={` ${getMenuItemActive("/folk")}`}>
                 <span className="material-icons mb-3">bar_chart</span> <br />
@@ -97,7 +97,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
 
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
@@ -107,7 +107,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -116,7 +116,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -125,7 +125,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -134,7 +134,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -143,7 +143,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -152,7 +152,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -161,7 +161,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -170,7 +170,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -179,7 +179,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
@@ -188,7 +188,7 @@ export default function Music() {
               alt=""
             />
 
-            <p className="font-13 mt-3">Name song</p>
+            <p className="font-13 mt-2">Name song</p>
           </div>
         </div>
       </div>
@@ -205,6 +205,8 @@ export default function Music() {
             padding-top: 100px;
           }
           .menu-hight {
+              margin-left:50px;
+              margin-right:50px;
           }
 
           .card-body-music {
@@ -227,6 +229,7 @@ export default function Music() {
             .menu-hight {
               padding-top: 120px;
             }
+
           }
 
           @media (max-width: 500px) {
@@ -234,6 +237,7 @@ export default function Music() {
               width: 140px;
               height: 140px;
             }
+            
           }
         `}
       </style>
