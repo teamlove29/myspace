@@ -23,21 +23,9 @@ export default function Music() {
 
   return (
     <div>
-      <Cover
+      <Cover text={"MUSIC"} img={"https://source.unsplash.com/NYrVisodQ2M"} />
 
-        text={"MUSIC"}
-        img={"https://source.unsplash.com/NYrVisodQ2M"}
-      />
-
-      <div
-        className="container-fluid  justify-content-center"
-        style={{
-          position: "relative",
-          marginTop: "300px",
-          marginBottom: "250px",
-          color: "white",
-        }}
-      >
+      <div className="container-fluid menu-top  justify-content-center">
         <ul className="row justify-content-center menu-hight text-center font-12-Regular">
           <li className="col-3 col-sm-2">
             <Link href="/music">
@@ -201,12 +189,18 @@ export default function Music() {
           a {
             text-decoration: none;
           }
+          .menu-top {
+            position: relative;
+            margin-top: 250px;
+            margin-bottom: 250px;
+            color: white;
+          }
           .music-hight {
-            padding-top: 100px;
+            padding-top: 50px;
           }
           .menu-hight {
-              margin-left:50px;
-              margin-right:50px;
+            margin-left: 50px;
+            margin-right: 50px;
           }
 
           .card-body-music {
@@ -221,6 +215,9 @@ export default function Music() {
             .music-hight {
               padding-top: 50px;
             }
+            .menu-top {
+              margin-top: 300px;
+            }
           }
           @media (max-width: 575px) {
             .music-hight {
@@ -229,7 +226,6 @@ export default function Music() {
             .menu-hight {
               padding-top: 120px;
             }
-
           }
 
           @media (max-width: 500px) {
@@ -237,7 +233,6 @@ export default function Music() {
               width: 140px;
               height: 140px;
             }
-            
           }
         `}
       </style>
