@@ -15,22 +15,13 @@ export default function Event() {
         }
       />
 
-      <div
-        className="container  justify-content-center"
-        style={{
-          position: "relative",
-          marginTop: "550px",
-          marginBottom: "250px",
-          color: "white",
-        }}
-      >
+      <div className="container  justify-content-center">
         <p className="pb-5 h5">Events</p>
 
         <div className="row  col-md-auto  music-hight text-center mx-auto">
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4 ">
             <img
               className="rounded card-body-event"
-
               src="https://source.unsplash.com/hgO1wFPXl3I"
               alt=""
             />
@@ -41,7 +32,6 @@ export default function Event() {
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
               className="rounded card-body-event"
-             
               src="https://source.unsplash.com/9tZhyQskezA"
               alt=""
             />
@@ -51,7 +41,6 @@ export default function Event() {
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
               className="rounded card-body-event"
-
               src="https://source.unsplash.com/ZhQCZjr9fHo"
               alt=""
             />
@@ -61,7 +50,6 @@ export default function Event() {
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
               className="rounded card-body-event"
-              
               src="https://source.unsplash.com/bn-D2bCvpik"
               alt=""
             />
@@ -71,7 +59,6 @@ export default function Event() {
           <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
             <img
               className="rounded card-body-event"
-              
               src="https://source.unsplash.com/uD0W-swVGgE"
               alt=""
             />
@@ -90,12 +77,11 @@ export default function Event() {
         }
 
         @media (max-width: 575px) {
-            .card-body-event {
-          width: 145px;
-          height: 100px;
-
+          .card-body-event {
+            width: 145px;
+            height: 100px;
+          }
         }
-    }
       `}</style>
     </div>
   );

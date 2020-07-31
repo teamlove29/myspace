@@ -27,57 +27,6 @@ export default function MenuMusic({ children }) {
       <Cover text={"MUSIC"} img={"https://source.unsplash.com/NYrVisodQ2M"} />
 
       <div className="container-fluid menu-top  justify-content-center">
-        {/* <ul className="row  menu-hight text-center font-12-Regular">
-          <li className="col-3 col-sm-2">
-            <Link href="/music">
-              <a className={` ${getMenuItemActive("/music")}`}>
-                <span className="material-icons mb-3">bubble_chart</span> <br />
-                All song
-              </a>
-            </Link>
-          </li>
-          <li className="col-3 col-sm-2  ">
-            <Link href="/music/pop">
-              <a className={` ${getMenuItemActive("/music/pop")}`}>
-                <span className="material-icons mb-3">music_note</span> <br />
-                Pop
-              </a>
-            </Link>
-          </li>
-          <li className="col-3 col-sm-2  ">
-            <Link href="/music/jazz">
-              <a className={` ${getMenuItemActive("/music/jazz")}`}>
-                <span className="material-icons mb-3">album</span> <br />
-                Jazz
-              </a>
-            </Link>
-          </li>
-          <li className="col-3 col-sm-2  ">
-            <Link href="/music/hiphop">
-              <a className={` ${getMenuItemActive("/music/hiphop")}`}>
-                <span className="material-icons mb-3">headset</span> <br />
-                Hip Hop
-              </a>
-            </Link>
-          </li>
-          <li className="col-3 col-sm-2 d-none d-sm-block">
-            <Link href="/music/rock">
-              <a className={` ${getMenuItemActive("/music/rock")}`}>
-                <span className="material-icons mb-3">bar_chart</span> <br />
-                Rock
-              </a>
-            </Link>
-          </li>
-          <li className="col-3 col-sm-2 d-none d-sm-block">
-            <Link href="/music/folk">
-              <a className={` ${getMenuItemActive("/music/folk")}`}>
-                <span className="material-icons mb-3">bar_chart</span> <br />
-                Folk
-              </a>
-            </Link>
-          </li>
-        </ul> */}
-
         <div className="scrollmenu text-center  menu-hight ">
           <Link href="/music">
             <a
@@ -115,11 +64,12 @@ export default function MenuMusic({ children }) {
             </a>
           </Link>
           <Link href="/music/folk">
-            <a 
-                style={{
-                  paddingRight: '10px'
-                }}
-            className={` ${getMenuItemActive("/music/folk")}`}>
+            <a
+              style={{
+                paddingRight: "10px",
+              }}
+              className={` ${getMenuItemActive("/music/folk")}`}
+            >
               <span className="material-icons mb-3">bar_chart</span> <br />
               Folk
             </a>
@@ -175,11 +125,10 @@ export default function MenuMusic({ children }) {
             }
 
             @media (max-width: 1115px) {
-
               .scrollmenu a {
-              padding-right: 30px;
-              padding-left: 30px;
-            }
+                padding-right: 30px;
+                padding-left: 30px;
+              }
             }
 
             @media (max-width: 991px) {
@@ -190,9 +139,9 @@ export default function MenuMusic({ children }) {
                 margin-top: 300px;
               }
               .scrollmenu a {
-              padding-right: 40px;
-              padding-left: 40px;
-            }
+                padding-right: 40px;
+                padding-left: 40px;
+              }
             }
             @media (max-width: 575px) {
               .music-hight {
