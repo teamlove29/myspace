@@ -3,7 +3,7 @@ import  MenuMusic  from "../../component/menuMusic/menuMusic";
 export default function Pop() {
     return (
         <MenuMusic>
-                  <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
+                  <div className="col-6 col-md-4 col-lg-4 col-xl-auto mb-4  ">
         <img
           className="rounded card-body-music"
           src="https://static.billboard.com/files/media/Janis-Joplin-Pearl-greatest-album-covers-billboard-1000x1000-compressed.jpg"
