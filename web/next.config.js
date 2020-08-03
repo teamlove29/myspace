@@ -13,5 +13,5 @@ module.exports = withImages({
   distDir: "nextjs",
   webpack(config, options) {
     return config;
-  },
+  }
 });

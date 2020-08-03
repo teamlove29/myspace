@@ -160,7 +160,7 @@ export default function changpassword() {
               {passwordShown && (
                 <span
                   onClick={togglePasswordVisiblity}
-                  class="material-icons my-auto col-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
+                  className="material-icons my-auto col-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
                 >
                   visibility_off
                 </span>
@@ -169,7 +169,7 @@ export default function changpassword() {
               {passwordShown === false && (
                 <span
                   onClick={togglePasswordVisiblity}
-                  class="material-icons my-auto col-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
+                  className="material-icons my-auto col-auto col-lg-1 col-xl-1 pointer btn btn-secondary btn-sm"
                 >
                   visibility
                 </span>

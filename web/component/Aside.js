@@ -91,28 +91,28 @@ export default function Aside() {
         </li>
         {/* Nav Item - Utilities Collapse Menu */}
         <li className={`nav-item  ${getMenuItemActive("/music")}`}>
-          <Link href="/music" as="/">
+          <Link href="/music" >
             <a className="nav-link collapsed">
               <span>MUSIC</span>
             </a>
           </Link>
         </li>
         <li className={`nav-item  ${getMenuItemActive("/charts")}`}>
-          <Link href="/charts" as="/">
+          <Link href="/charts" >
             <a className="nav-link collapsed">
               <span>CHARTS</span>
             </a>
           </Link>
         </li>
         <li className={`nav-item  ${getMenuItemActive("/event")}`}>
-          <Link href="/event" as="/">
+          <Link href="/event">
             <a className="nav-link collapsed">
               <span>EVENT</span>
             </a>
           </Link>
         </li>
         <li className={`nav-item  ${getMenuItemActive("/features")}`}>
-          <Link href="/features" as="/">
+          <Link href="/features" >
             <a className="nav-link collapsed">
               <span>FEATURES</span>
             </a>

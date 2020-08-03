@@ -30,6 +30,7 @@ if(verifyMember === false){
           marginBottom: "150px",
         }}
       >
+        
         <MunuMember />
         {children}
       </div>

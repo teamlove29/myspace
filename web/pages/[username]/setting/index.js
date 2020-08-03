@@ -240,7 +240,6 @@ const Index = () => {
 
   return (
     <>
-
           <MenuSetting file={formik.values.cover}>
             <form onSubmit={formik.handleSubmit} >
               <div
