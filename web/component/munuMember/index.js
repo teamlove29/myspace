@@ -61,7 +61,8 @@ const Index = () => {
           <p className="text-muted d-none d-xl-block">
             Banana • Joined since 22 May 2020 | Last Login : 19/05/2020
           </p>
-          <ul style={{ width: "700px" }} id="list" className="font-Light ">
+          
+          <ul  id="list" className="font-Light scrollmenu ">
             <li className={`${getMenuItemActive("/[username]")}`}>
               <Link href="/[username]" as={`/${nameMember}`}>
                 <a>Overview</a>
@@ -143,6 +144,18 @@ const Index = () => {
 
       <style jsx>
         {`
+        .scrollmenu {
+              overflow: auto;
+              white-space: nowrap;
+            }
+
+            .scrollmenu a {
+              display: inline-block;
+              text-align: center;
+
+              padding-bottom: 10px;
+              text-decoration: none;
+            }
           @media screen and (max-width: 1200px) {
             .form-inline {
               display: block;

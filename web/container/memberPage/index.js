@@ -22,7 +22,7 @@ if(verifyMember === false){
   return (
     <>
     <CoverMember />
-    <div className="container-fluid ">
+    <div className="container ">
   
       <div
         style={{

@@ -50,6 +50,7 @@ const Index = () => {
             var fileNames = ext2 + cdate + "." + ext;
             blob.name = fileNames;
             setImageBlob(blob);
+  
             setImageCrop(window.URL.createObjectURL(blob));
             setEditing(false);
           });
