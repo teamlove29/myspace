@@ -11,8 +11,8 @@ export default function index({ children }) {
 
   return (
     <>
-    {/* <CoverFriend /> */}
-    {/* <div className="container">
+    <CoverFriend />
+    <div className="container">
   
       <div
         style={{
@@ -23,8 +23,8 @@ export default function index({ children }) {
         <MunuFriend />
         {children}
       </div>
-    </div> */}
-    <h1>{dataFriend.mem_display_name}</h1>
+    </div>
+
     </>
   );
 }

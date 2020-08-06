@@ -4,7 +4,9 @@ import Link from "next/link";
 import MemberPage from "../../../container/memberPage";
 import { ModalContext } from "../../../config/context/ModalProvider";
 import LoadPage from "../../../container/loadPage";
+import VerifyMember from '../../../container/verifyMember'
 export default function Index(props) {
+ 
   const router = useRouter();
   const { username } = router.query;
   const { dataMember } = useContext(ModalContext);
@@ -14,6 +16,7 @@ export default function Index(props) {
   }
 
   return (
+    <>
     <MemberPage>
       <div className="row container col-md-auto text-light mt-4">
         <h6 className="font-Medium mt-3">My Playlist</h6>{" "}
@@ -147,5 +150,14 @@ export default function Index(props) {
         </div>
       </div>
     </MemberPage>
+    </>
   );
 }
+
+
+
+Index.getInitialProps = async ({ query, ctx }) => {
+  const { username } = query;
+
+  return { username:username };
+};

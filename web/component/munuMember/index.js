@@ -128,7 +128,7 @@ const Index = () => {
                   <p className="mt-4 h6">About me</p>
                   <p className="text-muted">{dataMember.mem_about_you}</p>
                 </div>
-                <div className="col-auto col-md-4  col-lg-4 col-xl-6">
+                <div className="col-auto col-md-3  col-lg-3 col-xl-5">
                   <p className="mt-5 h6">Born</p>
                   <p className="text-muted">23 June 1992 (age 28)</p>
                   <p className="mt-5 h6">Born in</p>
@@ -136,7 +136,11 @@ const Index = () => {
                     Lampang, {dataMember.mem_country}
                   </p>
                 </div>
+                {/* <div className="col-auto">
+                <button>Follow</button>
+              </div> */}
               </div>
+           
             </>
           ) : null}
         </div>

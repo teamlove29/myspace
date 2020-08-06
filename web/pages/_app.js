@@ -47,7 +47,6 @@ const MyApp = ({ Component, pageProps, stars }) => {
       Router.events.on("routeChangeError", () => NProgress.done());
     };
   }, []);
-
   return (
     <ModalProvider>
       <Header />
@@ -86,3 +85,5 @@ const MyApp = ({ Component, pageProps, stars }) => {
 };
 
 export default MyApp;
+
+ 

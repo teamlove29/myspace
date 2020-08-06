@@ -15,7 +15,10 @@ export default () => {
 
   return (
       <>
-      <h1>{id}</h1>
+    
+
+     <h1>{id}</h1>
+
       </>
 //     <MemberPage>
 //       <div className="row container-fluid text-light mt-5">

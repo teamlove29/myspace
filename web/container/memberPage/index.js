@@ -15,10 +15,10 @@ if(dataMember === undefined){
   return <LoadPage />
 }
 
-if(verifyMember === false){
-  setActiveMenu('')
-  return <NotFound /> 
-}
+// if(verifyMember === false){
+//   setActiveMenu('')
+//   return <NotFound /> 
+// }
 
   return (
     <>

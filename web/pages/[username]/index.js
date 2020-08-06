@@ -10,31 +10,39 @@ export default function Index({ dataFriends }) {
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
-
+  const [data, setData] = useState(null);
   const {
     nameMember,
     dataMember,
+    setDataMember,
     setDataFriend,
     dataFriend,
     header,
   } = useContext(ModalContext);
   const verifyMember = username != nameMember ? false : true;
-
   useEffect(() => {
     if (dataFriends) {
-      setDataFriend(dataFriends);
+      if (dataFriends[0].mem_display_name != nameMember) {
+        setDataFriend(dataFriends[0]);
+        setData(dataFriends[0]);
+      } else {
+        setDataFriend(undefined);
+      }
+    } else {
+      setDataFriend(undefined);
     }
-  }, []);
+  }, [username]);
 
-  console.log(verifyMember === false && dataFriends === undefined);
+  // if (
+  //   dataFriends === undefined ||
+  //   dataMember === undefined ||
+  //   nameMember === undefined
+  // )
+  //   return <LoadPage />;
+  if (!dataFriends) return <NotFound />;
+  // if (verifyMember === false && dataFriends !== undefined) return <OverviewFriend />;
 
-  if (dataFriends === undefined || dataMember === undefined)
-    return <LoadPage />;
-  if (verifyMember === false && dataFriends === undefined) return <NotFound />;
-  if (verifyMember === false && dataFriends !== undefined)
-    return <OverviewFriend />;
-
-  return <>{verifyMember && <Overview editor={statusEditor} />}</>;
+  return <>{<Overview data={data} editor={statusEditor} />}</>;
 }
 
 Index.getInitialProps = async ({ query, ctx }) => {
@@ -45,5 +53,5 @@ Index.getInitialProps = async ({ query, ctx }) => {
     return err;
   });
 
-  return { dataFriends: friend.data[0] };
+  return { dataFriends: friend.data };
 };

@@ -3,9 +3,14 @@ import Link from "next/link";
 import AddButton from "../../component/button/addbutton";
 import MemberPage from "./index";
 import { ModalContext } from "../../config/context/ModalProvider";
-export default function Overview() {
-  const { dataMember, dataFriend } = useContext(ModalContext);
+export default function Overview(props) {
+  const { dataMember, setDataMember, dataFriend } = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
+  let lookadd = true;
+  if (dataFriend) {
+    // setDataMember(props.data)
+    lookadd = false;
+  }
   return (
     <MemberPage>
       <hr />
@@ -14,22 +19,24 @@ export default function Overview() {
       {typeMember === 1 && (
         <>
           <div className="row container-fluid text-light">
-            <h6 className="font-Medium ">My Playlist</h6>{" "}
-            <p className="ml-auto text-muted ">
-              <Link
-                href="/[username]/playlist/addplaylist"
-                as={`/${dataMember.mem_display_name}/playlist/addplaylist`}
-              >
-                <a className="mr-3 text-muted"> + Add playlist</a>
-              </Link>
-              |
-              <Link
-                href="/[username]/playlist"
-                as={`/${dataMember.mem_display_name}/playlist`}
-              >
-                <a className="ml-3 text-muted"> View all playlist</a>
-              </Link>
-            </p>
+            <h6 className="font-Medium mb-4">My Playlist</h6>{" "}
+            {lookadd && (
+              <p className="ml-auto text-muted ">
+                <Link
+                  href="/[username]/playlist/addplaylist"
+                  as={`/${dataMember.mem_display_name}/playlist/addplaylist`}
+                >
+                  <a className="mr-3 text-muted"> + Add playlist</a>
+                </Link>
+                |
+                <Link
+                  href="/[username]/playlist"
+                  as={`/${dataMember.mem_display_name}/playlist`}
+                >
+                  <a className="ml-3 text-muted"> View all playlist</a>
+                </Link>
+              </p>
+            )}
           </div>
           {/* have data  */}
           <div className="row col-md-auto ">
