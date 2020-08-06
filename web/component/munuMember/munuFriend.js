@@ -2,6 +2,7 @@ import React, { useContext,useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
+import LoadPage from "../../container/loadPage";
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
@@ -27,6 +28,11 @@ const Index = () => {
       return "font-Medium menuActive";
     }
   };
+
+
+  if(dataFriend === undefined){
+    return <LoadPage /> 
+  }
 
   return (
     <>

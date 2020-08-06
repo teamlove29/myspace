@@ -20,20 +20,20 @@ export default function Overview() {
                 href="/[username]/playlist/addplaylist"
                 as={`/${dataMember.mem_display_name}/playlist/addplaylist`}
               >
-                <a className="mr-3"> + Add playlist</a>
+                <a className="mr-3 text-muted"> + Add playlist</a>
               </Link>
               |
               <Link
                 href="/[username]/playlist"
                 as={`/${dataMember.mem_display_name}/playlist`}
               >
-                <a className="ml-3"> View all playlist</a>
+                <a className="ml-3 text-muted"> View all playlist</a>
               </Link>
             </p>
           </div>
           {/* have data  */}
           <div className="row col-md-auto ">
-            <div className="col-auto col-md-3 col-lg-3 col-xl-auto">
+            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
               <div
                 style={{
                   backgroundImage:
@@ -53,7 +53,7 @@ export default function Overview() {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-auto">
+            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
               <div
                 style={{
                   backgroundImage:
@@ -73,7 +73,7 @@ export default function Overview() {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-auto">
+            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
               <div
                 style={{
                   backgroundImage:
@@ -93,7 +93,7 @@ export default function Overview() {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-auto">
+            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
               <div
                 style={{
                   backgroundImage:
@@ -113,7 +113,7 @@ export default function Overview() {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-auto">
+            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
               <div
                 style={{
                   backgroundImage:
@@ -133,7 +133,7 @@ export default function Overview() {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-auto">
+            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
               <div
                 style={{
                   backgroundImage:
@@ -189,7 +189,7 @@ export default function Overview() {
         <>
           {/* My Album */}
           <div className="row container-fluid text-light">
-            <h6 className="font-Medium">My Playlist</h6>{" "}
+            <h6 className="font-Medium ">My Playlist</h6>{" "}
             <p className="ml-auto text-muted">+ Add albums</p>
           </div>
           <div className="text-center">
@@ -258,7 +258,7 @@ export default function Overview() {
             <hr className="col-12 d-md-none " />
             <div className="col-12 col-md-5 ">
               <h6 className="font-Regular mb-4">Upcoming Events</h6>
-              <small className="text-muted /">
+              <small className="text-muted ">
                 We don’t have any upcoming events for this artist right now.
               </small>
               <p className="mt-3">+ Add event | View all events </p>

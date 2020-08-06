@@ -6,7 +6,7 @@ import NotFound from "../../container/notFound";
 import LoadPage from "../../container/loadPage";
 import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
-export default function Index({ stars }) {
+export default function Index({ dataFriends }) {
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
@@ -19,41 +19,31 @@ export default function Index({ stars }) {
     header,
   } = useContext(ModalContext);
   const verifyMember = username != nameMember ? false : true;
+
   useEffect(() => {
-    Axios.post(
-      process.env.API_URL_CHECKDISPLAY,
-      {
-        display_name: username,
-      }
-      // {
-      //   headers: {
-      //     authorization:
-      //     header
-      //   },
-      // }
-    )
-      .then((res) => {
-        if (res.data[0].mem_display_name != nameMember)
-          setDataFriend(res.data[0]);
-        else setDataFriend(undefined);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [username]);
-
-  const showPage = () => {
-
-      if (verifyMember === false && dataFriend === undefined) {
-        if (nameMember === undefined || dataMember === undefined)      return <LoadPage />;
-        return <NotFound />;
+    if (dataFriends) {
+      setDataFriend(dataFriends);
     }
-    if (dataFriend != undefined) {
-      // return <OverviewFriend />;
-    } else {
-      return <>{verifyMember && <Overview editor={statusEditor} />}</>;
-    }
-  };
-  // ถ้า nameMember != ชื่อที่กลับมาให้ setStatusEditor(true) คือการเปิดสถานะการแก้ไข
-  return <>{showPage()}</>;
+  }, []);
+
+  console.log(verifyMember === false && dataFriends === undefined);
+
+  if (dataFriends === undefined || dataMember === undefined)
+    return <LoadPage />;
+  if (verifyMember === false && dataFriends === undefined) return <NotFound />;
+  if (verifyMember === false && dataFriends !== undefined)
+    return <OverviewFriend />;
+
+  return <>{verifyMember && <Overview editor={statusEditor} />}</>;
 }
+
+Index.getInitialProps = async ({ query, ctx }) => {
+  const { username } = query;
+  const friend = await Axios.post(process.env.API_URL_CHECKDISPLAY, {
+    display_name: username,
+  }).catch((err) => {
+    return err;
+  });
+
+  return { dataFriends: friend.data[0] };
+};

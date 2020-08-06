@@ -162,10 +162,10 @@ export default function AddPlayList() {
 
         {/* begin Private */}
         <div className="form-group row mt-4">
-          <label className="col-xl-2 col-lg-2 col-form-label text-right text-light">
+          <label className="col-xl-2 col-lg-2 col-form-label text-right text-light ">
             Private
           </label>
-          <div className="col-lg-6 col-xl-6">
+          <div className="col-lg-6 col-xl-6 mt-1">
             <label className="switch">
               <input
                 type="checkbox"
