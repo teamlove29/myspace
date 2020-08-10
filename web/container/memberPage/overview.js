@@ -177,7 +177,342 @@ export default function Overview(props) {
           <div className="row container text-light">
             <h6 className="font-Medium">Loved Tracks</h6>
           </div>
-          <div className="text-center">
+          <div className="row text-light mt-5">
+            {/* begin Upcoming Events */}
+
+            <>
+              <hr className="col-12 d-md-none " />
+              <div className="col-12 col-md-6 col-lg-6 container ">
+                <div className="row ">
+                  {/* Most Popular This Week */}
+                  <div className="col-12 ">
+                    <ol className="text-light">
+                      <li>
+                        <div className="row ">
+                          <div className="col-1 my-auto">
+                            <span className="num">1.</span>{" "}
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto ">
+                            <span className="material-icons text-danger">
+                              favorite
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                      <li>
+                        <div className="row">
+                          <div className="col-1 my-auto">
+                            <span className="num">2.</span>{" "}
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                      <li>
+                        <div className="row">
+                          <div className="col-1 my-auto">
+                            <span className="num">3.</span>{" "}
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                      <li>
+                        <div className="row">
+                          <div className="col-1 my-auto">
+                            <span className="num">4.</span>{" "}
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                      <li>
+                        <div className="row">
+                          <div className="col-1 my-auto">
+                            <span className="num">5.</span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto font-13">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    </ol>
+                  </div>
+                  {/* Most Recommended */}
+                </div>
+              </div>
+            </>
+
+            {/* end Upcoming Events */}
+
+            <>
+              <hr className="col-12 d-md-none " />
+              {/* begin You may also like */}
+              <div className="col-12 col-md-6 col-lg-6 container ">
+                <div className="row ">
+                  {/* Most Popular This Week */}
+                  <div className="col-12 ">
+                    <ol className="text-light">
+                      <li>
+                        <div className="row ">
+                          <div className="col-1 my-auto">
+                            <span className="num">1.</span>{" "}
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons pointer">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons ">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                      <li>
+                        <div className="row">
+                          <div className="col-1 my-auto">
+                            <span className="num">2.</span>{" "}
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                      <li>
+                        <div className="row">
+                          <div className="col-1 my-auto">
+                            <span className="num">3.</span>{" "}
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                      <li>
+                        <div className="row">
+                          <div className="col-1 my-auto">
+                            <span className="num">4.</span>{" "}
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                      <li>
+                        <div className="row">
+                          <div className="col-1 my-auto">
+                            <span className="num">5.</span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <span className="material-icons icons-play pointer">
+                              play_circle_filled
+                            </span>
+                          </div>
+                          <div className="col-2 my-auto">
+                            <img
+                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col-5 my-auto font-13">
+                            <span className="text-light ">Novo Amor</span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">
+                              favorite_border
+                            </span>
+                          </div>
+                          <div className="col-1 my-auto">
+                            <span className="material-icons">more_vert</span>
+                          </div>
+                        </div>
+                      </li>
+                      <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    </ol>
+                  </div>
+                  {/* Most Recommended */}
+                </div>
+              </div>
+            </>
+          </div>
+
+          {/* <div className="text-center">
             <AddButton />
             <small className="text-light d-block mt-3">
               Seems a little quiet over here
@@ -185,7 +520,7 @@ export default function Overview(props) {
             <small className="text-primary">
               Upload a track to share it with your followers.
             </small>
-          </div>
+          </div> */}
           {/* end Loved Tracks */}
           <hr />
         </>
@@ -247,16 +582,51 @@ export default function Overview(props) {
       {/* begin Shoutbox */}
       <div className="row text-light">
         <div className="col-12 col-md-6">
-          <div className="row container ">
+          <div className="row ">
             <h6 className="font-Medium col-12 col-md-6">Shoutbox</h6>{" "}
-            <p className="ml-auto text-muted col-12 col-md-6">
+            <p className="text-right text-muted col-12 col-md-6">
               Sorted by: Recently Popular
             </p>
-            <p className="col-12 p-5 text-center ">
+            {/* <p className="col-12 p-5 text-center ">
               {" "}
               You don't have any message.
-            </p>
+        
+            </p> */}
+            <div className="col-auto">
+              <img
+                className="rounded-circle"
+                src="https://source.unsplash.com/_7LbC5J-jw4/75x75"
+                alt=""
+              />
+            </div>
+            <div className="col-5">
+              <p>wingsicheng</p>
+              <span className="font-light">eight SOTY!!</span> <br />
+              <p className="text-muted d-inline mr-2">
+                <span 
+                style={{
+                  fontSize:'13px'
+                }}
+                className="material-icons text-warning  ">reply</span>
+                Reply
+              </p>
+              <p className="text-muted d-inline">
+                <span
+                 style={{
+                  fontSize:'13px'
+                }}
+                className="material-icons mr-2">thumb_up</span>
+                Like
+              </p>
+            </div>
+            <div className="col-auto ml-auto ">
+              <span>6 May 5:17pm</span>
+              <span className="material-icons">more_vert</span>
+            </div>
           </div>
+          <hr
+            style={{ marginTop: "20px", marginBottom: "20px", color: "white" }}
+          />
         </div>
 
         {/* begin Upcoming Events */}
@@ -477,8 +847,16 @@ export default function Overview(props) {
           margin-top:50px;
         background-color:#282828}}
       }
+      .icons-play{
 
+font-size: 40px;
+background-image:linear-gradient(to left, yellow,#f3145e);
+-webkit-background-clip:text;
+-webkit-text-fill-color: transparent;
+       
+}
       `}</style>
     </MemberPage>
+  
   );
 }

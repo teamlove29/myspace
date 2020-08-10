@@ -10,7 +10,7 @@ export default function Index({ dataFriends }) {
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
-  const [data, setData] = useState(null);
+  const [editor, setEditor] = useState(null);
   const {
     nameMember,
     dataMember,
@@ -20,18 +20,19 @@ export default function Index({ dataFriends }) {
     header,
   } = useContext(ModalContext);
   const verifyMember = username != nameMember ? false : true;
+
   useEffect(() => {
-    if (dataFriends) {
+    if (dataFriends[0] && nameMember) {
       if (dataFriends[0].mem_display_name != nameMember) {
         setDataFriend(dataFriends[0]);
-        setData(dataFriends[0]);
+        setEditor(false);
       } else {
         setDataFriend(undefined);
       }
     } else {
       setDataFriend(undefined);
     }
-  }, [username]);
+  }, [username,nameMember]);
 
   // if (
   //   dataFriends === undefined ||
@@ -39,13 +40,15 @@ export default function Index({ dataFriends }) {
   //   nameMember === undefined
   // )
   //   return <LoadPage />;
-  if (!dataFriends) return <NotFound />;
+  if (!dataFriends[0]) return <NotFound />;
   // if (verifyMember === false && dataFriends !== undefined) return <OverviewFriend />;
 
-  return <>{<Overview data={data} editor={statusEditor} />}</>;
+  return <>{<Overview  editor={statusEditor} />}</>;
 }
 
-Index.getInitialProps = async ({ query, ctx }) => {
+
+
+export async function getServerSideProps({ query }) {
   const { username } = query;
   const friend = await Axios.post(process.env.API_URL_CHECKDISPLAY, {
     display_name: username,
@@ -53,5 +56,7 @@ Index.getInitialProps = async ({ query, ctx }) => {
     return err;
   });
 
-  return { dataFriends: friend.data };
-};
+  return { props:{
+    dataFriends: friend.data || {}
+  } };
+}
