@@ -19,9 +19,9 @@ export default function Index(props) {
     lock = false;
   }
 
-  const test = () => {
+  const handleplaylist = (value) => {
     const url = "/[username]/playlist/[id]";
-    const as = `/${username}/playlist/1`;
+    const as = `/${username}/playlist/${value}`;
     router.push(url, as);
     // router.replace(url, as);
   };
@@ -29,8 +29,9 @@ export default function Index(props) {
   return (
     <>
       <MemberPage>
-        <div className="row container col-md-auto text-light mt-4">
-          <h6 className="font-Medium mt-3">
+        <hr />
+        <div className="row container col-md-auto text-light">
+          <h6 className="font-Medium mt-4">
             {lock === true ? "My Playlist" : "Playlist"}
           </h6>{" "}
           <Link
@@ -43,12 +44,12 @@ export default function Index(props) {
             </a>
           </Link>
         </div>
-        <div className="row  col-md-auto mx-auto mt-4">
+        <div className="row mx-auto mt-4">
           <div
             onClick={() => {
-              test();
+              handleplaylist("1");
             }}
-            className="col-auto col-md-3 col-lg-3 col-xl-2 pointer"
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
           >
             <div
               style={{
@@ -69,7 +70,12 @@ export default function Index(props) {
               21 Apr 2017 · 0 tracks
             </span>
           </div>
-          <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+          <div
+            onClick={() => {
+              handleplaylist("2");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
             <div
               style={{
                 backgroundImage:
@@ -89,7 +95,12 @@ export default function Index(props) {
               21 Apr 2017 · 0 tracks
             </span>
           </div>
-          <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+          <div
+            onClick={() => {
+              handleplaylist("3");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
             <div
               style={{
                 backgroundImage:
@@ -109,7 +120,12 @@ export default function Index(props) {
               21 Apr 2017 · 0 tracks
             </span>
           </div>
-          <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+          <div
+            onClick={() => {
+              handleplaylist("4");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
             <div
               style={{
                 backgroundImage:
@@ -129,7 +145,12 @@ export default function Index(props) {
               21 Apr 2017 · 0 tracks
             </span>
           </div>
-          <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+          <div
+            onClick={() => {
+              handleplaylist("5");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
             <div
               style={{
                 backgroundImage:
@@ -149,7 +170,12 @@ export default function Index(props) {
               21 Apr 2017 · 0 tracks
             </span>
           </div>
-          <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+          <div
+            onClick={() => {
+              handleplaylist("6");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
             <div
               style={{
                 backgroundImage:
@@ -169,7 +195,193 @@ export default function Index(props) {
               21 Apr 2017 · 0 tracks
             </span>
           </div>
+          <div
+            onClick={() => {
+              handleplaylist("6");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTm7NnahzAg8oy_nFmNxAwK86cYbZd6nx65LA&usqp=CAU')",
+                width: "150px",
+                height: "150px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <span className="small d-block text-light mb-2 mt-3">
+              Listen on the road
+            </span>
+            <span className="small d-block text-muted">0 listeners</span>
+            <span className="small d-block text-muted">
+              21 Apr 2017 · 0 tracks
+            </span>
+          </div>
+          <div
+            onClick={() => {
+              handleplaylist("6");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "url('https://upload.wikimedia.org/wikipedia/en/thumb/b/b7/NirvanaNevermindalbumcover.jpg/220px-NirvanaNevermindalbumcover.jpg')",
+                width: "150px",
+                height: "150px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <span className="small d-block text-light mb-2 mt-3">
+              Listen on the road
+            </span>
+            <span className="small d-block text-muted">0 listeners</span>
+            <span className="small d-block text-muted">
+              21 Apr 2017 · 0 tracks
+            </span>
+          </div>
+          <div
+            onClick={() => {
+              handleplaylist("6");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "url('https://www.digitalmusicnews.com/wp-content/uploads/2020/04/DaBaby-Blame-It-On-Baby.jpg')",
+                width: "150px",
+                height: "150px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <span className="small d-block text-light mb-2 mt-3">
+              Listen on the road
+            </span>
+            <span className="small d-block text-muted">0 listeners</span>
+            <span className="small d-block text-muted">
+              21 Apr 2017 · 0 tracks
+            </span>
+          </div>
+          <div
+            onClick={() => {
+              handleplaylist("6");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "url('https://i.pinimg.com/originals/a9/aa/b8/a9aab8861c6532452fd4bba7da54a146.jpg')",
+                width: "150px",
+                height: "150px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <span className="small d-block text-light mb-2 mt-3">
+              Listen on the road
+            </span>
+            <span className="small d-block text-muted">0 listeners</span>
+            <span className="small d-block text-muted">
+              21 Apr 2017 · 0 tracks
+            </span>
+          </div>
+          <div
+            onClick={() => {
+              handleplaylist("6");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMl-zNJ3xeQ-mKo7sZCj_5CVCeV-6CqSZndQ&usqp=CAU')",
+                width: "150px",
+                height: "150px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <span className="small d-block text-light mb-2 mt-3">
+              Listen on the road
+            </span>
+            <span className="small d-block text-muted">0 listeners</span>
+            <span className="small d-block text-muted">
+              21 Apr 2017 · 0 tracks
+            </span>
+          </div>
+          <div
+            onClick={() => {
+              handleplaylist("6");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "url('https://images.squarespace-cdn.com/content/v1/5a334a45b0786957c06f1f96/1556223665175-RBOCB4JT0JCCGV65Z3KB/ke17ZwdGBToddI8pDm48kKAEVZpbRp_ukZqD5g30ELR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbqRTfuX6bJoEPm7yji2pfLMggaQkYGEHgQBdMvBmCAh3Y4jJwFK-eMdjJm3DePSrw/frankart-01.jpg?format=2500w')",
+                width: "150px",
+                height: "150px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <span className="small d-block text-light mb-2 mt-3">
+              Listen on the road
+            </span>
+            <span className="small d-block text-muted">0 listeners</span>
+            <span className="small d-block text-muted">
+              21 Apr 2017 · 0 tracks
+            </span>
+          </div>
+          <div
+            onClick={() => {
+              handleplaylist("6");
+            }}
+            className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer mb-4"
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "url('https://i.redd.it/g67kq6pxuq431.jpg')",
+                width: "150px",
+                height: "150px",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <span className="small d-block text-light mb-2 mt-3">
+              Listen on the road
+            </span>
+            <span className="small d-block text-muted">0 listeners</span>
+            <span className="small d-block text-muted">
+              21 Apr 2017 · 0 tracks
+            </span>
+          </div>
+
         </div>
+
+        <style jsx>
+          {`
+            hr {
+              margin-bottom: 25px;
+              margin-top: 50px;
+              background-color: #282828;
+            }
+          `}
+        </style>
       </MemberPage>
     </>
   );

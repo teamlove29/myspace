@@ -10,7 +10,7 @@ export default function AddPlayList() {
   const [editor, setEditor] = useState();
   const [editing, setEditing] = useState(false);
   const [imageURL, setImageURL] = useState("");
-  const [imageCrop, setImageCrop] = useState();
+  const [imageCrop, setImageCrop] = useState("");
   const [position, setposition] = useState({ x: 0.5, y: 0.5 });
   const [scale, setScale] = useState(1);
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function AddPlayList() {
       <h5 className="mt-5 text-light font-Regular">Playlist cover</h5>
       <div className="row mt-4">
         {/* image */}
-        <div className="col-12 col-sm-12 col-md-3 col-xl-2">
+        <div className="col-12 col-sm-12 col-md-3 col-xl-2 if-center ">
           <div>
             {imageURL != "" && editing ? (
               <AvatarEditor
@@ -101,51 +101,63 @@ export default function AddPlayList() {
                 border={0}
                 scale={scale}
                 rotate={0}
-                className="editor-canvas border-primary"
+                className="editor-canvas border-primary "
               />
             ) : null}
           </div>
 
           {editing === false && (
-            <img 
-            className=" bg-dark border-primary"
-            width={150} height={150} src={imageCrop} />
+
+
+                 <img
+              style={{
+                backgroundColor: "#363636",
+                
+              }}
+              width={150}
+              height={150}
+              src={!imageCrop ? 'https://htmlcolors.com/color-image/363636.png' : imageCrop}
+            />
           )}
         </div>
         {/* Choose file */}
-        <div className="col-12  col-sm-12  col-md-8 col-xl-7 ">
+
+        <div className="col-12  col-sm-12  col-md-8 col-xl-7">
+          <div className="mt-4  d-md-none"></div>
           <p className="text-muted">
             Uploaded images will be resized and square cropped from the top. In
             most places, your image will be displayed in a circle, like the
             example.
           </p>
-          <label htmlFor="coverplaylist">
-            Choose file
-            <input
-              accept="image/*"
-              type="file"
-              id="coverplaylist"
-              name="file"
-              onChange={(event) => {
-                formik.setFieldValue(
-                  "coverplaylist",
-                  event.currentTarget.files[0]
-                );
-                handleNewImage(event);
-              }}
-            />
-          </label>
+          <div className=" if-center">
+            <label htmlFor="coverplaylist">
+              Choose file
+              <input
+                accept="image/*"
+                type="file"
+                id="coverplaylist"
+                name="file"
+                onChange={(event) => {
+                  formik.setFieldValue(
+                    "coverplaylist",
+                    event.currentTarget.files[0]
+                  );
+                  handleNewImage(event);
+                }}
+              />
+            </label>
+          </div>
         </div>
       </div>
 
       <h5 className="mt-5 text-light font-Regular">Detalis</h5>
       {/* begin Title */}
       <form onSubmit={formik.handleSubmit}>
-        <div className="form-group row mt-5">
-          <label className="col-xl-2 col-lg-2 col-form-label text-right text-light">
+        <div className="form-group row mt-5 ">
+          <label className="col-2 col-md-2 col-xl-2 col-lg-2 col-form-label text-right text-light">
             Title
           </label>
-          <div className="col-lg-6 col-xl-6">
+          <div className="col-10 col-md-6 col-lg-6 col-xl-6">
             <input
               className={`form-control " ${getInputClasses("title")}`}
               type="text"
@@ -162,10 +174,10 @@ export default function AddPlayList() {
 
         {/* begin Private */}
         <div className="form-group row mt-4">
-          <label className="col-xl-2 col-lg-2 col-form-label text-right text-light ">
+          <label className="col-2 col-md-2 col-xl-2 col-lg-2 col-form-label text-right text-light ">
             Private
           </label>
-          <div className="col-lg-6 col-xl-6 mt-1">
+          <div className="col-10 col-md-6 col-lg-6 col-xl-6 mt-1">
             <label className="switch">
               <input
                 type="checkbox"
@@ -178,7 +190,7 @@ export default function AddPlayList() {
           </div>
         </div>
         {/* End Private */}
-        <div className="d-flex offset-md-2">
+        <div className=" offset-md-2  if-center ">
           <Button className=" btn" type="submit" disabled={formik.isSubmitting}>
             Create Playlist
           </Button>
@@ -271,6 +283,12 @@ export default function AddPlayList() {
 
         .slider.round:before {
           border-radius: 50%;
+        }
+
+        @media screen and (max-width: 600px) {
+          .if-center {
+            text-align: center !important;
+          }
         }
       `}</style>
     </MemberPage>

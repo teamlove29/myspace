@@ -284,7 +284,7 @@ const Index = () => {
                         rotate={0}
                         className="editor-canvas "
                       />
-                      <div class="form-row mt-3">
+                      <div className="form-row mt-3">
                         <span>Zoom : </span>
                         <input
                           name="scale"

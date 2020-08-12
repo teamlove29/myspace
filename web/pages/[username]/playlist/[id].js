@@ -72,10 +72,10 @@ export default ({ posts, test }) => {
             </p>
             <p className="small  text-muted mb-2 ">0 listeners</p>
             <p className="small  text-muted">21 Apr 2017 · 0 tracks</p>
-            <div className="d-flex">
+
               <Button
-                style={{ marginTop: "10px", letterSpacing: "4px" }}
-                className=" btn pl-5 pr-5 font-regular mr-3"
+                style={{ width:"175px",marginTop: "10px", letterSpacing: "4px" }}
+                className=" btn font-regular mr-3"
                 type="submit"
               >
                 Play all
@@ -93,17 +93,19 @@ export default ({ posts, test }) => {
               >
                 Shuffle
               </Button>
-            </div>
+           
           </div>
         </div>
         {/* begin Shoutbox */}
-        <div className="row text-light mt-5">
+
+        <div className="row text-light ">
           {/* begin Upcoming Events */}
 
           <>
             <hr className="col-12 d-md-none " />
             <div className="col-12 col-md-6 col-lg-6 container ">
-              <div className="row mt-5">
+            <div className="mt-5 d-none d-md-block"></div>
+              <div className="row">
                 {/* Most Popular This Week */}
                 <div className="col-12 ">
                   <ol className="text-light">
@@ -267,10 +269,11 @@ export default ({ posts, test }) => {
           {/* end Upcoming Events */}
 
           <>
-            <hr className="col-12 d-md-none " />
+   
             {/* begin You may also like */}
             <div className="col-12 col-md-6 col-lg-6 container ">
-              <div className="row mt-5">
+              <div className="mt-5 d-none d-md-block"></div>
+              <div className="row ">
                 {/* Most Popular This Week */}
                 <div className="col-12 ">
                   <ol className="text-light">
@@ -431,7 +434,9 @@ export default ({ posts, test }) => {
             </div>
           </>
         </div>
+     
       </div>
+      
       <style jsx>{`
 
     li {

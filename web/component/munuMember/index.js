@@ -1,11 +1,11 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
-  const hideAbout = router.pathname != "/[username]";
+  const hideAbout = router.pathname === "/[username]" || router.pathname ===  "/[username]/playlist";
   const {
     nameMember,
     dataMember,
@@ -15,13 +15,13 @@ const Index = () => {
   } = useContext(ModalContext);
 
   useEffect(() => {
-     setActiveMenu("/[username]");
-    // if(dataFriend === undefined){    
+    setActiveMenu("/[username]");
+    // if(dataFriend === undefined){
     //   setActiveMenu("/[username]");
     // }else{
     //   setActiveMenu("");
     // }
-  }, [])
+  }, []);
   const typeMember = !dataMember ? null : dataMember.mem_type;
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
@@ -67,8 +67,8 @@ const Index = () => {
           <p className="text-muted d-none d-xl-block">
             Banana • Joined since 22 May 2020 | Last Login : 19/05/2020
           </p>
-          
-          <ul  id="list" className="font-Light scrollmenu ">
+
+          <ul id="list" className="font-Light scrollmenu ">
             <li className={`${getMenuItemActive("/[username]")}`}>
               <Link href="/[username]" as={`/${username}`}>
                 <a>Overview</a>
@@ -80,10 +80,7 @@ const Index = () => {
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/following")}`}>
-              <Link
-                href="/[username]/following"
-                as={`/${username}/following`}
-              >
+              <Link href="/[username]/following" as={`/${username}/following`}>
                 <a>Following</a>
               </Link>
             </li>
@@ -127,14 +124,14 @@ const Index = () => {
               </>
             )}
           </ul>
-          {hideAbout != true ? (
+          {hideAbout === true ? (
             <>
               <div className="row ">
                 <div className="col-auto col-md-8  col-lg-8 col-xl-6 ">
                   <p className="mt-4 h6">About me</p>
                   <p className="text-muted">{dataMember.mem_about_you}</p>
                 </div>
-                <div className="col-auto col-md-3  col-lg-3 col-xl-5">
+                <div className="col-auto col-md-3  col-lg-3 col-xl-4">
                   <p className="mt-5 h6">Born</p>
                   <p className="text-muted">23 June 1992 (age 28)</p>
                   <p className="mt-5 h6">Born in</p>
@@ -142,11 +139,17 @@ const Index = () => {
                     Lampang, {dataMember.mem_country}
                   </p>
                 </div>
-                {/* <div className="col-auto">
-                <button>Follow</button>
-              </div> */}
+                {nameMember != username ? 
+                <div className="col-xl-2 text-center">
+                  <button
+                    style={{ borderRadius: "100px", fontSize: "13px" }}
+                    className="btn btn-outline-light pr-4 pl-4 p-2 "
+                  >
+                    Following
+                  </button>
+                </div>
+                : null}
               </div>
-           
             </>
           ) : null}
         </div>
@@ -154,18 +157,18 @@ const Index = () => {
 
       <style jsx>
         {`
-        .scrollmenu {
-              overflow: auto;
-              white-space: nowrap;
-            }
+          .scrollmenu {
+            overflow: auto;
+            white-space: nowrap;
+          }
 
-            .scrollmenu a {
-              display: inline-block;
-              text-align: center;
+          .scrollmenu a {
+            display: inline-block;
+            text-align: center;
 
-              padding-bottom: 10px;
-              text-decoration: none;
-            }
+            padding-bottom: 10px;
+            text-decoration: none;
+          }
           @media screen and (max-width: 1200px) {
             .form-inline {
               display: block;

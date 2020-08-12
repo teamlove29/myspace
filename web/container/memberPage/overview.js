@@ -1,16 +1,27 @@
 import React, { useContext } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import AddButton from "../../component/button/addbutton";
 import MemberPage from "./index";
 import { ModalContext } from "../../config/context/ModalProvider";
 export default function Overview(props) {
   const { dataMember, setDataMember, dataFriend } = useContext(ModalContext);
   const typeMember = !dataMember ? null : dataMember.mem_type;
+  const router = useRouter();
+  const { username } = router.query;
   let lookadd = true;
   if (dataFriend) {
     // setDataMember(props.data)
     lookadd = false;
   }
+
+  const handleplaylist = (value) => {
+    const url = "/[username]/playlist/[id]";
+    const as = `/${username}/playlist/${value}`;
+    router.push(url, as);
+    // router.replace(url, as);
+  };
+
   return (
     <MemberPage>
       <hr />
@@ -20,27 +31,35 @@ export default function Overview(props) {
         <>
           <div className="row container-fluid text-light">
             <h6 className="font-Medium mb-4">My Playlist</h6>{" "}
-            {lookadd && (
-              <p className="ml-auto text-muted ">
-                <Link
-                  href="/[username]/playlist/addplaylist"
-                  as={`/${dataMember.mem_display_name}/playlist/addplaylist`}
-                >
-                  <a className="mr-3 text-muted"> + Add playlist</a>
-                </Link>
-                |
-                <Link
-                  href="/[username]/playlist"
-                  as={`/${dataMember.mem_display_name}/playlist`}
-                >
-                  <a className="ml-3 text-muted"> View all playlist</a>
-                </Link>
-              </p>
-            )}
+            <p className="ml-auto text-muted ">
+              {lookadd && (
+                <>
+                  <Link
+                    href="/[username]/playlist/addplaylist"
+                    as={`/${dataMember.mem_display_name}/playlist/addplaylist`}
+                  >
+                    <a className="mr-3 text-muted"> + Add playlist</a>
+                  </Link>
+                  |
+                </>
+              )}
+
+              <Link
+                href="/[username]/playlist"
+                as={`/${dataMember.mem_display_name}/playlist`}
+              >
+                <a className="ml-3 text-muted "> View all playlist</a>
+              </Link>
+            </p>
           </div>
           {/* have data  */}
-          <div className="row col-md-auto ">
-            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+          <div className="row  mx-auto">
+            <div
+              onClick={() => {
+                handleplaylist("1");
+              }}
+              className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer"
+            >
               <div
                 style={{
                   backgroundImage:
@@ -60,7 +79,12 @@ export default function Overview(props) {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+            <div
+              onClick={() => {
+                handleplaylist("2");
+              }}
+              className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer"
+            >
               <div
                 style={{
                   backgroundImage:
@@ -80,7 +104,12 @@ export default function Overview(props) {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+            <div
+              onClick={() => {
+                handleplaylist("3");
+              }}
+              className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer"
+            >
               <div
                 style={{
                   backgroundImage:
@@ -100,7 +129,12 @@ export default function Overview(props) {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+            <div
+              onClick={() => {
+                handleplaylist("4");
+              }}
+              className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer"
+            >
               <div
                 style={{
                   backgroundImage:
@@ -120,7 +154,12 @@ export default function Overview(props) {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+            <div
+              onClick={() => {
+                handleplaylist("5");
+              }}
+              className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer"
+            >
               <div
                 style={{
                   backgroundImage:
@@ -140,7 +179,12 @@ export default function Overview(props) {
                 21 Apr 2017 · 0 tracks
               </span>
             </div>
-            <div className="col-auto col-md-3 col-lg-3 col-xl-2">
+            <div
+              onClick={() => {
+                handleplaylist("6");
+              }}
+              className="col-auto col-sm-4 col-md-3 col-lg-3 col-xl-2 pointer"
+            >
               <div
                 style={{
                   backgroundImage:
@@ -161,6 +205,7 @@ export default function Overview(props) {
               </span>
             </div>
           </div>
+
           {/* have data  */}
           {/* no data  */}
           {/* <div className="text-center">
@@ -229,7 +274,7 @@ export default function Overview(props) {
                           </div>
                           <div className="col-2 my-auto">
                             <img
-                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              src="https://source.unsplash.com/wnLWoPVVe8E/30x30"
                               alt=""
                             />
                           </div>
@@ -259,7 +304,7 @@ export default function Overview(props) {
                           </div>
                           <div className="col-2 my-auto">
                             <img
-                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              src="https://source.unsplash.com/rySIPSuQ9iI/30x30"
                               alt=""
                             />
                           </div>
@@ -289,7 +334,7 @@ export default function Overview(props) {
                           </div>
                           <div className="col-2 my-auto">
                             <img
-                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              src="https://source.unsplash.com/HwmrQtUj_ck/30x30"
                               alt=""
                             />
                           </div>
@@ -319,7 +364,7 @@ export default function Overview(props) {
                           </div>
                           <div className="col-2 my-auto">
                             <img
-                              src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                              src="https://source.unsplash.com/jtC711jdeIY/30x30"
                               alt=""
                             />
                           </div>
@@ -600,28 +645,37 @@ export default function Overview(props) {
               />
             </div>
             <div className="col-5">
-              <p>wingsicheng</p>
-              <span className="font-light">eight SOTY!!</span> <br />
+              <span>wingsicheng</span> <br />
+              <small className="font-light font-13">eight SOTY!!</small> <br />
               <p className="text-muted d-inline mr-2">
-                <span 
-                style={{
-                  fontSize:'13px'
-                }}
-                className="material-icons text-warning  ">reply</span>
+                <span
+                  style={{
+                    fontSize: "13px",
+                  }}
+                  className="material-icons text-warning  "
+                >
+                  reply
+                </span>
                 Reply
               </p>
               <p className="text-muted d-inline">
                 <span
-                 style={{
-                  fontSize:'13px'
-                }}
-                className="material-icons mr-2">thumb_up</span>
+                  style={{
+                    fontSize: "13px",
+                  }}
+                  className="material-icons mr-2"
+                >
+                  thumb_up
+                </span>
                 Like
               </p>
             </div>
-            <div className="col-auto ml-auto ">
-              <span>6 May 5:17pm</span>
-              <span className="material-icons">more_vert</span>
+            <div className="col-auto ml-auto font-13 text-muted ">
+              <span className="align-top"> 6 May 5:17pm</span>
+
+              <span className="material-icons text-muted font-13 pointer">
+                more_vert
+              </span>
             </div>
           </div>
           <hr
@@ -659,178 +713,195 @@ export default function Overview(props) {
             {/* begin You may also like */}
             <div className="col-12 col-md-6 col-lg-6 container ">
               <h6 className="font-Medium">You may also like</h6>
-              <div className="row mt-5">
-                {/* Most Popular This Week */}
-                <div className="col-12 ">
-                  <ol className="text-light">
-                    <li>
-                      <div className="row ">
-                        <div className="col-1 my-auto">
-                          <span className="num">1.</span>{" "}
-                        </div>
-                        <div className="col-2 my-auto">
-                          <span
-                            style={{
-                              fontSize: "40px",
-                            }}
-                            className="material-icons "
-                          >
-                            play_circle_filled
-                          </span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            src="https://source.unsplash.com/cCvnG-937HE/30x30"
-                            alt=""
+              <div className="row text-light mt-5">
+                {/* begin Upcoming Events */}
+
+                {/* end Upcoming Events */}
+
+                <>
+                  {/* <hr className="col-12 d-md-none " /> */}
+                  {/* begin You may also like */}
+                  <div className="col-12 col-md-12 col-lg-12 container ">
+                    <div className="row ">
+                      {/* Most Popular This Week */}
+                      <div className="col-12 ">
+                        <ol className="text-light">
+                          <li>
+                            <div className="row ">
+                              <div className="col-1 my-auto">
+                                <span className="num">1.</span>{" "}
+                              </div>
+                              <div className="col-2 my-auto">
+                                <span className="material-icons icons-play pointer">
+                                  play_circle_filled
+                                </span>
+                              </div>
+                              <div className="col-2 my-auto">
+                                <img
+                                  src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                                  alt=""
+                                />
+                              </div>
+                              <div className="col-5 my-auto">
+                                <span className="text-light ">Novo Amor</span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons pointer">
+                                  favorite_border
+                                </span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons ">
+                                  more_vert
+                                </span>
+                              </div>
+                            </div>
+                          </li>
+                          <hr
+                            style={{ marginTop: "20px", marginBottom: "20px" }}
                           />
-                        </div>
-                        <div className="col-5 my-auto">
-                          <span className="text-light ">Novo Amor</span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            className="float-right "
-                            src="https://img.icons8.com/ios/24/ffffff/like--v1.png"
+                          <li>
+                            <div className="row">
+                              <div className="col-1 my-auto">
+                                <span className="num">2.</span>{" "}
+                              </div>
+                              <div className="col-2 my-auto">
+                                <span className="material-icons icons-play pointer">
+                                  play_circle_filled
+                                </span>
+                              </div>
+                              <div className="col-2 my-auto">
+                                <img
+                                  src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                                  alt=""
+                                />
+                              </div>
+                              <div className="col-5 my-auto">
+                                <span className="text-light ">Novo Amor</span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons">
+                                  favorite_border
+                                </span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons">
+                                  more_vert
+                                </span>
+                              </div>
+                            </div>
+                          </li>
+                          <hr
+                            style={{ marginTop: "20px", marginBottom: "20px" }}
                           />
-                        </div>
+                          <li>
+                            <div className="row">
+                              <div className="col-1 my-auto">
+                                <span className="num">3.</span>{" "}
+                              </div>
+                              <div className="col-2 my-auto">
+                                <span className="material-icons icons-play pointer">
+                                  play_circle_filled
+                                </span>
+                              </div>
+                              <div className="col-2 my-auto">
+                                <img
+                                  src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                                  alt=""
+                                />
+                              </div>
+                              <div className="col-5 my-auto">
+                                <span className="text-light ">Novo Amor</span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons">
+                                  favorite_border
+                                </span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons">
+                                  more_vert
+                                </span>
+                              </div>
+                            </div>
+                          </li>
+                          <hr
+                            style={{ marginTop: "20px", marginBottom: "20px" }}
+                          />
+                          <li>
+                            <div className="row">
+                              <div className="col-1 my-auto">
+                                <span className="num">4.</span>{" "}
+                              </div>
+                              <div className="col-2 my-auto">
+                                <span className="material-icons icons-play pointer">
+                                  play_circle_filled
+                                </span>
+                              </div>
+                              <div className="col-2 my-auto">
+                                <img
+                                  src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                                  alt=""
+                                />
+                              </div>
+                              <div className="col-5 my-auto">
+                                <span className="text-light ">Novo Amor</span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons">
+                                  favorite_border
+                                </span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons">
+                                  more_vert
+                                </span>
+                              </div>
+                            </div>
+                          </li>
+                          <hr
+                            style={{ marginTop: "20px", marginBottom: "20px" }}
+                          />
+                          <li>
+                            <div className="row">
+                              <div className="col-1 my-auto">
+                                <span className="num">5.</span>
+                              </div>
+                              <div className="col-2 my-auto">
+                                <span className="material-icons icons-play pointer">
+                                  play_circle_filled
+                                </span>
+                              </div>
+                              <div className="col-2 my-auto">
+                                <img
+                                  src="https://source.unsplash.com/cCvnG-937HE/30x30"
+                                  alt=""
+                                />
+                              </div>
+                              <div className="col-5 my-auto font-13">
+                                <span className="text-light ">Novo Amor</span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons">
+                                  favorite_border
+                                </span>
+                              </div>
+                              <div className="col-1 my-auto">
+                                <span className="material-icons">
+                                  more_vert
+                                </span>
+                              </div>
+                            </div>
+                          </li>
+                          <hr
+                            style={{ marginTop: "20px", marginBottom: "20px" }}
+                          />
+                        </ol>
                       </div>
-                    </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
-                    <li>
-                      <div className="row">
-                        <div className="col-1 my-auto">
-                          <span className="num">2.</span>{" "}
-                        </div>
-                        <div className="col-2 my-auto">
-                          <span
-                            style={{
-                              fontSize: "40px",
-                            }}
-                            className="material-icons "
-                          >
-                            play_circle_filled
-                          </span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            src="https://source.unsplash.com/cCvnG-937HE/30x30"
-                            alt=""
-                          />
-                        </div>
-                        <div className="col-5 my-auto">
-                          <span className="text-light ">Novo Amor</span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            className="float-right "
-                            src="https://img.icons8.com/ios/24/ffffff/like--v1.png"
-                          />
-                        </div>
-                      </div>
-                    </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
-                    <li>
-                      <div className="row">
-                        <div className="col-1 my-auto">
-                          <span className="num">3.</span>{" "}
-                        </div>
-                        <div className="col-2 my-auto">
-                          <span
-                            style={{
-                              fontSize: "40px",
-                            }}
-                            className="material-icons "
-                          >
-                            play_circle_filled
-                          </span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            src="https://source.unsplash.com/cCvnG-937HE/30x30"
-                            alt=""
-                          />
-                        </div>
-                        <div className="col-5 my-auto">
-                          <span className="text-light ">Novo Amor</span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            className="float-right "
-                            src="https://img.icons8.com/ios/24/ffffff/like--v1.png"
-                          />
-                        </div>
-                      </div>
-                    </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
-                    <li>
-                      <div className="row">
-                        <div className="col-1 my-auto">
-                          <span className="num">4.</span>{" "}
-                        </div>
-                        <div className="col-2 my-auto">
-                          <span
-                            style={{
-                              fontSize: "40px",
-                            }}
-                            className="material-icons "
-                          >
-                            play_circle_filled
-                          </span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            src="https://source.unsplash.com/cCvnG-937HE/30x30"
-                            alt=""
-                          />
-                        </div>
-                        <div className="col-5 my-auto">
-                          <span className="text-light ">Novo Amor</span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            className="float-right "
-                            src="https://img.icons8.com/ios/24/ffffff/like--v1.png"
-                          />
-                        </div>
-                      </div>
-                    </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
-                    <li>
-                      <div className="row">
-                        <div className="col-1 my-auto">
-                          <span className="num">5.</span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <span
-                            style={{
-                              fontSize: "40px",
-                            }}
-                            className="material-icons "
-                          >
-                            play_circle_filled
-                          </span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            src="https://source.unsplash.com/cCvnG-937HE/30x30"
-                            alt=""
-                          />
-                        </div>
-                        <div className="col-5 my-auto font-13">
-                          <span className="text-light ">Novo Amor</span>
-                        </div>
-                        <div className="col-2 my-auto">
-                          <img
-                            className="float-right "
-                            src="https://img.icons8.com/ios/24/ffffff/like--v1.png"
-                          />
-                        </div>
-                      </div>
-                    </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
-                  </ol>
-                </div>
-                {/* Most Recommended */}
+                      {/* Most Recommended */}
+                    </div>
+                  </div>
+                </>
               </div>
             </div>
           </>
@@ -838,25 +909,22 @@ export default function Overview(props) {
       </div>
 
       <style jsx>{`
+        li {
+          list-style: none;
+        }
+        hr {
+          margin-bottom: 50px;
+          margin-top: 50px;
+          background-color: #282828;
+        }
 
-      li {
-            list-style: none;
-          }
-      hr{
-          margin-bottom:50px;
-          margin-top:50px;
-        background-color:#282828}}
-      }
-      .icons-play{
-
-font-size: 40px;
-background-image:linear-gradient(to left, yellow,#f3145e);
--webkit-background-clip:text;
--webkit-text-fill-color: transparent;
-       
-}
+        .icons-play {
+          font-size: 40px;
+          background-image: linear-gradient(to left, yellow, #f3145e);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
       `}</style>
     </MemberPage>
-  
   );
 }
