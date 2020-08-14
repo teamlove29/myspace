@@ -6,54 +6,59 @@ import NotFound from "../../container/notFound";
 import LoadPage from "../../container/loadPage";
 import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
-export default function Index({ stars }) {
+export default function Index({ dataFriends }) {
+
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
-
+  const [editor, setEditor] = useState(null);
   const {
     nameMember,
     dataMember,
+    setDataMember,
     setDataFriend,
     dataFriend,
     header,
   } = useContext(ModalContext);
   const verifyMember = username != nameMember ? false : true;
+
   useEffect(() => {
-    Axios.post(
-      process.env.API_URL_CHECKDISPLAY,
-      {
-        display_name: username,
+    if (dataFriends && nameMember) {
+      if (dataFriends.mem_display_name != nameMember) {
+        setDataFriend(dataFriends);
+        setEditor(false);
+      } else {
+        setDataFriend(undefined);
       }
-      // {
-      //   headers: {
-      //     authorization:
-      //     header
-      //   },
-      // }
-    )
-      .then((res) => {
-        if (res.data[0].mem_display_name != nameMember)
-          setDataFriend(res.data[0]);
-        else setDataFriend(undefined);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [username]);
-
-  const showPage = () => {
-
-      if (verifyMember === false && dataFriend === undefined) {
-        if (nameMember === undefined || dataMember === undefined)      return <LoadPage />;
-        return <NotFound />;
-    }
-    if (dataFriend != undefined) {
-      // return <OverviewFriend />;
     } else {
-      return <>{verifyMember && <Overview editor={statusEditor} />}</>;
+      setDataFriend(undefined);
     }
-  };
-  // ถ้า nameMember != ชื่อที่กลับมาให้ setStatusEditor(true) คือการเปิดสถานะการแก้ไข
-  return <>{showPage()}</>;
+  }, [username,nameMember]);
+
+  // if (
+  //   dataFriends === undefined ||
+  //   dataMember === undefined ||
+  //   nameMember === undefined
+  // )
+  //   return <LoadPage />;
+  if (!dataFriends) return <NotFound />;
+  // if (verifyMember === false && dataFriends !== undefined) return <OverviewFriend />;
+
+  return <>{<Overview  editor={statusEditor} />}</>;
+}
+
+
+
+
+export async function getServerSideProps({ query }) {
+  const { username } = query;
+  const friend = await Axios.post(process.env.API_URL_CHECKDISPLAY, {
+    display_name: username,
+  }).catch((err) => {
+    return err;
+  });
+
+  return { props:{
+    dataFriends: friend.data[0] || {}
+  } };
 }

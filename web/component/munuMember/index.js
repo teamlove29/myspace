@@ -1,21 +1,27 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
-  const hideAbout = router.pathname != "/[username]";
+  const hideAbout = router.pathname === "/[username]" || router.pathname ===  "/[username]/playlist";
   const {
     nameMember,
     dataMember,
+    dataFriend,
     avatarMember,
     setActiveMenu,
   } = useContext(ModalContext);
 
   useEffect(() => {
     setActiveMenu("/[username]");
-  }, [])
+    // if(dataFriend === undefined){
+    //   setActiveMenu("/[username]");
+    // }else{
+    //   setActiveMenu("");
+    // }
+  }, []);
   const typeMember = !dataMember ? null : dataMember.mem_type;
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
@@ -61,34 +67,32 @@ const Index = () => {
           <p className="text-muted d-none d-xl-block">
             Banana • Joined since 22 May 2020 | Last Login : 19/05/2020
           </p>
-          <ul style={{ width: "700px" }} id="list" className="font-Light ">
+
+          <ul id="list" className="font-Light scrollmenu ">
             <li className={`${getMenuItemActive("/[username]")}`}>
-              <Link href="/[username]" as={`/${nameMember}`}>
+              <Link href="/[username]" as={`/${username}`}>
                 <a>Overview</a>
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/playlist")}`}>
-              <Link href="/[username]/playlist" as={`/${nameMember}/playlist`}>
+              <Link href="/[username]/playlist" as={`/${username}/playlist`}>
                 <a>Playlist</a>
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/following")}`}>
-              <Link
-                href="/[username]/following"
-                as={`/${nameMember}/following`}
-              >
+              <Link href="/[username]/following" as={`/${username}/following`}>
                 <a>Following</a>
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/follower")}`}>
-              <Link href="/[username]/follower" as={`/${nameMember}/follower`}>
+              <Link href="/[username]/follower" as={`/${username}/follower`}>
                 <a>Follower</a>
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/lovedtracks")}`}>
               <Link
                 href="/[username]/lovedtracks"
-                as={`/${nameMember}/lovedtracks`}
+                as={`/${username}/lovedtracks`}
               >
                 <a>Loved Tracks</a>
               </Link>
@@ -97,7 +101,7 @@ const Index = () => {
             {typeMember === 2 && (
               <>
                 <li className={` ${getMenuItemActive("/[username]/events")}`}>
-                  <Link href="/[username]/events" as={`/${nameMember}/events`}>
+                  <Link href="/[username]/events" as={`/${username}/events`}>
                     <a>Events</a>
                   </Link>
                 </li>
@@ -105,7 +109,7 @@ const Index = () => {
             )}
 
             <li className={` ${getMenuItemActive("/[username]/shouts")}`}>
-              <Link href="/[username]/shouts" as={`/${nameMember}/shouts`}>
+              <Link href="/[username]/shouts" as={`/${username}/shouts`}>
                 <a>Shouts</a>
               </Link>
             </li>
@@ -113,21 +117,21 @@ const Index = () => {
             {typeMember === 2 && (
               <>
                 <li className={` ${getMenuItemActive("/[username]/shop")}`}>
-                  <Link href="/[username]/shop" as={`/${nameMember}/shop`}>
+                  <Link href="/[username]/shop" as={`/${username}/shop`}>
                     <a>Shop</a>
                   </Link>
                 </li>
               </>
             )}
           </ul>
-          {hideAbout != true ? (
+          {hideAbout === true ? (
             <>
               <div className="row ">
                 <div className="col-auto col-md-8  col-lg-8 col-xl-6 ">
                   <p className="mt-4 h6">About me</p>
                   <p className="text-muted">{dataMember.mem_about_you}</p>
                 </div>
-                <div className="col-auto col-md-4  col-lg-4 col-xl-6">
+                <div className="col-auto col-md-3  col-lg-3 col-xl-4">
                   <p className="mt-5 h6">Born</p>
                   <p className="text-muted">23 June 1992 (age 28)</p>
                   <p className="mt-5 h6">Born in</p>
@@ -135,6 +139,16 @@ const Index = () => {
                     Lampang, {dataMember.mem_country}
                   </p>
                 </div>
+                {nameMember != username ? 
+                <div className="col-xl-2 text-center">
+                  <button
+                    style={{ borderRadius: "100px", fontSize: "13px" }}
+                    className="btn btn-outline-light pr-4 pl-4 p-2 "
+                  >
+                    Following
+                  </button>
+                </div>
+                : null}
               </div>
             </>
           ) : null}
@@ -143,6 +157,18 @@ const Index = () => {
 
       <style jsx>
         {`
+          .scrollmenu {
+            overflow: auto;
+            white-space: nowrap;
+          }
+
+          .scrollmenu a {
+            display: inline-block;
+            text-align: center;
+
+            padding-bottom: 10px;
+            text-decoration: none;
+          }
           @media screen and (max-width: 1200px) {
             .form-inline {
               display: block;

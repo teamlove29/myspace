@@ -50,6 +50,7 @@ const Index = () => {
             var fileNames = ext2 + cdate + "." + ext;
             blob.name = fileNames;
             setImageBlob(blob);
+  
             setImageCrop(window.URL.createObjectURL(blob));
             setEditing(false);
           });
@@ -283,7 +284,7 @@ const Index = () => {
                         rotate={0}
                         className="editor-canvas "
                       />
-                      <div class="form-row mt-3">
+                      <div className="form-row mt-3">
                         <span>Zoom : </span>
                         <input
                           name="scale"

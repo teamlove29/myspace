@@ -2,6 +2,7 @@ import React, { useContext,useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
+import LoadPage from "../../container/loadPage";
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
@@ -27,6 +28,11 @@ const Index = () => {
       return "font-Medium menuActive";
     }
   };
+
+
+  if(dataFriend === undefined){
+    return <LoadPage /> 
+  }
 
   return (
     <>
@@ -57,32 +63,32 @@ const Index = () => {
           </p>
           <ul id="list" className="font-Light mb-5">
             <li className={`${getMenuItemActive("/[username]")}`}>
-              <Link href="/[username]" as={`/${nameMember}`}>
+              <Link href="/[username]" as={`/${username}`}>
                 <a>Overview</a>
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/playlist")}`}>
-              <Link href="/[username]/playlist" as={`/${nameMember}/playlist`}>
+              <Link href="/[username]/playlist" as={`/${username}/playlist`}>
                 <a>Playlist</a>
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/following")}`}>
               <Link
                 href="/[username]/following"
-                as={`/${nameMember}/following`}
+                as={`/${username}/following`}
               >
                 <a>Following</a>
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/follower")}`}>
-              <Link href="/[username]/follower" as={`/${nameMember}/follower`}>
+              <Link href="/[username]/follower" as={`/${username}/follower`}>
                 <a>Follower</a>
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/lovedtracks")}`}>
               <Link
                 href="/[username]/lovedtracks"
-                as={`/${nameMember}/lovedtracks`}
+                as={`/${username}/lovedtracks`}
               >
                 <a>Loved Tracks</a>
               </Link>
@@ -91,7 +97,7 @@ const Index = () => {
             {typeMember === 2 && (
               <>
                 <li className={` ${getMenuItemActive("/[username]/events")}`}>
-                  <Link href="/[username]/events" as={`/${nameMember}/events`}>
+                  <Link href="/[username]/events" as={`/${username}/events`}>
                     <a>Events</a>
                   </Link>
                 </li>
@@ -99,7 +105,7 @@ const Index = () => {
             )}
 
             <li className={` ${getMenuItemActive("/[username]/shouts")}`}>
-              <Link href="/[username]/shouts" as={`/${nameMember}/shouts`}>
+              <Link href="/[username]/shouts" as={`/${username}/shouts`}>
                 <a>Shouts</a>
               </Link>
             </li>
@@ -107,7 +113,7 @@ const Index = () => {
             {typeMember === 2 && (
               <>
                 <li className={` ${getMenuItemActive("/[username]/shop")}`}>
-                  <Link href="/[username]/shop" as={`/${nameMember}/shop`}>
+                  <Link href="/[username]/shop" as={`/${username}/shop`}>
                     <a>Shop</a>
                   </Link>
                 </li>

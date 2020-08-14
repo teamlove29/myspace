@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext,useMemo } from "react";
 import Link from "next/link";
 import Auth from "./modal/auth";
 import firebase from "../config/config";
@@ -7,8 +7,10 @@ import Axios from "axios";
 import JWT from "jsonwebtoken";
 import { ModalContext } from "../config/context/ModalProvider";
 import { WaveLoading } from "react-loadingg";
+import VerifyMember from "../container/verifyMember";
 const Navbar = () => {
   const router = useRouter();
+  const { username } = router.query;
   const hideSearch = router.pathname != "/[username]/setting";
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
@@ -20,6 +22,8 @@ const Navbar = () => {
     setNameMember,
     dataMember,
     setDataMember,
+    dataFriend,
+    setDataFriend,
     header,
     setHeader,
     avatarMember,
@@ -142,10 +146,44 @@ const Navbar = () => {
       }
     });
   };
+
+  const test = async () => {
+ 
+  };
+
   useEffect(() => {
+    // Axios.post(process.env.API_URL_CHECKDISPLAY, {
+    //   display_name: username,
+    // })
+    //   .then((res) => {
+    //     console.log(nameMember )
+    //     console.log( res.data[0].mem_display_name )
+    //     if (nameMember === res.data[0].mem_display_name) {
+    //       setDataFriend(undefined);
+    //       console.log('no')
+    //     } else {
+    //       console.log('good')
+    //       setDataFriend(res.data[0]);
+    //     }
+    //   })
+    //   .catch(() => {
+    //     setDataFriend(undefined);
+    //   });
+
+    // if (friend) {
+    //   if (friend.data[0].mem_display_name != nameMember) {
+    //     setDataFriend(friend.data[0]);
+    //   } else {
+    //     setDataFriend(undefined);
+    //   }
+    // } else {
+    //   setDataFriend(undefined);
+    // }
+
     const unsubscribe = onAuthStateChange();
     return () => unsubscribe();
   }, [currentUser]);
+
 
   return (
     <>
@@ -456,4 +494,21 @@ background-color : #151821;
   );
 };
 
+
+{/* Page.getInitialProps = async (ctx) => {
+  const res = await fetch('https://api.github.com/repos/vercel/next.js')
+  const json = await res.json()
+  return { stars: json.stargazers_count }
+} */}
+
+Navbar.getInitialProps = async ({ query, ctx }) => {
+  const { username } = query;
+console.log('tdsadasd')
+  return { username: username };
+};
+
 export default Navbar;
+
+
+
+
