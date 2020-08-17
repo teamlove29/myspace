@@ -9,7 +9,7 @@ useEffect(() => {
 }, [])
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <img
         style={{}}
         className="container-fluid covermain"
@@ -508,11 +508,11 @@ useEffect(() => {
       <style jsx>
         {`
           .detail-recommended {
-            max-width: 190px;
+            max-width: 170px;
           }
           .cardHeight {
-            height: 250px;
-            max-width: 190px;
+            height: 200px;
+            max-width: 180px;
           }
           .text-on-home {
             margin-top: 200px;
