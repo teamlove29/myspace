@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Cover } from "../component/cover/cover";
 import { ModalContext } from "../config/context/ModalProvider";
+
 export default function Charts() {
   const { setActiveMenu } = useContext(ModalContext);
   useEffect(() => {
@@ -139,7 +140,7 @@ export default function Charts() {
       {/* Top 100 */}
       <div className="container-fluid">
         {" "}
-        <h6 className="text-light mt-5 mb-5">Top 100</h6>
+        <h6 className="text-light mt-5 mb-5 font-Regular">Top 100</h6>
         <div className="row mt-5  ">
           <div className="col-12 ">
             <ol className="text-light row col-12">
