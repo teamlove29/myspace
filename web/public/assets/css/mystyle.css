@@ -1,3 +1,5 @@
+
+
 .coverSetting {
   position: absolute;
   background-color: #252525;
@@ -54,3 +56,7 @@
 #cool-player .cool-player-wrapper .cool-player-inner .cool-player-box .picture {
   background: none !important;
 }
+/* #cool-player .cool-player-wrapper .cool-player-list-lyric .cool-player-list-component .cool-player-list-component-half .cool-lyric-title-wrapper h4{
+  font-family: 'Poppins-Regular', sans-serif;
+  font-size: 13px;
+} */
