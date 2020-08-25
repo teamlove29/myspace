@@ -6,9 +6,9 @@ import "nprogress/nprogress.css"; //styles of nprogress
 import Router from "next/router";
 import JWT from "jsonwebtoken";
 import "react-cool-music-player/dist/index.css";
+import "../public/assets/css/mystyle.css";
 import "../public/assets/css/font.css";
 import "../public/assets/css/sb-admin-2.css";
-import "../public/assets/css/mystyle.css";
 
 import { ModalProvider } from "../config/context/ModalProvider";
 import Navbar from "../component/navbar";
@@ -36,6 +36,7 @@ const DynamicComponentWithNoSSR = dynamic(
 const MyApp = ({ Component, pageProps, stars }) => {
   const [loading, setLoading] = useState(false);
   const [noActionsShow, setNoActionsShow] = useState(false);
+  const [playListShow, setPlayListShow] = useState(false);
   const [data, setData] = useState([
     {
       src:
@@ -84,7 +85,12 @@ const MyApp = ({ Component, pageProps, stars }) => {
     _data.splice(index, 1);
     setData(_data);
   };
-
+  const onPlayListShow = () => {
+    setPlayListShow(true);
+  };
+  const onPlayListHide = () => {
+    setPlayListShow(false);
+  };
   const noActions = () => {
     setNoActionsShow(true);
     setTimeout(() => {
@@ -197,10 +203,22 @@ const MyApp = ({ Component, pageProps, stars }) => {
             data={data}
             primaryColor={"#f6c23e"}
             volume={0.9}
+            playListShow={playListShow}
+            onPlayListStatusChange={(status) => {
+              setPlayListShow(status);
+            }}
             showLyricNormal={false}
             showDetailLyric={false}
             actions={actions}
             onDelete={onDelete}
+            playListHeader={{
+              headerLeft: "Play List",
+              headerRight: (
+                <span onClick={onPlayListHide} className="pointer">
+                  Close
+                </span>
+              ),
+            }}
             icons={{
               deleteIcon: (
                 <svg
