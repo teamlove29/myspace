@@ -188,7 +188,8 @@ const MyApp = ({ Component, pageProps, stars }) => {
                 {loading ? <LoadPage /> : <Component {...pageProps} />}
                 {/* <Component {...pageProps} /> */}
               </div>
-              <Footer />
+              <Footer
+              />
             </div>
           </div>
         </div>

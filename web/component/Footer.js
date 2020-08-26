@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="sticky-footer bg-black container">
+    <footer className="sticky-footer bg-black container padding-b">
       <div className="container-fluid my-auto">
 
 <div className="row mb-5 justify-content-md-center">
@@ -78,6 +78,9 @@ export default function Footer() {
       </div>
       <style jsx>
         {`
+        .padding-b{
+          padding-bottom:80px;
+        }
           .bg-black {
             background-color: black;
             max-width: 100%;
