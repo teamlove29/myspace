@@ -59,10 +59,7 @@ export function Cover({ height, img, text }) {
         {`
           .container {
             position: relative;
-  
           }
-    }
-
         `}
       </style>
     </>

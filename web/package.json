@@ -8,6 +8,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "eslint '**'",
     "predeploy": "npm run clean && next build",
     "deploy": "firebase deploy --only functions:myspaceWeb,hosting:web"
   },
@@ -19,6 +20,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@material-ui/core": "^4.11.0",
+    "@zeit/next-css": "^1.0.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "css-loader": "^3.5.3",
@@ -38,8 +40,12 @@
     "react-avatar-edit": "^0.8.3",
     "react-avatar-editor": "^11.0.9",
     "react-bootstrap": "^1.0.1",
+    "react-cool-music-player": "^1.0.6",
     "react-dom": "^16.13.1",
+    "react-drag-listview": "^0.1.7",
+    "react-h5-audio-player": "^3.3.2",
     "react-image-crop": "^8.6.4",
+    "react-jinke-music-player": "^4.16.5",
     "react-loadingg": "^1.7.2",
     "styled-components": "^5.1.1",
     "styled-jsx": "^3.3.0",
@@ -49,6 +55,13 @@
   },
   "devDependencies": {
     "cross-env": "~7.0.2",
+    "eslint": "^7.7.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-standard": "^4.0.1",
     "firebase-functions-test": "^0.2.1",
     "rimraf": "~3.0.2",
     "shelljs": "^0.8.4"

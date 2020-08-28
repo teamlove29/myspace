@@ -30,7 +30,6 @@ export default function AddPlayList() {
     }
     return "";
   };
-
   const handleScale = (e) => {
     const scale = parseFloat(e.target.value);
     setScale(scale);
@@ -107,8 +106,6 @@ export default function AddPlayList() {
           </div>
 
           {editing === false && (
-
-
                  <img
               style={{
                 backgroundColor: "#363636",
@@ -121,7 +118,6 @@ export default function AddPlayList() {
           )}
         </div>
         {/* Choose file */}
-
         <div className="col-12  col-sm-12  col-md-8 col-xl-7">
           <div className="mt-4  d-md-none"></div>
           <p className="text-muted">

@@ -1,0 +1,13 @@
+*
+!*/
+!*.js
+!*.ts
+!*.json
+!*.jsx
+node_modules
+dist
+umd
+public
+.cache
+nextjs
+.firebase

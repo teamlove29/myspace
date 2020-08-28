@@ -1,23 +1,65 @@
-.coverSetting{
-    position: absolute;
-    background-color: #252525;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 205px;
-    top: 0%;
-    min-width: 991px;
+
+
+.coverSetting {
+  position: absolute;
+  background-color: #252525;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 205px;
+  top: 0%;
+  min-width: 991px;
 }
 
 @media screen and (max-width: 991px) {
-    .coverSetting {
-      min-width: 991px;
-      left: 0%;
-      top: 2.4%;
-    }
-    /* .covertest{
+  .coverSetting {
+    min-width: 991px;
+    left: 0%;
+    top: 2.4%;
+  }
+
+  /* .covertest{
       min-width: 991px;
       left: 0%;
       margin-top: 4.5rem;
     } */
 }
 
+#cool-player .cool-player-wrapper {
+  background: black !important;
+  border-top: 1px solid #252525
+}
+
+#cool-player .cool-player-wrapper .cool-player-inner {
+  background: black !important;
+}
+
+#cool-player .cool-player-wrapper .cool-player-inner svg {
+  color: white !important;
+}
+
+#cool-player .cool-player-wrapper .cool-player-inner .progress {
+  background: #252525 !important;
+}
+
+#cool-player .cool-player-wrapper .cool-player-inner .cool-player-audio-name {
+  color: white !important;
+}
+
+#cool-player .cool-player-wrapper .cool-player-inner .cool-player-box {
+  background: black !important;
+}
+
+#cool-player .cool-player-wrapper .cool-player-inner .right-control .volume-control-wrapper {
+  background: black !important;
+}
+
+#cool-player .cool-player-wrapper .cool-player-inner .cool-player-box .picture {
+  background: none !important;
+}
+#cool-player .cool-player-wrapper .cool-player-inner .progress {
+  overflow:unset;
+}
+/* #cool-player .cool-player-wrapper .cool-player-list-lyric .cool-player-list-component .cool-player-list-component-half .cool-lyric-title-wrapper h4{
+  font-family: 'Poppins-Regular', sans-serif;
+  font-size: 13px;
+} */

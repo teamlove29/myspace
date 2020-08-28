@@ -21,7 +21,6 @@ export default function Index({ dataFriends }) {
     header,
   } = useContext(ModalContext);
   const verifyMember = username != nameMember ? false : true;
-
   useEffect(() => {
     if (dataFriends && nameMember) {
       if (dataFriends.mem_display_name != nameMember) {
