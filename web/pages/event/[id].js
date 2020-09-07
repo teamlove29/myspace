@@ -80,7 +80,7 @@ export default function Event({ dataEven }) {
                 className="card text-white"
                 style={{
                   width: "18rem",
-                  border: "2px solid #252525",
+                  border: "1px solid #252525",
                   background: "black",
                 }}
               >
@@ -89,10 +89,13 @@ export default function Event({ dataEven }) {
                   className="card-img-top"
                   alt="..."
                 />
-                <div className="card-body">
+                <div className="p-2">
+                  <small className="text-danger font-11-Regular">
+                    ศ.07.01.63 - อา.08.04.63
+                  </small>
                   <p className="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    ฝนไปเพลงมา
+                    <p style={{ color: "#353535" }}>Mega Banna</p>
                   </p>
                 </div>
               </div>
