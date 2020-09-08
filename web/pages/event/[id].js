@@ -1,13 +1,16 @@
 import React, { useEffect, useContext } from "react";
 import { Carousel } from "react-bootstrap";
+import { useRouter } from 'next/router'
 import { Cover } from "../../component/cover/cover";
 import { ModalContext } from "../../config/context/ModalProvider";
-export default function Event({ dataEven }) {
-  console.log(dataEven);
+export default  ({ dataEven }) => {
+    const router = useRouter()
+    const { id } = router.query
   const { setActiveMenu } = useContext(ModalContext);
   useEffect(() => {
     setActiveMenu("/event");
   }, []);
+
   return (
     <div>
       {/* <Cover
@@ -16,7 +19,15 @@ export default function Event({ dataEven }) {
           "https://www.inspirationde.com/media/2019/02/design-inspiration-roundup-from-up-north-1550470895k4gn8.jpg"
         }
       /> */}
-      <Carousel controls={false}>
+      <Carousel
+        style={{
+          top: "0",
+          right: "0",
+          position: "absolute",
+          width: "100%",
+        }}
+        controls={false}
+      >
         <Carousel.Item>
           <img
             className="d-block w-100 even-cover-carousel-item"
@@ -41,7 +52,7 @@ export default function Event({ dataEven }) {
       </Carousel>
       <div className="container margin-top  justify-content-center">
         <small className="text-danger">ศ.07.01.63</small>
-        <h6 className="text-light font-Regular">Events Name {dataEven.id}</h6>
+        <h6 className="text-light font-Regular">Events Name </h6>
         <small>Central Ladprao</small>
         <hr style={{ borderTop: "1px solid #282828" }} />
         <div className="row mt-4 mb-5">
@@ -69,8 +80,8 @@ export default function Event({ dataEven }) {
             </p>
             <hr style={{ borderTop: "1px solid #282828" }} />
             <div className="row color-757575">
-              <p> Previous</p>
-              <p className="ml-auto">Next</p>
+              <p className="ml-3"> Previous</p>
+              <p className="mr-2 ml-auto">Next</p>
             </div>
           </div>
           <div className="col-4 row">
@@ -95,8 +106,8 @@ export default function Event({ dataEven }) {
                   </small>
                   <p className="card-text">
                     ฝนไปเพลงมา
-                    <p style={{ color: "#353535" }}>Mega Banna</p>
                   </p>
+                  <small style={{ color: "#353535" }}>Mega Banna</small>
                 </div>
               </div>
             </div>
@@ -113,9 +124,9 @@ export default function Event({ dataEven }) {
         .card-body-event {
           width: 210px;
           height: 130px;
-          backgroundposition: center;
-          backgroundrepeat: no-repeat;
-          backgroundsize: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
         }
 
         @media (max-width: 575px) {
@@ -148,25 +159,25 @@ export default function Event({ dataEven }) {
   );
 }
 
-export async function getStaticPaths(context) {
-  return {
-    paths: [
-      {
-        params: {
-          username: "TRAROKINGs",
-          id: "1",
-        },
-      },
-    ],
-    fallback: false,
-  };
-}
+// export async function getStaticPaths(context) {
+//   return {
+//     paths: [
+//       {
+//         params: {
+//           username: "TRAROKINGs",
+//           id: "1",
+//         },
+//       },
+//     ],
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  return {
-    props: { dataEven: params }, // will be passed to the page component as props
-  };
-}
+// export async function getStaticProps({ params }) {
+//   return {
+//     props: { dataEven: params }, // will be passed to the page component as props
+//   };
+// }
 
 // export async function getServerSideProps({query}) {
 //   return {

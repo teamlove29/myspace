@@ -1,12 +1,22 @@
 import React, { useEffect, useContext } from "react";
+import { useRouter } from "next/router";
+
 import { Carousel } from "react-bootstrap";
 import { Cover } from "../../component/cover/cover";
 import { ModalContext } from "../../config/context/ModalProvider";
 export default function Event() {
   const { setActiveMenu } = useContext(ModalContext);
+  const router = useRouter();
   useEffect(() => {
     setActiveMenu("/event");
   }, []);
+
+  const handleOnClickEvent = (value) => {
+    const url = "/event/[id]";
+    const as = `/event/${value}`;
+    router.push(url, as);
+  };
+
   return (
     <div>
       {/* <Cover
@@ -16,7 +26,12 @@ export default function Event() {
         }
       /> */}
       <Carousel
-    
+        style={{
+          top: "0",
+          right: "0",
+          position: "absolute",
+          width: "100%",
+        }}
         controls={false}
       >
         <Carousel.Item>
@@ -42,37 +57,15 @@ export default function Event() {
         </Carousel.Item>
       </Carousel>
       <div className="container margin-top  justify-content-center">
-        <h6 className="text-light mb-5 font-Regular">Events</h6>
+        <h6 className="text-light mb-5 font-Regular ml-4">Events</h6>
         <div className="row  col-md-auto  music-hight  mx-auto">
           <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
             <div
-              className="card text-white"
+              onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer"
               style={{
                 width: "18rem",
-                border: "2px solid #252525",
-                background: "black",
-              }}
-            >
-              <img
-                src="https://source.unsplash.com/hgO1wFPXl3I"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
-            <div
-              className="card text-white"
-              style={{
-                width: "18rem",
-                border: "2px solid #252525",
+                border: "1px solid #252525",
                 background: "black",
               }}
             >
@@ -81,126 +74,122 @@ export default function Event() {
                 className="card-img-top"
                 alt="..."
               />
-              <div className="card-body">
+              <div className="p-2">
+                <small className="text-danger font-11-Regular">
+                  ศ.07.01.63 - อา.08.04.63
+                </small>
                 <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  ฝนไปเพลงมา
+                  <p style={{ color: "#353535" }}>Mega Banna</p>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
+            <div
+             onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer"
+              style={{
+                width: "18rem",
+                border: "1px solid #252525",
+                background: "black",
+              }}
+            >
+              <img
+                src="https://source.unsplash.com/ZLdKgqJeERM"
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="p-2">
+                <small className="text-danger font-11-Regular">
+                  ศ.07.01.63 - อา.08.04.63
+                </small>
+                <p className="card-text">
+                  ฝนไปเพลงมา
+                  <p style={{ color: "#353535" }}>Mega Banna</p>
                 </p>
               </div>
             </div>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
             <div
-              className="card text-white"
+                    onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer"
               style={{
                 width: "18rem",
-                border: "2px solid #252525",
+                border: "1px solid #252525",
                 background: "black",
               }}
             >
               <img
-                src="https://source.unsplash.com/ZhQCZjr9fHo"
+                src="https://source.unsplash.com/Q7wGvnbuwj0"
                 className="card-img-top"
                 alt="..."
               />
-              <div className="card-body">
+              <div className="p-2">
+                <small className="text-danger font-11-Regular">
+                  ศ.07.01.63 - อา.08.04.63
+                </small>
                 <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  ฝนไปเพลงมา
+                  <p style={{ color: "#353535" }}>Mega Banna</p>
                 </p>
               </div>
             </div>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
             <div
-              className="card text-white"
+                    onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer"
               style={{
                 width: "18rem",
-                border: "2px solid #252525",
+                border: "1px solid #252525",
                 background: "black",
               }}
             >
               <img
-                src="https://source.unsplash.com/bn-D2bCvpik"
+                src="https://source.unsplash.com/MRxD-J9-4ps"
                 className="card-img-top"
                 alt="..."
               />
-              <div className="card-body">
+              <div className="p-2">
+                <small className="text-danger font-11-Regular">
+                  ศ.07.01.63 - อา.08.04.63
+                </small>
                 <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  ฝนไปเพลงมา
+                  <p style={{ color: "#353535" }}>Mega Banna</p>
                 </p>
               </div>
             </div>
           </div>
           <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
             <div
-              className="card text-white"
+                    onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer"
               style={{
                 width: "18rem",
-                border: "2px solid #252525",
+                border: "1px solid #252525",
                 background: "black",
               }}
             >
               <img
-                src="https://source.unsplash.com/uD0W-swVGgE"
+                src="https://source.unsplash.com/ZODcBkEohk8"
                 className="card-img-top"
                 alt="..."
               />
-              <div className="card-body">
+              <div className="p-2">
+                <small className="text-danger font-11-Regular">
+                  ศ.07.01.63 - อา.08.04.63
+                </small>
                 <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  ฝนไปเพลงมา
+                  <p style={{ color: "#353535" }}>Mega Banna</p>
                 </p>
               </div>
             </div>
           </div>
-          {/* <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4 ">
-            <img
-              className="rounded card-body-event"
-              src="https://source.unsplash.com/hgO1wFPXl3I"
-              alt=""
-            />
-
-            <p className="font-13 mt-3">Mini Conceart</p>
-          </div> */}
-
-          {/* <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
-            <img
-              className="rounded card-body-event"
-              src="https://source.unsplash.com/9tZhyQskezA"
-              alt=""
-            />
-
-            <p className="font-13 mt-3">Folk Festival</p>
-          </div> */}
-          {/* <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
-            <img
-              className="rounded card-body-event"
-              src="https://source.unsplash.com/ZhQCZjr9fHo"
-              alt=""
-            />
-
-            <p className="font-13 mt-3">เราร้องคุณโยก</p>
-          </div> */}
-          {/* <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
-            <img
-              className="rounded card-body-event"
-              src="https://source.unsplash.com/bn-D2bCvpik"
-              alt=""
-            />
-
-            <p className="font-13 mt-3">Mini Conceart</p>
-          </div> */}
-          {/* <div className="col-6 col-md-4 col-lg-4 col-xl-3 mb-4  ">
-            <img
-              className="rounded card-body-event"
-              src="https://source.unsplash.com/uD0W-swVGgE"
-              alt=""
-            />
-
-            <p className="font-13 mt-3">Mini Conceart</p>
-          </div> */}
         </div>
       </div>
       <style jsx>{`
