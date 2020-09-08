@@ -58,20 +58,15 @@ export default function Event() {
       </Carousel>
       <div className="container margin-top  justify-content-center">
         <h6 className="text-light mb-5 font-Regular ml-4">Events</h6>
-        <div className="row  col-md-auto  music-hight  mx-auto">
-          <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
+        <div className="row  music-hight col-md-auto">
+          <div className=" col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
             <div
               onClick={() => handleOnClickEvent("1")}
-              className="card text-white pointer"
-              style={{
-                width: "18rem",
-                border: "1px solid #252525",
-                background: "black",
-              }}
+              className="card text-white pointer card-body-event-main"
             >
               <img
                 src="https://source.unsplash.com/9tZhyQskezA"
-                className="card-img-top"
+                className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
@@ -86,19 +81,14 @@ export default function Event() {
             </div>
           </div>
 
-          <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
+          <div className="col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
             <div
-             onClick={() => handleOnClickEvent("1")}
-              className="card text-white pointer"
-              style={{
-                width: "18rem",
-                border: "1px solid #252525",
-                background: "black",
-              }}
+              onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer card-body-event-main"
             >
               <img
                 src="https://source.unsplash.com/ZLdKgqJeERM"
-                className="card-img-top"
+                className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
@@ -112,19 +102,14 @@ export default function Event() {
               </div>
             </div>
           </div>
-          <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
+          <div className="col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
             <div
-                    onClick={() => handleOnClickEvent("1")}
-              className="card text-white pointer"
-              style={{
-                width: "18rem",
-                border: "1px solid #252525",
-                background: "black",
-              }}
+              onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer card-body-event-main"
             >
               <img
                 src="https://source.unsplash.com/Q7wGvnbuwj0"
-                className="card-img-top"
+                className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
@@ -138,19 +123,14 @@ export default function Event() {
               </div>
             </div>
           </div>
-          <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
+          <div className=" col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
             <div
-                    onClick={() => handleOnClickEvent("1")}
-              className="card text-white pointer"
-              style={{
-                width: "18rem",
-                border: "1px solid #252525",
-                background: "black",
-              }}
+              onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer card-body-event-main"
             >
               <img
                 src="https://source.unsplash.com/MRxD-J9-4ps"
-                className="card-img-top"
+                className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
@@ -164,19 +144,14 @@ export default function Event() {
               </div>
             </div>
           </div>
-          <div className="col-6 col-md-4 col-lg-4 col-xl-4 mb-4 ">
+          <div className=" col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
             <div
-                    onClick={() => handleOnClickEvent("1")}
-              className="card text-white pointer"
-              style={{
-                width: "18rem",
-                border: "1px solid #252525",
-                background: "black",
-              }}
+              onClick={() => handleOnClickEvent("1")}
+              className="card text-white pointer card-body-event-main"
             >
               <img
                 src="https://source.unsplash.com/ZODcBkEohk8"
-                className="card-img-top"
+                className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
@@ -193,6 +168,14 @@ export default function Event() {
         </div>
       </div>
       <style jsx>{`
+        .card-body-event-main {
+          width: 18rem;
+          border: 1px solid #252525;
+          background: black;
+        }
+        .image-rounded {
+          border-radius: 15px;
+        }
         .margin-top {
           margin-top: 37rem;
         }
@@ -214,6 +197,13 @@ export default function Event() {
             height: 400px;
           }
         }
+        @media (max-width: 1199px) {
+            .card-body-event-main {
+          width: 25rem;
+   
+        }
+        }
+  
 
         .even-cover-carousel-item {
           top: 0%;
@@ -227,6 +217,10 @@ export default function Event() {
         @media (max-width: 991px) {
           .even-cover-carousel-item {
             top: 2%;
+          }
+          .card-body-event-main{
+                width: 100%
+
           }
         }
       `}</style>
