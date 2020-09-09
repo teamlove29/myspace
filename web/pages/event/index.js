@@ -59,7 +59,7 @@ export default function Event() {
       <div className="container margin-top  justify-content-center">
         <h6 className="text-light mb-5 font-Regular ml-4">Events</h6>
         <div className="row  music-hight col-md-auto">
-          <div className=" col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
+          <div className=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
               onClick={() => handleOnClickEvent("1")}
               className="card text-white pointer card-body-event-main"
@@ -81,7 +81,7 @@ export default function Event() {
             </div>
           </div>
 
-          <div className="col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
+          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
               onClick={() => handleOnClickEvent("1")}
               className="card text-white pointer card-body-event-main"
@@ -102,7 +102,7 @@ export default function Event() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
+          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
               onClick={() => handleOnClickEvent("1")}
               className="card text-white pointer card-body-event-main"
@@ -123,7 +123,7 @@ export default function Event() {
               </div>
             </div>
           </div>
-          <div className=" col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
+          <div className=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
               onClick={() => handleOnClickEvent("1")}
               className="card text-white pointer card-body-event-main"
@@ -144,7 +144,7 @@ export default function Event() {
               </div>
             </div>
           </div>
-          <div className=" col-12 col-sm-auto col-md-6 col-lg-auto col-xl-4 mb-4 ">
+          <div className=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
               onClick={() => handleOnClickEvent("1")}
               className="card text-white pointer card-body-event-main"
@@ -198,12 +198,10 @@ export default function Event() {
           }
         }
         @media (max-width: 1199px) {
-            .card-body-event-main {
-          width: 25rem;
-   
+          .card-body-event-main {
+            width: 22rem;
+          }
         }
-        }
-  
 
         .even-cover-carousel-item {
           top: 0%;
@@ -218,9 +216,8 @@ export default function Event() {
           .even-cover-carousel-item {
             top: 2%;
           }
-          .card-body-event-main{
-                width: 100%
-
+          .card-body-event-main {
+            width: 100%;
           }
         }
       `}</style>
