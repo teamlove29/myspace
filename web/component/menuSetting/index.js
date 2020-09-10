@@ -189,7 +189,7 @@ export default function Index({ children, file }) {
             border-image-slice: 1;
           }
           .resposive_setting_menu {
-            margin-top: -5rem;
+            margin-top: -5.4rem;
           }
         `}
       </style>

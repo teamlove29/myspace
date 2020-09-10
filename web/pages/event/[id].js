@@ -56,7 +56,7 @@ export default ({ dataEven }) => {
         <small>Central Ladprao</small>
         <hr style={{ borderTop: "1px solid #282828" }} />
         <div className="row mt-4 mb-5">
-          <div className="col-8 d-md-none d-lg-block">
+          <div className="col-8  d-none d-lg-block col-lg-7 col-xl=8">
             <h6 className="text-light font-Regular">Detail</h6>
             <p className="color-757575">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
@@ -84,7 +84,7 @@ export default ({ dataEven }) => {
               <p className="mr-2 ml-auto">Next</p>
             </div>
           </div>
-          <div className="col-4 row">
+          <div className="col-4 row ml-1">
             <div className="ml-auto">
               <h6 className="text-light font-Regular">Upcoming Events</h6>
               <div
@@ -108,6 +108,34 @@ export default ({ dataEven }) => {
                   <small style={{ color: "#353535" }}>Mega Banna</small>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="col-12  d-block d-lg-none col-lg-7 col-xl=8">
+            <h6 className="text-light font-Regular mt-4">Detail</h6>
+            <p className="color-757575">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+              eligendi incidunt earum similique ducimus, facilis laborum,
+              accusantium iste eos tempore nihil praesentium beatae error illum
+              doloremque suscipit, accusamus et libero?
+            </p>
+            <p className="color-757575">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+              eligendi incidunt earum similique ducimus, facilis laborum,
+              accusantium iste eos tempore nihil praesentium beatae error illum
+              doloremque suscipit, accusamus et libero? Lorem ipsum dolor sit
+              amet, consectetur adipisicing elit. A eligendi incidunt earum
+              similique ducimus, facilis laborum, accusantium iste eos tempore
+              nihil praesentium beatae error illum doloremque suscipit,
+              accusamus et libero?
+            </p>
+            <p className="color-757575">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+              eligendi incidunt earum similique ducimus, facilis laborum,
+            </p>
+            <hr style={{ borderTop: "1px solid #282828" }} />
+            <div className="row color-757575">
+              <p className="ml-3"> Previous</p>
+              <p className="mr-2 ml-auto">Next</p>
             </div>
           </div>
         </div>
@@ -144,7 +172,7 @@ export default ({ dataEven }) => {
           background-color: #252525;
           background-size: cover;
           background-repeat: no-repeat;
-          height: 600px;
+          max-height: 600px;
         }
 
         @media (max-width: 991px) {

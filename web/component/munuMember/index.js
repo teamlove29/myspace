@@ -173,7 +173,7 @@ const Index = () => {
           }
 
           .avatar-resposive {
-            margin-top: -6rem;
+            margin-top: -6.6rem;
           }
           @media screen and (max-width: 1200px) {
             .form-inline {

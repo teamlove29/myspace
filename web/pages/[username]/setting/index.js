@@ -242,7 +242,7 @@ const Index = () => {
         <form onSubmit={formik.handleSubmit}>
           <div
             style={{ zIndex: "2" }}
-            className="camera_circle  d-none d-lg-block"
+            className="camera_circle  d-none d-lg-block mt-4"
           >
             <label htmlFor="cover">
               <span className="material-icons camera_alt">camera_alt</span>
