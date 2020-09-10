@@ -25,7 +25,7 @@ export default function MyAddress() {
   };
 
   const handleNewAddress = (value) => {
-    if (value != 'edit') {
+    if (value != "edit") {
       setShowNewAddress(true);
       setEditor(false);
     } else {
@@ -66,7 +66,7 @@ export default function MyAddress() {
             <div className="form-group row">
               <div className="col-sm-2 text-muted">Address</div>
               <div className="col-sm-10">
-              4915  West Fork Street Pendroy Montana 59467
+                4915 West Fork Street Pendroy Montana 59467
               </div>
             </div>
           </div>

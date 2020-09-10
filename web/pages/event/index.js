@@ -48,8 +48,8 @@ export default function Event() {
         style={{
           top: "0",
           right: "0",
-        //   position: "absolute",
-        position: "relative",
+          //   position: "absolute",
+          position: "relative",
           width: "100%",
         }}
         controls={false}
@@ -77,9 +77,11 @@ export default function Event() {
         </Carousel.Item>
       </Carousel>
       <div
-        style={{
-        //   marginTop: state,
-        }}
+        style={
+          {
+            //   marginTop: state,
+          }
+        }
         className="container  justify-content-center"
       >
         <h6 className="text-light mb-5 font-Regular ml-4 mt-5">Events</h6>

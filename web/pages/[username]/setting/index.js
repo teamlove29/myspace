@@ -32,9 +32,8 @@ const Index = () => {
   const [imageBlob, setImageBlob] = useState(null);
   const [allowZoomOut, setAllowZoomOut] = useState(false);
   const [position, setposition] = useState({ x: 0.5, y: 0.5 });
-  const verifyMember = username != nameMember ? false : true;
+  const verifyMember = username == nameMember;
   const typeMember = dataMember != undefined ? dataMember.mem_type : null;
-
 
   const setEditorRef = (editor) => setEditor(editor);
   const onCrop = () => {
@@ -45,12 +44,12 @@ const Index = () => {
           .then((res) => res.blob())
           .then((blob) => {
             var cdate = Date.now(); // วันที่สร้าง
-            var ext = imageURL.name.split(".").slice(-1)[0]; //นามสกุลไฟล์็
+            var ext = imageURL.name.split(".").slice(-1)[0]; // นามสกุลไฟล์็
             var ext2 = imageURL.name.split("." + ext).slice(0)[0]; // ชื่อไฟล์
             var fileNames = ext2 + cdate + "." + ext;
             blob.name = fileNames;
             setImageBlob(blob);
-  
+
             setImageCrop(window.URL.createObjectURL(blob));
             setEditing(false);
           });
@@ -113,8 +112,8 @@ const Index = () => {
     firstname: dataMember != undefined ? dataMember.mem_first_name : "",
     lastname: dataMember != undefined ? dataMember.mem_last_name : "",
     email: dataMember != undefined ? dataMember.mem_email : "",
-    born: dataMember != undefined ? dataMember.mem_born: "",
-    province: dataMember != undefined ? dataMember.mem_province: "",
+    born: dataMember != undefined ? dataMember.mem_born : "",
+    province: dataMember != undefined ? dataMember.mem_province : "",
     country: dataMember != undefined ? dataMember.mem_country : "",
     website: dataMember != undefined ? dataMember.mem_website : "",
     aboutyou: dataMember != undefined ? dataMember.mem_about_you : "",
@@ -135,541 +134,522 @@ const Index = () => {
     initialValues,
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
+      console.log(values.avatar);
+      console.log(imageBlob);
+      //       const data = {
+      //         first_name: values.firstname,
+      //         last_name: values.lastname,
+      //         email: values.email,
+      //         display_name: values.displayname,
+      //         about_you: values.aboutyou,
+      //         website: values.website,
+      //         avatar:
+      //           imageBlob != null
+      //             ? imageBlob.name
+      //             : avatarMember != undefined
+      //             ? mem_avatar
+      //             : "",
+      //         cover:
+      //           imageBlobCover != null
+      //             ? imageBlobCover.name
+      //             : coverMember != undefined
+      //             ? mem_cover
+      //             : "",
+      //             cover_position_x: Xposition != '' ? Xposition : '',
+      //             cover_position_y: Yposition != '' ? Yposition : '',
+      //         instagram: values.instagram,
+      //         twitter: values.twitter,
+      //         facebook: values.facebook,
+      //       };
 
-      console.log(values.avatar)
-      console.log(imageBlob)
-//       const data = {
-//         first_name: values.firstname,
-//         last_name: values.lastname,
-//         email: values.email,
-//         display_name: values.displayname,
-//         about_you: values.aboutyou,
-//         website: values.website,
-//         avatar:
-//           imageBlob != null
-//             ? imageBlob.name
-//             : avatarMember != undefined
-//             ? mem_avatar
-//             : "",
-//         cover:
-//           imageBlobCover != null
-//             ? imageBlobCover.name
-//             : coverMember != undefined
-//             ? mem_cover
-//             : "",
-//             cover_position_x: Xposition != '' ? Xposition : '',
-//             cover_position_y: Yposition != '' ? Yposition : '',
-//         instagram: values.instagram,
-//         twitter: values.twitter,
-//         facebook: values.facebook,
-//       };
+      //  // begin process
+      //       Swal.fire({
+      //         position: "top",
+      //         allowOutsideClick: false,
+      //         title: "Updating...",
+      //         timerProgressBar: true,
+      //         onBeforeOpen: () => {
+      //           Swal.showLoading();
+      //           try {
+      //             Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
+      //               headers: {
+      //                 authorization: header,
+      //               },
+      //             })
+      //               .then(async (res) => {
+      //                 if (imageBlob != null) await uploadToFirebase(imageBlob);
+      //                 if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
+      //                 if (nameMember != values.displayname) setCurrentUser(true);
 
-//  // begin process
-//       Swal.fire({
-//         position: "top",
-//         allowOutsideClick: false,
-//         title: "Updating...",
-//         timerProgressBar: true,
-//         onBeforeOpen: () => {
-//           Swal.showLoading();
-//           try {
-//             Axios.post(process.env.API_URL + "/edit_front-profile/edit", data, {
-//               headers: {
-//                 authorization: header,
-//               },
-//             })
-//               .then(async (res) => {
-//                 if (imageBlob != null) await uploadToFirebase(imageBlob);
-//                 if (imageBlobCover != null) await uploadToFirebase(imageBlobCover);
-//                 if (nameMember != values.displayname) setCurrentUser(true);
+      //                 Swal.fire({
+      //                   allowOutsideClick: false,
+      //                   onClose: false,
+      //                   position: "top",
+      //                   icon: "success",
+      //                   title: "Your work has been saved",
+      //                   showConfirmButton: false,
+      //                   timer: 1500,
+      //                 });
 
-//                 Swal.fire({
-//                   allowOutsideClick: false,
-//                   onClose: false,
-//                   position: "top",
-//                   icon: "success",
-//                   title: "Your work has been saved",
-//                   showConfirmButton: false,
-//                   timer: 1500,
-//                 });
-        
-//                 setTimeout(() => {
-//                   router
-//                     .push(
-//                       "/[username]/setting",
-//                       "/" + values.displayname + "/setting"
-//                     )
-//                     .then(() => {
-//                       setSubmitting(false);
-//                       router.reload();
-//                     });
-//                 }, 1500);
-//               })
-//               .catch((err) => {
-//                 console.log(err)
-//                 Swal.fire({
-//                   allowOutsideClick: false,
-//                   onClose: false,
-//                   position: "top",
-//                   icon: "error",
-//                   title: "Update failed",
-//                   text:err,
-//                   showConfirmButton: false,
-//                   timer: 1500,
-//                 })
-//                 setSubmitting(false);
-//               });
-//           } catch (error) {
-//             Swal.fire({
-//               allowOutsideClick: false,
-//               onClose: false,
-//               position: "top",
-//               icon: "error",
-//               title: "Update failed",
-//               text:error,
-//               showConfirmButton: false,
-//               timer: 1500,
-//             })
-//             setSubmitting(false);
-//           }
-//         },
-//       })
-//       // end process
+      //                 setTimeout(() => {
+      //                   router
+      //                     .push(
+      //                       "/[username]/setting",
+      //                       "/" + values.displayname + "/setting"
+      //                     )
+      //                     .then(() => {
+      //                       setSubmitting(false);
+      //                       router.reload();
+      //                     });
+      //                 }, 1500);
+      //               })
+      //               .catch((err) => {
+      //                 console.log(err)
+      //                 Swal.fire({
+      //                   allowOutsideClick: false,
+      //                   onClose: false,
+      //                   position: "top",
+      //                   icon: "error",
+      //                   title: "Update failed",
+      //                   text:err,
+      //                   showConfirmButton: false,
+      //                   timer: 1500,
+      //                 })
+      //                 setSubmitting(false);
+      //               });
+      //           } catch (error) {
+      //             Swal.fire({
+      //               allowOutsideClick: false,
+      //               onClose: false,
+      //               position: "top",
+      //               icon: "error",
+      //               title: "Update failed",
+      //               text:error,
+      //               showConfirmButton: false,
+      //               timer: 1500,
+      //             })
+      //             setSubmitting(false);
+      //           }
+      //         },
+      //       })
+      //       // end process
     },
   });
 
-
   return (
     <>
-          <MenuSetting file={formik.values.cover}>
-            <form onSubmit={formik.handleSubmit} >
-              <div
-                style={{ zIndex: "2" }}
-                className="camera_circle  d-none d-lg-block mt-3"
-              >
-                <label htmlFor="cover">
-                  <span className="material-icons camera_alt">camera_alt</span>
-                  <input
-                    accept="image/*"
-                    type="file"
-                    id="cover"
-                    name="file"
-                    onChange={(event) => {
-                      formik.setFieldValue(
-                        "cover",
-                        event.currentTarget.files[0]
-                      );
-                    }}
+      <MenuSetting file={formik.values.cover}>
+        <form onSubmit={formik.handleSubmit}>
+          <div
+            style={{ zIndex: "2" }}
+            className="camera_circle  d-none d-lg-block"
+          >
+            <label htmlFor="cover">
+              <span className="material-icons camera_alt">camera_alt</span>
+              <input
+                accept="image/*"
+                type="file"
+                id="cover"
+                name="file"
+                onChange={(event) => {
+                  formik.setFieldValue("cover", event.currentTarget.files[0]);
+                }}
+              />
+            </label>
+          </div>
+
+          <h5 className="font-Regular mt-5">Your Picture</h5>
+          <div className="row mt-4">
+            {/* image */}
+            <div className="col-12 col-sm-12 col-md-3 col-xl-2">
+              {imageURL != "" && editing ? (
+                <div>
+                  <AvatarEditor
+                    ref={setEditorRef}
+                    image={imageURL}
+                    width={150}
+                    height={150}
+                    position={position}
+                    onPositionChange={handlePositionChange}
+                    color={[120, 120, 120, 0.9]} // RGBA
+                    borderRadius={150}
+                    border={10}
+                    scale={scale}
+                    rotate={0}
+                    className="editor-canvas "
                   />
-                </label>
-              </div>
-
-              <h5 className="font-Regular mt-5">Your Picture</h5>
-              <div className="row mt-4">
-                {/* image */}
-                <div className="col-12 col-sm-12 col-md-3 col-xl-2">
-                  {imageURL != "" && editing ? (
-                    <div>
-                      <AvatarEditor
-                        ref={setEditorRef}
-                        image={imageURL}
-                        width={150}
-                        height={150}
-                        position={position}
-                        onPositionChange={handlePositionChange}
-                        color={[120, 120, 120, 0.9]} // RGBA
-                        borderRadius={150}
-                        border={10}
-                        scale={scale}
-                        rotate={0}
-                        className="editor-canvas "
-                      />
-                      <div className="form-row mt-3">
-                        <span>Zoom : </span>
-                        <input
-                          name="scale"
-                          type="range"
-                          onChange={handleScale}
-                          min={allowZoomOut ? "0.1" : "1"}
-                          max="3"
-                          step="0.01"
-                          defaultValue="1"
-                        />
-                      </div>
-
-                      <a
-                        className="btn-block btn btn-primary mt-3"
-                        onClick={onCrop}
-                      >
-                        Save
-                      </a>
-                      <a
-                        className="btn-block btn btn-danger mt-2"
-                        onClick={() => {
-                          setEditing(false);
-                          setImageBlob(null);
-                          setScale(1);
-                        }}
-                      >
-                        Cancel
-                      </a>
-                    </div>
-                  ) : null}
-                  {/* <PreviewAvatar file={formik.values.avatar} />
-                   */}
-
-                  {editing === false && (
-                    <img
-                      width={150}
-                      height={150}
-                      className="rounded-circle"
-                      src={
-                        imageCrop != undefined
-                          ? imageCrop
-                          : avatarMember != process.env.AVATARHOLDER
-                          ? avatarMember
-                          : process.env.AVATARHOLDER
-                      }
-                    />
-                  )}
-                </div>
-                {/* Choose file */}
-                <div className="col-12  col-sm-12  col-md-8 col-xl-7 ">
-                  <p className="text-muted">
-                    Uploaded images will be resized and square cropped from the
-                    top. In most places, your image will be displayed in a
-                    circle, like the example.
-                  </p>
-                  <label htmlFor="avatar">
-                    Choose file
+                  <div className="form-row mt-3">
+                    <span>Zoom : </span>
                     <input
-                      accept="image/*"
-                      type="file"
-                      id="avatar"
-                      name="file"
-                      onChange={(event) => {
-                        formik.setFieldValue(
-                          "avatar",
-                          event.currentTarget.files[0]
-                        );
-                        handleNewImage(event);
-                      }}
+                      name="scale"
+                      type="range"
+                      onChange={handleScale}
+                      min={allowZoomOut ? "0.1" : "1"}
+                      max="3"
+                      step="0.01"
+                      defaultValue="1"
                     />
-                  </label>
-                </div>
-              </div>
-              <h5 className="font-Regular mt-5">It's All About You, Baby!</h5>
-              {/* begin displayname */}
-              <div className="form-group row mt-5">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Display Name
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <input
-                    className={`form-control " ${getInputClasses(
-                      "displayname"
-                    )}`}
-                    type="text"
-                    name="displayname"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("displayname")}
-                  />
-                  {formik.touched.displayname && formik.errors.displayname ? (
-                    <div className="text-danger font-13">
-                      {formik.errors.displayname}
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-              {/* End nameDisplay */}
+                  </div>
 
-              {/* begin firstname */}
-              <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Firstname
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <input
-                    className={`form-control " ${getInputClasses("firstname")}`}
-                    type="text"
-                    name="firstname"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("firstname")}
-                  />
-                  {formik.touched.firstname && formik.errors.firstname ? (
-                    <div className="text-danger font-13">
-                      {formik.errors.firstname}
-                    </div>
-                  ) : null}
+                  <a
+                    className="btn-block btn btn-primary mt-3"
+                    onClick={onCrop}
+                  >
+                    Save
+                  </a>
+                  <a
+                    className="btn-block btn btn-danger mt-2"
+                    onClick={() => {
+                      setEditing(false);
+                      setImageBlob(null);
+                      setScale(1);
+                    }}
+                  >
+                    Cancel
+                  </a>
                 </div>
-              </div>
-              {/* End firstname */}
-              {/* begin lastname */}
-              <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Lastname
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <input
-                    className={`form-control " ${getInputClasses("lastname")}`}
-                    type="text"
-                    name="lastname"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("lastname")}
-                  />
-                  {formik.touched.lastname && formik.errors.lastname ? (
-                    <div className="text-danger font-13">
-                      {formik.errors.lastname}
-                    </div>
-                  ) : null}
+              ) : null}
+              {/* <PreviewAvatar file={formik.values.avatar} />
+               */}
+
+              {editing === false && (
+                <img
+                  width={150}
+                  height={150}
+                  className="rounded-circle"
+                  src={
+                    imageCrop != undefined
+                      ? imageCrop
+                      : avatarMember != process.env.AVATARHOLDER
+                      ? avatarMember
+                      : process.env.AVATARHOLDER
+                  }
+                />
+              )}
+            </div>
+            {/* Choose file */}
+            <div className="col-12  col-sm-12  col-md-8 col-xl-7 ">
+              <p className="text-muted">
+                Uploaded images will be resized and square cropped from the top.
+                In most places, your image will be displayed in a circle, like
+                the example.
+              </p>
+              <label htmlFor="avatar">
+                Choose file
+                <input
+                  accept="image/*"
+                  type="file"
+                  id="avatar"
+                  name="file"
+                  onChange={(event) => {
+                    formik.setFieldValue(
+                      "avatar",
+                      event.currentTarget.files[0]
+                    );
+                    handleNewImage(event);
+                  }}
+                />
+              </label>
+            </div>
+          </div>
+          <h5 className="font-Regular mt-5">It's All About You, Baby!</h5>
+          {/* begin displayname */}
+          <div className="form-group row mt-5">
+            <label className="col-xl-3 col-lg-3 col-form-label text-right">
+              Display Name
+            </label>
+            <div className="col-lg-6 col-xl-6">
+              <input
+                className={`form-control " ${getInputClasses("displayname")}`}
+                type="text"
+                name="displayname"
+                disabled={formik.isSubmitting}
+                {...formik.getFieldProps("displayname")}
+              />
+              {formik.touched.displayname && formik.errors.displayname ? (
+                <div className="text-danger font-13">
+                  {formik.errors.displayname}
                 </div>
-              </div>
-              {/* End lastname */}
+              ) : null}
+            </div>
+          </div>
+          {/* End nameDisplay */}
 
-
-
-              {/* begin email */}
-              <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Email
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <input
-                    readOnly={true}
-                    className={`form-control " ${getInputClasses("email")}`}
-                    type="email"
-                    name="email"
-                    {...formik.getFieldProps("email")}
-                  />
-                  {formik.touched.email && formik.errors.email ? (
-                    <div className="text-danger font-13">
-                      {formik.errors.email}
-                    </div>
-                  ) : null}
+          {/* begin firstname */}
+          <div className="form-group row">
+            <label className="col-xl-3 col-lg-3 col-form-label text-right">
+              Firstname
+            </label>
+            <div className="col-lg-6 col-xl-6">
+              <input
+                className={`form-control " ${getInputClasses("firstname")}`}
+                type="text"
+                name="firstname"
+                disabled={formik.isSubmitting}
+                {...formik.getFieldProps("firstname")}
+              />
+              {formik.touched.firstname && formik.errors.firstname ? (
+                <div className="text-danger font-13">
+                  {formik.errors.firstname}
                 </div>
-              </div>
-              {/* End email */}
-
-
-              {/* begin Website */}
-              <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  Website
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <input
-                    className={`form-control " ${getInputClasses("website")}`}
-                    type="text"
-                    name="website"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("website")}
-                  />
-                  {formik.touched.website && formik.errors.website ? (
-                    <div className="text-danger font-13">
-                      {formik.errors.website}
-                    </div>
-                  ) : null}
+              ) : null}
+            </div>
+          </div>
+          {/* End firstname */}
+          {/* begin lastname */}
+          <div className="form-group row">
+            <label className="col-xl-3 col-lg-3 col-form-label text-right">
+              Lastname
+            </label>
+            <div className="col-lg-6 col-xl-6">
+              <input
+                className={`form-control " ${getInputClasses("lastname")}`}
+                type="text"
+                name="lastname"
+                disabled={formik.isSubmitting}
+                {...formik.getFieldProps("lastname")}
+              />
+              {formik.touched.lastname && formik.errors.lastname ? (
+                <div className="text-danger font-13">
+                  {formik.errors.lastname}
                 </div>
-              </div>
-              {/* End Website */}
-              {/* begin AboutYou */}
-              <div className="form-group row">
-                <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                  About You
-                </label>
-                <div className="col-lg-6 col-xl-6">
-                  <textarea
-                    rows="8"
-                    className={`form-control  " ${getInputClasses("aboutyou")}`}
-                    type="text"
-                    name="aboutyou"
-                    disabled={formik.isSubmitting}
-                    {...formik.getFieldProps("aboutyou")}
-                  />
-                  {formik.touched.aboutyou && formik.errors.aboutyou ? (
-                    <div className="text-danger font-13">
-                      {formik.errors.aboutyou}
-                    </div>
-                  ) : null}
+              ) : null}
+            </div>
+          </div>
+          {/* End lastname */}
+
+          {/* begin email */}
+          <div className="form-group row">
+            <label className="col-xl-3 col-lg-3 col-form-label text-right">
+              Email
+            </label>
+            <div className="col-lg-6 col-xl-6">
+              <input
+                readOnly={true}
+                className={`form-control " ${getInputClasses("email")}`}
+                type="email"
+                name="email"
+                {...formik.getFieldProps("email")}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <div className="text-danger font-13">{formik.errors.email}</div>
+              ) : null}
+            </div>
+          </div>
+          {/* End email */}
+
+          {/* begin Website */}
+          <div className="form-group row">
+            <label className="col-xl-3 col-lg-3 col-form-label text-right">
+              Website
+            </label>
+            <div className="col-lg-6 col-xl-6">
+              <input
+                className={`form-control " ${getInputClasses("website")}`}
+                type="text"
+                name="website"
+                disabled={formik.isSubmitting}
+                {...formik.getFieldProps("website")}
+              />
+              {formik.touched.website && formik.errors.website ? (
+                <div className="text-danger font-13">
+                  {formik.errors.website}
+                </div>
+              ) : null}
+            </div>
+          </div>
+          {/* End Website */}
+          {/* begin AboutYou */}
+          <div className="form-group row">
+            <label className="col-xl-3 col-lg-3 col-form-label text-right">
+              About You
+            </label>
+            <div className="col-lg-6 col-xl-6">
+              <textarea
+                rows="8"
+                className={`form-control  " ${getInputClasses("aboutyou")}`}
+                type="text"
+                name="aboutyou"
+                disabled={formik.isSubmitting}
+                {...formik.getFieldProps("aboutyou")}
+              />
+              {formik.touched.aboutyou && formik.errors.aboutyou ? (
+                <div className="text-danger font-13">
+                  {formik.errors.aboutyou}
+                </div>
+              ) : null}
+              <small className="text-muted">
+                200 character limit, plain text only.
+              </small>
+
+              {formik.values.aboutyou.length > 0 && (
+                <>
+                  <br />
                   <small className="text-muted">
-                    200 character limit, plain text only.
+                    {formik.values.aboutyou.length} character now.
                   </small>
+                </>
+              )}
+            </div>
+            <br />
+          </div>
 
-                  {formik.values.aboutyou.length > 0 && (
-                    <>
-                      <br />
-                      <small className="text-muted">
-                        {formik.values.aboutyou.length} character now.
-                      </small>
-                    </>
-                  )}
+          {/* End AboutYou */}
+
+          {typeMember === 2 ? (
+            <>
+              <hr />
+
+              <h4 className="font-Regular">Social</h4>
+              {/* begin instagram */}
+              <div className="form-group row">
+                <label className="col-xl-3 col-lg-3 col-form-label text-right">
+                  Instagram
+                </label>
+                <div className="col-lg-6 col-xl-6">
+                  <input
+                    className={`form-control " ${getInputClasses("instagram")}`}
+                    type="text"
+                    name="instagram"
+                    disabled={formik.isSubmitting}
+                    {...formik.getFieldProps("instagram")}
+                  />
+                  {formik.touched.instagram && formik.errors.instagram ? (
+                    <div className="text-danger font-13">
+                      {formik.errors.instagram}
+                    </div>
+                  ) : null}
                 </div>
                 <br />
               </div>
 
-              {/* End AboutYou */}
+              {/* End instagram */}
 
-              {typeMember === 2 ? (
-                <>
-                  <hr />
-
-                  <h4 className="font-Regular">Social</h4>
-                  {/* begin instagram */}
-                  <div className="form-group row">
-                    <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                      Instagram
-                    </label>
-                    <div className="col-lg-6 col-xl-6">
-                      <input
-                        className={`form-control " ${getInputClasses(
-                          "instagram"
-                        )}`}
-                        type="text"
-                        name="instagram"
-                        disabled={formik.isSubmitting}
-                        {...formik.getFieldProps("instagram")}
-                      />
-                      {formik.touched.instagram && formik.errors.instagram ? (
-                        <div className="text-danger font-13">
-                          {formik.errors.instagram}
-                        </div>
-                      ) : null}
+              {/* begin twitter */}
+              <div className="form-group row">
+                <label className="col-xl-3 col-lg-3 col-form-label text-right">
+                  twitter
+                </label>
+                <div className="col-lg-6 col-xl-6">
+                  <input
+                    className={`form-control " ${getInputClasses("twitter")}`}
+                    type="text"
+                    name="twitter"
+                    disabled={formik.isSubmitting}
+                    {...formik.getFieldProps("twitter")}
+                  />
+                  {formik.touched.twitter && formik.errors.twitter ? (
+                    <div className="text-danger font-13">
+                      {formik.errors.twitter}
                     </div>
-                    <br />
-                  </div>
-
-                  {/* End instagram */}
-
-                  {/* begin twitter */}
-                  <div className="form-group row">
-                    <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                      twitter
-                    </label>
-                    <div className="col-lg-6 col-xl-6">
-                      <input
-                        className={`form-control " ${getInputClasses(
-                          "twitter"
-                        )}`}
-                        type="text"
-                        name="twitter"
-                        disabled={formik.isSubmitting}
-                        {...formik.getFieldProps("twitter")}
-                      />
-                      {formik.touched.twitter && formik.errors.twitter ? (
-                        <div className="text-danger font-13">
-                          {formik.errors.twitter}
-                        </div>
-                      ) : null}
-                    </div>
-                    <br />
-                  </div>
-
-                  {/* End twitter */}
-
-                  {/* begin facebook */}
-                  <div className="form-group row">
-                    <label className="col-xl-3 col-lg-3 col-form-label text-right">
-                      facebook
-                    </label>
-                    <div className="col-lg-6 col-xl-6">
-                      <input
-                        className={`form-control " ${getInputClasses(
-                          "facebook"
-                        )}`}
-                        type="text"
-                        name="facebook"
-                        disabled={formik.isSubmitting}
-                        {...formik.getFieldProps("facebook")}
-                      />
-                      {formik.touched.facebook && formik.errors.facebook ? (
-                        <div className="text-danger font-13">
-                          {formik.errors.facebook}
-                        </div>
-                      ) : null}
-                    </div>
-                    <br />
-                  </div>
-
-                  {/* End facebook */}
-                </>
-              ) : null}
-
-              <div className="d-flex offset-md-3">
-                <Button
-                  className=" btn"
-                  type="submit"
-                  disabled={formik.isSubmitting}
-                >
-                  Save changes
-                </Button>
+                  ) : null}
+                </div>
+                <br />
               </div>
-            </form>
-          </MenuSetting>
-          <style jsx>{`
-            label[for="avatar"] {
-              background-color: #252525;
-              font-size: 13px;
-              border: 0.1px solid #272727;
-              border-radius: 30px;
-              padding: 10px 25px 10px 25px;
-              color: white;
-              display: inline-block;
-              cursor: pointer;
-            }
-            label[for="avatar"]:hover {
-              background: #ddd;
-            }
-            label[for="avatar"] input {
-              display: none;
-            }
 
-            .camera_alt {
-              padding: 8px;
-              color: white;
-              transition: 0.3s;
-            }
+              {/* End twitter */}
 
-            .camera_alt:hover {
-              font-size: 1.5rem;
-            }
+              {/* begin facebook */}
+              <div className="form-group row">
+                <label className="col-xl-3 col-lg-3 col-form-label text-right">
+                  facebook
+                </label>
+                <div className="col-lg-6 col-xl-6">
+                  <input
+                    className={`form-control " ${getInputClasses("facebook")}`}
+                    type="text"
+                    name="facebook"
+                    disabled={formik.isSubmitting}
+                    {...formik.getFieldProps("facebook")}
+                  />
+                  {formik.touched.facebook && formik.errors.facebook ? (
+                    <div className="text-danger font-13">
+                      {formik.errors.facebook}
+                    </div>
+                  ) : null}
+                </div>
+                <br />
+              </div>
 
-            label[for="cover"] {
-              border: 0 solid #272727;
-              border-radius: 30px;
-              cursor: pointer;
-              position: absolute;
-              z-index: 2;
-            }
+              {/* End facebook */}
+            </>
+          ) : null}
 
-            .camera_circle {
-              border: 1px solid white;
-              border-radius: 30px;
-              width: 42px;
-              height: 42px;
-              position: absolute;
-              top: -9%;
-              transition: 0.4s;
-            }
-            .camera_circle:hover {
-              border-radius: 0px;
-            }
+          <div className="d-flex offset-md-3">
+            <Button
+              className=" btn"
+              type="submit"
+              disabled={formik.isSubmitting}
+            >
+              Save changes
+            </Button>
+          </div>
+        </form>
+      </MenuSetting>
+      <style jsx>{`
+        label[for="avatar"] {
+          background-color: #252525;
+          font-size: 13px;
+          border: 0.1px solid #272727;
+          border-radius: 30px;
+          padding: 10px 25px 10px 25px;
+          color: white;
+          display: inline-block;
+          cursor: pointer;
+        }
+        label[for="avatar"]:hover {
+          background: #ddd;
+        }
+        label[for="avatar"] input {
+          display: none;
+        }
 
-            label[for="cover"] input {
-              display: none;
-            }
+        .camera_alt {
+          padding: 8px;
+          color: white;
+          transition: 0.3s;
+        }
 
-            hr {
-              margin-bottom: 50px;
-              margin-top: 50px;
-              background-color: #282828;
-            }
-            .image-holder {
-              background-color: #252525;
-              width: 150px;
-              height: 150px;
-            }
-          `}</style>
+        .camera_alt:hover {
+          font-size: 1.5rem;
+        }
 
+        label[for="cover"] {
+          border: 0 solid #272727;
+          border-radius: 30px;
+          cursor: pointer;
+          position: absolute;
+          z-index: 2;
+        }
+
+        .camera_circle {
+          border: 1px solid white;
+          border-radius: 30px;
+          width: 42px;
+          height: 42px;
+          position: absolute;
+          top: -9%;
+          transition: 0.4s;
+        }
+        .camera_circle:hover {
+          border-radius: 0px;
+        }
+
+        label[for="cover"] input {
+          display: none;
+        }
+
+        hr {
+          margin-bottom: 50px;
+          margin-top: 50px;
+          background-color: #282828;
+        }
+        .image-holder {
+          background-color: #252525;
+          width: 150px;
+          height: 150px;
+        }
+      `}</style>
     </>
   );
 };

@@ -57,11 +57,12 @@ export default function Index({ children, file }) {
         }}
       >
         {file != null && cancel != true && saveCover != true ? (
-          <div 
-          style={{
-            marginTop:"8rem"
-          }}
-          className="text-center">
+          <div
+            style={{
+              marginTop: "8rem",
+            }}
+            className="text-center"
+          >
             <div className="mt-5 ">
               <h6
                 style={{
@@ -151,47 +152,46 @@ export default function Index({ children, file }) {
         {children}
       </div>
 
-      <style jsx>{`
-        .thumb {
-          position: relative;
-          height: 300px;
-          width: 300px;
-          overflow: hidden;
-          margin: 40px 0;
-          cursor: move;
-        }
+      <style jsx>
+        {`
+          .thumb {
+            position: relative;
+            height: 300px;
+            width: 300px;
+            overflow: hidden;
+            margin: 40px 0;
+            cursor: move;
+          }
 
-        hr {
-          margin-bottom: 50px;
-          margin-top: 50px;
-          background-color: #282828;
-        }
+          hr {
+            margin-bottom: 50px;
+            margin-top: 50px;
+            background-color: #282828;
+          }
 
-        a {
-          font-size: 14px;
-          color: white;
-          text-decoration: none;
-        }
-        #list li {
-          display: inline;
-          list-style-type: none;
-          margin-right: 20px;
-          overflow: hidden;
-        }
+          a {
+            font-size: 14px;
+            color: white;
+            text-decoration: none;
+          }
+          #list li {
+            display: inline;
+            list-style-type: none;
+            margin-right: 20px;
+            overflow: hidden;
+          }
 
-        .menuActive {
-          border-bottom: 3px solid transparent;
-          padding-bottom: 5px;
-          border-image: linear-gradient(to left, #f3145e, yellow);
+          .menuActive {
+            border-bottom: 3px solid transparent;
+            padding-bottom: 5px;
+            border-image: linear-gradient(to left, #f3145e, yellow);
 
-          border-image-slice: 1;
-        }
-        .resposive_setting_menu {
-              margin-top: -5rem 
-            }
- 
-      `}
-      
+            border-image-slice: 1;
+          }
+          .resposive_setting_menu {
+            margin-top: -5rem;
+          }
+        `}
       </style>
     </div>
   );

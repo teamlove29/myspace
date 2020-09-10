@@ -190,7 +190,7 @@ export default function Charts() {
                       alt=""
                     />
                   </div>
-                  
+
                   <div className="col-4">
                     <span className="text-light">TELEVIZON EP</span>
                     <br />
@@ -467,7 +467,7 @@ export default function Charts() {
             backgroundsize: cover;
           }
           .icons-play {
-            padding-top:5px;
+            padding-top: 5px;
             font-size: 40px;
             background-image: linear-gradient(to left, yellow, #f3145e);
             -webkit-background-clip: text;

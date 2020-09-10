@@ -106,14 +106,17 @@ export default function AddPlayList() {
           </div>
 
           {editing === false && (
-                 <img
+            <img
               style={{
                 backgroundColor: "#363636",
-                
               }}
               width={150}
               height={150}
-              src={!imageCrop ? 'https://htmlcolors.com/color-image/363636.png' : imageCrop}
+              src={
+                !imageCrop
+                  ? "https://htmlcolors.com/color-image/363636.png"
+                  : imageCrop
+              }
             />
           )}
         </div>

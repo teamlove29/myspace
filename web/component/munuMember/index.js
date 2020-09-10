@@ -5,7 +5,9 @@ import { ModalContext } from "../../config/context/ModalProvider";
 const Index = () => {
   const router = useRouter();
   const { username } = router.query;
-  const hideAbout = router.pathname === "/[username]" || router.pathname ===  "/[username]/playlist";
+  const hideAbout =
+    router.pathname === "/[username]" ||
+    router.pathname === "/[username]/playlist";
   const {
     nameMember,
     dataMember,
@@ -139,16 +141,16 @@ const Index = () => {
                     Lampang, {dataMember.mem_country}
                   </p>
                 </div>
-                {nameMember != username ? 
-                <div className="col-xl-2 text-center">
-                  <button
-                    style={{ borderRadius: "100px", fontSize: "13px" }}
-                    className="btn btn-outline-light pr-4 pl-4 p-2 "
-                  >
-                    Following
-                  </button>
-                </div>
-                : null}
+                {nameMember != username ? (
+                  <div className="col-xl-2 text-center">
+                    <button
+                      style={{ borderRadius: "100px", fontSize: "13px" }}
+                      className="btn btn-outline-light pr-4 pl-4 p-2 "
+                    >
+                      Following
+                    </button>
+                  </div>
+                ) : null}
               </div>
             </>
           ) : null}
@@ -171,8 +173,8 @@ const Index = () => {
           }
 
           .avatar-resposive {
-              margin-top: -6rem;
-            }
+            margin-top: -6rem;
+          }
           @media screen and (max-width: 1200px) {
             .form-inline {
               display: block;

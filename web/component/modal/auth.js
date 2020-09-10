@@ -121,10 +121,12 @@ const Auth = (props) => {
         })
         .catch((error) => {
           formikforgetpass.resetForm();
-          if (error.code === "auth/too-many-requests")
+          if (error.code === "auth/too-many-requests") {
             setStatus("ส่งคำขอมากเกินไป กรุณาทำรายการใหม่ภายหลัง");
-          if (error.code === "auth/user-not-found")
+          }
+          if (error.code === "auth/user-not-found") {
             setStatus("ไม่พบอีเมล์นี้ในระบบ");
+          }
           console.log(error.code);
         });
       setTimeout(() => {
@@ -155,10 +157,12 @@ const Auth = (props) => {
 
   const getInputChecked = (classname) => {
     const valueType = formikChoose.values.type;
-    if (classname === "listen" && valueType === "1")
+    if (classname === "listen" && valueType === "1") {
       return "typeround-active show-text-active";
-    if (classname === "artist" && valueType === "2")
+    }
+    if (classname === "artist" && valueType === "2") {
       return "typeround-active show-text-active";
+    }
     return "";
   };
 
@@ -171,20 +175,18 @@ const Auth = (props) => {
         setSubmitting(false);
         handleCloseSignIn();
 
-  // router.push("/[username]", "/" + values.displayname);
-
-
+        // router.push("/[username]", "/" + values.displayname);
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
         formikSignIn.handleReset();
         setSubmitting(false);
-        if (errorCode === "auth/user-not-found")
+        if (errorCode === "auth/user-not-found") {
           setStatus("User not found. Please sign up.");
-        else if (errorCode === "auth/wrong-password")
+        } else if (errorCode === "auth/wrong-password") {
           setStatus("Incorrect password.");
-        else setStatus(errorCode);
+        } else setStatus(errorCode);
       });
   };
 
@@ -199,8 +201,6 @@ const Auth = (props) => {
       setShowSignIn(true);
       formikSignUp.handleReset();
       formikSignIn.setStatus("อีเมล์นี้มีอยู่ในระบบ กรุณาเข้าสู่ระบบ");
-
-
     } catch (error) {
       console.log(error);
       setEmail(value.email);
@@ -533,12 +533,7 @@ const Auth = (props) => {
           <h2 className="mb-3 mt-5 mobile-h2">
             Select the option the best describe you.
           </h2>
-          <p
-            className="mobile-h2"
-           
-          >
-            Select the option the best describe you.
-          </p>
+          <p className="mobile-h2">Select the option the best describe you.</p>
 
           <div className="margin-auth">
             <Form
@@ -547,9 +542,7 @@ const Auth = (props) => {
             >
               <div className="row justify-content-md-center">
                 {/* begin Listen */}
-                <div
-                style={{width:"270px"}}
-                className="  col-lg-6 mx-auto">
+                <div style={{ width: "270px" }} className="  col-lg-6 mx-auto">
                   <Form.Group>
                     <label
                       htmlFor="listen"
@@ -580,10 +573,8 @@ const Auth = (props) => {
                 </div>
                 {/* end Listen */}
                 {/* begin artist */}
-                <div 
-                 style={{width:"270px"}}
-                className=" col-lg-6 mx-auto">
-                  <Form.Group >
+                <div style={{ width: "270px" }} className=" col-lg-6 mx-auto">
+                  <Form.Group>
                     <label
                       htmlFor="artist"
                       className={`typeround showText-13 ${getInputChecked(
@@ -660,7 +651,7 @@ const Auth = (props) => {
               <Form.Group>
                 <Form.Label>E-mail / Username</Form.Label>
                 <Form.Control
-                  className={`form-control`}
+                  className={"form-control"}
                   name="email"
                   type="email"
                   {...formikforgetpass.getFieldProps("email")}
@@ -714,32 +705,30 @@ const Auth = (props) => {
             text-align: center;
           }
           .typeround {
-          cursor: pointer;
-          border: 2px solid #f5f5f5;
-          border-radius: 30px;
-          padding: 4rem 3rem 1rem 3rem;
-        }
+            cursor: pointer;
+            border: 2px solid #f5f5f5;
+            border-radius: 30px;
+            padding: 4rem 3rem 1rem 3rem;
+          }
         }
 
-.mobile-p-signin{
-  text-align: center;
-}
+        .mobile-p-signin {
+          text-align: center;
+        }
         @media screen and (max-width: 991px) {
           .mobile-h2 {
             text-align: left;
           }
-          .mobile-p-signin{
+          .mobile-p-signin {
             text-align: left;
-}
+          }
           .typeround {
-          cursor: pointer;
-          border: 2px solid #f5f5f5;
-          border-radius: 30px;
-          padding: 1.6rem 4.5rem 1.5rem 4.5rem;
+            cursor: pointer;
+            border: 2px solid #f5f5f5;
+            border-radius: 30px;
+            padding: 1.6rem 4.5rem 1.5rem 4.5rem;
+          }
         }
-        }
-
-  
 
         .typeround:hover {
           border-radius: 30px;
@@ -765,7 +754,6 @@ const Auth = (props) => {
         }
         .showText-13:hover .showText {
           display: block;
-         
         }
 
         .show-text-active .showText {

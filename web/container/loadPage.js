@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
-export default function LoadPage() {
+export default function LoadPage () {
   return (
     <>
       <div className="d-flex justify-content-center text-light mt-5">
         <div
           style={{
-            width: "3rem",
-            height: "3rem",
+            width: '3rem',
+            height: '3rem'
           }}
           className="spinner-border"
         >
@@ -18,5 +18,5 @@ export default function LoadPage() {
         </h1>
       </div>
     </>
-  );
+  )
 }

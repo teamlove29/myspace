@@ -38,7 +38,7 @@ export function Cover({ height, img, text }) {
 
   return (
     <>
-      {/*  
+      {/*
         <div className="text-block">
           <h4>Music</h4>
         </div>

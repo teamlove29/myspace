@@ -73,27 +73,30 @@ export default ({ posts, test }) => {
             <p className="small  text-muted mb-2 ">0 listeners</p>
             <p className="small  text-muted">21 Apr 2017 · 0 tracks</p>
 
-              <Button
-                style={{ width:"175px",marginTop: "10px", letterSpacing: "4px" }}
-                className=" btn font-regular mr-3"
-                type="submit"
-              >
-                Play all
-              </Button>
+            <Button
+              style={{
+                width: "175px",
+                marginTop: "10px",
+                letterSpacing: "4px",
+              }}
+              className=" btn font-regular mr-3"
+              type="submit"
+            >
+              Play all
+            </Button>
 
-              <Button
-                style={{
-                  marginTop: "10px",
-                  letterSpacing: "4px",
-                  background: "black",
-                  color: "white",
-                }}
-                className=" btn pl-5 pr-5 font-regular border"
-                type="submit"
-              >
-                Shuffle
-              </Button>
-           
+            <Button
+              style={{
+                marginTop: "10px",
+                letterSpacing: "4px",
+                background: "black",
+                color: "white",
+              }}
+              className=" btn pl-5 pr-5 font-regular border"
+              type="submit"
+            >
+              Shuffle
+            </Button>
           </div>
         </div>
         {/* begin Shoutbox */}
@@ -104,7 +107,7 @@ export default ({ posts, test }) => {
           <>
             <hr className="col-12 d-md-none " />
             <div className="col-12 col-md-6 col-lg-6 container ">
-            <div className="mt-5 d-none d-md-block"></div>
+              <div className="mt-5 d-none d-md-block"></div>
               <div className="row">
                 {/* Most Popular This Week */}
                 <div className="col-12 ">
@@ -269,7 +272,6 @@ export default ({ posts, test }) => {
           {/* end Upcoming Events */}
 
           <>
-   
             {/* begin You may also like */}
             <div className="col-12 col-md-6 col-lg-6 container ">
               <div className="mt-5 d-none d-md-block"></div>
@@ -434,9 +436,8 @@ export default ({ posts, test }) => {
             </div>
           </>
         </div>
-     
       </div>
-      
+
       <style jsx>{`
 
     li {

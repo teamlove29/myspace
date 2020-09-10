@@ -17,7 +17,7 @@ export function CoverSettingImage({ width, imgCover }) {
     background-repeat: no-repeat;
     background-position: 100% 50%;
     @media (max-width: 991px) {
-      margin-top:4rem
+      margin-top: 4rem;
     }
   `;
 

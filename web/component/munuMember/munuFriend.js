@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ModalContext } from "../../config/context/ModalProvider";
@@ -7,17 +7,13 @@ const Index = () => {
   const router = useRouter();
   const { username } = router.query;
   const hideAbout = router.pathname != "/[username]";
-  const {
-    nameMember,
-    dataFriend,
-    avatarMember,
-    setActiveMenu,
-  } = useContext(ModalContext);
+  const { nameMember, dataFriend, avatarMember, setActiveMenu } = useContext(
+    ModalContext
+  );
   const typeMember = !dataFriend ? null : dataFriend.mem_type;
   useEffect(() => {
     setActiveMenu("");
-  }, [])
-  
+  }, []);
 
   const getMenuItemActive = (path) => {
     const pathname = router.pathname;
@@ -29,9 +25,8 @@ const Index = () => {
     }
   };
 
-
-  if(dataFriend === undefined){
-    return <LoadPage /> 
+  if (dataFriend === undefined) {
+    return <LoadPage />;
   }
 
   return (
@@ -73,10 +68,7 @@ const Index = () => {
               </Link>
             </li>
             <li className={` ${getMenuItemActive("/[username]/following")}`}>
-              <Link
-                href="/[username]/following"
-                as={`/${username}/following`}
-              >
+              <Link href="/[username]/following" as={`/${username}/following`}>
                 <a>Following</a>
               </Link>
             </li>

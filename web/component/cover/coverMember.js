@@ -5,7 +5,6 @@ export default function CoverMember() {
   const { coverMember } = useContext(ModalContext);
   const { height, width } = useWindowDimensions();
 
-
   return (
     <>
       <CoverSettingImage
@@ -16,7 +15,7 @@ export default function CoverMember() {
   );
 }
 
- function getWindowDimensions() {
+function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,

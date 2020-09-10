@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import NProgress from "nprogress"; //nprogress module
-import "nprogress/nprogress.css"; //styles of nprogress
+import NProgress from "nprogress"; // nprogress module
+import "nprogress/nprogress.css"; // styles of nprogress
 import Router from "next/router";
 import JWT from "jsonwebtoken";
 import "react-cool-music-player/dist/index.css";
@@ -25,7 +25,7 @@ NProgress.configure({
   // easing: "ease",
   // speed: 1000,
 });
-//Binding events.
+// Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
