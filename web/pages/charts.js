@@ -10,7 +10,7 @@ export default function Charts() {
   return (
     <>
       <Cover text={"CHARTS"} img={"https://source.unsplash.com/NYrVisodQ2M"} />
-      <h5 className="font-Light menu-top container-fluid mb-5">
+      <h5 className="font-Light menu-top container-fluid mt-5 mb-5">
         Most Popular This Week
       </h5>
       <div className="row container-fluid mx-auto">
@@ -457,7 +457,6 @@ export default function Charts() {
           }
           .menu-top {
             position: relative;
-            margin-top: 250px;
             color: white;
           }
           .card-body-music {
@@ -478,17 +477,6 @@ export default function Charts() {
             .card-body-music {
               width: 145px;
               height: 145px;
-            }
-          }
-
-          @media (max-width: 991px) {
-            .menu-top {
-              margin-top: 300px;
-            }
-          }
-          @media (max-width: 575px) {
-            .menu-top {
-              margin-top: 450px;
             }
           }
         `}

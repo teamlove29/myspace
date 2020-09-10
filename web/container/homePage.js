@@ -1,12 +1,17 @@
-import React, { useContext, useEffect } from 'react'
-import { Button } from '../component/modal/style'
-import { ModalContext } from '../config/context/ModalProvider'
+import React, { useContext, useEffect } from "react";
+import { Button } from "../component/modal/style";
+import { ModalContext } from "../config/context/ModalProvider";
+import {
+  useWindowSize,
+  useWindowWidth,
+  useWindowHeight,
+} from "@react-hook/window-size";
 export default function HomePage() {
-  const { setActiveMenu } = useContext(ModalContext)
-
+  const { setActiveMenu } = useContext(ModalContext);
+  // const { height, width } = useWindowDimensions();
   useEffect(() => {
-    setActiveMenu('/')
-  }, [])
+    setActiveMenu("/");
+  }, []);
 
   return (
     <div className="container">
@@ -18,13 +23,13 @@ export default function HomePage() {
       />
       <div
         style={{
-          marginBottom: '150px'
+          marginBottom: "150px",
         }}
       >
         <div
           className="row"
           style={{
-            position: 'relative'
+            position: "relative",
           }}
         >
           <div className="col-auto mr-auto text-on-home">
@@ -39,9 +44,9 @@ export default function HomePage() {
             <Button
               className="btn"
               style={{
-                marginTop: '20px',
-                letterSpacing: '3px',
-                padding: '10px 60px 10px 60px'
+                marginTop: "20px",
+                letterSpacing: "3px",
+                padding: "10px 60px 10px 60px",
               }}
             >
               Play
@@ -50,8 +55,8 @@ export default function HomePage() {
         </div>
 
         <div className="row col-md-auto text-light mt-4 mb-2">
-          <h6 className="font-SemiBold h5 ">Recommended Music</h6>{' '}
-          <p className="ml-auto font-20">{' <  > '}</p>
+          <h6 className="font-SemiBold h5 ">Recommended Music</h6>{" "}
+          <p className="ml-auto font-20">{" <  > "}</p>
         </div>
         {/* Content Row */}
         {/* justify-content-center */}
@@ -71,7 +76,7 @@ export default function HomePage() {
               <div className="col-2 my-auto">
                 <span
                   style={{
-                    fontSize: '35px'
+                    fontSize: "35px",
                   }}
                   className="material-icons "
                 >
@@ -97,7 +102,7 @@ export default function HomePage() {
               <div className="col-2 my-auto">
                 <span
                   style={{
-                    fontSize: '40px'
+                    fontSize: "40px",
                   }}
                   className="material-icons "
                 >
@@ -123,7 +128,7 @@ export default function HomePage() {
               <div className="col-2 my-auto">
                 <span
                   style={{
-                    fontSize: '40px'
+                    fontSize: "40px",
                   }}
                   className="material-icons "
                 >
@@ -149,7 +154,7 @@ export default function HomePage() {
               <div className="col-2 my-auto">
                 <span
                   style={{
-                    fontSize: '40px'
+                    fontSize: "40px",
                   }}
                   className="material-icons "
                 >
@@ -175,7 +180,7 @@ export default function HomePage() {
               <div className="col-2 my-auto">
                 <span
                   style={{
-                    fontSize: '40px'
+                    fontSize: "40px",
                   }}
                   className="material-icons "
                 >
@@ -201,7 +206,7 @@ export default function HomePage() {
               <div className="col-2 my-auto">
                 <span
                   style={{
-                    fontSize: '40px'
+                    fontSize: "40px",
                   }}
                   className="material-icons "
                 >
@@ -222,8 +227,8 @@ export default function HomePage() {
               <li>
                 <div className="row ">
                   <div className="col-2">
-                    {' '}
-                    <span className="num">1.</span>{' '}
+                    {" "}
+                    <span className="num">1.</span>{" "}
                   </div>
                   <div className="col-2">
                     <img
@@ -241,12 +246,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </li>
-              <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
+              <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row">
                   <div className="col-2">
-                    {' '}
-                    <span className="num text-light">2.</span>{' '}
+                    {" "}
+                    <span className="num text-light">2.</span>{" "}
                   </div>
                   <div className="col-2">
                     <img
@@ -264,12 +269,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </li>
-              <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
+              <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row ">
                   <div className="col-2">
-                    {' '}
-                    <span className="num text-light">3.</span>{' '}
+                    {" "}
+                    <span className="num text-light">3.</span>{" "}
                   </div>
                   <div className="col-2">
                     <img
@@ -287,12 +292,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </li>
-              <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
+              <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row">
                   <div className="col-2">
-                    {' '}
-                    <span className="num text-light">4.</span>{' '}
+                    {" "}
+                    <span className="num text-light">4.</span>{" "}
                   </div>
                   <div className="col-2">
                     <img
@@ -310,12 +315,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </li>
-              <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
+              <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row">
                   <div className="col-2">
-                    {' '}
-                    <span className="num text-light">5.</span>{' '}
+                    {" "}
+                    <span className="num text-light">5.</span>{" "}
                   </div>
                   <div className="col-2">
                     <img
@@ -333,7 +338,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </li>
-              <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
+              <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
             </ol>
 
             <p className="text-center text-warning font-Medium ">SHOW MORE</p>
@@ -345,8 +350,8 @@ export default function HomePage() {
               <li>
                 <div className="row">
                   <div className="col-2">
-                    {' '}
-                    <span className="num">1.</span>{' '}
+                    {" "}
+                    <span className="num">1.</span>{" "}
                   </div>
                   <div className="col-2">
                     <img
@@ -366,12 +371,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </li>
-              <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
+              <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
               <li>
                 <div className="row ">
                   <div className="col-2">
-                    {' '}
-                    <span className="num text-light">2.</span>{' '}
+                    {" "}
+                    <span className="num text-light">2.</span>{" "}
                   </div>
                   <div className="col-2">
                     <img
@@ -398,7 +403,7 @@ export default function HomePage() {
         {/* Popular Artist */}
         <div className="text-light mt-5 text-center">
           <div className="row col-md-auto text-light mt-4 mb-2">
-            <h6 className="font-Medium font-20">Popular Artist</h6>{' '}
+            <h6 className="font-Medium font-20">Popular Artist</h6>{" "}
             <p className="ml-auto text-warning">View All </p>
           </div>
 
@@ -418,7 +423,7 @@ export default function HomePage() {
                 alt=""
               />
               <p className=" mt-2 "> Moods Mixes</p>
-            </div>{' '}
+            </div>{" "}
             <div className="col-4  col-md-auto col-xl-2 col-lg-auto">
               <img
                 className="rounded-circle"
@@ -426,7 +431,7 @@ export default function HomePage() {
                 alt=""
               />
               <p className=" mt-2 "> Moods Mixes</p>
-            </div>{' '}
+            </div>{" "}
             <div className="col-auto col-md-3 col-xl-2 col-lg-auto d-none d-md-block">
               <img
                 className="rounded-circle"
@@ -434,7 +439,7 @@ export default function HomePage() {
                 alt=""
               />
               <p className=" mt-2 "> Moods Mixes</p>
-            </div>{' '}
+            </div>{" "}
             <div className="col-auto col-md-auto col-xl-2 col-lg-auto d-none d-xl-block">
               <img
                 className="rounded-circle"
@@ -442,7 +447,7 @@ export default function HomePage() {
                 alt=""
               />
               <p className=" mt-2 "> Moods Mixes</p>
-            </div>{' '}
+            </div>{" "}
             <div className="col-auto col-md-auto col-xl-2 col-lg-auto d-none d-xl-block">
               <img
                 className="rounded-circle"
@@ -457,9 +462,9 @@ export default function HomePage() {
         {/* Popular Moods Mixes */}
         <div className="text-light  mt-5 ">
           <div className="row col-md-auto text-light mt-4 mb-2">
-            <h6 className="font-Medium font-20">Moods Mixes</h6>{' '}
+            <h6 className="font-Medium font-20">Moods Mixes</h6>{" "}
             <p className="ml-auto text-warning">
-              View All <span className="text-light">{' <  > '}</span>{' '}
+              View All <span className="text-light">{" <  > "}</span>{" "}
             </p>
           </div>
           <div className="row mt-5 justify-content-center">
@@ -537,7 +542,7 @@ export default function HomePage() {
             list-style: none;
           }
           .num {
-            font-family: 'Poppins-SemiBold', sans-serif;
+            font-family: "Poppins-SemiBold", sans-serif;
             color: #dcff00;
             display: inline-block;
             text-align: left;
@@ -579,5 +584,5 @@ export default function HomePage() {
         `}
       </style>
     </div>
-  )
+  );
 }

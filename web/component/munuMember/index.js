@@ -169,6 +169,10 @@ const Index = () => {
             padding-bottom: 10px;
             text-decoration: none;
           }
+
+          .avatar-resposive {
+              margin-top: -6rem;
+            }
           @media screen and (max-width: 1200px) {
             .form-inline {
               display: block;
@@ -183,7 +187,7 @@ const Index = () => {
 
           @media screen and (max-width: 991px) {
             .avatar-resposive {
-              margin-top: 6rem;
+              margin-top: -5rem;
             }
           }
 

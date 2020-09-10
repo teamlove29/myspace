@@ -1,15 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import LoadPage from '../../container/loadPage'
+import LoadPage from "../../container/loadPage";
 import NotFound from "../../container/notFound";
 import { ModalContext } from "../../config/context/ModalProvider";
 import CoverSetting from "../cover/coverSetting";
 export default function Index({ children, file }) {
-
   const router = useRouter();
   const { username } = router.query;
-  const { nameMember,setActiveMenu,dataMember } = useContext(ModalContext);
+  const { nameMember, setActiveMenu, dataMember } = useContext(ModalContext);
   const [cancel, setcancel] = useState(false);
   const [saveCover, setsaveCover] = useState(false);
   const verifyMember = username != nameMember ? false : true;
@@ -27,7 +26,7 @@ export default function Index({ children, file }) {
   useEffect(() => {
     setcancel(false);
     setsaveCover(false);
-    setActiveMenu('/[username]/setting')
+    setActiveMenu("/[username]/setting");
   }, [file]);
 
   const hendleCancel = () => {
@@ -37,22 +36,21 @@ export default function Index({ children, file }) {
     setsaveCover(true);
   };
 
-
   if (dataMember === undefined) {
     return <LoadPage />;
   }
 
-if(verifyMember === false){
-  setActiveMenu('')
-  return <NotFound /> 
-}
+  if (verifyMember === false) {
+    setActiveMenu("");
+    return <NotFound />;
+  }
 
   return (
     <div>
       <CoverSetting file={file} hendleCancel={cancel} saveCover={saveCover} />
 
       <div
-        className="container text-light mt-5"
+        className="container text-light "
         style={{
           position: "relative",
           marginBottom: "150px",
@@ -60,12 +58,11 @@ if(verifyMember === false){
       >
         {file != null && cancel != true && saveCover != true ? (
           <div 
-      
-          
+          style={{
+            marginTop:"8rem"
+          }}
           className="text-center">
-            <div 
-
-            className="mt-5">
+            <div className="mt-5 ">
               <h6
                 style={{
                   display: "block",
@@ -73,13 +70,11 @@ if(verifyMember === false){
                   position: "relative",
                   textAlign: "center",
                   width: "100%",
-                  
                 }}
               >
                 ลากเพื่อย้ายรูปหน้าปก
               </h6>
               <button
-
                 onClick={hendleSave}
                 className="btn pr-3 pl-3 btn-sm btn-primary mr-3"
               >
@@ -92,22 +87,17 @@ if(verifyMember === false){
           </div>
         ) : (
           <>
-            <h3 className="font-Regular mt-5 resposive_setting_menu">Settings</h3>
-            <ul 
-            style={{
-              width: "700px",
-              zIndex:"2"
-            }}
-            id="list" className="mt-4">
-              <li
-                className={`${getMenuItemActive(
-                  "/[username]/setting"
-                )}`}
-              >
-                <Link
-                  href="/[username]/setting"
-                  as={`/${nameMember}/setting`}
-                >
+            <h3 className="font-Regular  resposive_setting_menu ">Settings</h3>
+            <ul
+              style={{
+                width: "700px",
+                zIndex: "2",
+              }}
+              id="list"
+              className="mt-4"
+            >
+              <li className={`${getMenuItemActive("/[username]/setting")}`}>
+                <Link href="/[username]/setting" as={`/${nameMember}/setting`}>
                   <a>Profile</a>
                 </Link>
               </li>
@@ -196,13 +186,13 @@ if(verifyMember === false){
 
           border-image-slice: 1;
         }
-
-        @media screen and (max-width: 991px) {
-            .resposive_setting_menu {
-              padding-top: 3rem !important;
+        .resposive_setting_menu {
+              margin-top: -5rem 
             }
-
-      `}</style>
+ 
+      `}
+      
+      </style>
     </div>
   );
 }

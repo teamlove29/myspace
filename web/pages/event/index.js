@@ -1,16 +1,35 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
-
+import useWindowSize from "../../component/useWindowSize";
 import { Carousel } from "react-bootstrap";
 import { Cover } from "../../component/cover/cover";
 import { ModalContext } from "../../config/context/ModalProvider";
+
 export default function Event() {
   const { setActiveMenu } = useContext(ModalContext);
+  const [state, setstate] = useState();
+  const size = useWindowSize();
   const router = useRouter();
   useEffect(() => {
     setActiveMenu("/event");
-  }, []);
+    // if (size.width > 600) {
+    //   setstate("600px");
+    // } else {
+    //   setstate(`${size.width}px`);
+    // }
 
+    if (size.width <= 1200) {
+      // setstate("600px");
+      setstate(`${size.width - 600}px`);
+      if (size.width <= 991) {
+        setstate(`${size.width - 400}px`);
+      }
+    } else {
+      setstate("600px");
+      // setstate(`${size.width}px`);
+    }
+  }, [size]);
+  console.log(size.width);
   const handleOnClickEvent = (value) => {
     const url = "/event/[id]";
     const as = `/event/${value}`;
@@ -29,7 +48,8 @@ export default function Event() {
         style={{
           top: "0",
           right: "0",
-          position: "absolute",
+        //   position: "absolute",
+        position: "relative",
           width: "100%",
         }}
         controls={false}
@@ -56,9 +76,14 @@ export default function Event() {
           />
         </Carousel.Item>
       </Carousel>
-      <div className="container margin-top  justify-content-center">
-        <h6 className="text-light mb-5 font-Regular ml-4">Events</h6>
-        <div className="row  music-hight col-md-auto">
+      <div
+        style={{
+        //   marginTop: state,
+        }}
+        className="container  justify-content-center"
+      >
+        <h6 className="text-light mb-5 font-Regular ml-4 mt-5">Events</h6>
+        <div className="row  music-hight col-md-auto mx-auto">
           <div className=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
               onClick={() => handleOnClickEvent("1")}
@@ -72,11 +97,10 @@ export default function Event() {
               <div className="p-2">
                 <small className="text-danger font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
-                </small>
-                <p className="card-text">
-                  ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
-                </p>
+                </small>{" "}
+                <br />
+                <span className="card-text">ฝนไปเพลงมา</span> <br />
+                <small style={{ color: "#353535" }}>Mega Banna</small>
               </div>
             </div>
           </div>
@@ -94,11 +118,10 @@ export default function Event() {
               <div className="p-2">
                 <small className="text-danger font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
-                </small>
-                <p className="card-text">
-                  ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
-                </p>
+                </small>{" "}
+                <br />
+                <span className="card-text">ฝนไปเพลงมา</span> <br />
+                <small style={{ color: "#353535" }}>Mega Banna</small>
               </div>
             </div>
           </div>
@@ -115,11 +138,10 @@ export default function Event() {
               <div className="p-2">
                 <small className="text-danger font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
-                </small>
-                <p className="card-text">
-                  ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
-                </p>
+                </small>{" "}
+                <br />
+                <span className="card-text">ฝนไปเพลงมา</span> <br />
+                <small style={{ color: "#353535" }}>Mega Banna</small>
               </div>
             </div>
           </div>
@@ -136,11 +158,10 @@ export default function Event() {
               <div className="p-2">
                 <small className="text-danger font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
-                </small>
-                <p className="card-text">
-                  ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
-                </p>
+                </small>{" "}
+                <br />
+                <span className="card-text">ฝนไปเพลงมา</span> <br />
+                <small style={{ color: "#353535" }}>Mega Banna</small>
               </div>
             </div>
           </div>
@@ -157,17 +178,17 @@ export default function Event() {
               <div className="p-2">
                 <small className="text-danger font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
-                </small>
-                <p className="card-text">
-                  ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
-                </p>
+                </small>{" "}
+                <br />
+                <span className="card-text">ฝนไปเพลงมา</span> <br />
+                <small style={{ color: "#353535" }}>Mega Banna</small>
               </div>
             </div>
           </div>
         </div>
       </div>
       <style jsx>{`
+
         .card-body-event-main {
           width: 18rem;
           border: 1px solid #252525;
@@ -177,7 +198,7 @@ export default function Event() {
           border-radius: 15px;
         }
         .margin-top {
-          margin-top: 37rem;
+          margin-top: size;
         }
         .card-body-event {
           width: 210px;
@@ -204,12 +225,13 @@ export default function Event() {
         }
 
         .even-cover-carousel-item {
+             width: "100%",
           top: 0%;
           opacity: 0.5;
           background-color: #252525;
           background-size: cover;
           background-repeat: no-repeat;
-          height: 600px;
+          max-height: 600px;
         }
 
         @media (max-width: 991px) {

@@ -212,7 +212,11 @@ const Navbar = () => {
 
       <nav
         className="navbar navbar-expand navbar-light topbar mb-4 static-top hidden-md-down bg-navbar"
-        style={{ zIndex: "1" }}
+        style={{ zIndex: "1",
+        position: "absolute",
+        width: "100%" 
+      
+      }}
       >
         <img
           className="d-md-block d-lg-none"

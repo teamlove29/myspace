@@ -4,7 +4,7 @@ export function Cover({ height, img, text }) {
   const CoverShow = styled.div`
     top: 0%;
     opacity: 0.5;
-    position: absolute;
+
     background-color: #252525;
     background-size: cover;
     background-repeat: no-repeat;
@@ -20,6 +20,7 @@ export function Cover({ height, img, text }) {
 
   const Centered = styled.div`
     position: absolute;
+    margin-top: -8rem;
     font-size: 20px;
     top: 10%;
     left: 50%;
@@ -28,10 +29,10 @@ export function Cover({ height, img, text }) {
     color: white;
     transform: translate(-50%, 0%);
     @media (max-width: 991px) {
-      margin-top: 5rem;
+      margin-top: -5rem;
     }
     @media (max-width: 575px) {
-      margin-top: 10rem;
+      margin-top: -10rem;
     }
   `;
 

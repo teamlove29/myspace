@@ -31,15 +31,15 @@ const CoverSetting = ({ file, hendleCancel, saveCover }) => {
   const onCrop = () => {
     if (editor !== null) {
       if (editor) {
-        const positionX = position.x*100
-        const positionY = position.y*100
-        setXposition(positionX.toFixed(0) + '%')
-        setYposition(positionY.toFixed(0) + '%')
+        const positionX = position.x * 100;
+        const positionY = position.y * 100;
+        setXposition(positionX.toFixed(0) + "%");
+        setYposition(positionY.toFixed(0) + "%");
 
-            var cdate = Date.now(); // วันที่สร้าง
-            var ext = file.name.split(".").slice(-1)[0]; //นามสกุลไฟล์็
-            var ext2 = file.name.split("." + ext).slice(0)[0]; // ชื่อไฟล์
-            var fileNames = ext2 + cdate + "." + ext;
+        var cdate = Date.now(); // วันที่สร้าง
+        var ext = file.name.split(".").slice(-1)[0]; //นามสกุลไฟล์็
+        var ext2 = file.name.split("." + ext).slice(0)[0]; // ชื่อไฟล์
+        var fileNames = ext2 + cdate + "." + ext;
         setImageBlobCover(fileNames);
         const canvasScaled = editor.getImageScaledToCanvas().toDataURL();
         fetch(canvasScaled)

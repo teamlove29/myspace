@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from "react";
 import { Carousel } from "react-bootstrap";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { Cover } from "../../component/cover/cover";
 import { ModalContext } from "../../config/context/ModalProvider";
-export default  ({ dataEven }) => {
-    const router = useRouter()
-    const { id } = router.query
+export default ({ dataEven }) => {
+  const router = useRouter();
+  const { id } = router.query;
   const { setActiveMenu } = useContext(ModalContext);
   useEffect(() => {
     setActiveMenu("/event");
@@ -23,7 +23,7 @@ export default  ({ dataEven }) => {
         style={{
           top: "0",
           right: "0",
-          position: "absolute",
+          position: "relative",
           width: "100%",
         }}
         controls={false}
@@ -50,13 +50,13 @@ export default  ({ dataEven }) => {
           />
         </Carousel.Item>
       </Carousel>
-      <div className="container margin-top  justify-content-center">
-        <small className="text-danger">ศ.07.01.63</small>
+      <div className="container  justify-content-center mt-5">
+        <small className="text-danger ">ศ.07.01.63</small>
         <h6 className="text-light font-Regular">Events Name </h6>
         <small>Central Ladprao</small>
         <hr style={{ borderTop: "1px solid #282828" }} />
         <div className="row mt-4 mb-5">
-          <div className="col-8">
+          <div className="col-8 d-md-none d-lg-block">
             <h6 className="text-light font-Regular">Detail</h6>
             <p className="color-757575">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
@@ -104,9 +104,7 @@ export default  ({ dataEven }) => {
                   <small className="text-danger font-11-Regular">
                     ศ.07.01.63 - อา.08.04.63
                   </small>
-                  <p className="card-text">
-                    ฝนไปเพลงมา
-                  </p>
+                  <p className="card-text">ฝนไปเพลงมา</p>
                   <small style={{ color: "#353535" }}>Mega Banna</small>
                 </div>
               </div>
@@ -157,7 +155,7 @@ export default  ({ dataEven }) => {
       `}</style>
     </div>
   );
-}
+};
 
 // export async function getStaticPaths(context) {
 //   return {
