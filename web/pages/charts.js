@@ -443,7 +443,7 @@ export default function Charts () {
             list-style: none;
           }
           .num {
-            font-family: "Poppins-SemiBold", sans-serif;
+            font-family: 'Poppins-SemiBold', sans-serif;
             color: #f6c23e;
             display: inline-block;
             text-align: left;
@@ -468,7 +468,7 @@ export default function Charts () {
             backgroundsize: cover;
           }
           .icons-play {
-            padding-top:5px;
+            padding-top: 5px;
             font-size: 40px;
             background-image: linear-gradient(to left, yellow, #f3145e);
             -webkit-background-clip: text;
