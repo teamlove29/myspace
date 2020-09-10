@@ -1,12 +1,12 @@
-import React from "react";
-import HomePage from "../container/homePage";
+import React from 'react'
+import HomePage from '../container/homePage'
 
 const Index = () => {
   return (
     <>
       <HomePage />
     </>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

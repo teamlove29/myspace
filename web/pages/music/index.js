@@ -1,6 +1,6 @@
-import React from "react";
-import MenuMusic from "../../component/menuMusic/menuMusic";
-export default function Music() {
+import React from 'react'
+import MenuMusic from '../../component/menuMusic/menuMusic'
+export default function Music () {
   return (
     <MenuMusic>
       <div className="col-6 col-md-4 col-lg-4 col-xl-auto  ">
@@ -123,5 +123,5 @@ export default function Music() {
         `}
       </style>
     </MenuMusic>
-  );
+  )
 }

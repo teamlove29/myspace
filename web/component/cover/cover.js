@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export function Cover({ height, img, text }) {
+export function Cover ({ height, img, text }) {
   const CoverShow = styled.div`
     top: 0%;
     opacity: 0.5;
@@ -16,7 +16,7 @@ export function Cover({ height, img, text }) {
       top: 2%;
       height: 400px;
     }
-  `;
+  `
 
   const Centered = styled.div`
     position: absolute;
@@ -33,11 +33,11 @@ export function Cover({ height, img, text }) {
     @media (max-width: 575px) {
       margin-top: 10rem;
     }
-  `;
+  `
 
   return (
     <>
-      {/*  
+      {/*
         <div className="text-block">
           <h4>Music</h4>
         </div>
@@ -45,11 +45,11 @@ export function Cover({ height, img, text }) {
 
       <CoverShow
         style={{
-          backgroundImage: "url(" + img + ")",
+          backgroundImage: 'url(' + img + ')',
           height: height,
-          width: "100%",
-          minWidth: "991px",
-          backgroundPosition: "100% 50%",
+          width: '100%',
+          minWidth: '991px',
+          backgroundPosition: '100% 50%'
         }}
       />
       <div className="container">
@@ -63,5 +63,5 @@ export function Cover({ height, img, text }) {
         `}
       </style>
     </>
-  );
+  )
 }

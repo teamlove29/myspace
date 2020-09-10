@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const size = {
   mobileS: '320px',
@@ -19,8 +19,7 @@ export const device = {
   laptopL: `(min-width: ${size.laptopL})`,
   desktop: `(min-width: ${size.desktop})`,
   desktopL: `(min-width: ${size.desktop})`
-};
-
+}
 
 export const Button = styled.button`
 font-weight: 500;
@@ -51,7 +50,6 @@ transition: 0.5s;
     background: #F5F5F5;
   }
 `
-
 
 export const Alert = styled.div`
 background-color: #fff9fa;

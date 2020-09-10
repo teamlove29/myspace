@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useContext,useMemo } from "react";
-import Link from "next/link";
-import Auth from "./modal/auth";
-import firebase from "../config/config";
-import { useRouter } from "next/router";
-import Axios from "axios";
-import JWT from "jsonwebtoken";
-import { ModalContext } from "../config/context/ModalProvider";
-import { WaveLoading } from "react-loadingg";
-import VerifyMember from "../container/verifyMember";
+import React, { useState, useEffect, useContext, useMemo } from 'react'
+import Link from 'next/link'
+import Auth from './modal/auth'
+import firebase from '../config/config'
+import { useRouter } from 'next/router'
+import Axios from 'axios'
+import JWT from 'jsonwebtoken'
+import { ModalContext } from '../config/context/ModalProvider'
+import { WaveLoading } from 'react-loadingg'
+import VerifyMember from '../container/verifyMember'
 const Navbar = () => {
-  const router = useRouter();
-  const { username } = router.query;
-  const hideSearch = router.pathname != "/[username]/setting";
-  const [showSignUp, setShowSignUp] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const router = useRouter()
+  const { username } = router.query
+  const hideSearch = router.pathname != '/[username]/setting'
+  const [showSignUp, setShowSignUp] = useState(false)
+  const [showSignIn, setShowSignIn] = useState(false)
+  const [loading, setLoading] = useState(false)
   const {
     currentUser,
     setCurrentUser,
@@ -29,67 +29,67 @@ const Navbar = () => {
     avatarMember,
     setavatarMember,
     coverMember,
-    setcoverMember,
-  } = useContext(ModalContext);
+    setcoverMember
+  } = useContext(ModalContext)
 
   const handleSignIn = () => {
-    setShowSignIn(true);
+    setShowSignIn(true)
     setTimeout(() => {
-      setShowSignIn(false);
-    }, 50);
-  };
+      setShowSignIn(false)
+    }, 50)
+  }
   const handleSignUp = () => {
-    setShowSignUp(true);
+    setShowSignUp(true)
     setTimeout(() => {
-      setShowSignUp(false);
-    }, 50);
-  };
+      setShowSignUp(false)
+    }, 50)
+  }
 
   const handleSignOut = () => {
-    firebase.auth().signOut();
-    setavatarMember(process.env.AVATARHOLDER);
-    localStorage.removeItem("token_myspace");
-    localStorage.removeItem("profile_myspace");
-    router.push("/");
-  };
+    firebase.auth().signOut()
+    setavatarMember(process.env.AVATARHOLDER)
+    localStorage.removeItem('token_myspace')
+    localStorage.removeItem('profile_myspace')
+    router.push('/')
+  }
 
   const getImageAvatar = (data) => {
     // ดึงรูป
-    if (data != "" && data != undefined) {
-      const storageRef = firebase.storage().ref();
+    if (data != '' && data != undefined) {
+      const storageRef = firebase.storage().ref()
       storageRef
-        .child("avatars/" + data)
+        .child('avatars/' + data)
         .getDownloadURL()
         .then((url) => {
-          setavatarMember(url);
+          setavatarMember(url)
         })
         .catch((err) => {
-          console.log(err.code);
-        });
+          console.log(err.code)
+        })
     }
-  };
+  }
   const getImageCover = (data) => {
     // ดึงรูป
-    if (data != "" && data != undefined) {
-      const storageRef = firebase.storage().ref();
+    if (data != '' && data != undefined) {
+      const storageRef = firebase.storage().ref()
       storageRef
-        .child("avatars/" + data)
+        .child('avatars/' + data)
         .getDownloadURL()
         .then((url) => {
-          setcoverMember(url);
+          setcoverMember(url)
         })
         .catch((err) => {
-          console.log(err.code);
-        });
+          console.log(err.code)
+        })
     }
-  };
+  }
 
   const onAuthStateChange = () => {
     return firebase.auth().onAuthStateChanged(async (user) => {
-      const tokenverify = await localStorage.getItem("token_myspace");
+      const tokenverify = await localStorage.getItem('token_myspace')
       const profile_myspace_verify = await localStorage.getItem(
-        "profile_myspace"
-      );
+        'profile_myspace'
+      )
 
       if (tokenverify && profile_myspace_verify) {
         try {
@@ -97,59 +97,59 @@ const Navbar = () => {
           var decoded_profile = JWT.verify(
             profile_myspace_verify,
             process.env.SECRET_KEY
-          );
-          setHeader(tokenverify);
-          getImageAvatar(decoded_profile.mem_avatar);
-          getImageCover(decoded_profile.mem_cover);
-          setNameMember(decoded_profile.mem_display_name);
-          setDataMember(decoded_profile);
-          setCurrentUser(true);
+          )
+          setHeader(tokenverify)
+          getImageAvatar(decoded_profile.mem_avatar)
+          getImageCover(decoded_profile.mem_cover)
+          setNameMember(decoded_profile.mem_display_name)
+          setDataMember(decoded_profile)
+          setCurrentUser(true)
         } catch (err) {
-          handleSignOut();
+          handleSignOut()
         }
       } else {
         if (user) {
-          setLoading(true);
-          const uid = await user.uid;
-          let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
+          setLoading(true)
+          const uid = await user.uid
+          const token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY)
           const checksocialLogin = await Axios.post(
-            process.env.API_URL + "/login-member",
+            process.env.API_URL + '/login-member',
             { uid: uid }
-          );
+          )
           if (checksocialLogin.status === 200) {
             try {
               const verifyMember = await Axios.get(
                 process.env.API_URL_EDITFRONT,
                 {
-                  headers: { authorization: token },
+                  headers: { authorization: token }
                 }
-              );
+              )
               // { expiresIn: '1d' }
               const tokenJWT = JWT.sign(
                 verifyMember.data[0],
                 process.env.SECRET_KEY
-              );
-              localStorage.setItem("token_myspace", token);
-              localStorage.setItem("profile_myspace", tokenJWT);
-              setLoading(false);
-              setCurrentUser(true);
+              )
+              localStorage.setItem('token_myspace', token)
+              localStorage.setItem('profile_myspace', tokenJWT)
+              setLoading(false)
+              setCurrentUser(true)
             } catch (error) {
-              setLoading(false);
-              setNameMember(null);
-              setCurrentUser(false);
+              setLoading(false)
+              setNameMember(null)
+              setCurrentUser(false)
             }
           }
         } else {
-          setNameMember(null);
-          setCurrentUser(false);
+          setNameMember(null)
+          setCurrentUser(false)
         }
       }
-    });
-  };
+    })
+  }
 
   const test = async () => {
- 
-  };
+
+  }
 
   useEffect(() => {
     // Axios.post(process.env.API_URL_CHECKDISPLAY, {
@@ -180,27 +180,26 @@ const Navbar = () => {
     //   setDataFriend(undefined);
     // }
 
-    const unsubscribe = onAuthStateChange();
-    return () => unsubscribe();
-  }, [currentUser]);
-
+    const unsubscribe = onAuthStateChange()
+    return () => unsubscribe()
+  }, [currentUser])
 
   return (
     <>
       {loading && (
         <div
           style={{
-            top: "0",
-            right: "0",
-            bottom: "0",
-            left: "0",
-            width: "100%",
-            height: "100vh",
-            background: "black",
-            position: "fixed",
-            opacity: "0.8",
-            zIndex: "2",
-            overflow: "hidden",
+            top: '0',
+            right: '0',
+            bottom: '0',
+            left: '0',
+            width: '100%',
+            height: '100vh',
+            background: 'black',
+            position: 'fixed',
+            opacity: '0.8',
+            zIndex: '2',
+            overflow: 'hidden'
           }}
         >
           <WaveLoading color="orange" size="large" />
@@ -212,7 +211,7 @@ const Navbar = () => {
 
       <nav
         className="navbar navbar-expand navbar-light topbar mb-4 static-top hidden-md-down bg-navbar"
-        style={{ zIndex: "1" }}
+        style={{ zIndex: '1' }}
       >
         <img
           className="d-md-block d-lg-none"
@@ -226,8 +225,8 @@ const Navbar = () => {
             <ul className="navbar-nav  ml-auto  d-lg-none text-light">
               <li
                 style={{
-                  marginRight: "-10px",
-                  marginLeft: "-10px",
+                  marginRight: '-10px',
+                  marginLeft: '-10px'
                 }}
                 className="nav-item dropdown no-arrow"
               >
@@ -308,8 +307,8 @@ const Navbar = () => {
 
               <li
                 style={{
-                  marginRight: "-10px",
-                  marginLeft: "-10px",
+                  marginRight: '-10px',
+                  marginLeft: '-10px'
                 }}
                 className="nav-item dropdown no-arrow"
               >
@@ -385,7 +384,7 @@ const Navbar = () => {
             <form className=" form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search d-none d-lg-block">
               <div className="input-group w-50">
                 <input
-                  style={{ borderRadius: "100px" }}
+                  style={{ borderRadius: '100px' }}
                   type="text"
                   className="form-control  border-0 small"
                   placeholder="Search"
@@ -398,7 +397,7 @@ const Navbar = () => {
         )}
         {/* Topbar Navbar */}
         <ul
-          className={currentUser != true ? "navbar-nav mobile" : "navbar-nav"}
+          className={currentUser != true ? 'navbar-nav mobile' : 'navbar-nav'}
         >
           {/* Sign in  */}
           {currentUser != true ? (
@@ -491,24 +490,19 @@ background-color : #151821;
       </style>
       {/* End of Topbar */}
     </>
-  );
-};
+  )
+}
 
-
-{/* Page.getInitialProps = async (ctx) => {
+{ /* Page.getInitialProps = async (ctx) => {
   const res = await fetch('https://api.github.com/repos/vercel/next.js')
   const json = await res.json()
   return { stars: json.stargazers_count }
-} */}
+} */ }
 
 Navbar.getInitialProps = async ({ query, ctx }) => {
-  const { username } = query;
-console.log('tdsadasd')
-  return { username: username };
-};
+  const { username } = query
+  console.log('tdsadasd')
+  return { username: username }
+}
 
-export default Navbar;
-
-
-
-
+export default Navbar

@@ -1,23 +1,23 @@
-import React, { useContext } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { ModalContext } from "../../../config/context/ModalProvider";
-import MemberPage from "../../../container/memberPage/index";
-import LoadPage from "../../../container/loadPage";
-import { Button } from "../../../component/modal/style";
+import React, { useContext } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { ModalContext } from '../../../config/context/ModalProvider'
+import MemberPage from '../../../container/memberPage/index'
+import LoadPage from '../../../container/loadPage'
+import { Button } from '../../../component/modal/style'
 export default ({ posts, test }) => {
-  const { dataMember } = useContext(ModalContext);
-  const router = useRouter();
-  const { id, username } = router.query;
+  const { dataMember } = useContext(ModalContext)
+  const router = useRouter()
+  const { id, username } = router.query
   if (!dataMember) {
-    return <LoadPage />;
+    return <LoadPage />
   }
-  console.log(test);
+  console.log(test)
   return (
     <MemberPage>
       {/* <h1>posttest : {test.id} {test.username}</h1> */}
       <div className="row container-fluid text-light mt-5">
-        <h6 className="font-Medium ">My Playlist</h6>{" "}
+        <h6 className="font-Medium ">My Playlist</h6>{' '}
         <p className="ml-auto text-muted ">
           <Link
             href="/[username]/playlist/addplaylist"
@@ -42,11 +42,11 @@ export default ({ posts, test }) => {
             style={{
               backgroundImage:
                 "url('https://d1csarkz8obe9u.cloudfront.net/posterpreviews/cool-music-album-cover-design-template-3324b2b5c69bb9a3cfaed14c71f24ca8_screen.jpg?ts=1572456482')",
-              width: "150px",
-              height: "150px",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
+              width: '150px',
+              height: '150px',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover'
             }}
           ></div>
 
@@ -55,7 +55,7 @@ export default ({ posts, test }) => {
               Listen on the road
               <span
                 style={{
-                  fontSize: "12px",
+                  fontSize: '12px'
                 }}
                 className="ml-2 material-icons"
               >
@@ -63,7 +63,7 @@ export default ({ posts, test }) => {
               </span>
               <span
                 style={{
-                  fontSize: "12px",
+                  fontSize: '12px'
                 }}
                 className="ml-2 material-icons"
               >
@@ -73,27 +73,27 @@ export default ({ posts, test }) => {
             <p className="small  text-muted mb-2 ">0 listeners</p>
             <p className="small  text-muted">21 Apr 2017 · 0 tracks</p>
 
-              <Button
-                style={{ width:"175px",marginTop: "10px", letterSpacing: "4px" }}
-                className=" btn font-regular mr-3"
-                type="submit"
-              >
+            <Button
+              style={{ width: '175px', marginTop: '10px', letterSpacing: '4px' }}
+              className=" btn font-regular mr-3"
+              type="submit"
+            >
                 Play all
-              </Button>
+            </Button>
 
-              <Button
-                style={{
-                  marginTop: "10px",
-                  letterSpacing: "4px",
-                  background: "black",
-                  color: "white",
-                }}
-                className=" btn pl-5 pr-5 font-regular border"
-                type="submit"
-              >
+            <Button
+              style={{
+                marginTop: '10px',
+                letterSpacing: '4px',
+                background: 'black',
+                color: 'white'
+              }}
+              className=" btn pl-5 pr-5 font-regular border"
+              type="submit"
+            >
                 Shuffle
-              </Button>
-           
+            </Button>
+
           </div>
         </div>
         {/* begin Shoutbox */}
@@ -104,7 +104,7 @@ export default ({ posts, test }) => {
           <>
             <hr className="col-12 d-md-none " />
             <div className="col-12 col-md-6 col-lg-6 container ">
-            <div className="mt-5 d-none d-md-block"></div>
+              <div className="mt-5 d-none d-md-block"></div>
               <div className="row">
                 {/* Most Popular This Week */}
                 <div className="col-12 ">
@@ -112,7 +112,7 @@ export default ({ posts, test }) => {
                     <li>
                       <div className="row ">
                         <div className="col-1 my-auto">
-                          <span className="num">1.</span>{" "}
+                          <span className="num">1.</span>{' '}
                         </div>
                         <div className="col-2 my-auto">
                           <span className="material-icons icons-play">
@@ -138,11 +138,11 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <li>
                       <div className="row">
                         <div className="col-1 my-auto">
-                          <span className="num">2.</span>{" "}
+                          <span className="num">2.</span>{' '}
                         </div>
                         <div className="col-2 my-auto">
                           <span className="material-icons icons-play">
@@ -168,11 +168,11 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <li>
                       <div className="row">
                         <div className="col-1 my-auto">
-                          <span className="num">3.</span>{" "}
+                          <span className="num">3.</span>{' '}
                         </div>
                         <div className="col-2 my-auto">
                           <span className="material-icons icons-play">
@@ -198,11 +198,11 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <li>
                       <div className="row">
                         <div className="col-1 my-auto">
-                          <span className="num">4.</span>{" "}
+                          <span className="num">4.</span>{' '}
                         </div>
                         <div className="col-2 my-auto">
                           <span className="material-icons icons-play">
@@ -228,7 +228,7 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <li>
                       <div className="row">
                         <div className="col-1 my-auto">
@@ -258,7 +258,7 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                   </ol>
                 </div>
                 {/* Most Recommended */}
@@ -269,7 +269,7 @@ export default ({ posts, test }) => {
           {/* end Upcoming Events */}
 
           <>
-   
+
             {/* begin You may also like */}
             <div className="col-12 col-md-6 col-lg-6 container ">
               <div className="mt-5 d-none d-md-block"></div>
@@ -280,7 +280,7 @@ export default ({ posts, test }) => {
                     <li>
                       <div className="row ">
                         <div className="col-1 my-auto">
-                          <span className="num">1.</span>{" "}
+                          <span className="num">1.</span>{' '}
                         </div>
                         <div className="col-2 my-auto">
                           <span className="material-icons icons-play">
@@ -306,11 +306,11 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <li>
                       <div className="row">
                         <div className="col-1 my-auto">
-                          <span className="num">2.</span>{" "}
+                          <span className="num">2.</span>{' '}
                         </div>
                         <div className="col-2 my-auto">
                           <span className="material-icons icons-play">
@@ -336,11 +336,11 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <li>
                       <div className="row">
                         <div className="col-1 my-auto">
-                          <span className="num">3.</span>{" "}
+                          <span className="num">3.</span>{' '}
                         </div>
                         <div className="col-2 my-auto">
                           <span className="material-icons icons-play">
@@ -366,11 +366,11 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <li>
                       <div className="row">
                         <div className="col-1 my-auto">
-                          <span className="num">4.</span>{" "}
+                          <span className="num">4.</span>{' '}
                         </div>
                         <div className="col-2 my-auto">
                           <span className="material-icons icons-play">
@@ -396,7 +396,7 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <li>
                       <div className="row">
                         <div className="col-1 my-auto">
@@ -426,7 +426,7 @@ export default ({ posts, test }) => {
                         </div>
                       </div>
                     </li>
-                    <hr style={{ marginTop: "20px", marginBottom: "20px" }} />
+                    <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
                   </ol>
                 </div>
                 {/* Most Recommended */}
@@ -434,9 +434,9 @@ export default ({ posts, test }) => {
             </div>
           </>
         </div>
-     
+
       </div>
-      
+
       <style jsx>{`
 
     li {
@@ -457,27 +457,27 @@ export default ({ posts, test }) => {
 }
     `}</style>
     </MemberPage>
-  );
-};
+  )
+}
 
-export async function getStaticPaths(context) {
+export async function getStaticPaths (context) {
   return {
     paths: [
       {
         params: {
-          username: "TRAROKINGs",
-          id: "1",
-        },
-      },
+          username: 'TRAROKINGs',
+          id: '1'
+        }
+      }
     ],
-    fallback: false,
-  };
+    fallback: false
+  }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps ({ params }) {
   return {
-    props: { test: params }, // will be passed to the page component as props
-  };
+    props: { test: params } // will be passed to the page component as props
+  }
 }
 
 // export async function getServerSideProps({query}) {

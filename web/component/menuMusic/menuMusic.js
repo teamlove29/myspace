@@ -1,64 +1,64 @@
-import React, { useEffect, useContext } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { Cover } from "../cover/cover";
-import { ModalContext } from "../../config/context/ModalProvider";
+import React, { useEffect, useContext } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Cover } from '../cover/cover'
+import { ModalContext } from '../../config/context/ModalProvider'
 
-export default function MenuMusic({ children }) {
-  const { setActiveMenu } = useContext(ModalContext);
-  const router = useRouter();
+export default function MenuMusic ({ children }) {
+  const { setActiveMenu } = useContext(ModalContext)
+  const router = useRouter()
   useEffect(() => {
-    setActiveMenu("/music");
-  }, []);
+    setActiveMenu('/music')
+  }, [])
 
   const getMenuItemActive = (path) => {
-    const pathname = router.pathname;
+    const pathname = router.pathname
     if (!pathname || !path) {
-      return false;
+      return false
     }
     if (pathname === path) {
-      return "text-warning";
+      return 'text-warning'
     }
-    return "text-light";
-  };
+    return 'text-light'
+  }
 
   return (
     <>
-      <Cover text={"MUSIC"} img={"https://source.unsplash.com/NYrVisodQ2M"} />
+      <Cover text={'MUSIC'} img={'https://source.unsplash.com/NYrVisodQ2M'} />
 
       <div className="container-fluid menu-top  justify-content-center">
         <div className="scrollmenu text-center  menu-hight ">
           <Link href="/music">
             <a
               style={{
-                paddingLeft: "10px",
+                paddingLeft: '10px'
               }}
-              className={` ${getMenuItemActive("/music")}`}
+              className={` ${getMenuItemActive('/music')}`}
             >
               <span className="material-icons mb-3">bubble_chart</span> <br />
               All song
             </a>
           </Link>
           <Link href="/music/pop">
-            <a className={` ${getMenuItemActive("/music/pop")}`}>
+            <a className={` ${getMenuItemActive('/music/pop')}`}>
               <span className="material-icons mb-3">music_note</span> <br />
               Pop
             </a>
           </Link>
           <Link href="/music/jazz">
-            <a className={` ${getMenuItemActive("/music/jazz")}`}>
+            <a className={` ${getMenuItemActive('/music/jazz')}`}>
               <span className="material-icons mb-3">album</span> <br />
               Jazz
             </a>
           </Link>
           <Link href="/music/hiphop">
-            <a className={` ${getMenuItemActive("/music/hiphop")}`}>
+            <a className={` ${getMenuItemActive('/music/hiphop')}`}>
               <span className="material-icons mb-3">headset</span> <br />
               Hip Hop
             </a>
           </Link>
           <Link href="/music/rock">
-            <a className={` ${getMenuItemActive("/music/rock")}`}>
+            <a className={` ${getMenuItemActive('/music/rock')}`}>
               <span className="material-icons mb-3">bar_chart</span> <br />
               Rock
             </a>
@@ -66,9 +66,9 @@ export default function MenuMusic({ children }) {
           <Link href="/music/folk">
             <a
               style={{
-                paddingRight: "10px",
+                paddingRight: '10px'
               }}
-              className={` ${getMenuItemActive("/music/folk")}`}
+              className={` ${getMenuItemActive('/music/folk')}`}
             >
               <span className="material-icons mb-3">bar_chart</span> <br />
               Folk
@@ -162,5 +162,5 @@ export default function MenuMusic({ children }) {
         </style>
       </div>
     </>
-  );
+  )
 }

@@ -1,86 +1,86 @@
-import React, { useEffect, useContext, useState } from "react";
-import { ModalContext } from "../../../config/context/ModalProvider";
-import MemberPage from "../../../container/memberPage/index";
-import AvatarEditor from "react-avatar-editor";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { Button } from "../../../component/modal/style";
-export default function AddPlayList() {
-  const { setActiveMenu } = useContext(ModalContext);
-  const [editor, setEditor] = useState();
-  const [editing, setEditing] = useState(false);
-  const [imageURL, setImageURL] = useState("");
-  const [imageCrop, setImageCrop] = useState("");
-  const [position, setposition] = useState({ x: 0.5, y: 0.5 });
-  const [scale, setScale] = useState(1);
+import React, { useEffect, useContext, useState } from 'react'
+import { ModalContext } from '../../../config/context/ModalProvider'
+import MemberPage from '../../../container/memberPage/index'
+import AvatarEditor from 'react-avatar-editor'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { Button } from '../../../component/modal/style'
+export default function AddPlayList () {
+  const { setActiveMenu } = useContext(ModalContext)
+  const [editor, setEditor] = useState()
+  const [editing, setEditing] = useState(false)
+  const [imageURL, setImageURL] = useState('')
+  const [imageCrop, setImageCrop] = useState('')
+  const [position, setposition] = useState({ x: 0.5, y: 0.5 })
+  const [scale, setScale] = useState(1)
   useEffect(() => {
-    setActiveMenu("/[username]");
-  }, []);
+    setActiveMenu('/[username]')
+  }, [])
 
-  const setEditorRef = (editor) => setEditor(editor);
+  const setEditorRef = (editor) => setEditor(editor)
 
   const getInputClasses = (fieldname) => {
     if (formik.touched[fieldname] && formik.errors[fieldname]) {
-      return "";
+      return ''
       // return "is-invalid";
     }
     if (formik.touched[fieldname] && !formik.errors[fieldname]) {
-      return "";
+      return ''
       // return "is-valid";
     }
-    return "";
-  };
+    return ''
+  }
   const handleScale = (e) => {
-    const scale = parseFloat(e.target.value);
-    setScale(scale);
-  };
+    const scale = parseFloat(e.target.value)
+    setScale(scale)
+  }
   const handlePositionChange = (position) => {
-    setposition(position);
-  };
+    setposition(position)
+  }
 
   var initialValues = {
     coverplaylist: null,
-    title: "",
-    private: false,
-  };
+    title: '',
+    private: false
+  }
 
   const Schema = Yup.object().shape({
-    title: Yup.string().required("Required").min(6, "Min length is 6"),
-  });
+    title: Yup.string().required('Required').min(6, 'Min length is 6')
+  })
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues,
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
-      console.log(values);
-      setSubmitting(false);
-    },
-  });
+      console.log(values)
+      setSubmitting(false)
+    }
+  })
 
   // begin previewCover playlist
   if (editor) {
-    const canvasScaled = editor.getImageScaledToCanvas().toDataURL();
+    const canvasScaled = editor.getImageScaledToCanvas().toDataURL()
     fetch(canvasScaled)
       .then((res) => res.blob())
       .then((blob) => {
-        setImageCrop(window.URL.createObjectURL(blob));
-        setEditing(false);
-      });
+        setImageCrop(window.URL.createObjectURL(blob))
+        setEditing(false)
+      })
   }
   // end previewCover playlist
 
   const handleNewImage = (e) => {
     if (e.target.files[0] != undefined) {
-      const fileSize = e.target.files[0].size / 1024 / 1024; // in MB
+      const fileSize = e.target.files[0].size / 1024 / 1024 // in MB
       if (fileSize > 10) {
-        alert("File size exceeds 10 MB");
+        alert('File size exceeds 10 MB')
       } else {
-        setImageURL(e.target.files[0]);
-        setEditing(true);
+        setImageURL(e.target.files[0])
+        setEditing(true)
       }
     }
-  };
+  }
 
   return (
     <MemberPage>
@@ -89,7 +89,7 @@ export default function AddPlayList() {
         {/* image */}
         <div className="col-12 col-sm-12 col-md-3 col-xl-2 if-center ">
           <div>
-            {imageURL != "" && editing ? (
+            {imageURL != '' && editing ? (
               <AvatarEditor
                 ref={setEditorRef}
                 image={imageURL}
@@ -106,10 +106,10 @@ export default function AddPlayList() {
           </div>
 
           {editing === false && (
-                 <img
+            <img
               style={{
-                backgroundColor: "#363636",
-                
+                backgroundColor: '#363636'
+
               }}
               width={150}
               height={150}
@@ -135,10 +135,10 @@ export default function AddPlayList() {
                 name="file"
                 onChange={(event) => {
                   formik.setFieldValue(
-                    "coverplaylist",
+                    'coverplaylist',
                     event.currentTarget.files[0]
-                  );
-                  handleNewImage(event);
+                  )
+                  handleNewImage(event)
                 }}
               />
             </label>
@@ -155,11 +155,11 @@ export default function AddPlayList() {
           </label>
           <div className="col-10 col-md-6 col-lg-6 col-xl-6">
             <input
-              className={`form-control " ${getInputClasses("title")}`}
+              className={`form-control " ${getInputClasses('title')}`}
               type="text"
               name="title"
               disabled={formik.isSubmitting}
-              {...formik.getFieldProps("title")}
+              {...formik.getFieldProps('title')}
             />
             {formik.touched.title && formik.errors.title ? (
               <div className="text-danger font-13">{formik.errors.title}</div>
@@ -179,7 +179,7 @@ export default function AddPlayList() {
                 type="checkbox"
                 checked={formik.values.private}
                 name="private"
-                {...formik.getFieldProps("private")}
+                {...formik.getFieldProps('private')}
               />
               <span className="slider round" />
             </label>
@@ -288,5 +288,5 @@ export default function AddPlayList() {
         }
       `}</style>
     </MemberPage>
-  );
+  )
 }

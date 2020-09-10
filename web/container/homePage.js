@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Button } from '../component/modal/style'
 import { ModalContext } from '../config/context/ModalProvider'
-export default function HomePage() {
+export default function HomePage () {
   const { setActiveMenu } = useContext(ModalContext)
 
   useEffect(() => {

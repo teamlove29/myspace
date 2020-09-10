@@ -1,61 +1,58 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Modal, Form } from "react-bootstrap";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import { Button, Alert } from "./style";
+import React, { useState, useEffect, useContext } from 'react'
+import { Modal, Form } from 'react-bootstrap'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
+import { Button, Alert } from './style'
 const NewAddress = (props) => {
-  const [showNewAddress, setShowNewAddress] = useState(false);
+  const [showNewAddress, setShowNewAddress] = useState(false)
   useEffect(() => {
-    if (props.show === true) setShowNewAddress(true);
-  }, [props]);
+    if (props.show === true) setShowNewAddress(true)
+  }, [props])
 
   const handleClose = () => {
-    setShowNewAddress(false);
-    formik.resetForm();
-  };
+    setShowNewAddress(false)
+    formik.resetForm()
+  }
 
   const getInputClasses = (fieldname) => {
     if (formik.touched[fieldname] && formik.errors[fieldname]) {
-        return "is-invalid";
+      return 'is-invalid'
     }
     if (formik.touched[fieldname] && !formik.errors[fieldname]) {
-        return "";
+      return ''
     }
-    return "";
-  };
-
-
+    return ''
+  }
 
   const initialValues = {
-    fullname: "",
-    tel: "",
-    province: "",
-    district: "",
-    postalcode: "",
-    etc: "",
+    fullname: '',
+    tel: '',
+    province: '',
+    district: '',
+    postalcode: '',
+    etc: ''
   }
-  
 
   const Schema = Yup.object().shape({
-    fullname: Yup.string().required("Required").min(6, "Min length is 6"),
-    tel: Yup.string().required("Required"),
-    province: Yup.string().required("Required"),
-    district: Yup.string().required("Required"),
-    postalcode: Yup.string().required("Required"),
-  });
+    fullname: Yup.string().required('Required').min(6, 'Min length is 6'),
+    tel: Yup.string().required('Required'),
+    province: Yup.string().required('Required'),
+    district: Yup.string().required('Required'),
+    postalcode: Yup.string().required('Required')
+  })
 
   const formik = useFormik({
     initialValues,
     enableReinitialize: true,
     validationSchema: Schema,
     onSubmit: (values, { setStatus, setSubmitting }) => {
-      setStatus(null);
-      console.log(values);
+      setStatus(null)
+      console.log(values)
       setTimeout(() => {
         setSubmitting(false)
-      }, 1000);
-    },
-  });
+      }, 1000)
+    }
+  })
 
   return (
     <>
@@ -67,7 +64,7 @@ const NewAddress = (props) => {
         keyboard={false}
       >
         <Modal.Body>
-          {props.editor != "" ? (
+          {props.editor != '' ? (
             <p className="font-20">Edit Address</p>
           ) : (
             <p className="font-20">Add A New Address</p>
@@ -84,12 +81,12 @@ const NewAddress = (props) => {
               {/* begin fullname */}
               <Form.Group>
                 <Form.Control
-                  className={`font-13 form-control  ${getInputClasses("fullname")}`}
+                  className={`font-13 form-control  ${getInputClasses('fullname')}`}
                   name="fullname"
                   type="text"
                   placeholder="Full Name"
                   disabled={formik.isSubmitting}
-                  {...formik.getFieldProps("fullname")}
+                  {...formik.getFieldProps('fullname')}
                 />
                 {formik.touched.fullname && formik.errors.fullname ? (
                   <div className="text-danger font-13">
@@ -101,12 +98,12 @@ const NewAddress = (props) => {
               {/* begin tel */}
               <Form.Group>
                 <Form.Control
-                  className={`font-13 form-control  ${getInputClasses("tel")}`}
+                  className={`font-13 form-control  ${getInputClasses('tel')}`}
                   name="tel"
                   type="tel"
                   placeholder="Phone Number"
                   disabled={formik.isSubmitting}
-                  {...formik.getFieldProps("tel")}
+                  {...formik.getFieldProps('tel')}
                 />
                 {formik.touched.tel && formik.errors.tel ? (
                   <div className="text-danger font-13">
@@ -122,9 +119,9 @@ const NewAddress = (props) => {
                   as="select"
                   custom
                   name="province"
-                  className={`font-13 form-control  ${getInputClasses("province")}`}
+                  className={`font-13 form-control  ${getInputClasses('province')}`}
                   disabled={formik.isSubmitting}
-                  {...formik.getFieldProps("province")}
+                  {...formik.getFieldProps('province')}
                 >
                   <option value="">State</option>
                   <option>test</option>
@@ -146,9 +143,9 @@ const NewAddress = (props) => {
                   as="select"
                   custom
                   name="City"
-                  disabled={formik.isSubmitting === true ? true : formik.values.province != '' ? false : true }
-                  className={` font-13 form-control  ${getInputClasses("district")}`}
-                  {...formik.getFieldProps("district")}
+                  disabled={formik.isSubmitting === true ? true : formik.values.province == '' }
+                  className={` font-13 form-control  ${getInputClasses('district')}`}
+                  {...formik.getFieldProps('district')}
                 >
                   <option value="">City</option>
                   <option>test</option>
@@ -170,9 +167,9 @@ const NewAddress = (props) => {
                   as="select"
                   custom
                   name="postalcode"
-                  disabled={formik.isSubmitting === true ? true : formik.values.district != '' ? false : true}
-                  className={`font-13 form-control  ${getInputClasses("postalcode")}`}
-                  {...formik.getFieldProps("postalcode")}
+                  disabled={formik.isSubmitting === true ? true : formik.values.district == ''}
+                  className={`font-13 form-control  ${getInputClasses('postalcode')}`}
+                  {...formik.getFieldProps('postalcode')}
                 >
                   <option value="">Postal Code</option>
                   <option>12345</option>
@@ -191,12 +188,12 @@ const NewAddress = (props) => {
               {/* begin etc */}
               <Form.Group>
                 <Form.Control
-                  className={`font-13  form-control  ${getInputClasses("etc")}`}
+                  className={`font-13  form-control  ${getInputClasses('etc')}`}
                   name="etc"
                   type="text"
                   placeholder="Buildung, Street, and etc..."
                   disabled={formik.isSubmitting}
-                  {...formik.getFieldProps("etc")}
+                  {...formik.getFieldProps('etc')}
                 />
                 {formik.touched.etc && formik.errors.etc ? (
                   <div className="text-danger font-13">
@@ -227,7 +224,7 @@ const NewAddress = (props) => {
       </Modal>
       {/* end NewAddress */}
     </>
-  );
-};
+  )
+}
 
-export default NewAddress;
+export default NewAddress

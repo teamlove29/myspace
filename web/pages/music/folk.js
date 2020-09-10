@@ -1,6 +1,6 @@
-import React from "react";
-import MenuMusic from "../../component/menuMusic/menuMusic";
-export default function Folk() {
+import React from 'react'
+import MenuMusic from '../../component/menuMusic/menuMusic'
+export default function Folk () {
   return (
     <MenuMusic>
       <div className="col-6 col-md-4 col-lg-4 col-xl-auto mb-4  ">
@@ -40,5 +40,5 @@ export default function Folk() {
         `}
       </style>
     </MenuMusic>
-  );
+  )
 }

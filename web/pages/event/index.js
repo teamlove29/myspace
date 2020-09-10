@@ -1,21 +1,21 @@
-import React, { useEffect, useContext } from "react";
-import { useRouter } from "next/router";
+import React, { useEffect, useContext } from 'react'
+import { useRouter } from 'next/router'
 
-import { Carousel } from "react-bootstrap";
-import { Cover } from "../../component/cover/cover";
-import { ModalContext } from "../../config/context/ModalProvider";
-export default function Event() {
-  const { setActiveMenu } = useContext(ModalContext);
-  const router = useRouter();
+import { Carousel } from 'react-bootstrap'
+import { Cover } from '../../component/cover/cover'
+import { ModalContext } from '../../config/context/ModalProvider'
+export default function Event () {
+  const { setActiveMenu } = useContext(ModalContext)
+  const router = useRouter()
   useEffect(() => {
-    setActiveMenu("/event");
-  }, []);
+    setActiveMenu('/event')
+  }, [])
 
   const handleOnClickEvent = (value) => {
-    const url = "/event/[id]";
-    const as = `/event/${value}`;
-    router.push(url, as);
-  };
+    const url = '/event/[id]'
+    const as = `/event/${value}`
+    router.push(url, as)
+  }
 
   return (
     <div>
@@ -27,10 +27,10 @@ export default function Event() {
       /> */}
       <Carousel
         style={{
-          top: "0",
-          right: "0",
-          position: "absolute",
-          width: "100%",
+          top: '0',
+          right: '0',
+          position: 'absolute',
+          width: '100%'
         }}
         controls={false}
       >
@@ -61,7 +61,7 @@ export default function Event() {
         <div className="row  music-hight col-md-auto">
           <div className=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
-              onClick={() => handleOnClickEvent("1")}
+              onClick={() => handleOnClickEvent('1')}
               className="card text-white pointer card-body-event-main"
             >
               <img
@@ -75,7 +75,7 @@ export default function Event() {
                 </small>
                 <p className="card-text">
                   ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
+                  <p style={{ color: '#353535' }}>Mega Banna</p>
                 </p>
               </div>
             </div>
@@ -83,7 +83,7 @@ export default function Event() {
 
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
-              onClick={() => handleOnClickEvent("1")}
+              onClick={() => handleOnClickEvent('1')}
               className="card text-white pointer card-body-event-main"
             >
               <img
@@ -97,14 +97,14 @@ export default function Event() {
                 </small>
                 <p className="card-text">
                   ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
+                  <p style={{ color: '#353535' }}>Mega Banna</p>
                 </p>
               </div>
             </div>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
-              onClick={() => handleOnClickEvent("1")}
+              onClick={() => handleOnClickEvent('1')}
               className="card text-white pointer card-body-event-main"
             >
               <img
@@ -118,14 +118,14 @@ export default function Event() {
                 </small>
                 <p className="card-text">
                   ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
+                  <p style={{ color: '#353535' }}>Mega Banna</p>
                 </p>
               </div>
             </div>
           </div>
           <div className=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
-              onClick={() => handleOnClickEvent("1")}
+              onClick={() => handleOnClickEvent('1')}
               className="card text-white pointer card-body-event-main"
             >
               <img
@@ -139,14 +139,14 @@ export default function Event() {
                 </small>
                 <p className="card-text">
                   ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
+                  <p style={{ color: '#353535' }}>Mega Banna</p>
                 </p>
               </div>
             </div>
           </div>
           <div className=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
-              onClick={() => handleOnClickEvent("1")}
+              onClick={() => handleOnClickEvent('1')}
               className="card text-white pointer card-body-event-main"
             >
               <img
@@ -160,7 +160,7 @@ export default function Event() {
                 </small>
                 <p className="card-text">
                   ฝนไปเพลงมา
-                  <p style={{ color: "#353535" }}>Mega Banna</p>
+                  <p style={{ color: '#353535' }}>Mega Banna</p>
                 </p>
               </div>
             </div>
@@ -222,5 +222,5 @@ export default function Event() {
         }
       `}</style>
     </div>
-  );
+  )
 }

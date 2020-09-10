@@ -1,15 +1,15 @@
-import React, { useEffect, useContext } from "react";
-import { Carousel } from "react-bootstrap";
+import React, { useEffect, useContext } from 'react'
+import { Carousel } from 'react-bootstrap'
 import { useRouter } from 'next/router'
-import { Cover } from "../../component/cover/cover";
-import { ModalContext } from "../../config/context/ModalProvider";
-export default  ({ dataEven }) => {
-    const router = useRouter()
-    const { id } = router.query
-  const { setActiveMenu } = useContext(ModalContext);
+import { Cover } from '../../component/cover/cover'
+import { ModalContext } from '../../config/context/ModalProvider'
+export default ({ dataEven }) => {
+  const router = useRouter()
+  const { id } = router.query
+  const { setActiveMenu } = useContext(ModalContext)
   useEffect(() => {
-    setActiveMenu("/event");
-  }, []);
+    setActiveMenu('/event')
+  }, [])
 
   return (
     <div>
@@ -21,10 +21,10 @@ export default  ({ dataEven }) => {
       /> */}
       <Carousel
         style={{
-          top: "0",
-          right: "0",
-          position: "absolute",
-          width: "100%",
+          top: '0',
+          right: '0',
+          position: 'absolute',
+          width: '100%'
         }}
         controls={false}
       >
@@ -54,7 +54,7 @@ export default  ({ dataEven }) => {
         <small className="text-danger">ศ.07.01.63</small>
         <h6 className="text-light font-Regular">Events Name </h6>
         <small>Central Ladprao</small>
-        <hr style={{ borderTop: "1px solid #282828" }} />
+        <hr style={{ borderTop: '1px solid #282828' }} />
         <div className="row mt-4 mb-5">
           <div className="col-8">
             <h6 className="text-light font-Regular">Detail</h6>
@@ -78,7 +78,7 @@ export default  ({ dataEven }) => {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
               eligendi incidunt earum similique ducimus, facilis laborum,
             </p>
-            <hr style={{ borderTop: "1px solid #282828" }} />
+            <hr style={{ borderTop: '1px solid #282828' }} />
             <div className="row color-757575">
               <p className="ml-3"> Previous</p>
               <p className="mr-2 ml-auto">Next</p>
@@ -90,9 +90,9 @@ export default  ({ dataEven }) => {
               <div
                 className="card text-white"
                 style={{
-                  width: "18rem",
-                  border: "1px solid #252525",
-                  background: "black",
+                  width: '18rem',
+                  border: '1px solid #252525',
+                  background: 'black'
                 }}
               >
                 <img
@@ -107,7 +107,7 @@ export default  ({ dataEven }) => {
                   <p className="card-text">
                     ฝนไปเพลงมา
                   </p>
-                  <small style={{ color: "#353535" }}>Mega Banna</small>
+                  <small style={{ color: '#353535' }}>Mega Banna</small>
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ export default  ({ dataEven }) => {
         }
       `}</style>
     </div>
-  );
+  )
 }
 
 // export async function getStaticPaths(context) {

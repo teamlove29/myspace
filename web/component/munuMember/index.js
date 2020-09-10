@@ -1,37 +1,37 @@
-import React, { useContext, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { ModalContext } from "../../config/context/ModalProvider";
+import React, { useContext, useEffect } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { ModalContext } from '../../config/context/ModalProvider'
 const Index = () => {
-  const router = useRouter();
-  const { username } = router.query;
-  const hideAbout = router.pathname === "/[username]" || router.pathname ===  "/[username]/playlist";
+  const router = useRouter()
+  const { username } = router.query
+  const hideAbout = router.pathname === '/[username]' || router.pathname === '/[username]/playlist'
   const {
     nameMember,
     dataMember,
     dataFriend,
     avatarMember,
-    setActiveMenu,
-  } = useContext(ModalContext);
+    setActiveMenu
+  } = useContext(ModalContext)
 
   useEffect(() => {
-    setActiveMenu("/[username]");
+    setActiveMenu('/[username]')
     // if(dataFriend === undefined){
     //   setActiveMenu("/[username]");
     // }else{
     //   setActiveMenu("");
     // }
-  }, []);
-  const typeMember = !dataMember ? null : dataMember.mem_type;
+  }, [])
+  const typeMember = !dataMember ? null : dataMember.mem_type
   const getMenuItemActive = (path) => {
-    const pathname = router.pathname;
+    const pathname = router.pathname
     if (!pathname || !path) {
-      return false;
+      return false
     }
     if (pathname === path) {
-      return "font-Medium menuActive";
+      return 'font-Medium menuActive'
     }
-  };
+  }
 
   return (
     <>
@@ -39,9 +39,9 @@ const Index = () => {
         <div className="col-12 col-sm-12 col-md-12 col-xl-2">
           <img
             style={{
-              display: "block",
-              marginLeft: "auto",
-              marginRight: "auto",
+              display: 'block',
+              marginLeft: 'auto',
+              marginRight: 'auto'
             }}
             className="rounded-circle border"
             // src="https://source.unsplash.com/hgO1wFPXl3I/150x150"
@@ -69,27 +69,27 @@ const Index = () => {
           </p>
 
           <ul id="list" className="font-Light scrollmenu ">
-            <li className={`${getMenuItemActive("/[username]")}`}>
+            <li className={`${getMenuItemActive('/[username]')}`}>
               <Link href="/[username]" as={`/${username}`}>
                 <a>Overview</a>
               </Link>
             </li>
-            <li className={` ${getMenuItemActive("/[username]/playlist")}`}>
+            <li className={` ${getMenuItemActive('/[username]/playlist')}`}>
               <Link href="/[username]/playlist" as={`/${username}/playlist`}>
                 <a>Playlist</a>
               </Link>
             </li>
-            <li className={` ${getMenuItemActive("/[username]/following")}`}>
+            <li className={` ${getMenuItemActive('/[username]/following')}`}>
               <Link href="/[username]/following" as={`/${username}/following`}>
                 <a>Following</a>
               </Link>
             </li>
-            <li className={` ${getMenuItemActive("/[username]/follower")}`}>
+            <li className={` ${getMenuItemActive('/[username]/follower')}`}>
               <Link href="/[username]/follower" as={`/${username}/follower`}>
                 <a>Follower</a>
               </Link>
             </li>
-            <li className={` ${getMenuItemActive("/[username]/lovedtracks")}`}>
+            <li className={` ${getMenuItemActive('/[username]/lovedtracks')}`}>
               <Link
                 href="/[username]/lovedtracks"
                 as={`/${username}/lovedtracks`}
@@ -100,7 +100,7 @@ const Index = () => {
 
             {typeMember === 2 && (
               <>
-                <li className={` ${getMenuItemActive("/[username]/events")}`}>
+                <li className={` ${getMenuItemActive('/[username]/events')}`}>
                   <Link href="/[username]/events" as={`/${username}/events`}>
                     <a>Events</a>
                   </Link>
@@ -108,7 +108,7 @@ const Index = () => {
               </>
             )}
 
-            <li className={` ${getMenuItemActive("/[username]/shouts")}`}>
+            <li className={` ${getMenuItemActive('/[username]/shouts')}`}>
               <Link href="/[username]/shouts" as={`/${username}/shouts`}>
                 <a>Shouts</a>
               </Link>
@@ -116,7 +116,7 @@ const Index = () => {
 
             {typeMember === 2 && (
               <>
-                <li className={` ${getMenuItemActive("/[username]/shop")}`}>
+                <li className={` ${getMenuItemActive('/[username]/shop')}`}>
                   <Link href="/[username]/shop" as={`/${username}/shop`}>
                     <a>Shop</a>
                   </Link>
@@ -139,16 +139,16 @@ const Index = () => {
                     Lampang, {dataMember.mem_country}
                   </p>
                 </div>
-                {nameMember != username ? 
-                <div className="col-xl-2 text-center">
-                  <button
-                    style={{ borderRadius: "100px", fontSize: "13px" }}
-                    className="btn btn-outline-light pr-4 pl-4 p-2 "
-                  >
+                {nameMember != username
+                  ? <div className="col-xl-2 text-center">
+                    <button
+                      style={{ borderRadius: '100px', fontSize: '13px' }}
+                      className="btn btn-outline-light pr-4 pl-4 p-2 "
+                    >
                     Following
-                  </button>
-                </div>
-                : null}
+                    </button>
+                  </div>
+                  : null}
               </div>
             </>
           ) : null}
@@ -210,7 +210,7 @@ const Index = () => {
         `}
       </style>
     </>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

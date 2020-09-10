@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-export default function CoverMember({ children }) {
+import React from 'react'
+import styled from 'styled-components'
+export default function CoverMember ({ children }) {
   const COVERMEMBERIMAGE = styled.div`
     background-image: url("/assets/img/cover/mainCover.png");
     background-position: center;
@@ -20,8 +20,7 @@ export default function CoverMember({ children }) {
       min-width: 911px;
     };
     
-  `;
-  return <COVERMEMBERIMAGE>{children}</COVERMEMBERIMAGE>;
+  `
+  return <COVERMEMBERIMAGE>{children}</COVERMEMBERIMAGE>
 }
 // background-image: url("https://source.unsplash.com/hgO1wFPXl3I/1600x700");
-

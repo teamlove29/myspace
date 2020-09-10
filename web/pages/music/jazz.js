@@ -1,9 +1,9 @@
 import React from 'react'
-import  MenuMusic  from "../../component/menuMusic/menuMusic";
-export default function Jazz() {
-    return (
-        <MenuMusic>
-                  <div className="col-6 col-md-4 col-lg-4 col-xl-auto mb-4  ">
+import MenuMusic from '../../component/menuMusic/menuMusic'
+export default function Jazz () {
+  return (
+    <MenuMusic>
+      <div className="col-6 col-md-4 col-lg-4 col-xl-auto mb-4  ">
         <img
           className="rounded card-body-music"
           src="https://static.billboard.com/files/media/Janis-Joplin-Pearl-greatest-album-covers-billboard-1000x1000-compressed.jpg"
@@ -21,7 +21,7 @@ export default function Jazz() {
 
         <p className="font-13 mt-2">Name song</p>
       </div>
-             <style jsx>
+      <style jsx>
         {`
           .card-body-music {
             width: 200px;
@@ -39,6 +39,6 @@ export default function Jazz() {
           }
         `}
       </style>
-        </MenuMusic>
-    )
+    </MenuMusic>
+  )
 }

@@ -1,15 +1,15 @@
-import React, { useEffect, useContext } from "react";
-import { Cover } from "../component/cover/cover";
-import { ModalContext } from "../config/context/ModalProvider";
+import React, { useEffect, useContext } from 'react'
+import { Cover } from '../component/cover/cover'
+import { ModalContext } from '../config/context/ModalProvider'
 
-export default function Charts() {
-  const { setActiveMenu } = useContext(ModalContext);
+export default function Charts () {
+  const { setActiveMenu } = useContext(ModalContext)
   useEffect(() => {
-    setActiveMenu("/charts");
-  }, []);
+    setActiveMenu('/charts')
+  }, [])
   return (
     <>
-      <Cover text={"CHARTS"} img={"https://source.unsplash.com/NYrVisodQ2M"} />
+      <Cover text={'CHARTS'} img={'https://source.unsplash.com/NYrVisodQ2M'} />
       <h5 className="font-Light menu-top container-fluid mb-5">
         Most Popular This Week
       </h5>
@@ -139,7 +139,7 @@ export default function Charts() {
 
       {/* Top 100 */}
       <div className="container-fluid">
-        {" "}
+        {' '}
         <h6 className="text-light mt-5 mb-5 font-Regular">Top 100</h6>
         <div className="row mt-5  ">
           <div className="col-12 ">
@@ -147,8 +147,8 @@ export default function Charts() {
               <li className="col-12 col-md-6">
                 <div className="row ">
                   <div className="col-2">
-                    {" "}
-                    <span className="num">1.</span>{" "}
+                    {' '}
+                    <span className="num">1.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -170,14 +170,14 @@ export default function Charts() {
                     <h6 className=" float-right mr-4 text-muted">04:38</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
 
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">2.</span>{" "}
+                    {' '}
+                    <span className="num text-light">2.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -190,7 +190,7 @@ export default function Charts() {
                       alt=""
                     />
                   </div>
-                  
+
                   <div className="col-4">
                     <span className="text-light">TELEVIZON EP</span>
                     <br />
@@ -200,13 +200,13 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">3.</span>{" "}
+                    {' '}
+                    <span className="num text-light">3.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -228,13 +228,13 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">4.</span>{" "}
+                    {' '}
+                    <span className="num text-light">4.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -256,13 +256,13 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">5.</span>{" "}
+                    {' '}
+                    <span className="num text-light">5.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -284,13 +284,13 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">6.</span>{" "}
+                    {' '}
+                    <span className="num text-light">6.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -312,13 +312,13 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">7.</span>{" "}
+                    {' '}
+                    <span className="num text-light">7.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -340,13 +340,13 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">8.</span>{" "}
+                    {' '}
+                    <span className="num text-light">8.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -368,13 +368,13 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">9.</span>{" "}
+                    {' '}
+                    <span className="num text-light">9.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -396,13 +396,13 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
               <li className="col-12 col-md-6">
                 <div className="row">
                   <div className="col-2">
-                    {" "}
-                    <span className="num text-light">10.</span>{" "}
+                    {' '}
+                    <span className="num text-light">10.</span>{' '}
                   </div>
                   <div className="col-2">
                     <span className="material-icons icons-play">
@@ -424,7 +424,7 @@ export default function Charts() {
                     <h6 className="float-right mr-4 text-muted">03:18</h6>
                   </div>
                 </div>
-                <hr className="mr-3" style={{ backgroundColor: "#212739" }} />
+                <hr className="mr-3" style={{ backgroundColor: '#212739' }} />
               </li>
             </ol>
           </div>
@@ -494,5 +494,5 @@ export default function Charts() {
         `}
       </style>
     </>
-  );
+  )
 }

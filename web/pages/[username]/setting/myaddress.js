@@ -1,48 +1,48 @@
-import React, { useContext, useState } from "react";
-import { useRouter } from "next/router";
-import MenuSetting from "../../../component/menuSetting";
-import { ModalContext } from "../../../config/context/ModalProvider";
-import NewAddress from "../../../component/modal/newAddress";
-import { Button } from "../../../component/modal/style";
+import React, { useContext, useState } from 'react'
+import { useRouter } from 'next/router'
+import MenuSetting from '../../../component/menuSetting'
+import { ModalContext } from '../../../config/context/ModalProvider'
+import NewAddress from '../../../component/modal/newAddress'
+import { Button } from '../../../component/modal/style'
 
-export default function MyAddress() {
-  const router = useRouter();
-  const { username } = router.query;
-  const { nameMember } = useContext(ModalContext);
-  const [showNewAddress, setShowNewAddress] = useState(false);
-  const [editor, setEditor] = useState(false);
+export default function MyAddress () {
+  const router = useRouter()
+  const { username } = router.query
+  const { nameMember } = useContext(ModalContext)
+  const [showNewAddress, setShowNewAddress] = useState(false)
+  const [editor, setEditor] = useState(false)
 
   const handleNewImage = (e) => {
-    if (e.target.files[0] != "") {
-      const fileSize = e.target.files[0].size / 1024 / 1024; // in MB
+    if (e.target.files[0] != '') {
+      const fileSize = e.target.files[0].size / 1024 / 1024 // in MB
       if (fileSize > 10) {
-        alert("File size exceeds 10 MB");
+        alert('File size exceeds 10 MB')
       } else {
-        setImageURL(e.target.files[0]);
-        setEditing(true);
+        setImageURL(e.target.files[0])
+        setEditing(true)
       }
     }
-  };
+  }
 
   const handleNewAddress = (value) => {
     if (value != 'edit') {
-      setShowNewAddress(true);
-      setEditor(false);
+      setShowNewAddress(true)
+      setEditor(false)
     } else {
-      setShowNewAddress(true);
-      setEditor(true);
+      setShowNewAddress(true)
+      setEditor(true)
     }
     setTimeout(() => {
-      setShowNewAddress(false);
-    }, 50);
-  };
+      setShowNewAddress(false)
+    }, 50)
+  }
 
   return (
     <>
       <NewAddress show={showNewAddress} editor={editor} />
       <MenuSetting>
         <div className="row container col-md-auto text-light mt-5">
-          <h5 className="font-Medium">My Addresses</h5>{" "}
+          <h5 className="font-Medium">My Addresses</h5>{' '}
           <div
             onClick={handleNewAddress}
             className="ml-auto  btn btn-sm btn-warning text-light"
@@ -73,7 +73,7 @@ export default function MyAddress() {
           <div className="col-2 row">
             <div className="  ml-auto">
               <a
-                onClick={() => handleNewAddress("edit")}
+                onClick={() => handleNewAddress('edit')}
                 className="mr-2 text-light pointer"
               >
                 Edit
@@ -95,5 +95,5 @@ export default function MyAddress() {
         `}
       </style>
     </>
-  );
+  )
 }

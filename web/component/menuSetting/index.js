@@ -1,51 +1,49 @@
-import React, { useContext, useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useContext, useState, useEffect } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import LoadPage from '../../container/loadPage'
-import NotFound from "../../container/notFound";
-import { ModalContext } from "../../config/context/ModalProvider";
-import CoverSetting from "../cover/coverSetting";
-export default function Index({ children, file }) {
-
-  const router = useRouter();
-  const { username } = router.query;
-  const { nameMember,setActiveMenu,dataMember } = useContext(ModalContext);
-  const [cancel, setcancel] = useState(false);
-  const [saveCover, setsaveCover] = useState(false);
-  const verifyMember = username != nameMember ? false : true;
+import NotFound from '../../container/notFound'
+import { ModalContext } from '../../config/context/ModalProvider'
+import CoverSetting from '../cover/coverSetting'
+export default function Index ({ children, file }) {
+  const router = useRouter()
+  const { username } = router.query
+  const { nameMember, setActiveMenu, dataMember } = useContext(ModalContext)
+  const [cancel, setcancel] = useState(false)
+  const [saveCover, setsaveCover] = useState(false)
+  const verifyMember = username == nameMember
 
   const getMenuItemActive = (path) => {
-    const pathname = router.pathname;
+    const pathname = router.pathname
     if (!pathname || !path) {
-      return false;
+      return false
     }
     if (pathname === path) {
-      return "font-Medium menuActive";
+      return 'font-Medium menuActive'
     }
-  };
-
-  useEffect(() => {
-    setcancel(false);
-    setsaveCover(false);
-    setActiveMenu('/[username]/setting')
-  }, [file]);
-
-  const hendleCancel = () => {
-    setcancel(true);
-  };
-  const hendleSave = () => {
-    setsaveCover(true);
-  };
-
-
-  if (dataMember === undefined) {
-    return <LoadPage />;
   }
 
-if(verifyMember === false){
-  setActiveMenu('')
-  return <NotFound /> 
-}
+  useEffect(() => {
+    setcancel(false)
+    setsaveCover(false)
+    setActiveMenu('/[username]/setting')
+  }, [file])
+
+  const hendleCancel = () => {
+    setcancel(true)
+  }
+  const hendleSave = () => {
+    setsaveCover(true)
+  }
+
+  if (dataMember === undefined) {
+    return <LoadPage />
+  }
+
+  if (verifyMember === false) {
+    setActiveMenu('')
+    return <NotFound />
+  }
 
   return (
     <div>
@@ -54,26 +52,25 @@ if(verifyMember === false){
       <div
         className="container text-light mt-5"
         style={{
-          position: "relative",
-          marginBottom: "150px",
+          position: 'relative',
+          marginBottom: '150px'
         }}
       >
         {file != null && cancel != true && saveCover != true ? (
-          <div 
-      
-          
-          className="text-center">
-            <div 
+          <div
 
-            className="mt-5">
+            className="text-center">
+            <div
+
+              className="mt-5">
               <h6
                 style={{
-                  display: "block",
-                  lineHeight: "26px",
-                  position: "relative",
-                  textAlign: "center",
-                  width: "100%",
-                  
+                  display: 'block',
+                  lineHeight: '26px',
+                  position: 'relative',
+                  textAlign: 'center',
+                  width: '100%'
+
                 }}
               >
                 ลากเพื่อย้ายรูปหน้าปก
@@ -93,15 +90,15 @@ if(verifyMember === false){
         ) : (
           <>
             <h3 className="font-Regular mt-5 resposive_setting_menu">Settings</h3>
-            <ul 
-            style={{
-              width: "700px",
-              zIndex:"2"
-            }}
-            id="list" className="mt-4">
+            <ul
+              style={{
+                width: '700px',
+                zIndex: '2'
+              }}
+              id="list" className="mt-4">
               <li
                 className={`${getMenuItemActive(
-                  "/[username]/setting"
+                  '/[username]/setting'
                 )}`}
               >
                 <Link
@@ -113,7 +110,7 @@ if(verifyMember === false){
               </li>
               <li
                 className={`${getMenuItemActive(
-                  "/[username]/setting/myaddress"
+                  '/[username]/setting/myaddress'
                 )}`}
               >
                 <Link
@@ -125,7 +122,7 @@ if(verifyMember === false){
               </li>
               <li
                 className={`${getMenuItemActive(
-                  "/[username]/setting/changepassword"
+                  '/[username]/setting/changepassword'
                 )}`}
               >
                 <Link
@@ -136,7 +133,7 @@ if(verifyMember === false){
                 </Link>
               </li>
               <li
-                className={`${getMenuItemActive("/[username]/setting/social")}`}
+                className={`${getMenuItemActive('/[username]/setting/social')}`}
               >
                 <Link
                   href="/[username]/setting/social"
@@ -146,7 +143,7 @@ if(verifyMember === false){
                 </Link>
               </li>
               <li
-                className={`${getMenuItemActive("/[username]/setting/shop")}`}
+                className={`${getMenuItemActive('/[username]/setting/shop')}`}
               >
                 <Link
                   href="/[username]/setting/shop"
@@ -204,5 +201,5 @@ if(verifyMember === false){
 
       `}</style>
     </div>
-  );
+  )
 }
