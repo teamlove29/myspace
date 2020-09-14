@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
-import { Carousel } from "react-bootstrap";
 import { useRouter } from "next/router";
-import { Cover } from "../../component/cover/cover";
+import CarouselEvent from "../../component/carousel/CarouselEvent";
 import { ModalContext } from "../../config/context/ModalProvider";
 export default ({ dataEven }) => {
   const router = useRouter();
@@ -13,47 +12,12 @@ export default ({ dataEven }) => {
 
   return (
     <div>
-      {/* <Cover
-        height={"600px"}
-        img={
-          "https://www.inspirationde.com/media/2019/02/design-inspiration-roundup-from-up-north-1550470895k4gn8.jpg"
-        }
-      /> */}
-      <Carousel
-        style={{
-          top: "0",
-          right: "0",
-          position: "relative",
-          width: "100%",
-        }}
-        controls={false}
-      >
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://via.placeholder.com/1600x1000"
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://via.placeholder.com/1600x1000"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://via.placeholder.com/1600x1000"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
+     <CarouselEvent />
+
       <div className="container  justify-content-center mt-5">
         <small className="text-danger ">ศ.07.01.63</small>
         <h6 className="text-light font-Regular">Events Name </h6>
-        <small>Central Ladprao</small>
+        <small className="text-dark">Central Ladprao</small>
         <hr style={{ borderTop: "1px solid #282828" }} />
         <div className="row mt-4 mb-5">
           <div className="col-8  d-none d-lg-block col-lg-7 col-xl=8">
@@ -86,7 +50,7 @@ export default ({ dataEven }) => {
           </div>
           <div className="col-4 row ml-1">
             <div className="ml-auto">
-              <h6 className="text-light font-Regular">Upcoming Events</h6>
+              <h6 className="text-light font-Regular mb-4">Upcoming Events</h6>
               <div
                 className="card text-white"
                 style={{
@@ -105,7 +69,7 @@ export default ({ dataEven }) => {
                     ศ.07.01.63 - อา.08.04.63
                   </small>
                   <p className="card-text">ฝนไปเพลงมา</p>
-                  <small style={{ color: "#353535" }}>Mega Banna</small>
+                  <small className="text-dark">Mega Banna</small>
                 </div>
               </div>
             </div>

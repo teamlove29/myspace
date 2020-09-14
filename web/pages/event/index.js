@@ -1,35 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
-import useWindowSize from "../../component/useWindowSize";
-import { Carousel } from "react-bootstrap";
-import { Cover } from "../../component/cover/cover";
+import CarouselEvent from "../../component/carousel/CarouselEvent";
 import { ModalContext } from "../../config/context/ModalProvider";
 
 export default function Event() {
   const { setActiveMenu } = useContext(ModalContext);
-  const [state, setstate] = useState();
-  const size = useWindowSize();
   const router = useRouter();
   useEffect(() => {
     setActiveMenu("/event");
-    // if (size.width > 600) {
-    //   setstate("600px");
-    // } else {
-    //   setstate(`${size.width}px`);
-    // }
-
-    if (size.width <= 1200) {
-      // setstate("600px");
-      setstate(`${size.width - 600}px`);
-      if (size.width <= 991) {
-        setstate(`${size.width - 400}px`);
-      }
-    } else {
-      setstate("600px");
-      // setstate(`${size.width}px`);
-    }
-  }, [size]);
-  console.log(size.width);
+  }, []);
   const handleOnClickEvent = (value) => {
     const url = "/event/[id]";
     const as = `/event/${value}`;
@@ -38,44 +17,7 @@ export default function Event() {
 
   return (
     <div>
-      {/* <Cover
-        height={"600px"}
-        img={
-          "https://www.inspirationde.com/media/2019/02/design-inspiration-roundup-from-up-north-1550470895k4gn8.jpg"
-        }
-      /> */}
-      <Carousel
-        style={{
-          top: "0",
-          right: "0",
-          //   position: "absolute",
-          position: "relative",
-          width: "100%",
-        }}
-        controls={false}
-      >
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://img1.goodfon.com/wallpaper/nbig/4/b7/punk-punkrock-concert-poster.jpg"
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://img1.goodfon.com/wallpaper/nbig/4/b7/punk-punkrock-concert-poster.jpg"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://img1.goodfon.com/wallpaper/nbig/4/b7/punk-punkrock-concert-poster.jpg"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
+<CarouselEvent />
       <div
         style={
           {
@@ -189,6 +131,7 @@ export default function Event() {
           </div>
         </div>
       </div>
+
       <style jsx>{`
 
         .card-body-event-main {
@@ -217,7 +160,6 @@ export default function Event() {
           }
           .even-cover-carousel-item {
             top: 2%;
-            height: 400px;
             max-height: 300px;
           }
         }
@@ -233,7 +175,7 @@ export default function Event() {
           background-color: #252525;
           background-size: cover;
           background-repeat: no-repeat;
-          max-height: 600px;
+          max-height: 800px;
         }
 
         @media (max-width: 991px) {

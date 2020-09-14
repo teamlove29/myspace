@@ -1,51 +1,24 @@
 import React, { useEffect, useContext } from "react";
-import { Cover } from "../../component/cover/cover";
-import { Carousel } from "react-bootstrap";
+import { useRouter } from "next/router";
+import CarouselFeature from "../../component/carousel/carouselFeature";
+
 import { ModalContext } from "../../config/context/ModalProvider";
 export default function Features() {
   const { setActiveMenu } = useContext(ModalContext);
+  const router = useRouter();
   useEffect(() => {
     setActiveMenu("/features");
   }, []);
+
+  const handleOnClickEvent = (value) => {
+    const url = "/features/[id]";
+    const as = `/features/${value}`;
+    router.push(url, as);
+  };
+
   return (
     <div>
-      {/* <Cover
-        height={"270px"}
-        text={"FEATURES"}
-        img={"https://source.unsplash.com/hxnBkzz9iL4"}
-      /> */}
-      <Carousel
-        style={{
-          top: "0",
-          right: "0",
-          //   position: "absolute",
-          position: "relative",
-          width: "100%",
-        }}
-        controls={false}
-      >
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://m.thaiware.com/upload_misc/news/2019_03/728x409/16009_190315094102B8.jpg"
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://m.thaiware.com/upload_misc/news/2019_03/728x409/16009_190315094102B8.jpg"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 even-cover-carousel-item"
-            src="https://m.thaiware.com/upload_misc/news/2019_03/728x409/16009_190315094102B8.jpg"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
+      <CarouselFeature />
       <div
         style={
           {
@@ -62,17 +35,17 @@ export default function Features() {
               className="card text-white pointer card-body-event-main"
             >
               <img
-                src="https://source.unsplash.com/9tZhyQskezA"
+                src="https://news-cdn.bectero.com/uploads/pic_news/big_15930566025ef41d5a8e7a0.jpg"
                 className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
-                <small className="text-danger font-11-Regular">
+                <small className="text-warning font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
                 </small>{" "}
                 <br />
-                <span className="card-text">ฝนไปเพลงมา</span> <br />
-                <small style={{ color: "#353535" }}>Mega Banna</small>
+                <span className="card-text">ปล่อยภาพคอนเซ็ปต์ใหม่</span> <br />
+                <small style={{ color: "#353535" }}>News Type</small>
               </div>
             </div>
           </div>
@@ -83,17 +56,20 @@ export default function Features() {
               className="card text-white pointer card-body-event-main"
             >
               <img
-                src="https://source.unsplash.com/ZLdKgqJeERM"
+                src="https://www.khaosod.co.th/wpapp/uploads/2019/10/4777.jpg"
                 className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
-                <small className="text-danger font-11-Regular">
+                <small className="text-warning font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
                 </small>{" "}
                 <br />
-                <span className="card-text">ฝนไปเพลงมา</span> <br />
-                <small style={{ color: "#353535" }}>Mega Banna</small>
+                <span className="card-text">
+                  สุดเศร้า! ซ็อลลีเสียชีวิต
+                </span>{" "}
+                <br />
+                <small style={{ color: "#353535" }}>News Type</small>
               </div>
             </div>
           </div>
@@ -103,17 +79,20 @@ export default function Features() {
               className="card text-white pointer card-body-event-main"
             >
               <img
-                src="https://source.unsplash.com/Q7wGvnbuwj0"
+                src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB18Zb6f.img?h=350&w=624&m=6&q=60&u=t&o=t&l=f&f=jpg&x=323&y=195"
                 className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
-                <small className="text-danger font-11-Regular">
+                <small className="text-warning font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
                 </small>{" "}
                 <br />
-                <span className="card-text">ฝนไปเพลงมา</span> <br />
-                <small style={{ color: "#353535" }}>Mega Banna</small>
+                <span className="card-text">
+                  หนุ่ม ศรราม เปิดใจเคลียร์ทุกประเด็นหย่า
+                </span>{" "}
+                <br />
+                <small style={{ color: "#353535" }}>News Type</small>
               </div>
             </div>
           </div>
@@ -123,17 +102,17 @@ export default function Features() {
               className="card text-white pointer card-body-event-main"
             >
               <img
-                src="https://source.unsplash.com/MRxD-J9-4ps"
+                src="https://image.tnews.co.th/relate/2020/08/ovjepexTMMwpmwMi_121036.jpg"
                 className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
-                <small className="text-danger font-11-Regular">
+                <small className="text-warning font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
                 </small>{" "}
                 <br />
-                <span className="card-text">ฝนไปเพลงมา</span> <br />
-                <small style={{ color: "#353535" }}>Mega Banna</small>
+                <span className="card-text">11 ธ.ค.นี้ แต่งชัวร์</span> <br />
+                <small style={{ color: "#353535" }}>News Type</small>
               </div>
             </div>
           </div>
@@ -143,79 +122,67 @@ export default function Features() {
               className="card text-white pointer card-body-event-main"
             >
               <img
-                src="https://source.unsplash.com/ZODcBkEohk8"
+                src="https://medhubnews.com/sites/2320/files/s/articles/o_1cnhpao701rlu1chs194lnv6137j7.jpg?w=300&h=300"
                 className="card-img-top p-2 image-rounded"
                 alt="..."
               />
               <div className="p-2">
-                <small className="text-danger font-11-Regular">
+                <small className="text-warning font-11-Regular">
                   ศ.07.01.63 - อา.08.04.63
                 </small>{" "}
                 <br />
-                <span className="card-text">ฝนไปเพลงมา</span> <br />
-                <small style={{ color: "#353535" }}>Mega Banna</small>
+                <span className="card-text">
+                  ผมอยากเป็นนัีกสแดงฮอลลีวูด
+                </span>{" "}
+                <br />
+                <small style={{ color: "#353535" }}>News Type</small>
               </div>
             </div>
           </div>
         </div>
       </div>
-     
 
       <style jsx>{`
+        .card-body-event-main {
+          width: 18rem;
+          border: 1px solid #252525;
+          background: black;
+        }
+        .card-body-event-main img {
+          max-height: 170px;
+        }
+        .image-rounded {
+          border-radius: 15px;
+        }
+        .margin-top {
+          margin-top: size;
+        }
+        .card-body-event {
+          width: 210px;
+          height: 130px;
+          backgroundposition: center;
+          backgroundrepeat: no-repeat;
+          backgroundsize: cover;
+        }
 
-.card-body-event-main {
-  width: 18rem;
-  border: 1px solid #252525;
-  background: black;
-}
-.image-rounded {
-  border-radius: 15px;
-}
-.margin-top {
-  margin-top: size;
-}
-.card-body-event {
-  width: 210px;
-  height: 130px;
-  backgroundposition: center;
-  backgroundrepeat: no-repeat;
-  backgroundsize: cover;
-}
+        @media (max-width: 575px) {
+          .card-body-event {
+            width: 145px;
+            height: 100px;
+          }
+        }
+        @media (max-width: 1199px) {
+          .card-body-event-main {
+            width: 22rem;
+          }
+        }
 
-@media (max-width: 575px) {
-  .card-body-event {
-    width: 145px;
-    height: 100px;
-  }
-  .even-cover-carousel-item {
-    top: 2%;
-    max-height: 300px;
-  }
-}
-@media (max-width: 1199px) {
-  .card-body-event-main {
-    width: 22rem;
-  }
-}
-
-.even-cover-carousel-item {
-     width: "100%",
-  top: 0%;
-  background-color: #252525;
-  background-size: cover;
-  background-repeat: no-repeat;
-  max-height: 600px;
-}
-
-@media (max-width: 991px) {
-  .even-cover-carousel-item {
-    margin-top:65px;
-  }
-  .card-body-event-main {
-    width: 100%;
-  }
-}
-`}</style>
+        @media (max-width: 991px) {
+          .card-body-event-main {
+            width: 100%;
+          }
+        }
+      `}</style>
     </div>
   );
 }
