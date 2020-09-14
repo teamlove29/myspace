@@ -139,6 +139,9 @@ export default function Event() {
           border: 1px solid #252525;
           background: black;
         }
+        .card-body-event-main img {
+          height: 200px;
+        }
         .image-rounded {
           border-radius: 15px;
         }
