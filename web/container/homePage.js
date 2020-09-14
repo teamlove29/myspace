@@ -1,20 +1,21 @@
 import React, { useContext, useEffect } from "react";
 import { Button } from "../component/modal/style";
 import { ModalContext } from "../config/context/ModalProvider";
-import {
-  useWindowSize,
-  useWindowWidth,
-  useWindowHeight,
-} from "@react-hook/window-size";
+
 export default function HomePage() {
   const { setActiveMenu } = useContext(ModalContext);
-  // const { height, width } = useWindowDimensions();
+
   useEffect(() => {
     setActiveMenu("/");
   }, []);
 
   return (
-    <div className="container">
+    <div
+      style={{
+        padding: "0 0",
+      }}
+      className="container-fluid "
+    >
       <img
         style={{}}
         className="container-fluid covermain"
@@ -25,6 +26,7 @@ export default function HomePage() {
         style={{
           marginBottom: "150px",
         }}
+        className="container"
       >
         <div
           className="row"
@@ -526,11 +528,12 @@ export default function HomePage() {
           .covermain {
             top: 0;
             right: 0;
-            position: absolute;
+            position: relative;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            max-height: 800px;
+            width: 100%;
+            max-height: 700px;
             padding: 0 0;
           }
           .text-near-cover {

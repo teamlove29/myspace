@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2020: true,
   },
-  // extends: ["plugin:react/recommended", "standard"],
+  extends: ["plugin:react/recommended", "standard"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -11,6 +11,6 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["prettier"],
   rules: { quotes: [2, "double", { avoidEscape: true }] },
 };

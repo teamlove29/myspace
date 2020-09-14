@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 const Button = styled.button`
   background: #151515;
   border: 0.1px solid #272727;

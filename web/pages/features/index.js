@@ -1,48 +1,18 @@
-import React, { useEffect, useContext, useState } from "react";
-import { useRouter } from "next/router";
-import useWindowSize from "../../component/useWindowSize";
-import { Carousel } from "react-bootstrap";
+import React, { useEffect, useContext } from "react";
 import { Cover } from "../../component/cover/cover";
+import { Carousel } from "react-bootstrap";
 import { ModalContext } from "../../config/context/ModalProvider";
-
-export default function Event() {
+export default function Features() {
   const { setActiveMenu } = useContext(ModalContext);
-  const [state, setstate] = useState();
-  const size = useWindowSize();
-  const router = useRouter();
   useEffect(() => {
-    setActiveMenu("/event");
-    // if (size.width > 600) {
-    //   setstate("600px");
-    // } else {
-    //   setstate(`${size.width}px`);
-    // }
-
-    if (size.width <= 1200) {
-      // setstate("600px");
-      setstate(`${size.width - 600}px`);
-      if (size.width <= 991) {
-        setstate(`${size.width - 400}px`);
-      }
-    } else {
-      setstate("600px");
-      // setstate(`${size.width}px`);
-    }
-  }, [size]);
-  console.log(size.width);
-  const handleOnClickEvent = (value) => {
-    const url = "/event/[id]";
-    const as = `/event/${value}`;
-    router.push(url, as);
-  };
-
+    setActiveMenu("/features");
+  }, []);
   return (
     <div>
       {/* <Cover
-        height={"600px"}
-        img={
-          "https://www.inspirationde.com/media/2019/02/design-inspiration-roundup-from-up-north-1550470895k4gn8.jpg"
-        }
+        height={"270px"}
+        text={"FEATURES"}
+        img={"https://source.unsplash.com/hxnBkzz9iL4"}
       /> */}
       <Carousel
         style={{
@@ -57,21 +27,21 @@ export default function Event() {
         <Carousel.Item>
           <img
             className="d-block w-100 even-cover-carousel-item"
-            src="https://img1.goodfon.com/wallpaper/nbig/4/b7/punk-punkrock-concert-poster.jpg"
+            src="https://m.thaiware.com/upload_misc/news/2019_03/728x409/16009_190315094102B8.jpg"
             alt="First slide"
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100 even-cover-carousel-item"
-            src="https://img1.goodfon.com/wallpaper/nbig/4/b7/punk-punkrock-concert-poster.jpg"
+            src="https://m.thaiware.com/upload_misc/news/2019_03/728x409/16009_190315094102B8.jpg"
             alt="Third slide"
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100 even-cover-carousel-item"
-            src="https://img1.goodfon.com/wallpaper/nbig/4/b7/punk-punkrock-concert-poster.jpg"
+            src="https://m.thaiware.com/upload_misc/news/2019_03/728x409/16009_190315094102B8.jpg"
             alt="Third slide"
           />
         </Carousel.Item>
@@ -84,7 +54,7 @@ export default function Event() {
         }
         className="container  justify-content-center"
       >
-        <h6 className="text-light mb-5 font-Regular ml-4 mt-5">Events</h6>
+        <h6 className="text-light mb-5 font-Regular ml-4 mt-5">Features</h6>
         <div className="row  music-hight col-md-auto mx-auto">
           <div className=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4 ">
             <div
@@ -189,62 +159,63 @@ export default function Event() {
           </div>
         </div>
       </div>
+     
+
       <style jsx>{`
 
-        .card-body-event-main {
-          width: 18rem;
-          border: 1px solid #252525;
-          background: black;
-        }
-        .image-rounded {
-          border-radius: 15px;
-        }
-        .margin-top {
-          margin-top: size;
-        }
-        .card-body-event {
-          width: 210px;
-          height: 130px;
-          backgroundposition: center;
-          backgroundrepeat: no-repeat;
-          backgroundsize: cover;
-        }
+.card-body-event-main {
+  width: 18rem;
+  border: 1px solid #252525;
+  background: black;
+}
+.image-rounded {
+  border-radius: 15px;
+}
+.margin-top {
+  margin-top: size;
+}
+.card-body-event {
+  width: 210px;
+  height: 130px;
+  backgroundposition: center;
+  backgroundrepeat: no-repeat;
+  backgroundsize: cover;
+}
 
-        @media (max-width: 575px) {
-          .card-body-event {
-            width: 145px;
-            height: 100px;
-          }
-          .even-cover-carousel-item {
-            top: 2%;
-            height: 400px;
-            max-height: 300px;
-          }
-        }
-        @media (max-width: 1199px) {
-          .card-body-event-main {
-            width: 22rem;
-          }
-        }
+@media (max-width: 575px) {
+  .card-body-event {
+    width: 145px;
+    height: 100px;
+  }
+  .even-cover-carousel-item {
+    top: 2%;
+    max-height: 300px;
+  }
+}
+@media (max-width: 1199px) {
+  .card-body-event-main {
+    width: 22rem;
+  }
+}
 
-        .even-cover-carousel-item {
-             width: "100%",
-          top: 0%;
-          background-color: #252525;
-          background-size: cover;
-          background-repeat: no-repeat;
-          max-height: 600px;
-        }
+.even-cover-carousel-item {
+     width: "100%",
+  top: 0%;
+  background-color: #252525;
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-height: 600px;
+}
 
-        @media (max-width: 991px) {
-          .even-cover-carousel-item {
-            margin-top:65px;
-          }
-          .card-body-event-main {
-            width: 100%;
-          }
-        }
-      `}</style>
+@media (max-width: 991px) {
+  .even-cover-carousel-item {
+    margin-top:65px;
+  }
+  .card-body-event-main {
+    width: 100%;
+  }
+}
+`}</style>
     </div>
   );
 }
