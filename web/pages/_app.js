@@ -9,7 +9,7 @@ import "react-cool-music-player/dist/index.css";
 import "../public/assets/css/mystyle.css";
 import "../public/assets/css/font.css";
 import "../public/assets/css/sb-admin-2.css";
-
+import "react-multi-carousel/lib/styles.css";
 import { ModalProvider } from "../config/context/ModalProvider";
 import Navbar from "../component/navbar";
 import Aside from "../component/Aside";
