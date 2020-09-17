@@ -4,7 +4,7 @@ import { Carousel } from "react-bootstrap";
 export default function CarouselEvent() {
   return (
     <>
-     <Carousel
+      <Carousel
         style={{
           top: "0",
           right: "0",

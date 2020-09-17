@@ -1,50 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { Button } from "../component/modal/style";
 import { ModalContext } from "../config/context/ModalProvider";
-import Carousel from "react-multi-carousel";
+import CarouselHome from "../component/carousel/carouselHome";
 
 export default function HomePage() {
   const { setActiveMenu } = useContext(ModalContext);
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-
-  const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-    const {
-      carouselState: { currentSlide },
-    } = rest;
-    return (
-      <div className="carousel-button-group">
-        {" "}
-        // remember to give it position:absolute
-        <button
-          className={currentSlide === 0 ? "disable" : ""}
-          onClick={() => previous()}
-        >previous</button> <br/>
-        <button onClick={() => next()}> next</button> <br/>
-        <button onClick={() => goToSlide(currentSlide + 1)}>
-          {" "}
-          Go to any slide{" "}
-        </button>
-      </div>
-    );
-  };
 
   useEffect(() => {
     setActiveMenu("/");
@@ -101,74 +61,16 @@ export default function HomePage() {
             <h6 className="font-SemiBold h5 ">Recommended Music</h6>{" "}
             <p className="ml-auto font-20">{" <  > "}</p>
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
+ 
 
-          <Carousel
-            responsive={responsive}
-            arrows={false}
-            renderButtonGroupOutside={true}
-            customButtonGroup={<ButtonGroup />}
-          >
-            <div>
-              <img
-                className="rounded cardHeight"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0t2goMjb6szsr4n0r_Q97a6qekI5hj2rEjQ&usqp=CAU"
-                alt=""
-                disabled={true}
-              />
-            </div>
-            <div>
-              <img
-                className="rounded cardHeight"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0t2goMjb6szsr4n0r_Q97a6qekI5hj2rEjQ&usqp=CAU"
-                alt=""
-                disabled={true}
-              />
-            </div>
-            <div>
-              <img
-                className="rounded cardHeight"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0t2goMjb6szsr4n0r_Q97a6qekI5hj2rEjQ&usqp=CAU"
-                alt=""
-                disabled={true}
-              />
-            </div>
-            <div>
-              <img
-                className="rounded cardHeight"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0t2goMjb6szsr4n0r_Q97a6qekI5hj2rEjQ&usqp=CAU"
-                alt=""
-                disabled={true}
-              />
-            </div>
-            <div>
-              <img
-                className="rounded cardHeight"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0t2goMjb6szsr4n0r_Q97a6qekI5hj2rEjQ&usqp=CAU"
-                alt=""
-                disabled={true}
-              />
-            </div>
-          </Carousel>
+          <CarouselHome />
 
           {/* Content Row */}
           {/* justify-content-center */}
           <div className="row justify-content-center">
             <div className="col-auto col-sm-auto col-md-auto col-lg-auto col-xl-auto">
               <div className=" shadow mb-4 cardHeight ">
-                <img
-                  className="rounded cardHeight"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0t2goMjb6szsr4n0r_Q97a6qekI5hj2rEjQ&usqp=CAU"
-                  alt=""
-                />
+                <img className="rounded cardHeight" src="" alt="" />
               </div>
               <div className="text-light detail-recommended  row">
                 <div className="col-10 my-auto">
