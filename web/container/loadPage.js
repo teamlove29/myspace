@@ -13,9 +13,7 @@ export default function LoadPage() {
         >
           <span className="sr-only">Loading...</span>
         </div>
-        <h1 className=" ml-3">
-          Loading...
-        </h1>
+        <h1 className=" ml-3">Loading...</h1>
       </div>
     </>
   );

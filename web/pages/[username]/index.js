@@ -7,7 +7,6 @@ import LoadPage from "../../container/loadPage";
 import { ModalContext } from "../../config/context/ModalProvider";
 import Axios from "axios";
 export default function Index({ dataFriends }) {
-
   const router = useRouter();
   const { username } = router.query;
   const [statusEditor, setStatusEditor] = useState(false);
@@ -20,7 +19,7 @@ export default function Index({ dataFriends }) {
     dataFriend,
     header,
   } = useContext(ModalContext);
-  const verifyMember = username != nameMember ? false : true;
+  const verifyMember = username == nameMember;
   useEffect(() => {
     if (dataFriends && nameMember) {
       if (dataFriends.mem_display_name != nameMember) {
@@ -32,7 +31,7 @@ export default function Index({ dataFriends }) {
     } else {
       setDataFriend(undefined);
     }
-  }, [username,nameMember]);
+  }, [username, nameMember]);
 
   // if (
   //   dataFriends === undefined ||
@@ -43,11 +42,8 @@ export default function Index({ dataFriends }) {
   if (!dataFriends) return <NotFound />;
   // if (verifyMember === false && dataFriends !== undefined) return <OverviewFriend />;
 
-  return <>{<Overview  editor={statusEditor} />}</>;
+  return <>{<Overview editor={statusEditor} />}</>;
 }
-
-
-
 
 export async function getServerSideProps({ query }) {
   const { username } = query;
@@ -57,7 +53,9 @@ export async function getServerSideProps({ query }) {
     return err;
   });
 
-  return { props:{
-    dataFriends: friend.data[0] || {}
-  } };
+  return {
+    props: {
+      dataFriends: friend.data[0] || {},
+    },
+  };
 }

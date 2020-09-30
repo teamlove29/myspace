@@ -11,17 +11,14 @@ export default function CoverMember({ children }) {
     margin: 0 auto 1em auto;
     z-index: -1;
 
-
     top: 0;
     right: 0;
     position: absolute;
     padding: 0 0;
     @media (max-width: 911px) {
       min-width: 911px;
-    };
-    
+    } ;
   `;
   return <COVERMEMBERIMAGE>{children}</COVERMEMBERIMAGE>;
 }
 // background-image: url("https://source.unsplash.com/hgO1wFPXl3I/1600x700");
-

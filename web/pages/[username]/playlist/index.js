@@ -353,8 +353,7 @@ export default function Index(props) {
           >
             <div
               style={{
-                backgroundImage:
-                  "url('https://i.redd.it/g67kq6pxuq431.jpg')",
+                backgroundImage: "url('https://i.redd.it/g67kq6pxuq431.jpg')",
                 width: "150px",
                 height: "150px",
                 backgroundPosition: "center",
@@ -370,7 +369,6 @@ export default function Index(props) {
               21 Apr 2017 · 0 tracks
             </span>
           </div>
-
         </div>
 
         <style jsx>

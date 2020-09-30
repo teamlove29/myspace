@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext,useMemo } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import Link from "next/link";
 import Auth from "./modal/auth";
 import firebase from "../config/config";
@@ -111,7 +111,7 @@ const Navbar = () => {
         if (user) {
           setLoading(true);
           const uid = await user.uid;
-          let token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
+          const token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
           const checksocialLogin = await Axios.post(
             process.env.API_URL + "/login-member",
             { uid: uid }
@@ -147,9 +147,7 @@ const Navbar = () => {
     });
   };
 
-  const test = async () => {
- 
-  };
+  const test = async () => {};
 
   useEffect(() => {
     // Axios.post(process.env.API_URL_CHECKDISPLAY, {
@@ -184,7 +182,6 @@ const Navbar = () => {
     return () => unsubscribe();
   }, [currentUser]);
 
-
   return (
     <>
       {loading && (
@@ -212,7 +209,7 @@ const Navbar = () => {
 
       <nav
         className="navbar navbar-expand navbar-light topbar mb-4 static-top hidden-md-down bg-navbar"
-        style={{ zIndex: "1" }}
+        style={{ zIndex: "1", position: "absolute", width: "100%" }}
       >
         <img
           className="d-md-block d-lg-none"
@@ -494,21 +491,18 @@ background-color : #151821;
   );
 };
 
-
-{/* Page.getInitialProps = async (ctx) => {
+{
+  /* Page.getInitialProps = async (ctx) => {
   const res = await fetch('https://api.github.com/repos/vercel/next.js')
   const json = await res.json()
   return { stars: json.stargazers_count }
-} */}
+} */
+}
 
 Navbar.getInitialProps = async ({ query, ctx }) => {
   const { username } = query;
-console.log('tdsadasd')
+  console.log("tdsadasd");
   return { username: username };
 };
 
 export default Navbar;
-
-
-
-

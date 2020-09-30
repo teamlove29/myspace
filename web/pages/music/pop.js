@@ -1,9 +1,9 @@
-import React from 'react'
-import  MenuMusic  from "../../component/menuMusic/menuMusic";
+import React from "react";
+import MenuMusic from "../../component/menuMusic/menuMusic";
 export default function Pop() {
-    return (
-        <MenuMusic>
-            <div className="col-6 col-md-4 col-lg-4 col-xl-auto  ">
+  return (
+    <MenuMusic>
+      <div className="col-6 col-md-4 col-lg-4 col-xl-auto  ">
         <img
           className="rounded card-body-music"
           src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/cool-music-album-cover-design-template-3324b2b5c69bb9a3cfaed14c71f24ca8_screen.jpg?ts=1572456482"
@@ -40,6 +40,6 @@ export default function Pop() {
           }
         `}
       </style>
-        </MenuMusic>
-    )
+    </MenuMusic>
+  );
 }

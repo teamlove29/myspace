@@ -26,8 +26,8 @@ export default function MenuMusic({ children }) {
     <>
       <Cover text={"MUSIC"} img={"https://source.unsplash.com/NYrVisodQ2M"} />
 
-      <div className="container-fluid menu-top  justify-content-center">
-        <div className="scrollmenu text-center  menu-hight ">
+      <div className="container-fluid  justify-content-center mt-5">
+        <div className="scrollmenu text-center ">
           <Link href="/music">
             <a
               style={{

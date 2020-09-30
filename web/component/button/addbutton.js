@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 const Button = styled.button`
   background: #151515;
   border: 0.1px solid #272727;
@@ -12,14 +12,14 @@ const Button = styled.button`
   &:disabled {
     background: #f5f5f5;
   }
-`;
+`
 
-export default function AddButton() {
+export default function AddButton () {
   return (
     <Button className="btn">
       <img src="/assets/img/icon/addIcon.png" alt="" />
     </Button>
-  );
+  )
 }
 
 export const Button2525 = styled.label`
@@ -40,7 +40,4 @@ export const Button2525 = styled.label`
   &:disabled {
     background: #f5f5f5;
   }
-`;
-
-
-
+`

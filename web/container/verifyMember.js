@@ -18,13 +18,11 @@ export default function VerifyMember({ children, dataFriends }) {
   } = useContext(ModalContext);
   const [statusEditor, setStatusEditor] = useState(false);
   const [data, setData] = useState(null);
-  const verifyMember = username != nameMember ? false : true;
+  const verifyMember = username == nameMember;
 
+  //   useMemo(async () => {
 
-//   useMemo(async () => {
-  
- 
-//   }, []);
+  //   }, []);
 
   //   if (
   //     dataFriends === undefined ||

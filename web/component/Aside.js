@@ -35,10 +35,9 @@ export default function Aside() {
   const handleSignOut = () => {
     firebase.auth().signOut();
     setavatarMember(process.env.AVATARHOLDER);
-    localStorage.removeItem('token_myspace');
-    localStorage.removeItem('profile_myspace');
+    localStorage.removeItem("token_myspace");
+    localStorage.removeItem("profile_myspace");
     router.push("/");
-
   };
 
   return (
@@ -91,14 +90,14 @@ export default function Aside() {
         </li>
         {/* Nav Item - Utilities Collapse Menu */}
         <li className={`nav-item  ${getMenuItemActive("/music")}`}>
-          <Link href="/music" >
+          <Link href="/music">
             <a className="nav-link collapsed">
               <span>MUSIC</span>
             </a>
           </Link>
         </li>
         <li className={`nav-item  ${getMenuItemActive("/charts")}`}>
-          <Link href="/charts" >
+          <Link href="/charts">
             <a className="nav-link collapsed">
               <span>CHARTS</span>
             </a>
@@ -112,7 +111,7 @@ export default function Aside() {
           </Link>
         </li>
         <li className={`nav-item  ${getMenuItemActive("/features")}`}>
-          <Link href="/features" >
+          <Link href="/features">
             <a className="nav-link collapsed">
               <span>FEATURES</span>
             </a>
@@ -143,7 +142,7 @@ export default function Aside() {
               </Link>
             </li>
             {/* Nav Item - Tables */}
-            <li className={`nav-item `}>
+            <li className={"nav-item "}>
               <a onClick={handleSignOut} className="nav-link btn">
                 <span>LOG OUT</span>
               </a>
@@ -152,7 +151,7 @@ export default function Aside() {
             {typeMember === 2 && (
               <>
                 <div className="sidebar-heading mt-2">BRAND</div>
-                <ul   className="navbar-nav bg-black sidebar sidebar-dark accordion d-none d-lg-block ">
+                <ul className="navbar-nav bg-black sidebar sidebar-dark accordion d-none d-lg-block ">
                   <li className={`nav-item  ${getMenuItemActive("/brand")}`}>
                     <Link href="/brand" as="/">
                       <a className="nav-link collapsed">

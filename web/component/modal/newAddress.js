@@ -16,15 +16,13 @@ const NewAddress = (props) => {
 
   const getInputClasses = (fieldname) => {
     if (formik.touched[fieldname] && formik.errors[fieldname]) {
-        return "is-invalid";
+      return "is-invalid";
     }
     if (formik.touched[fieldname] && !formik.errors[fieldname]) {
-        return "";
+      return "";
     }
     return "";
   };
-
-
 
   const initialValues = {
     fullname: "",
@@ -33,8 +31,7 @@ const NewAddress = (props) => {
     district: "",
     postalcode: "",
     etc: "",
-  }
-  
+  };
 
   const Schema = Yup.object().shape({
     fullname: Yup.string().required("Required").min(6, "Min length is 6"),
@@ -52,7 +49,7 @@ const NewAddress = (props) => {
       setStatus(null);
       console.log(values);
       setTimeout(() => {
-        setSubmitting(false)
+        setSubmitting(false);
       }, 1000);
     },
   });
@@ -84,7 +81,9 @@ const NewAddress = (props) => {
               {/* begin fullname */}
               <Form.Group>
                 <Form.Control
-                  className={`font-13 form-control  ${getInputClasses("fullname")}`}
+                  className={`font-13 form-control  ${getInputClasses(
+                    "fullname"
+                  )}`}
                   name="fullname"
                   type="text"
                   placeholder="Full Name"
@@ -109,9 +108,7 @@ const NewAddress = (props) => {
                   {...formik.getFieldProps("tel")}
                 />
                 {formik.touched.tel && formik.errors.tel ? (
-                  <div className="text-danger font-13">
-                    {formik.errors.tel}
-                  </div>
+                  <div className="text-danger font-13">{formik.errors.tel}</div>
                 ) : null}
               </Form.Group>
               {/* end tel */}
@@ -122,7 +119,9 @@ const NewAddress = (props) => {
                   as="select"
                   custom
                   name="province"
-                  className={`font-13 form-control  ${getInputClasses("province")}`}
+                  className={`font-13 form-control  ${getInputClasses(
+                    "province"
+                  )}`}
                   disabled={formik.isSubmitting}
                   {...formik.getFieldProps("province")}
                 >
@@ -146,8 +145,14 @@ const NewAddress = (props) => {
                   as="select"
                   custom
                   name="City"
-                  disabled={formik.isSubmitting === true ? true : formik.values.province != '' ? false : true }
-                  className={` font-13 form-control  ${getInputClasses("district")}`}
+                  disabled={
+                    formik.isSubmitting === true
+                      ? true
+                      : formik.values.province == ""
+                  }
+                  className={` font-13 form-control  ${getInputClasses(
+                    "district"
+                  )}`}
                   {...formik.getFieldProps("district")}
                 >
                   <option value="">City</option>
@@ -170,8 +175,14 @@ const NewAddress = (props) => {
                   as="select"
                   custom
                   name="postalcode"
-                  disabled={formik.isSubmitting === true ? true : formik.values.district != '' ? false : true}
-                  className={`font-13 form-control  ${getInputClasses("postalcode")}`}
+                  disabled={
+                    formik.isSubmitting === true
+                      ? true
+                      : formik.values.district == ""
+                  }
+                  className={`font-13 form-control  ${getInputClasses(
+                    "postalcode"
+                  )}`}
                   {...formik.getFieldProps("postalcode")}
                 >
                   <option value="">Postal Code</option>
@@ -199,18 +210,13 @@ const NewAddress = (props) => {
                   {...formik.getFieldProps("etc")}
                 />
                 {formik.touched.etc && formik.errors.etc ? (
-                  <div className="text-danger font-13">
-                    {formik.errors.etc}
-                  </div>
+                  <div className="text-danger font-13">{formik.errors.etc}</div>
                 ) : null}
               </Form.Group>
               {/* end etc */}
 
               <div className="text-center">
-                <a
-                  onClick={handleClose}
-                  className="pl-5 pr-5 btn mt-5 mr-3 "
-                >
+                <a onClick={handleClose} className="pl-5 pr-5 btn mt-5 mr-3 ">
                   CANCEL
                 </a>
                 <Button

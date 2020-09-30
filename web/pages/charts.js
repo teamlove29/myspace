@@ -10,7 +10,7 @@ export default function Charts() {
   return (
     <>
       <Cover text={"CHARTS"} img={"https://source.unsplash.com/NYrVisodQ2M"} />
-      <h5 className="font-Light menu-top container-fluid mb-5">
+      <h5 className="font-Light menu-top container-fluid mt-5 mb-5">
         Most Popular This Week
       </h5>
       <div className="row container-fluid mx-auto">
@@ -190,7 +190,7 @@ export default function Charts() {
                       alt=""
                     />
                   </div>
-                  
+
                   <div className="col-4">
                     <span className="text-light">TELEVIZON EP</span>
                     <br />
@@ -457,7 +457,6 @@ export default function Charts() {
           }
           .menu-top {
             position: relative;
-            margin-top: 250px;
             color: white;
           }
           .card-body-music {
@@ -468,7 +467,7 @@ export default function Charts() {
             backgroundsize: cover;
           }
           .icons-play {
-            padding-top:5px;
+            padding-top: 5px;
             font-size: 40px;
             background-image: linear-gradient(to left, yellow, #f3145e);
             -webkit-background-clip: text;
@@ -478,17 +477,6 @@ export default function Charts() {
             .card-body-music {
               width: 145px;
               height: 145px;
-            }
-          }
-
-          @media (max-width: 991px) {
-            .menu-top {
-              margin-top: 300px;
-            }
-          }
-          @media (max-width: 575px) {
-            .menu-top {
-              margin-top: 450px;
             }
           }
         `}

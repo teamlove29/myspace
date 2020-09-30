@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import NProgress from "nprogress"; //nprogress module
-import "nprogress/nprogress.css"; //styles of nprogress
+import NProgress from "nprogress"; // nprogress module
+import "nprogress/nprogress.css"; // styles of nprogress
 import Router from "next/router";
 import JWT from "jsonwebtoken";
 import "react-cool-music-player/dist/index.css";
 import "../public/assets/css/mystyle.css";
 import "../public/assets/css/font.css";
 import "../public/assets/css/sb-admin-2.css";
-
+import "react-multi-carousel/lib/styles.css";
 import { ModalProvider } from "../config/context/ModalProvider";
 import Navbar from "../component/navbar";
 import Aside from "../component/Aside";
@@ -25,7 +25,7 @@ NProgress.configure({
   // easing: "ease",
   // speed: 1000,
 });
-//Binding events.
+// Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
@@ -55,6 +55,24 @@ const MyApp = ({ Component, pageProps, stars }) => {
       img:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSW6efdzm2aLKy-fgT0MTu_L6c0gPtwSVAqrA&usqp=CAU",
       id: "66575568425354321",
+    },
+    {
+      src:
+        "https://firebasestorage.googleapis.com/v0/b/myspace-dev-1ae9e.appspot.com/o/joji_head_in_the_clouds_official_music_video_6018064538794048276.mp3?alt=media&token=5fe7005a-0a42-4963-9771-edc40ba333e1",
+      artist: "Joji",
+      name: "joji - Head in the Clouds",
+      img:
+        "data:image/jpeg;base64,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",
+      id: "1234567890",
+    },
+    {
+      src:
+        "https://firebasestorage.googleapis.com/v0/b/myspace-dev-1ae9e.appspot.com/o/joji_test_drive_8793574978977031927.mp3?alt=media&token=e9a66019-fa93-4b34-a39b-14d40e5a73bc",
+      artist: "Joji",
+      name: "Joji - TEST DRIVE",
+      img:
+        "data:image/jpeg;base64,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",
+      id: "6657556842535",
     },
   ]);
 
@@ -91,7 +109,8 @@ const MyApp = ({ Component, pageProps, stars }) => {
   const onPlayListHide = () => {
     setPlayListShow(false);
   };
-  const noActions = () => {
+  const noActions = (music) => {
+    // setData([...data, music]);
     setNoActionsShow(true);
     setTimeout(() => {
       setNoActionsShow(false);
@@ -132,7 +151,11 @@ const MyApp = ({ Component, pageProps, stars }) => {
     },
     (music) => {
       return (
-        <div style={{ fontSize: 22 }} key={"b"} onClick={noActions}>
+        <div
+          style={{ fontSize: 22 }}
+          key={music.id}
+          onClick={() => noActions(music)}
+        >
           <svg
             className="icon pointer"
             style={{
@@ -188,8 +211,7 @@ const MyApp = ({ Component, pageProps, stars }) => {
                 {loading ? <LoadPage /> : <Component {...pageProps} />}
                 {/* <Component {...pageProps} /> */}
               </div>
-              <Footer
-              />
+              <Footer />
             </div>
           </div>
         </div>
@@ -215,7 +237,7 @@ const MyApp = ({ Component, pageProps, stars }) => {
             playListHeader={{
               headerLeft: "Play List",
               headerRight: (
-                <span onClick={onPlayListHide} className="pointer">
+                <span onClick={onPlayListHide} className="pointer ">
                   Close
                 </span>
               ),

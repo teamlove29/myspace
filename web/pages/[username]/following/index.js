@@ -21,9 +21,11 @@ const Index = () => {
       {/* begin 1 */}
       <div className="row mt-5 container-fluid justify-content-center">
         <div className="col-auto my-auto">
-          <img 
-          className="rounded-circle "
-          src="https://source.unsplash.com/6vh6D_8ZzmQ/75x75" alt="" />
+          <img
+            className="rounded-circle "
+            src="https://source.unsplash.com/6vh6D_8ZzmQ/75x75"
+            alt=""
+          />
         </div>
         <div className="col-8 my-auto">
           <span className="text-light">Mememay</span>
@@ -39,13 +41,15 @@ const Index = () => {
         </div>
       </div>
       {/* end 1 */}
-      <hr/>
+      <hr />
       {/* begin 2 */}
       <div className="row container-fluid justify-content-center">
         <div className="col-auto my-auto">
-          <img 
-          className="rounded-circle "
-          src="https://source.unsplash.com/Xi0SAAHOc-k/75x75" alt="" />
+          <img
+            className="rounded-circle "
+            src="https://source.unsplash.com/Xi0SAAHOc-k/75x75"
+            alt=""
+          />
         </div>
         <div className="col-8 my-auto">
           <span className="text-light">Mememay</span>
@@ -61,13 +65,15 @@ const Index = () => {
         </div>
       </div>
       {/* end 2 */}
-      <hr/>
+      <hr />
       {/* begin 3 */}
       <div className="row  container-fluid justify-content-center">
         <div className="col-auto my-auto">
-          <img 
-          className="rounded-circle "
-          src="https://source.unsplash.com/5KD__4bgtnA/75x75" alt="" />
+          <img
+            className="rounded-circle "
+            src="https://source.unsplash.com/5KD__4bgtnA/75x75"
+            alt=""
+          />
         </div>
         <div className="col-8 my-auto">
           <span className="text-light">Mememay</span>

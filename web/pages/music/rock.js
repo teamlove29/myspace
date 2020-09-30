@@ -1,9 +1,8 @@
-import React from 'react'
-import  MenuMusic  from "../../component/menuMusic/menuMusic";
+import React from "react";
+import MenuMusic from "../../component/menuMusic/menuMusic";
 export default function Rock() {
-    return (
-        <MenuMusic>
-
+  return (
+    <MenuMusic>
       <div className="col-6 col-md-4 col-lg-4 col-xl-auto mb-4  ">
         <img
           className="rounded card-body-music"
@@ -13,7 +12,7 @@ export default function Rock() {
 
         <p className="font-13 mt-2">Name song</p>
       </div>
-             <style jsx>
+      <style jsx>
         {`
           .card-body-music {
             width: 200px;
@@ -31,6 +30,6 @@ export default function Rock() {
           }
         `}
       </style>
-        </MenuMusic>
-    )
+    </MenuMusic>
+  );
 }
