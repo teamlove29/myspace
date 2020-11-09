@@ -410,7 +410,7 @@ export default function HomePage() {
             margin-bottom: 50px;
           }
           .card-hr {
-            margin-top: -10rem;
+            margin-top: -5rem;
           }
           @media screen and (min-width: 1451px) {
             .text-on-home {
@@ -418,7 +418,7 @@ export default function HomePage() {
               margin-bottom: 50px;
             }
             .card-hr {
-              margin-top: -10rem;
+       
             }
           }
           @media screen and (max-width: 1450px) {

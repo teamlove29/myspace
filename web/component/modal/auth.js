@@ -191,6 +191,7 @@ const Auth = (props) => {
   };
 
   const handleSignUp = async (value, { setSubmitting }) => {
+    
     try {
       await Axios.post(process.env.API_URL_CHECKUSER, {
         email: value.email,
@@ -217,7 +218,7 @@ const Auth = (props) => {
     const names = await email.substring(0, email.lastIndexOf("@"));
     const date = await new Date();
     const DateCreate = await (date.getTime() / 1000).toFixed(0);
-    const URL = process.env.API_URL + "/login-member/addmem";
+    const URL = process.env.API_URL + "/authen/adduser";
     // result มาจาก social ถ้าไม่มีแปลว่ามาจากสมัครด้วย Email
     if (checkSiginSocial) {
       await Axios.post(URL, {
@@ -290,6 +291,7 @@ const Auth = (props) => {
   var twitterProvider = new firebase.auth.TwitterAuthProvider();
 
   const SignInSocial = async (value) => {
+    console.log('test');
     value.setCustomParameters({
       display: "popup",
     });
@@ -298,7 +300,7 @@ const Auth = (props) => {
     setShowSignUp(false);
     try {
       // นำค่า uid ไปเช็คที่ API ถ้าไม่มี type ให้เลือกก่อนไม่งั้นก็ signoutไป
-      await Axios.post(process.env.API_URL + "/login-member", {
+      await Axios.post(process.env.API_URL + "/authen", {
         uid: result.user.uid,
       })
         .then((res) => {
@@ -307,6 +309,7 @@ const Auth = (props) => {
         })
         .catch((err) => {
           // ถ้าไม่มีให้ไปเลือก type แล้วเพิ่มข้อมูลลง DB
+          console.log(err)
           console.log("ยังไม่เคยสมัคร");
           setShowType(true);
           setUidSocial(result.user.uid);

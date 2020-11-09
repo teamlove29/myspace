@@ -15,6 +15,7 @@ const images = [
   "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcREZ2nF2ZsIW25Y1T7-PldKdEWb85X6o5ztyA&usqp=CAU",
   "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTybMm_awsAxS-JHGSj0EdlSg4rUSlhEXckiw&usqp=CAU",
   "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQf2__ZhxOcOVBSA1BMwNMI7o9qPFycwyTIVg&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQf2__ZhxOcOVBSA1BMwNMI7o9qPFycwyTIVg&usqp=CAU",
   "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/minimal-dark-album-cd-cover-template-design-d666beed411324dbdc8dc539de9cc27a_screen.jpg?ts=1579664445",
 ];
 

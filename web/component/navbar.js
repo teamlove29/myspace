@@ -113,7 +113,7 @@ const Navbar = () => {
           const uid = await user.uid;
           const token = await JWT.sign({ uid: uid }, process.env.SECRET_KEY);
           const checksocialLogin = await Axios.post(
-            process.env.API_URL + "/login-member",
+            process.env.API_URL + "/authen",
             { uid: uid }
           );
           if (checksocialLogin.status === 200) {
